@@ -33,22 +33,22 @@ HRESULT soundManager::init()
 
 void soundManager::release()
 {
-	//사운드 삭제
-	if (_channel != NULL || _sound != NULL)
-	{
-		for (int i = 0; i < TOTALSOUNDBUFFER; i++)
-		{
-			if (_channel != NULL)
-			{
-				if (_channel[i]) _channel[i]->stop();
-			}
-
-			if (_sound != NULL)
-			{
-				if (_sound != NULL) _sound[i]->release();
-			}
-		}
-	}
+	////사운드 삭제
+	//if (_channel != NULL || _sound != NULL)
+	//{
+	//	for (int i = 0; i < TOTALSOUNDBUFFER; i++)
+	//	{
+	//		if (_channel != NULL)
+	//		{
+	//			if (_channel[i]) _channel[i]->stop();
+	//		}
+	//
+	//		if (_sound != NULL)
+	//		{
+	//			if (_sound != NULL) _sound[i]->release();
+	//		}
+	//	}
+	//}
 
 	//메모리 지우기
 	SAFE_DELETE_ARRAY(_channel);

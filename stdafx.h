@@ -29,6 +29,9 @@ using namespace std;
 #include "Object.h"
 #include "Vector2.h"
 #include "sceneManager.h"
+#include "BoxWorldManager.h"
+#include "PhysicsManager.h"
+#include "GraphicsManager.h"
 
 using namespace SEVENTEEN_UTIL;
 
@@ -51,12 +54,16 @@ using namespace SEVENTEEN_UTIL;
 #define TXTDATA txtData::getSingleton()
 #define SOUNDMANAGER soundManager::getSingleton()
 #define SCENEMANAGER sceneManager::getSingleton()
-
-
+#define BOXWORLDMANAGER BoxWorldManager::getSingleton()
+#define PHYSICSMANAGER PhysicsManager::GetInstance()
+#define GRAPHICMANAGER GraphicsManager::getSingleton()
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p)=NULL;}}
 #define SAFE_RELEASE(p) {if(p) {(p)->release(); (p) = NULL;}}
 #define SAFE_DELETE_ARRAY(p) {if(p) { delete[](p); (p) = NULL;}}
+
+template <typename T>
+inline void Safe_release(T* &p) { if (p) p->Release(); p = NULL; }
 
 //==========================================
 // ## 19.10.31 ## Extern
@@ -68,3 +75,5 @@ extern POINT		_ptMouse;
 //==========================================
 // ## 19.22.22 ## 엔진 첫 걸음
 //==========================================
+#define world2pWorld 10.f/800
+#define pWorld2world 800.f/10
