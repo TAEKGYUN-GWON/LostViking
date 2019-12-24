@@ -72,3 +72,6 @@ extern POINT		_ptMouse;
 //==========================================
 #define world2pWorld 10.f/800
 #define pWorld2world 800.f/10
+
+template <typename T>
+inline void Safe_release(T* &p) { if (p) p->Release(); p = NULL; }
