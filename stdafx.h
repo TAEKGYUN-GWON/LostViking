@@ -31,6 +31,7 @@ using namespace std;
 #include "sceneManager.h"
 #include "BoxWorldManager.h"
 #include "PhysicsManager.h"
+#include "GraphicsManager.h"
 using namespace SEVENTEEN_UTIL;
 
 //=========================================
@@ -53,9 +54,8 @@ using namespace SEVENTEEN_UTIL;
 #define SOUNDMANAGER soundManager::getSingleton()
 #define SCENEMANAGER sceneManager::getSingleton()
 #define BOXWORLDMANAGER BoxWorldManager::getSingleton()
+#define GRMANAGER GraphicsManager::getSingleton();
 #define PHYSICSMANAGER PhysicsManager::GetInstance()
-
-
 #define SAFE_DELETE(p) {if(p) {delete(p); (p)=NULL;}}
 #define SAFE_RELEASE(p) {if(p) {(p)->release(); (p) = NULL;}}
 #define SAFE_DELETE_ARRAY(p) {if(p) { delete[](p); (p) = NULL;}}

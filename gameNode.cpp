@@ -36,6 +36,7 @@ HRESULT gameNode::init(bool managerInit)
 		EFFECTMANAGER->init();
 		SOUNDMANAGER->init();
 		SCENEMANAGER->init();
+		GRAPHICSMANAGER->Init();
 	}
 
 	return S_OK;
