@@ -60,6 +60,9 @@ void gameNode::release()
 		SOUNDMANAGER->releaseSingleton();
 		SCENEMANAGER->release();
 		SCENEMANAGER->releaseSingleton();
+		BOXWORLDMANAGER->Release();
+		BOXWORLDMANAGER->releaseSingleton();
+
 	}
 
 	ReleaseDC(_hWnd, _hdc);

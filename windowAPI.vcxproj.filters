@@ -156,6 +156,12 @@
     <ClInclude Include="Graphic.h">
       <Filter>2DGameFramework\image</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>2DGameFramework\Manager\header</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxWorldManager.h">
+      <Filter>2DGameFramework\Manager\header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -232,6 +238,12 @@
     </ClCompile>
     <ClCompile Include="Graphic.cpp">
       <Filter>2DGameFramework\image</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>2DGameFramework\Manager\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxWorldManager.cpp">
+      <Filter>2DGameFramework\Manager\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

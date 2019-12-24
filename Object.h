@@ -5,6 +5,7 @@ class Object
 {
 protected:
 	TransformComponent *_trans;
+	string _ObjName;
 	bool _isActive;
 public:
 	Object() {};
