@@ -27,6 +27,8 @@ private:
 	IWICImagingFactory*		_wicFactory;
 	ID2D1Bitmap*			_bitmap;
 
+	int						_a;
+
 public:
 	GraphicsManager();
 	~GraphicsManager();
