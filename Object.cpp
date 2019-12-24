@@ -2,6 +2,6 @@
 #include "Object.h"
 #include "TransformComponent.h"
 
-//testrtr
+
 //¹¹Áö
 //¹»±î
