@@ -9,6 +9,7 @@ public:
 	virtual void Release();
 	void RemoveBody(b2Body* body);
 	void SetWorld();
+	void SetWorld(b2World* world);
 	inline b2World* GetWorld() { return _world; }
 };
 
