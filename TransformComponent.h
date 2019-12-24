@@ -4,6 +4,7 @@ class Object;
 class TransformComponent
 {
 private:
+	RECT _rc;
 	Object *_object;
 	Vector2 _pos;
 	Vector2 _scale;
