@@ -12,10 +12,7 @@ TransformComponent::~TransformComponent()
 }
 
 
-void TransformComponent::SetScale(Vector2 scale)
-{
-	_scale = scale;
-}
+
 
 void TransformComponent::Update()
 {
