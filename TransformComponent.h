@@ -16,5 +16,6 @@ public:
 	inline Vector2 GetPos() { return _pos; }
 	inline Vector2 GetScale() { return _scale; }
 	inline void SetPos(Vector2 pos) { _pos = pos; }
+	inline RECT* getRect() { return &_rc; }
 };
 

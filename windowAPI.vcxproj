@@ -146,18 +146,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="BoxWorldManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="GraphicComponent.h" />
+    <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="KeyControlComponent.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PhysicsBodyComponent.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -178,17 +181,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="BoxWorldManager.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="GraphicComponent.cpp" />
+    <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="KeyControlComponent.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />

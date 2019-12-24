@@ -156,6 +156,15 @@
     <ClInclude Include="Graphic.h">
       <Filter>2DGameFramework\image</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>2DGameFramework\Manager\header</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxWorldManager.h">
+      <Filter>2DGameFramework\Manager\header</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsManager.h">
+      <Filter>2DGameFramework\Manager\header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -184,9 +193,6 @@
     </ClCompile>
     <ClCompile Include="timer.cpp">
       <Filter>2DGameFramework\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="animation.cpp">
-      <Filter>2DGameFramework\animation</Filter>
     </ClCompile>
     <ClCompile Include="effect.cpp">
       <Filter>2DGameFramework\effect</Filter>
@@ -232,6 +238,18 @@
     </ClCompile>
     <ClCompile Include="Graphic.cpp">
       <Filter>2DGameFramework\image</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>2DGameFramework\Manager\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxWorldManager.cpp">
+      <Filter>2DGameFramework\Manager\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsManager.cpp">
+      <Filter>2DGameFramework\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>2DGameFramework\Manager\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

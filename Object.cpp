@@ -3,7 +3,3 @@
 #include "TransformComponent.h"
 
 
-//¹¹Áö
-//¹»±î
-//????
-//Á¤¸»?

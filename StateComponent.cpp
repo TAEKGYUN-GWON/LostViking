@@ -3,7 +3,6 @@
 StateComponent::StateComponent(Object* object)
 {
 	_object = object;
-
 }
 
 
