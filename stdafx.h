@@ -14,6 +14,8 @@
 #include <iostream>
 
 using namespace std;
+#include "Box2D/Box2D.h"
+#pragma comment(lib, "lib/x86_64/Debug/Box2D.lib")
 
 #include "commonMacroFunction.h"
 #include "randomFunction.h"
@@ -50,8 +52,6 @@ using namespace SEVENTEEN_UTIL;
 #define SOUNDMANAGER soundManager::getSingleton()
 #define SCENEMANAGER sceneManager::getSingleton()
 
-#include "Box2D/Box2D.h"
-#pragma comment(lib, "lib/x86_64/Debug/Box2D.lib")
 
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p)=NULL;}}
