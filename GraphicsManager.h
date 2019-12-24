@@ -12,6 +12,3 @@ public:
 	virtual HRESULT Init();
 	virtual void Release();
 };
-
-//불안하다
-//지호
