@@ -194,6 +194,9 @@
     <ClCompile Include="timer.cpp">
       <Filter>2DGameFramework\timer</Filter>
     </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>2DGameFramework\animation</Filter>
+    </ClCompile>
     <ClCompile Include="effect.cpp">
       <Filter>2DGameFramework\effect</Filter>
     </ClCompile>
@@ -246,9 +249,6 @@
       <Filter>2DGameFramework\Manager\cpp</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsManager.cpp">
-      <Filter>2DGameFramework\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="animation.cpp">
       <Filter>2DGameFramework\Manager\cpp</Filter>
     </ClCompile>
   </ItemGroup>

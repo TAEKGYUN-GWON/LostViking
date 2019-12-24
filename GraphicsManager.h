@@ -13,3 +13,5 @@ public:
 	virtual void Release();
 };
 
+//불안하다
+//지호
