@@ -8,4 +8,6 @@ public:
 	Graphic();
 	~Graphic();
 
+	HRESULT Init();
+	void release();
 };

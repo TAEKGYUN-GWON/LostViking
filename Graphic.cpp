@@ -10,3 +10,12 @@ Graphic::~Graphic()
 {
 
 }
+
+HRESULT Graphic::Init()
+{
+	return S_OK;
+}
+
+void Graphic::release()
+{
+}
