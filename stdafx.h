@@ -77,3 +77,5 @@ extern POINT		_ptMouse;
 //==========================================
 #define world2pWorld 10.f/800
 #define pWorld2world 800.f/10
+#define DEGREE (float)180/PI
+#define RADIAN (float)PI/180
