@@ -4,6 +4,8 @@ class GraphicsManager
 {
 private:
 	map<int, string> cc;
+	map<int, string> cc2;
+
 
 public:
 	static GraphicsManager* GetInstance();
@@ -12,4 +14,3 @@ public:
 	virtual HRESULT Init();
 	virtual void Release();
 };
-
