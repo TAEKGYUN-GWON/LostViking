@@ -1,11 +1,9 @@
 #include "stdafx.h"
 #include "gameNode.h"
 
-
 gameNode::gameNode()
 {
 }
-
 
 gameNode::~gameNode()
 {
@@ -36,7 +34,7 @@ HRESULT gameNode::init(bool managerInit)
 		EFFECTMANAGER->init();
 		SOUNDMANAGER->init();
 		SCENEMANAGER->init();
-		GRAPHICSMANAGER->Init();
+		GRAPHICMANAGER->init();
 	}
 
 	return S_OK;
@@ -63,7 +61,8 @@ void gameNode::release()
 		SCENEMANAGER->releaseSingleton();
 		BOXWORLDMANAGER->Release();
 		BOXWORLDMANAGER->releaseSingleton();
-
+		GRAPHICMANAGER->Release();
+		GRAPHICMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);
