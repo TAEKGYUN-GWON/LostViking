@@ -98,7 +98,10 @@ void playGround::update()
 //여기다 그려라!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void playGround::render()
 {
-	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
+	//PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
+	GRAPHICMANAGER->GetRenderTarget();
+	GRAPHICMANAGER->GetRenderTarget()->BeginDraw();
+	GRAPHICMANAGER->GetRenderTarget()->Clear(D2D1::ColorF(D2D1::ColorF::White));
 	//==================================================
 
 	char buffer[128];
@@ -108,8 +111,11 @@ void playGround::render()
 	sprintf_s(buffer, "DYNAMIC BODY: angle = %f", _dynamicBody->GetAngle());
 	TextOut(getMemDC(), 50, 70, buffer, strlen(buffer));
 
+	GRAPHICMANAGER->DrawRect(WINSIZEX / 2, WINSIZEY / 2, 100, 100);
+
 
 	//===================================================
 	//딱 말했다
-	_backBuffer->render(getHDC(), 0, 0);
+	//_backBuffer->render(getHDC(), 0, 0);
+	GRAPHICMANAGER->GetRenderTarget()->EndDraw();
 }
