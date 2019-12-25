@@ -15,4 +15,3 @@ public:
 	virtual void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) override;
 	virtual void EndContact(b2Contact* contact) override;
 };
-
