@@ -13,6 +13,6 @@ public:
 	virtual HRESULT Init() {};
 	virtual void Interaction() {};
 	virtual void Interaction2() {};
-	virtual void Update() {};
+	virtual void Update() { };
 	virtual inline TransformComponent * GetTrans() { return _trans; }
 };
