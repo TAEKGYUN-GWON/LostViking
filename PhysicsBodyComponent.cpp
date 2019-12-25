@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "PhysicsBodyComponent.h"
 #include "TransformComponent.h"
-
-
-
+#include "Object.h"
 void PhysicsBodyComponent::Init(Body_Type type)
 {
 	_type = type;
