@@ -1,6 +1,5 @@
 #pragma once
-static float Distance(Vector2 a, Vector2 b);
-static float Dot(Vector2 lhs, Vector2 rhs);
+
 class Vector2
 {
 public:
@@ -29,13 +28,7 @@ public:
 	static const Vector2 zero;
 	static const Vector2 one;
 
-
-	inline float GetX() { return x; }
-	inline float GetY() { return y; }
-
-	inline void SetX(float x) { this->x = x; }
-	inline void SetY(float y) { this->y = y; }
-	
-	inline Vector2 getPos() { return *this; }
+	static float Distance(Vector2 a, Vector2 b);
+	static float Dot(Vector2 lhs, Vector2 rhs);
 };
 

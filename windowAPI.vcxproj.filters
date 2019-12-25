@@ -165,6 +165,9 @@
     <ClInclude Include="GraphicsManager.h">
       <Filter>2DGameFramework\Manager\header</Filter>
     </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>2DGameFramework\Object\Component\header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -250,6 +253,9 @@
     </ClCompile>
     <ClCompile Include="GraphicsManager.cpp">
       <Filter>2DGameFramework\Manager\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>2DGameFramework\Object\Component\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

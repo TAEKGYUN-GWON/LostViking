@@ -15,14 +15,13 @@ float Vector2::Magnitude()
 Vector2 Vector2::Nomalized()
 {
 	Vector2 result;
-	float size = this->Magnitude();
+	float size = Magnitude();
 
-	if (size != 0)
-	{
-		result.x = x / size;
-		result.y = y / size;
+	if (!size)	
+		return Vector2::zero;
 
-	}
+	result.x /= size;
+	result.y /= size;
 
 	return result;
 }
@@ -33,7 +32,7 @@ float Vector2::SqrMagnitude()
 
 }
 
-float Distance(Vector2 a, Vector2 b)
+float Vector2::Distance(Vector2 a, Vector2 b)
 {
 	float x = b.x - a.x;
 	float y = b.y - a.y;
@@ -41,21 +40,9 @@ float Distance(Vector2 a, Vector2 b)
 	return sqrtf(x * x + y * y);
 }
 
-float Dot(Vector2 lhs, Vector2 rhs)
+float Vector2::Dot(Vector2 lhs, Vector2 rhs)
 {
-	float x = rhs.x - lhs.x;
-	float y = rhs.y - lhs.y;
 
-	float distance = sqrtf(x * x + y * y);
-
-	float angle = acosf(x / distance);
-
-	if (rhs.y > lhs.y)
-	{
-		angle = PI2 - angle;
-
-		if (angle >= PI2) angle -= PI2;
-	}
 
 	return 0.0f;
 }

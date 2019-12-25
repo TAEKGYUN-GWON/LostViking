@@ -148,6 +148,7 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="BoxWorldManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="gameNode.h" />
@@ -182,6 +183,7 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="BoxWorldManager.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="gameNode.cpp" />

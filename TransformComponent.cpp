@@ -20,5 +20,5 @@ void TransformComponent::Update()
 	//_rc = RectMake(_pos.x, _pos.y, _scale.x, _scale.y);
 	
 	// _posÀÇ ÁÂÇ¥°¡ ÁßÁ¡ÁÂÇ¥
-	_rc = RectMakeCenter(_pos.GetX(), _pos.GetY(), _scale.GetX(), _scale.GetY());
+
 }
