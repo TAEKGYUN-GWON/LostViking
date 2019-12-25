@@ -1,12 +1,9 @@
 #pragma once
-class Object;
-class GraphicComponent
+#include"Component.h"
+class GraphicComponent : public Component
 {
-private:
-	Object *_object;
 
 public:
-	GraphicComponent(Object *object);
-	~GraphicComponent();
+	GraphicComponent() { _name = "GraphicComponent"; }
 };
 
