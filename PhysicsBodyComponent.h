@@ -1,5 +1,5 @@
 #pragma once
-class Object;
+#include "Component.h"
 enum Body_Type
 {
 	DYNAMIC,
@@ -7,15 +7,13 @@ enum Body_Type
 	KINEMATIC
 };
 
-class PhysicsBodyComponent
+class PhysicsBodyComponent : public Component
 {
 private:
-	Object *_object;
 	b2Body *_body;
 	Body_Type _type;
 public:
-	PhysicsBodyComponent(Object* object);
-	~PhysicsBodyComponent();
+	PhysicsBodyComponent() { _name = "PhysicsBodyComponent"; }
 	void Init(Body_Type type);
 	void SetBodyPosition();
 	Vector2 GetBodyPosition();

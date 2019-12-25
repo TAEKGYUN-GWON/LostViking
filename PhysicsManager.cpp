@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "PhysicsManager.h"
 
-
 PhysicsManager::PhysicsManager()
 {
 }
@@ -24,9 +23,6 @@ void PhysicsManager::SetWorld(b2World * world)
 
 void PhysicsManager::BeginContact(b2Contact * contacts)
 {
-	Object* a = (Object*)contacts->GetFixtureA()->GetBody()->GetUserData();
-	Object* b = (Object*)contacts->GetFixtureB()->GetBody()->GetUserData();
-
 }
 
 void PhysicsManager::PreSolve(b2Contact * contacts, const b2Manifold * oldManifold)
@@ -36,5 +32,3 @@ void PhysicsManager::PreSolve(b2Contact * contacts, const b2Manifold * oldManifo
 void PhysicsManager::EndContact(b2Contact * contacts)
 {
 }
-
-

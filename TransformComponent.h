@@ -1,16 +1,13 @@
 #pragma once
-class Object;
-
-class TransformComponent
+#include "Component.h"
+class TransformComponent : public Component
 {
 private:
-	Object *_object;
 	Vector2 _pos;
 	Vector2 _scale;
 	float _rotate;
 public:
-	TransformComponent(Object* object);
-	~TransformComponent();
+	TransformComponent() { _name = "TransformComponent"; }
 	void Update();
 	//Vector2 타입 좌표 가져오기
 	inline Vector2 GetPos() { return _pos; }

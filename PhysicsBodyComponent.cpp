@@ -3,15 +3,6 @@
 #include "TransformComponent.h"
 
 
-PhysicsBodyComponent::PhysicsBodyComponent(Object* object)
-{
-	_object = object;
-}
-
-
-PhysicsBodyComponent::~PhysicsBodyComponent()
-{
-}
 
 void PhysicsBodyComponent::Init(Body_Type type)
 {

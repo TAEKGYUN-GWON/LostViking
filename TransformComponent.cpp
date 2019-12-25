@@ -1,17 +1,6 @@
 #include "stdafx.h"
 #include "TransformComponent.h"
 
-TransformComponent::TransformComponent(Object* object)
-{
-	_object = object;
-}
-
-
-TransformComponent::~TransformComponent()
-{
-}
-
-
 
 
 void TransformComponent::Update()

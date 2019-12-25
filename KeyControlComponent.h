@@ -1,10 +1,8 @@
 #pragma once
-class Object;
-class KeyControlComponent
+#include "Component.h"
+class KeyControlComponent : public Component
 {
-	Object *_object;
 public:
-	KeyControlComponent(Object *object);
-	~KeyControlComponent();
+	KeyControlComponent() { _name = "KeyControlComponent"; }
 };
 

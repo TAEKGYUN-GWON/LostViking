@@ -6,12 +6,7 @@ public:
 	float x;
 	float y;
 
-	float Magnitude();
-	Vector2 Nomalized();
-	float SqrMagnitude();
 
-
-	
 	Vector2():x(0),y(0) {};
 	//float값으로 벡터 설정
 	Vector2(float x, float y) : x(x), y(y) {}
@@ -30,5 +25,22 @@ public:
 
 	static float Distance(Vector2 a, Vector2 b);
 	static float Dot(Vector2 lhs, Vector2 rhs);
+
+
+	float Magnitude();
+	Vector2 Nomalized();
+	float SqrMagnitude();
+	Vector2 RotateToDegree(float angle);
+	Vector2 RotateToRadian(float angle);
+
+
+	Vector2 operator-(Vector2 to);
+	Vector2 operator+(Vector2 to);
+	Vector2 operator*(float to);
+	Vector2 operator/(int to);
+	void operator+=(Vector2 to);
+	void operator-=(Vector2 to);
+	bool operator==(Vector2 to);
+	bool operator!=(Vector2 to);
 };
 
