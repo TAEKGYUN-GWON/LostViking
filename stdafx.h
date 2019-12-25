@@ -63,7 +63,7 @@ using namespace SEVENTEEN_UTIL;
 #define SAFE_DELETE_ARRAY(p) {if(p) { delete[](p); (p) = NULL;}}
 
 template <typename T>
-inline void Safe_release(T* &p) { if (p) p->Release(); p = NULL; }
+inline void SafeRelease(T* &p) { if (p) p->Release(); p = NULL; }
 
 //==========================================
 // ## 19.10.31 ## Extern

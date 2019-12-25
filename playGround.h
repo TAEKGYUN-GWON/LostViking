@@ -12,6 +12,8 @@ private:
 	b2Body* _dynamicBody;
 	//테스트용 변수
 	bool _tested;
+
+	Graphic* _img;
 	
 public:
 	playGround();
