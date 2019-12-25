@@ -26,7 +26,6 @@ using namespace std;
 #include "effectManager.h"
 #include "txtData.h"
 #include "soundManager.h"
-#include "Object.h"
 #include "Vector2.h"
 #include "sceneManager.h"
 #include "BoxWorldManager.h"
