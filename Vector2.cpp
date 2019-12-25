@@ -10,7 +10,7 @@ const Vector2 Vector2::one = Vector2(1, 1);
 
 Vector2 Vector2::operator-(Vector2 to)
 {
-
+	
 	return Vector2(x-to.x,y-to.y);
 }
 
