@@ -69,6 +69,27 @@ Graphic* GraphicsManager::AddImage(string key, wstring file)
 	return nullptr;
 }
 
+Graphic * GraphicsManager::AddFrameImage(string key, wstring file, int frameX, int frameY)
+{
+	Graphic* graphic = FindImage(key);
+
+	if (graphic) return graphic;
+
+	ID2D1Bitmap* bitmap = CreateD2DBitmap(file);
+
+	if (bitmap)
+	{
+		graphic = new Graphic;
+		graphic->Init(bitmap, frameX, frameY);
+
+		_mImageList.insert(make_pair(key, graphic));
+		return graphic;
+	}
+
+	SafeRelease(bitmap);
+	return nullptr;
+}
+
 Graphic * GraphicsManager::FindImage(string strKey)
 {
 	mapImageIter key = _mImageList.find(strKey);

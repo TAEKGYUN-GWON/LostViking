@@ -62,6 +62,7 @@ public:
 	void Release();
 
 	Graphic* AddImage(string key, wstring file);
+	Graphic* AddFrameImage(string key, wstring file, int frameX, int frameY);
 
 	Graphic* FindImage(string strKey);
 	BOOL DeleteImage(string strKey);
