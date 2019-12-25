@@ -9,12 +9,10 @@ playGround::playGround()
 {
 }
 
-
 playGround::~playGround()
 {
 }
 
-//초기화는 여기다 해라!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 HRESULT playGround::init()
 {
 	gameNode::init(true);
@@ -62,8 +60,6 @@ HRESULT playGround::init()
 
 
 	//시간 설정
-	
-
 	 timeStep = 1.0f / 60.0f;
 	 velocityIterations = 8;		//충돌 체크 얼마나 할건지 (정확도 상승, 문서에서는 8과 3 권장)
 	 positionIterations = 3;		//위치 체크 얼마나 할건지 
@@ -72,20 +68,19 @@ HRESULT playGround::init()
 	_tested = true;
 
 
-
+	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
 
 
 	return S_OK;
 }
 
-//메모리 해제는 여기다 해라!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void playGround::release()
 {
 	gameNode::release();
 
 	
 }
-//연산은 여기다 해라!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 void playGround::update()
 {
 	gameNode::update();
@@ -95,13 +90,13 @@ void playGround::update()
 
 }
 
-//여기다 그려라!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void playGround::render()
 {
-	//PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
-	GRAPHICMANAGER->GetRenderTarget();
-	GRAPHICMANAGER->GetRenderTarget()->BeginDraw();
-	GRAPHICMANAGER->GetRenderTarget()->Clear(D2D1::ColorF(D2D1::ColorF::White));
+	ID2D1RenderTarget* renderTarget = GRAPHICMANAGER->GetRenderTarget();
+	renderTarget->BeginDraw();
+
+	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+	renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));
 	//==================================================
 
 	char buffer[128];
@@ -111,11 +106,14 @@ void playGround::render()
 	sprintf_s(buffer, "DYNAMIC BODY: angle = %f", _dynamicBody->GetAngle());
 	TextOut(getMemDC(), 50, 70, buffer, strlen(buffer));
 
-	GRAPHICMANAGER->DrawRect(WINSIZEX / 2, WINSIZEY / 2, 100, 100);
+	_img->Render(WINSIZEX / 2, WINSIZEY / 2);
 
+	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
+	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 45);
 
 	//===================================================
 	//딱 말했다
-	//_backBuffer->render(getHDC(), 0, 0);
-	GRAPHICMANAGER->GetRenderTarget()->EndDraw();
+	HRESULT hr = renderTarget->EndDraw();
+	//if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Reload();
+	if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Release();
 }
