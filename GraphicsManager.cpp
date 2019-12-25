@@ -56,18 +56,17 @@ Graphic* GraphicsManager::AddImage(string key, wstring file)
 
 	ID2D1Bitmap* bitmap = CreateD2DBitmap(file);
 
-	if (FAILED( bitmap))
+	if (bitmap)
 	{
-		SafeRelease(bitmap);
-		return nullptr;
+		graphic = new Graphic;
+		graphic->Init(bitmap);
+
+		_mImageList.insert(make_pair(key, graphic));
+		return graphic;
 	}
 
-	Graphic::tagGraphicInfo graphicInfo = { key, file };
-	graphic = new Graphic;
-	graphic->Init(bitmap, graphicInfo);
-
-	_mImageList.insert(make_pair(key, graphic));
-	return graphic;
+	SafeRelease(bitmap);
+	return nullptr;
 }
 
 Graphic * GraphicsManager::FindImage(string strKey)
@@ -117,6 +116,8 @@ BOOL GraphicsManager::DeleteAll()
 	return true;
 }
 
+
+// FIXME : tagGraphicInfo 다르게 보관해서 불러올 수 있도록 만들어보자
 void GraphicsManager::Reload()
 {
 	vector<Graphic::tagGraphicInfo> _graphicInfoList;
@@ -124,7 +125,7 @@ void GraphicsManager::Reload()
 
 	for (; iter != _mImageList.end(); ++iter)
 	{
-		_graphicInfoList.emplace_back(iter->second->GetGraphicInfo());
+		//_graphicInfoList.emplace_back(iter->second->GetGraphicInfo());
 	}
 
 	DeleteAll();
@@ -134,7 +135,7 @@ void GraphicsManager::Reload()
 
 	for (size_t i = 0; i < _graphicInfoList.size(); ++i)
 	{
-		this->AddImage(_graphicInfoList[i].key, _graphicInfoList[i].path);
+		//this->AddImage(_graphicInfoList[i].key, _graphicInfoList[i].path);
 	}
 }
 

@@ -69,7 +69,6 @@ HRESULT playGround::init()
 
 
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
-	//_img->SetSize(Vector2(100, 100));
 
 
 	return S_OK;
@@ -109,12 +108,12 @@ void playGround::render()
 
 	_img->Render(WINSIZEX / 2, WINSIZEY / 2);
 
-	GRAPHICMANAGER->DrawRect(200, 200, 200, 200);
+	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 45);
-
 
 	//===================================================
 	//µü ¸»Çß´Ù
 	HRESULT hr = renderTarget->EndDraw();
-	if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Reload();
+	//if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Reload();
+	if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Release();
 }

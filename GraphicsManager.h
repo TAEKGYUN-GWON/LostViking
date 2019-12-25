@@ -31,18 +31,18 @@ private:
 	typedef map<string, Graphic*>::iterator mapImageIter;
 
 private:
-	mapImageList			_mImageList;
+	mapImageList							_mImageList;
 
 	// d2d 
-	ID2D1Factory*			_d2dFactory;
-	ID2D1HwndRenderTarget*	_renderTarget;
+	ID2D1Factory*							_d2dFactory;
+	ID2D1HwndRenderTarget*					_renderTarget;
 
 	// wic
-	IWICImagingFactory*		_wicFactory;
-	IWICFormatConverter*	_wicConvert;
+	IWICImagingFactory*						_wicFactory;
+	IWICFormatConverter*					_wicConvert;
 
 
-	ID2D1SolidColorBrush*	_brush[BRUSH_NONE];
+	ID2D1SolidColorBrush*					_brush[BRUSH_NONE];
 
 private:
 	ID2D1Bitmap* CreateD2DBitmap(wstring file);
@@ -62,6 +62,7 @@ public:
 	void Release();
 
 	Graphic* AddImage(string key, wstring file);
+
 	Graphic* FindImage(string strKey);
 	BOOL DeleteImage(string strKey);
 	BOOL DeleteAll();
