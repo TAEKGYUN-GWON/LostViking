@@ -41,6 +41,8 @@ private:
 	IWICImagingFactory*						_wicFactory;
 	IWICFormatConverter*					_wicConvert;
 
+	// text 들어와라ㅏ
+
 
 	ID2D1SolidColorBrush*					_brush[BRUSH_NONE];
 
@@ -62,7 +64,7 @@ public:
 	void Release();
 
 	Graphic* AddImage(string key, wstring file);
-	Graphic* AddFrameImage(string key, wstring file, int frameX, int frameY);
+	Graphic* AddFrameImage(string key, wstring file, int maxFrameX, int maxFrameY);
 
 	Graphic* FindImage(string strKey);
 	BOOL DeleteImage(string strKey);

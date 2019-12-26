@@ -69,7 +69,12 @@ HRESULT playGround::init()
 
 
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
+	_img2 = GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
+	_img3 = GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
+	_img3->SetAngle(PI / 60 * TO_DEGREE);
+	//_img3->SetAngle(45);
 
+	_curFrameX = _curFrameY = _count = 0;
 
 	return S_OK;
 }
@@ -78,16 +83,22 @@ void playGround::release()
 {
 	gameNode::release();
 
-	
+	SAFE_OBJECT_RELEASE(_img);
+	SAFE_OBJECT_RELEASE(_img2);
+	SAFE_OBJECT_RELEASE(_img3);
+
+	SAFE_DELETE(_img);
+	SAFE_DELETE(_img2);
+	SAFE_DELETE(_img3);
 }
 
 void playGround::update()
 {
 	gameNode::update();
 
-
 	_world->Step(timeStep, velocityIterations, positionIterations);
 
+	FrameAnimation();
 }
 
 void playGround::render()
@@ -107,13 +118,25 @@ void playGround::render()
 	TextOut(getMemDC(), 50, 70, buffer, strlen(buffer));
 
 	_img->Render(WINSIZEX / 2, WINSIZEY / 2);
+	_img2->FrameRender(100, 100, _curFrameX, 0);
+	_img3->FrameRender(100, 150, _curFrameX, 0);
 
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 45);
 
 	//===================================================
-	//µü ¸»Çß´Ù
 	HRESULT hr = renderTarget->EndDraw();
 	//if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Reload();
 	if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Release();
+}
+
+void playGround::FrameAnimation()
+{
+	_count++;
+	if (_count > 10)
+	{
+		_curFrameX++;
+		if (_curFrameX > _img2->GetMaxFrameX()) _curFrameX = 0;
+		_count = 0;
+	}
 }

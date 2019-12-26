@@ -34,12 +34,15 @@ private:
 
 	LPGRAPHIC_INFO					_graphicInfo;
 
+	vector<WICRect>					_vFrameRect;
+	vector<WICRect>::iterator		_viFrameRect;
+
 public:
 	Graphic() {};
 	~Graphic() {};
 
 	HRESULT Init(ID2D1Bitmap* bitmap);
-	HRESULT Init(ID2D1Bitmap* bitmap, int frameX, int frameY);
+	HRESULT Init(ID2D1Bitmap* bitmap, int maxFrameX, int maxFrameY);
 	void Release();
 	void Render(float x, float y);
 	void FrameRender(float x, float y, int curFrameX, int curFrameY);
@@ -51,6 +54,9 @@ public:
 
 	UINT GetWidth() { return _graphicInfo->bitmap->GetPixelSize().width; }
 	UINT GetHeight() { return _graphicInfo->bitmap->GetPixelSize().height; }
+
+	int GetMaxFrameX() { return _graphicInfo->maxFrameX - 1; }
+	int GetMaxFrameY() { return _graphicInfo->maxFrameY - 1; }
 
 	static void SetRenderTarget(ID2D1HwndRenderTarget* rt) 
 	{
