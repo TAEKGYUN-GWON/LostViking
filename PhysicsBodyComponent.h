@@ -1,20 +1,24 @@
 #pragma once
 #include "Component.h"
-enum Body_Type
+enum BodyType
 {
 	DYNAMIC,
 	STATIC,
 	KINEMATIC
 };
 
+class TransformComponent;
+
 class PhysicsBodyComponent : public Component
 {
 private:
 	b2Body *_body;
-	Body_Type _type;
+	BodyType _type;
+	TransformComponent* _trans;
+
 public:
 	PhysicsBodyComponent() { _name = "PhysicsBodyComponent"; }
-	void Init(Body_Type type);
+	void Init(BodyType type);
 	void SetBodyPosition();
 	Vector2 GetBodyPosition();
 	float GetBodyAngle() { return _body->GetAngle(); }

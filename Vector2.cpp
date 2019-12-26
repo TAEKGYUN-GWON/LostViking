@@ -74,7 +74,6 @@ Vector2 Vector2::Nomalized()
 float Vector2::SqrMagnitude()
 {
 	return (x * x + y * y);
-
 }
 
 Vector2 Vector2::RotateToDegree(float angle)

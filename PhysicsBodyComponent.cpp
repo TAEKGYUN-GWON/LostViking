@@ -2,14 +2,15 @@
 #include "PhysicsBodyComponent.h"
 #include "TransformComponent.h"
 #include "Object.h"
-void PhysicsBodyComponent::Init(Body_Type type)
+void PhysicsBodyComponent::Init(BodyType type)
 {
+	_trans = _object->GetTrans();
 	_type = type;
 	switch (_type)
 	{
 		case DYNAMIC:
 		{
-			Vector2 bodyPosition = { _object->GetTrans()->GetPos().x / 2.f, _object->GetTrans()->GetPos().y / 2.f };
+			Vector2 bodyPosition = { _trans->GetPos().x / 2.f, _trans->GetPos().y / 2.f };
 			bodyPosition = Convert(bodyPosition);
 
 			b2BodyDef bodyDef;
@@ -18,7 +19,7 @@ void PhysicsBodyComponent::Init(Body_Type type)
 			bodyDef.position.Set(bodyPosition.x, bodyPosition.y);
 			_body = BOXWORLDMANAGER->GetWorld()->CreateBody(&bodyDef);  //bodyDef의 내용을 바탕으로 body를 만듬
 
-			Vector2 bodySize = { _object->GetTrans()->GetScale().x / 2.f,_object->GetTrans()->GetScale().y / 2.f };
+			Vector2 bodySize = { _trans->GetScale().x / 2.f,_trans->GetScale().y / 2.f };
 			bodySize = Convert(bodySize);
 
 			b2PolygonShape shape;
@@ -34,7 +35,7 @@ void PhysicsBodyComponent::Init(Body_Type type)
 
 		case STATIC:
 		{
-			Vector2 bodyPosition = { _object->GetTrans()->GetPos().x / 2.f, _object->GetTrans()->GetPos().y / 2.f };
+			Vector2 bodyPosition = { _trans->GetPos().x / 2.f, _trans->GetPos().y / 2.f };
 			bodyPosition = Convert(bodyPosition);
 
 			b2BodyDef bodyDef;
@@ -42,7 +43,7 @@ void PhysicsBodyComponent::Init(Body_Type type)
 			bodyDef.position.Set(bodyPosition.x, bodyPosition.y);
 			_body = BOXWORLDMANAGER->GetWorld()->CreateBody(&bodyDef);  //bodyDef의 내용을 바탕으로 body를 만듬
 
-			Vector2 bodySize = { _object->GetTrans()->GetScale().x / 2.f,_object->GetTrans()->GetScale().y / 2.f };
+			Vector2 bodySize = { _trans->GetScale().x / 2.f,_trans->GetScale().y / 2.f };
 			bodySize = Convert(bodySize);
 
 			b2PolygonShape shape;
@@ -58,7 +59,7 @@ void PhysicsBodyComponent::Init(Body_Type type)
 
 		case KINEMATIC:
 		{
-			Vector2 bodyPosition = { _object->GetTrans()->GetPos().x / 2.f, _object->GetTrans()->GetPos().y / 2.f };
+			Vector2 bodyPosition = { _trans->GetPos().x / 2.f, _trans->GetPos().y / 2.f };
 			bodyPosition = Convert(bodyPosition);
 
 			b2BodyDef bodyDef;
@@ -67,7 +68,7 @@ void PhysicsBodyComponent::Init(Body_Type type)
 			bodyDef.position.Set(bodyPosition.x, bodyPosition.y);
 			_body = BOXWORLDMANAGER->GetWorld()->CreateBody(&bodyDef);  //bodyDef의 내용을 바탕으로 body를 만듬
 
-			Vector2 bodySize = { _object->GetTrans()->GetScale().x / 2.f,_object->GetTrans()->GetScale().y / 2.f };
+			Vector2 bodySize = { _trans->GetScale().x / 2.f,_trans->GetScale().y / 2.f };
 			bodySize = Convert(bodySize);
 
 			b2PolygonShape shape;

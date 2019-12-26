@@ -3,11 +3,16 @@
 class TransformComponent : public Component
 {
 private:
+	
 	Vector2 _pos;
 	Vector2 _scale;
 	float _rotate;
+	RECT _rc;
+
 public:
+	typedef Component super;
 	TransformComponent() { _name = "TransformComponent"; }
+	void Init();
 	void Update();
 	//Vector2 타입 좌표 가져오기
 	inline Vector2 GetPos() { return _pos; }
@@ -45,5 +50,8 @@ public:
 	inline void SetRotateToRadian(float rotate) { _rotate = rotate; }
 	//디그리 값으로 회전값 세팅
 	inline void SetRotateToDegree(float rotate) { _rotate = rotate * RADIAN; }
+	inline RECT* GetRect() { return &_rc; }
+	inline void SetRect(RECT rc) { _rc = rc; }
+	void SetRect();
 };
 
