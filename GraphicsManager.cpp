@@ -69,7 +69,7 @@ Graphic* GraphicsManager::AddImage(string key, wstring file)
 	return nullptr;
 }
 
-Graphic * GraphicsManager::AddFrameImage(string key, wstring file, int frameX, int frameY)
+Graphic * GraphicsManager::AddFrameImage(string key, wstring file, int maxFrameX, int maxFrameY)
 {
 	Graphic* graphic = FindImage(key);
 
@@ -80,7 +80,7 @@ Graphic * GraphicsManager::AddFrameImage(string key, wstring file, int frameX, i
 	if (bitmap)
 	{
 		graphic = new Graphic;
-		graphic->Init(bitmap, frameX, frameY);
+		graphic->Init(bitmap, maxFrameX, maxFrameY);
 
 		_mImageList.insert(make_pair(key, graphic));
 		return graphic;
@@ -139,6 +139,7 @@ BOOL GraphicsManager::DeleteAll()
 
 
 // FIXME : tagGraphicInfo 다르게 보관해서 불러올 수 있도록 만들어보자
+// 딱히 문제 없어보이니 건들지 말아봅시다.
 void GraphicsManager::Reload()
 {
 	vector<Graphic::tagGraphicInfo> _graphicInfoList;
