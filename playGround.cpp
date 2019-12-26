@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "playGround.h"
 #include "TransformComponent.h"
+#include "Object.h"
 float32 timeStep;
 int32 velocityIterations;
 int32 positionIterations;

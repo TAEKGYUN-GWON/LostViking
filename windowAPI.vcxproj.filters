@@ -168,6 +168,9 @@
     <ClInclude Include="Component.h">
       <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
+    <ClInclude Include="Object.hpp">
+      <Filter>2DGameFramework\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -160,6 +160,7 @@
     <ClInclude Include="KeyControlComponent.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Object.hpp" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="playGround.h" />
