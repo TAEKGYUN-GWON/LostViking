@@ -71,8 +71,7 @@ HRESULT playGround::init()
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
 	_img2 = GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
 	_img3 = GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
-	_img3->SetAngle(PI / 60 * TO_DEGREE);
-	//_img3->SetAngle(45);
+	_img3->SetAngle(PI / 4 * DEGREE);
 
 	_curFrameX = _curFrameY = _count = 0;
 
