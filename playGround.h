@@ -1,10 +1,11 @@
 #pragma once
 #include "gameNode.h"
+#include "Player.h"
 //BOX2D 예제코드 
 class playGround : public gameNode
 {
 private:
-
+	Player* _player;
 	//WORLD
 	b2World* _world;
 	//BODY

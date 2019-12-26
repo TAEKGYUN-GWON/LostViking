@@ -24,7 +24,7 @@ HRESULT playGround::init()
 	//중력 벡터 선언 후 물리 세계 정의 
 	b2Vec2 gravity(0.0f, - 10.0f);
 	_world = new b2World(gravity);
-	
+	BOXWORLDMANAGER->SetWorld(_world);
 	//1. STATIC BODY 
 
 	//바디 정의 
@@ -68,6 +68,9 @@ HRESULT playGround::init()
 	//그 외 
 	_tested = true;
 
+	_player = new Player;
+
+	_player->Init();
 
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
 	_img2 = GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
@@ -97,7 +100,7 @@ void playGround::update()
 	gameNode::update();
 
 	_world->Step(timeStep, velocityIterations, positionIterations);
-
+	_player->Update();
 	FrameAnimation();
 }
 
@@ -123,6 +126,8 @@ void playGround::render()
 
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 45);
+
+	GRAPHICMANAGER->DrawRect(_player->GetTrans()->GetPos(), _player->GetTrans()->GetScale(), 0.0f, BRUSH_TYPE::BLUE);
 
 	//===================================================
 	HRESULT hr = renderTarget->EndDraw();

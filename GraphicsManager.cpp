@@ -212,6 +212,14 @@ void GraphicsManager::DrawRect(float x, float y, float width, float height, floa
 	_renderTarget->DrawRectangle(RectF(x, y, x + width, y + height), _brush[color]);
 }
 
+void GraphicsManager::DrawRect(Vector2 pos, Vector2 size, float angle, BRUSH_TYPE color)
+{
+	D2D1_MATRIX_3X2_F rotation = Matrix3x2F::Rotation(angle, Point2F(pos.x, pos.y));
+
+	_renderTarget->SetTransform(Matrix3x2F::Identity() * rotation);
+	_renderTarget->DrawRectangle(RectF(pos.x, pos.y, pos.x + size.x, pos.y + size.y), _brush[color]);
+}
+
 void GraphicsManager::DrawCenterRect(float x, float y, float width, float height, BRUSH_TYPE color)
 {
 	_renderTarget->SetTransform(Matrix3x2F::Identity());

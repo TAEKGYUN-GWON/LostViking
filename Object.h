@@ -9,11 +9,10 @@ class GraphicComponent;
 
 class Object
 {
-private:
+protected:
 	TransformComponent *_trans;
 	vector <Component*> _components;
 	string _name;
-protected:
 
 	bool _isActive;
 

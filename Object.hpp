@@ -11,8 +11,8 @@ T* Object::AddComponent()
 		if (itr->GetName() == component->GetName())
 			return (T*)itr;
 	}
-
-	component->Init();
+	if(component->GetName()!="PhysicsBodyComponent")
+		component->Init();
 	_components.push_back(component);
 	return (T*)component;
 }

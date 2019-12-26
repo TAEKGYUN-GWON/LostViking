@@ -77,6 +77,7 @@ public:
 	void DrawLine(int startX, int startY, int destX, int destY, BRUSH_TYPE color = BLACK);
 	void DrawLine(float startX, float startY, float destX, float destY, BRUSH_TYPE color = BLACK);
 	void DrawRect(float x, float y, float width, float height, float angle = 0.0f, BRUSH_TYPE color = BLACK);
+	void DrawRect(Vector2 pos, Vector2 size, float angle = 0.0f, BRUSH_TYPE color = BLACK);
 	void DrawCenterRect(float x, float y, float width, float height, BRUSH_TYPE color = BLACK);
 	void DrawRoundRect(float x, float y, float width, float height, float radiusX, float radiusY, BRUSH_TYPE color = BLACK);
 	void DrawEllipse(float x, float y, float radiusX, float radiusY, BRUSH_TYPE color = BLACK);

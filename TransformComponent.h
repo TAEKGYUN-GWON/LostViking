@@ -37,7 +37,7 @@ public:
 	//Vector2 타입으로 사이즈 설정하기
 	inline void SetScale(Vector2 scale) { _scale = scale; }
 	//float 타입으로 사이즈 설정하기
-	inline void setScale(float w, float h) { _scale = Vector2(w, h); }
+	inline void SetScale(float w, float h) { _scale = Vector2(w, h); }
 	//x좌표 세팅
 	inline void SetX(float x) { _pos.x=x; }
 	//y좌표 세팅
