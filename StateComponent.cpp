@@ -8,4 +8,5 @@ StateComponent::StateComponent(Object* object)
 
 StateComponent::~StateComponent()
 {
+
 }
