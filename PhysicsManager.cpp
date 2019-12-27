@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PhysicsManager.h"
-
+#include "Object.h"
+#include "Collider.h"
 PhysicsManager::PhysicsManager()
 {
 }
@@ -24,14 +25,15 @@ void PhysicsManager::SetWorld(b2World * world)
 void PhysicsManager::BeginContact(b2Contact * contacts)
 {
 	auto a = (Object*) contacts->GetFixtureA()->GetBody()->GetUserData();
-	auto b = (Object*)contacts->GetFixtureB()->GetBody()->GetUserData();
+	auto b = (Object*) contacts->GetFixtureB()->GetBody()->GetUserData();
 
 	if (!a || !b) return;
 
-	//for (auto s : a->GetComponents<Collider>())
-	//	s->OnCollisionBegin(b);
-	//for (auto s : b->GetComponents<Collider>())
-	//	s->OnCollisionBegin(a);
+	for (auto s : a->GetComponents<Collider>())
+		s->CollisionBegin(b);
+	for (auto s : b->GetComponents<Collider>())
+		s->CollisionBegin(a);
+
 }
 
 void PhysicsManager::PreSolve(b2Contact * contacts, const b2Manifold * oldManifold)
@@ -41,10 +43,10 @@ void PhysicsManager::PreSolve(b2Contact * contacts, const b2Manifold * oldManifo
 
 	if (!a || !b) return;
 
-	//for (auto s : a->GetComponents<Collider>())
-	//	s->OnCollisionPreSolve(b);
-	//for (auto s : b->GetComponents<Collider>())
-	//	s->OnCollisionPreSolve(a);
+	for (auto s : a->GetComponents<Collider>())
+		s->CollisionPreSolve(b);
+	for (auto s : b->GetComponents<Collider>())
+		s->CollisionPreSolve(a);
 }
 
 void PhysicsManager::EndContact(b2Contact * contacts)
@@ -54,8 +56,8 @@ void PhysicsManager::EndContact(b2Contact * contacts)
 
 	if (!a || !b) return;
 
-	//for (auto s : a->GetComponents<Collider>())
-	//	s->OnCollisionEnd(b);
-	//for (auto s : b->GetComponents<Collider>())
-	//	s->OnCollisionEnd(a);
+	for (auto s : a->GetComponents<Collider>())
+		s->CollisionEnd(b);
+	for (auto s : b->GetComponents<Collider>())
+		s->CollisionEnd(a);
 }

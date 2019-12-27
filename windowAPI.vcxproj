@@ -148,6 +148,7 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="BoxWorldManager.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="effect.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="BoxWorldManager.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
