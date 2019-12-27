@@ -13,6 +13,9 @@ HRESULT GraphicsManager::init()
 
 	initRenderTarget();
 
+	DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(*&_wFactory), (IUnknown**)&_wFactory);
+	AddTextFormat(L"맑은고딕", 20);
+
 	return S_OK;
 }
 
@@ -30,7 +33,7 @@ HRESULT GraphicsManager::initRenderTarget()
 	_renderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black), &_brush[BLACK]);
 	_renderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Blue), &_brush[BLUE]);
 
-	Graphic::SetRenderTarget(_renderTarget);
+	_RT = _renderTarget;
 
 	return S_OK;
 }
@@ -139,7 +142,7 @@ BOOL GraphicsManager::DeleteAll()
 
 
 // FIXME : tagGraphicInfo 다르게 보관해서 불러올 수 있도록 만들어보자
-// 딱히 문제 없어보이니 건들지 말아봅시다.
+// 정보를 담을 곳을 지역변수로 만들어서 담아 재생성할 수 있도록 수정할 것
 void GraphicsManager::Reload()
 {
 	vector<Graphic::tagGraphicInfo> _graphicInfoList;
@@ -212,6 +215,24 @@ void GraphicsManager::DrawRect(float x, float y, float width, float height, floa
 	_renderTarget->DrawRectangle(RectF(x, y, x + width, y + height), _brush[color]);
 }
 
+void GraphicsManager::DrawRect(Vector2 pos, Vector2 size, float angle, float strokeWidth, BRUSH_TYPE color)
+{
+	D2D1_MATRIX_3X2_F rotation = Matrix3x2F::Rotation(angle, Point2F(pos.x, pos.y));
+
+	_renderTarget->SetTransform(Matrix3x2F::Identity() * rotation);
+
+	_renderTarget->DrawRectangle(RectF(pos.x, pos.y, pos.x + size.x, pos.y + size.y), _brush[color], strokeWidth);
+}
+
+void GraphicsManager::DrawSkewRect(Vector2 pos, Vector2 size, float angle, float strokeWidth, BRUSH_TYPE color)
+{
+	D2D1_MATRIX_3X2_F rotation = Matrix3x2F::Rotation(angle, Point2F(pos.x, pos.y));
+
+	_renderTarget->SetTransform(Matrix3x2F::Skew(PI / 4 * DEGREE, 0.0f, Point2F(pos.x, pos.y)) * rotation);
+
+	_renderTarget->DrawRectangle(RectF(pos.x, pos.y, pos.x + size.x, pos.y + size.y), _brush[color], strokeWidth);
+}
+
 void GraphicsManager::DrawCenterRect(float x, float y, float width, float height, BRUSH_TYPE color)
 {
 	_renderTarget->SetTransform(Matrix3x2F::Identity());
@@ -224,9 +245,125 @@ void GraphicsManager::DrawRoundRect(float x, float y, float width, float height,
 	_renderTarget->DrawRoundedRectangle(RoundedRect(RectF(x, y, x + width, y + height), radiusX, radiusY), _brush[color]);
 }
 
+void GraphicsManager::DrawRoundRect(Vector2 pos, Vector2 size, Vector2 radius, BRUSH_TYPE color)
+{
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->DrawRoundedRectangle(RoundedRect(RectF(pos.x, pos.y, pos.x + size.x, pos.y + size.y), radius.x, radius.y), _brush[color]);
+}
+
 void GraphicsManager::DrawEllipse(float x, float y, float radiusX, float radiusY, BRUSH_TYPE color)
 {
 	_renderTarget->SetTransform(Matrix3x2F::Identity());
 	_renderTarget->DrawEllipse(Ellipse(Point2F(x, y), radiusX, radiusY), _brush[color], 3.0f);
 }
 
+void GraphicsManager::DrawFillRect(Vector2 pos, Vector2 size, float angle, BRUSH_TYPE color)
+{
+	D2D1_MATRIX_3X2_F rotation = Matrix3x2F::Rotation(angle, Point2F(pos.x, pos.y));
+
+	_renderTarget->SetTransform(Matrix3x2F::Identity() * rotation);
+	_renderTarget->FillRectangle(RectF(pos.x, pos.y, pos.x + size.x, pos.y + size.y), _brush[color]);
+}
+
+void GraphicsManager::DrawFillEllipse(Vector2 pos, Vector2 radius, float angle, BRUSH_TYPE color)
+{
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->FillEllipse(Ellipse(Point2F(pos.x, pos.y), radius.x, radius.y), _brush[color]);
+}
+
+void GraphicsManager::DrawFillRoundRect(Vector2 pos, Vector2 size, Vector2 radius, BRUSH_TYPE color)
+{
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->FillRoundedRectangle(RoundedRect(RectF(pos.x, pos.y, pos.x + size.x, pos.y + size.y), radius.x, radius.y), _brush[color]);
+}
+
+HRESULT GraphicsManager::AddTextFormat(wstring fontName, float size)
+{
+	HRESULT hr;
+	IDWriteTextFormat* format = nullptr;
+
+	hr = _wFactory->CreateTextFormat(fontName.c_str(), 0, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"ko", &format);
+	
+	this->_txtFormatList.insert(make_pair(fontName, format));
+
+	if (FAILED(hr)) return hr;
+
+	return hr;
+}
+
+void GraphicsManager::DrawTextD2D(Vector2 pos, wstring txt, int txtSize, BRUSH_TYPE color, DWRITE_TEXT_ALIGNMENT alig, wstring font)
+{
+	_wFactory->CreateTextLayout(txt.c_str(), txt.length(), _txtFormatList[font], txt.length() * txtSize, txtSize, &_txtLayout);
+
+	DWRITE_TEXT_RANGE range;
+	range.startPosition = 0;
+	range.length = txt.length();
+	
+	_txtLayout->SetFontSize(txtSize, range);
+	_txtLayout->SetTextAlignment(alig);
+
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->DrawTextLayout(Point2F(pos.x, pos.y), _txtLayout, _brush[color]);
+
+	_txtLayout->Release();
+}
+
+void GraphicsManager::DrawTextD2D(Vector2 pos, wstring txt, int txtSize, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig, wstring font)
+{
+	_wFactory->CreateTextLayout(txt.c_str(), txt.length(), _txtFormatList[font], txt.length() * txtSize, txtSize, &_txtLayout);
+
+	DWRITE_TEXT_RANGE range;
+	range.startPosition = 0;
+	range.length = txt.length();
+
+	_txtLayout->SetFontSize(txtSize, range);
+	_txtLayout->SetTextAlignment(alig);
+	_txtLayout->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+
+	ID2D1SolidColorBrush* brush;
+	_renderTarget->CreateSolidColorBrush(ColorF(rgb, alpha), &brush);
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->DrawTextLayout(Point2F(pos.x, pos.y), _txtLayout, brush);
+
+	brush->Release();
+	_txtLayout->Release();
+}
+
+void GraphicsManager::DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, BRUSH_TYPE color, DWRITE_TEXT_ALIGNMENT alig, wstring font)
+{
+	_wFactory->CreateTextLayout(txt.c_str(), txt.length(), _txtFormatList[font], width, height, &_txtLayout);
+
+	DWRITE_TEXT_RANGE range;
+	range.startPosition = 0;
+	range.length = txt.length();
+
+	_txtLayout->SetFontSize(txtSize, range);
+	_txtLayout->SetTextAlignment(alig);
+	_txtLayout->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->DrawTextLayout(Point2F(pos.x, pos.y), _txtLayout, _brush[color]);
+
+	_txtLayout->Release();
+}
+
+void GraphicsManager::DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig, wstring font)
+{
+	_wFactory->CreateTextLayout(txt.c_str(), txt.length(), _txtFormatList[font], width, height, &_txtLayout);
+
+	DWRITE_TEXT_RANGE range;
+	range.startPosition = 0;
+	range.length = txt.length();
+
+	_txtLayout->SetFontSize(txtSize, range);
+	_txtLayout->SetTextAlignment(alig);
+	_txtLayout->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+
+	ID2D1SolidColorBrush* brush;
+	_renderTarget->CreateSolidColorBrush(ColorF(rgb, alpha), &brush);
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->DrawTextLayout(Point2F(pos.x, pos.y), _txtLayout, brush);
+
+	brush->Release();
+	_txtLayout->Release();
+}

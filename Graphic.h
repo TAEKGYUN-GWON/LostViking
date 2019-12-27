@@ -30,8 +30,6 @@ public:
 	}GRAPHIC_INFO, *LPGRAPHIC_INFO;
 
 private:
-	static ID2D1HwndRenderTarget*	_RT;
-
 	LPGRAPHIC_INFO					_graphicInfo;
 
 	vector<WICRect>					_vFrameRect;
@@ -57,9 +55,4 @@ public:
 
 	int GetMaxFrameX() { return _graphicInfo->maxFrameX - 1; }
 	int GetMaxFrameY() { return _graphicInfo->maxFrameY - 1; }
-
-	static void SetRenderTarget(ID2D1HwndRenderTarget* rt) 
-	{
-		_RT = rt; 
-	}
 };
