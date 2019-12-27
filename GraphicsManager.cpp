@@ -170,6 +170,18 @@ void GraphicsManager::DrawImage(string key, float x, float y)
 	if (graphic) graphic->Render(x, y);
 }
 
+void GraphicsManager::DrawImage(string key, Vector2 pos)
+{
+	Graphic* graphic = FindImage(key);
+	if (graphic) graphic->Render(pos.x, pos.y);
+}
+
+void GraphicsManager::DrawFrameImage(string key, Vector2 pos, float curFrameX, float curFrameY)
+{
+	Graphic* graphic = FindImage(key);
+	if (graphic) graphic->FrameRender(pos, curFrameX, curFrameY);
+}
+
 ID2D1Bitmap* GraphicsManager::CreateD2DBitmap(wstring file)
 {
 	// 디코더 생성
@@ -237,6 +249,12 @@ void GraphicsManager::DrawCenterRect(float x, float y, float width, float height
 {
 	_renderTarget->SetTransform(Matrix3x2F::Identity());
 	_renderTarget->DrawRectangle(RectF(x - width / 2, y - height / 2, x + width / 2, y + height / 2), _brush[color]);
+}
+
+void GraphicsManager::DrawCenterRect(Vector2 pos, Vector2 size, BRUSH_TYPE color)
+{
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->DrawRectangle(RectF(pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2), _brush[color]);
 }
 
 void GraphicsManager::DrawRoundRect(float x, float y, float width, float height, float radiusX, float radiusY, BRUSH_TYPE color)

@@ -44,6 +44,7 @@ public:
 	void Release();
 	void Render(float x, float y);
 	void FrameRender(float x, float y, int curFrameX, int curFrameY);
+	void FrameRender(Vector2 pos, int curFrameX, int curFrameY);
 	
 	void SetSize(Vector2 size) { _graphicInfo->size = size; }
 	void SetAngle(float angle) { _graphicInfo->angle = angle; }

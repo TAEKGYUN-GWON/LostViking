@@ -12,8 +12,8 @@ private:
 public:
 	typedef Component super;
 	TransformComponent() { _name = "TransformComponent"; }
-	void Init();
-	void Update();
+	virtual void Init() override;
+	virtual void Update() override;
 	//Vector2 타입 좌표 가져오기
 	inline Vector2 GetPos() { return _pos; }
 	//Vector2 타입 사이즈 가져오기

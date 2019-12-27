@@ -69,12 +69,13 @@ HRESULT playGround::init()
 	_tested = true;
 
 	_player = new Player;
-
 	_player->Init();
+	//_player->GetComponent<GraphicComponent>()->SetFPS(5);
 
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
 	_img2 = GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
 	_img3 = GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("number1", L"number.png", 4, 1);
 
 	_curFrameX = _curFrameY = _count = 0;
 
@@ -98,25 +99,48 @@ void playGround::release()
 
 void playGround::update()
 {
+
 	gameNode::update();
 
 	_world->Step(timeStep, velocityIterations, positionIterations);
-	_player->Update();
+
+
+
+
+	//_player->Update();
 	FrameAnimation();
+
+
+	_player->Update();
+
+
+
+
+
+
+
+
 
 	_angle += 0.008f;
 	_img3->SetAngle(_angle * DEGREE);
+
+	//_player->GetComponent<GraphicComponent>()->GetGraphic("number1")->SetAngle(_angle*DEGREE);
+
+
+
 }
 
 void playGround::render()
 {
-	ID2D1RenderTarget* renderTarget = GRAPHICMANAGER->GetRenderTarget();
-	renderTarget->BeginDraw();
 
-	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
-	renderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));
-	//==================================================
+	_player->Render();
+	draw();
 
+}
+
+
+void playGround::draw()
+{
 	char buffer[128];
 	sprintf_s(buffer, "DYNAMIC BODY: pos.x = %f pos.y =%f", _dynamicBody->GetPosition().x, _dynamicBody->GetPosition().y);
 	TextOut(getMemDC(), 50, 50, buffer, strlen(buffer));
@@ -124,9 +148,9 @@ void playGround::render()
 	sprintf_s(buffer, "DYNAMIC BODY: angle = %f", _dynamicBody->GetAngle());
 	TextOut(getMemDC(), 50, 70, buffer, strlen(buffer));
 
-	_img->Render(WINSIZEX / 2, WINSIZEY / 2);
-	_img2->FrameRender(100, 100, _curFrameX, 0);
-	_img3->FrameRender(100, 150, _curFrameX, 0);
+	//_img->Render(WINSIZEX / 2, WINSIZEY / 2);
+	//_img2->FrameRender(100, 100, _curFrameX, 0);
+	//_img3->FrameRender(100, 150, _curFrameX, 0);
 
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
 	GRAPHICMANAGER->DrawRect(Vector2(200, 200), Vector2(200, 200), 45);
@@ -139,12 +163,6 @@ void playGround::render()
 	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2 + 90, WINSIZEY / 2 + 50), L"test text2", 25, 0.5f, RGB(100, 100, 255));
 	GRAPHICMANAGER->DrawTextField(Vector2(WINSIZEX / 2 + 300, WINSIZEY / 2), L"test text3", 25, 10, 20);
 
-	GRAPHICMANAGER->DrawRect(_player->GetTrans()->GetPos(), _player->GetTrans()->GetScale(), 0.0f, BRUSH_TYPE::BLUE);
-
-	//===================================================
-	HRESULT hr = renderTarget->EndDraw();
-	//if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Reload();
-	if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Release();
 }
 
 void playGround::FrameAnimation()

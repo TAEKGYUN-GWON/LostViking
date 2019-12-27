@@ -4,16 +4,18 @@ template<typename T>
 T* Object::AddComponent()
 {
 	Component* component = new T();
-	component->setGameObject(this);
 
-	for (Component* itr : _components)
+	for (auto itr : _components)
 	{
 		if (itr->GetName() == component->GetName())
 			return (T*)itr;
 	}
+
+	component->setGameObject(this);
 	if(component->GetName()!="PhysicsBodyComponent")
 		component->Init();
 	_components.push_back(component);
+
 	return (T*)component;
 }
 

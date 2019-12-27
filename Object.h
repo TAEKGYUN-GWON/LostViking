@@ -10,11 +10,12 @@ class GraphicComponent;
 class Object
 {
 protected:
-	TransformComponent *_trans;
+	TransformComponent*_trans;
+	GraphicComponent *_graphic;
 	vector <Component*> _components;
 	string _name;
 	string _tag;
-	bool _isActive;
+	bool _isActive = true;
 
 public:
 	Object();
@@ -22,7 +23,8 @@ public:
 	virtual void Init() {};
 	virtual void Update();
 	virtual void Release();
-	virtual inline TransformComponent * GetTrans() { return _trans; }
+	virtual void Render();
+	virtual inline TransformComponent* GetTrans() { return _trans; }
 	inline string GetName() { return _name; }
 	inline void SetName(string name) { _name = name; }
 	inline string GetTag() { return _tag; }

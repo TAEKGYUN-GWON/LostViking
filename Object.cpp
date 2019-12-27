@@ -26,6 +26,11 @@ void Object::Release()
 	delete this;
 }
 
+void Object::Render()
+{
+	_graphic->Render();
+}
+
 void Object::RemoveComponent(Component * component)
 {
 	for (auto iter = _components.begin(); iter != _components.end(); iter++)

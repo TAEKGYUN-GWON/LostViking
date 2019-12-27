@@ -76,6 +76,9 @@ public:
 	void Reload();
 
 	void DrawImage(string key, float x, float y);
+	void DrawImage(string key, Vector2 pos);
+
+	void DrawFrameImage(string key, Vector2 pos, float curFrameX, float curFrameY);
 
 	void DrawLine(int startX, int startY, int destX, int destY, BRUSH_TYPE color = BLACK);
 	void DrawLine(float startX, float startY, float destX, float destY, BRUSH_TYPE color = BLACK);
@@ -85,6 +88,7 @@ public:
 	void DrawSkewRect(Vector2 pos, Vector2 size, float angle = 0.0f, float strokeWidth = 1.0f, BRUSH_TYPE color = BLACK);
 
 	void DrawCenterRect(float x, float y, float width, float height, BRUSH_TYPE color = BLACK);
+	void DrawCenterRect(Vector2 pos, Vector2 size, BRUSH_TYPE color = BLACK);
 
 	void DrawRoundRect(float x, float y, float width, float height, float radiusX, float radiusY, BRUSH_TYPE color = BLACK);
 	void DrawRoundRect(Vector2 pos, Vector2 size, Vector2 radius, BRUSH_TYPE color = BLACK);

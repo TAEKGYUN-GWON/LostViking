@@ -32,6 +32,7 @@ using namespace std;
 #include "BoxWorldManager.h"
 #include "PhysicsManager.h"
 #include "GraphicsManager.h"
+#include "Camera.h"
 
 using namespace SEVENTEEN_UTIL;
 
@@ -57,6 +58,7 @@ using namespace SEVENTEEN_UTIL;
 #define BOXWORLDMANAGER BoxWorldManager::getSingleton()
 #define PHYSICSMANAGER PhysicsManager::GetInstance()
 #define GRAPHICMANAGER GraphicsManager::getSingleton()
+#define CAMERA Camera::getSingleton()
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p)=NULL;}}
 #define SAFE_RELEASE(p) {if(p) {(p)->release(); (p) = NULL;}}
