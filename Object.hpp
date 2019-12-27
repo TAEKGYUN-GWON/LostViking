@@ -1,4 +1,16 @@
 #include "Object.h"
+template<typename T>
+vector<T*> Object::GetComponents()
+{
+	vector<T*> componentsList;
+	for (auto c : _components)
+	{
+		if (dynamic_cast<T*>(c))
+			componentsList.push_back((T*)c);
+	}
+	return componentsList;
+}
+
 #pragma once
 template<typename T>
 T* Object::AddComponent()

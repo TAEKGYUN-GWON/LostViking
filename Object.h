@@ -35,8 +35,12 @@ public:
 	void RemoveComponent(Component* component);
 	template<typename T>
 	T* AddComponent();
+
 	template<typename T>
 	T* GetComponent();
+
+	template<typename T>
+	vector<T*> GetComponents();
 };
 
 #include "Object.hpp"

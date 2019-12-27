@@ -1,6 +1,7 @@
 #pragma once
 #include "Box2D/Box2D.h"
-
+#include "Object.h"
+class Object;
 class PhysicsManager : public b2ContactListener
 {
 private:
