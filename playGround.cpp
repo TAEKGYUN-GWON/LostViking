@@ -114,7 +114,7 @@ void playGround::update()
 	_player->Update();
 
 
-
+	CAMERA->SetPosition(_player->GetTrans()->GetPos());
 
 
 
