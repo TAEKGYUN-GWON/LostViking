@@ -13,7 +13,7 @@ protected:
 	TransformComponent *_trans;
 	vector <Component*> _components;
 	string _name;
-
+	string _tag;
 	bool _isActive;
 
 public:
@@ -25,7 +25,8 @@ public:
 	virtual inline TransformComponent * GetTrans() { return _trans; }
 	inline string GetName() { return _name; }
 	inline void SetName(string name) { _name = name; }
-
+	inline string GetTag() { return _tag; }
+	inline void SetTag(string tag) { _tag = tag; }
 	inline void SetIsActive(bool active) { _isActive = active; }
 	inline bool GetIsActive() { return _isActive; }
 	

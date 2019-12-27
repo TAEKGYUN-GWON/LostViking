@@ -12,6 +12,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <iostream>
+#include <functional>
 
 using namespace std;
 #include "Box2D/Box2D.h"
