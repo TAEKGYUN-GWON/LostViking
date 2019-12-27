@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Graphic.h"
 
-ID2D1HwndRenderTarget* Graphic::_RT = nullptr;
-
 HRESULT Graphic::Init(ID2D1Bitmap* bitmap)
 {
 	_graphicInfo = new GRAPHIC_INFO;

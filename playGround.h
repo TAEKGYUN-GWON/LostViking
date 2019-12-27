@@ -21,6 +21,10 @@ private:
 	Graphic* _img;
 	Graphic* _img2;
 	Graphic* _img3;
+
+	float _x;
+	float _y;
+	float _angle;
 	
 public:
 	playGround();

@@ -27,24 +27,27 @@ enum BRUSH_TYPE
 class GraphicsManager : public singletonBase<GraphicsManager>
 {
 private:
-	typedef map<string, Graphic*>			mapImageList;
-	typedef map<string, Graphic*>::iterator mapImageIter;
+	typedef map<string, Graphic*>							mapImageList;
+	typedef map<string, Graphic*>::iterator					mapImageIter;
+	typedef map<wstring, IDWriteTextFormat*>				mapTxtFormatList;
+	typedef map<wstring, IDWriteTextFormat*>::iterator		mapTxtFormatIter;
 
 private:
-	mapImageList							_mImageList;
+	mapImageList								_mImageList;
 
 	// d2d 
-	ID2D1Factory*							_d2dFactory;
-	ID2D1HwndRenderTarget*					_renderTarget;
+	ID2D1Factory*								_d2dFactory;
+	ID2D1HwndRenderTarget*						_renderTarget;
 
 	// wic
-	IWICImagingFactory*						_wicFactory;
-	IWICFormatConverter*					_wicConvert;
+	IWICImagingFactory*							_wicFactory;
+	IWICFormatConverter*						_wicConvert;
 
-	// text µé¾î¿Í¶ó¤¿
+	IDWriteFactory*								_wFactory;
+	mapTxtFormatList							_txtFormatList;
+	IDWriteTextLayout*							_txtLayout;
 
-
-	ID2D1SolidColorBrush*					_brush[BRUSH_NONE];
+	ID2D1SolidColorBrush*						_brush[BRUSH_NONE];
 
 private:
 	ID2D1Bitmap* CreateD2DBitmap(wstring file);
@@ -76,11 +79,29 @@ public:
 
 	void DrawLine(int startX, int startY, int destX, int destY, BRUSH_TYPE color = BLACK);
 	void DrawLine(float startX, float startY, float destX, float destY, BRUSH_TYPE color = BLACK);
+
 	void DrawRect(float x, float y, float width, float height, float angle = 0.0f, BRUSH_TYPE color = BLACK);
-	void DrawRect(Vector2 pos, Vector2 size, float angle = 0.0f, BRUSH_TYPE color = BLACK);
+	void DrawRect(Vector2 pos, Vector2 size, float angle = 0.0f, float strokeWidth = 1.0f, BRUSH_TYPE color = BLACK);
+	void DrawSkewRect(Vector2 pos, Vector2 size, float angle = 0.0f, float strokeWidth = 1.0f, BRUSH_TYPE color = BLACK);
+
 	void DrawCenterRect(float x, float y, float width, float height, BRUSH_TYPE color = BLACK);
+
 	void DrawRoundRect(float x, float y, float width, float height, float radiusX, float radiusY, BRUSH_TYPE color = BLACK);
+	void DrawRoundRect(Vector2 pos, Vector2 size, Vector2 radius, BRUSH_TYPE color = BLACK);
+
 	void DrawEllipse(float x, float y, float radiusX, float radiusY, BRUSH_TYPE color = BLACK);
+
+	void DrawFillRect(Vector2 pos, Vector2 size, float angle = 0.0f, BRUSH_TYPE color = BLACK);
+	void DrawFillEllipse(Vector2 pos, Vector2 radius, float angle = 0.0f, BRUSH_TYPE color = BLACK);
+	void DrawFillRoundRect(Vector2 pos, Vector2 size, Vector2 radius, BRUSH_TYPE color = BLACK);
+
+	HRESULT AddTextFormat(wstring fontName, float size);
+
+	// txtSize : ±Û¾¾ Å©±â (±Û¾¾ ±æÀÌ X)
+	void DrawTextD2D(Vector2 pos, wstring txt, int txtSize, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
+	void DrawTextD2D(Vector2 pos, wstring txt, int txtSize, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
+	void DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
+	void DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
 
 	ID2D1HwndRenderTarget* GetRenderTarget() { return _renderTarget; }
 };

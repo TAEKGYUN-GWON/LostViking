@@ -75,9 +75,10 @@ HRESULT playGround::init()
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
 	_img2 = GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
 	_img3 = GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
-	_img3->SetAngle(PI / 4 * DEGREE);
 
 	_curFrameX = _curFrameY = _count = 0;
+
+	_angle = 0.0f;
 
 	return S_OK;
 }
@@ -102,6 +103,9 @@ void playGround::update()
 	_world->Step(timeStep, velocityIterations, positionIterations);
 	_player->Update();
 	FrameAnimation();
+
+	_angle += 0.008f;
+	_img3->SetAngle(_angle * DEGREE);
 }
 
 void playGround::render()
@@ -125,7 +129,15 @@ void playGround::render()
 	_img3->FrameRender(100, 150, _curFrameX, 0);
 
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
+	GRAPHICMANAGER->DrawRect(Vector2(200, 200), Vector2(200, 200), 45);
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 45);
+	GRAPHICMANAGER->DrawFillRect(Vector2(300, 300), Vector2(100, 100), 45);
+	GRAPHICMANAGER->DrawSkewRect(Vector2(300, 200), Vector2(100, 100));
+	GRAPHICMANAGER->DrawSkewRect(Vector2(300, 200), Vector2(100, 100), 45);
+
+	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2 + 100, WINSIZEY / 2), L"test text", 25);
+	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2 + 90, WINSIZEY / 2 + 50), L"test text2", 25, 0.5f, RGB(100, 100, 255));
+	GRAPHICMANAGER->DrawTextField(Vector2(WINSIZEX / 2 + 300, WINSIZEY / 2), L"test text3", 25, 10, 20);
 
 	GRAPHICMANAGER->DrawRect(_player->GetTrans()->GetPos(), _player->GetTrans()->GetScale(), 0.0f, BRUSH_TYPE::BLUE);
 
@@ -138,7 +150,7 @@ void playGround::render()
 void playGround::FrameAnimation()
 {
 	_count++;
-	if (_count > 10)
+	if (_count > 15)
 	{
 		_curFrameX++;
 		if (_curFrameX > _img2->GetMaxFrameX()) _curFrameX = 0;
