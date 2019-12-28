@@ -68,7 +68,6 @@ HRESULT playGround::init()
 	//그 외 
 	_tested = true;
 
-	//_player->GetComponent<GraphicComponent>()->SetFPS(5);
 
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
 	_img2 = GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
@@ -113,17 +112,13 @@ void playGround::update()
 
 void playGround::render()
 {
-
-
-
+	// text sample 
 	char buffer[128];
-	//sprintf_s(buffer, "x : %f\ny:%f", _player->GetTrans()->GetX(), _player->GetTrans()->GetY());
 	sprintf_s(buffer,"x : %f\ny:%f",Vector2::up.x, Vector2::up.y);
-	wstring str;
-	string str2 = buffer;
-	str.assign(str2.begin(), str2.end());
+	GRAPHICMANAGER->DrawTextD2D(Vector2(0, 0), buffer, 20);
 
-	GRAPHICMANAGER->DrawTextD2D(Vector2(0, 0), str, 20);
+	GRAPHICMANAGER->DrawTextD2D(Vector2(0, 70), L"아야어여오요우유으이", 20);
+
 	draw();
 }
 

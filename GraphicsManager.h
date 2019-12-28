@@ -108,6 +108,9 @@ public:
 
 	// txtSize : ±Û¾¾ Å©±â (±Û¾¾ ±æÀÌ X)
 	void DrawTextD2D(Vector2 pos, wstring txt, int txtSize, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
+	
+	void DrawTextD2D(Vector2 pos, const char* txt, int txtSize, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
+	
 	void DrawTextD2D(Vector2 pos, wstring txt, int txtSize, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
 	void DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
 	void DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");

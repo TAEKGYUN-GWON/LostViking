@@ -329,6 +329,27 @@ void GraphicsManager::DrawTextD2D(Vector2 pos, wstring txt, int txtSize, BRUSH_T
 	_txtLayout->Release();
 }
 
+void GraphicsManager::DrawTextD2D(Vector2 pos, const char * txt, int txtSize, BRUSH_TYPE color, DWRITE_TEXT_ALIGNMENT alig, wstring font)
+{
+	string buffer = txt;
+	wstring str;
+	str.assign(buffer.begin(), buffer.end());
+
+	_wFactory->CreateTextLayout(str.c_str(), str.length(), _txtFormatList[font], str.length() * txtSize, txtSize, &_txtLayout);
+
+	DWRITE_TEXT_RANGE range;
+	range.startPosition = 0;
+	range.length = str.length();
+
+	_txtLayout->SetFontSize(txtSize, range);
+	_txtLayout->SetTextAlignment(alig);
+
+	_renderTarget->SetTransform(Matrix3x2F::Identity());
+	_renderTarget->DrawTextLayout(Point2F(pos.x, pos.y), _txtLayout, _brush[color]);
+
+	_txtLayout->Release();
+}
+
 void GraphicsManager::DrawTextD2D(Vector2 pos, wstring txt, int txtSize, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig, wstring font)
 {
 	_wFactory->CreateTextLayout(txt.c_str(), txt.length(), _txtFormatList[font], txt.length() * txtSize, txtSize, &_txtLayout);
