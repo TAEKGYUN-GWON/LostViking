@@ -8,5 +8,6 @@ public:
 	virtual void CollisionBegin(Object* obj) {};
 	virtual void CollisionPreSolve(Object* obj) {};
 	virtual void CollisionEnd(Object* obj) {};
+	
 };
 
