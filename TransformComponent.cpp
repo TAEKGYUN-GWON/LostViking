@@ -13,5 +13,5 @@ void TransformComponent::Update()
 
 void TransformComponent::SetRect()
 {
-	RectMakeCenter(_pos.x, _pos.y, _scale.x, _scale.y);
+	RectMakeCenter(pos.x, pos.y, scale.x, scale.y);
 }
