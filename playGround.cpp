@@ -68,13 +68,15 @@ HRESULT playGround::init()
 	//±× ¿Ü 
 	_tested = true;
 
+	_player = new Player;
+	_player->Init();
 	//_player->GetComponent<GraphicComponent>()->SetFPS(5);
 
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
 	_img2 = GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
 	_img3 = GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
 	GRAPHICMANAGER->AddFrameImage("number1", L"number.png", 4, 1);
-
+	GRAPHICMANAGER->AddImage("bg", L"bg.png");
 	_curFrameX = _curFrameY = _count = 0;
 
 	_angle = 0.0f;
@@ -97,28 +99,36 @@ void playGround::release()
 
 void playGround::update()
 {
-
 	gameNode::update();
 
 	_world->Step(timeStep, velocityIterations, positionIterations);
-
-	//_player->Update();
 	FrameAnimation();
+
+	_player->Update();
+
+	//if (KEYMANAGER->isStayKeyDown('W')) CAMERA->SetPosition(
+	//	Vector2(CAMERA->GetPosition().x - 1.0f, CAMERA->GetPosition().y));
+
 
 	_angle += 0.008f;
 	_img3->SetAngle(_angle * DEGREE);
-
-	//_player->GetComponent<GraphicComponent>()->GetGraphic("number1")->SetAngle(_angle*DEGREE);
-
-
-
 }
 
 void playGround::render()
 {
+	_player->Render();
 
+
+
+	char buffer[128];
+	//sprintf_s(buffer, "x : %f\ny:%f", _player->GetTrans()->GetX(), _player->GetTrans()->GetY());
+	sprintf_s(buffer,"x : %f\ny:%f",Vector2::up.x, Vector2::up.y);
+	wstring str;
+	string str2 = buffer;
+	str.assign(str2.begin(), str2.end());
+
+	GRAPHICMANAGER->DrawTextD2D(Vector2(0, 0), str, 20);
 	draw();
-
 }
 
 
@@ -134,10 +144,11 @@ void playGround::draw()
 	//_img->Render(WINSIZEX / 2, WINSIZEY / 2);
 	//_img2->FrameRender(100, 100, _curFrameX, 0);
 	//_img3->FrameRender(100, 150, _curFrameX, 0);
-
+	//GRAPHICMANAGER->DrawImage("bg", Vector2((float)GRAPHICMANAGER->FindImage("bg")->GetWidth()/2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
 	GRAPHICMANAGER->DrawRect(Vector2(200, 200), Vector2(200, 200), 45);
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 45);
+	GRAPHICMANAGER->DrawRect(1900, 200, 200, 200, 45);
 	GRAPHICMANAGER->DrawFillRect(Vector2(300, 300), Vector2(100, 100), 45);
 	GRAPHICMANAGER->DrawSkewRect(Vector2(300, 200), Vector2(100, 100));
 	GRAPHICMANAGER->DrawSkewRect(Vector2(300, 200), Vector2(100, 100), 45);
@@ -145,7 +156,6 @@ void playGround::draw()
 	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2 + 100, WINSIZEY / 2), L"test text", 25);
 	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2 + 90, WINSIZEY / 2 + 50), L"test text2", 25, 0.5f, RGB(100, 100, 255));
 	GRAPHICMANAGER->DrawTextField(Vector2(WINSIZEX / 2 + 300, WINSIZEY / 2), L"test text3", 25, 10, 20);
-
 }
 
 void playGround::FrameAnimation()

@@ -1,6 +1,15 @@
 #include "stdafx.h"
 #include "Graphic.h"
 
+
+ID2D1HwndRenderTarget* Graphic::_RT = nullptr;
+
+void Graphic::SetRendertarget()
+{
+	assert(_RT == nullptr);
+	_RT = GRAPHICMANAGER->GetRenderTarget(); 
+}
+
 HRESULT Graphic::Init(ID2D1Bitmap* bitmap)
 {
 	_graphicInfo = new GRAPHIC_INFO;
@@ -82,7 +91,7 @@ void Graphic::Render(float x, float y)
 	//D2D1_RECT_F dxArea = RectF(_graphicInfo->size.x, _graphicInfo->size.y, _graphicInfo->size.x , _graphicInfo->size.y);
 
 
-	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans);
+	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans* CAMERA->GetMatrix());
 	if(_graphicInfo->bitmap) _RT->DrawBitmap(_graphicInfo->bitmap, dxArea, _graphicInfo->alpha);
 
 }
@@ -107,7 +116,7 @@ void Graphic::FrameRender(float x, float y, int curFrameX, int curFrameY)
 
 	D2D1_RECT_F dxSrc = RectF(_vFrameRect[frame].X, _vFrameRect[frame].Y, _vFrameRect[frame].X + _vFrameRect[frame].Width, _vFrameRect[frame].Y + _vFrameRect[frame].Height);
 
-	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans);
+	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans* CAMERA->GetMatrix());
 	if (_graphicInfo->bitmap) _RT->DrawBitmap(_graphicInfo->bitmap, &dxArea, _graphicInfo->alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &dxSrc);
 }
 
@@ -124,6 +133,7 @@ void Graphic::FrameRender(Vector2 pos, int curFrameX, int curFrameY)
 	_graphicInfo->size.x *= _graphicInfo->scale.x;
 	_graphicInfo->size.y *= _graphicInfo->scale.y;
 
+	//Matrix3x2F scale = Matrix3x2F::Scale();
 	Matrix3x2F rotation = Matrix3x2F::Rotation(_graphicInfo->angle, Point2F());
 	Matrix3x2F trans = Matrix3x2F::Translation(pos.x, pos.y);
 
@@ -136,13 +146,12 @@ void Graphic::FrameRender(Vector2 pos, int curFrameX, int curFrameY)
 	//cameraMatrix = Matrix3x2F::Scale(D2D1::SizeF(1, 1));
 	//cameraMatrix = cameraMatrix * Matrix3x2F::Rotation(0);
 	//cameraMatrix = cameraMatrix * Matrix3x2F::Translation(100, 100);
+	//Matrix3x2F::in // ¿ªÇà·Ä
 
 
 	//_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans * cameraMatrix);
 	//_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans);
 
-	CAMERA->SetMatrix(Vector2(pos));
-
-	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans );
+	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans * CAMERA->GetMatrix());
 	if (_graphicInfo->bitmap) _RT->DrawBitmap(_graphicInfo->bitmap, &dxArea, _graphicInfo->alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &dxSrc);
 }

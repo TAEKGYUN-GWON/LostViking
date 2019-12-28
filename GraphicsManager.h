@@ -39,6 +39,10 @@ private:
 	ID2D1Factory*								_d2dFactory;
 	ID2D1HwndRenderTarget*						_renderTarget;
 
+	//ID2D1RenderTarget*							_render;
+	//ID2D1Device*								_device;
+	//ID2D1DeviceContext*							_deviceContext;
+
 	// wic
 	IWICImagingFactory*							_wicFactory;
 	IWICFormatConverter*						_wicConvert;
@@ -82,6 +86,7 @@ public:
 
 	void DrawLine(int startX, int startY, int destX, int destY, BRUSH_TYPE color = BLACK);
 	void DrawLine(float startX, float startY, float destX, float destY, BRUSH_TYPE color = BLACK);
+	void DrawLine(Vector2 start, Vector2 dest, BRUSH_TYPE color = BLACK);
 
 	void DrawRect(float x, float y, float width, float height, float angle = 0.0f, BRUSH_TYPE color = BLACK);
 	void DrawRect(Vector2 pos, Vector2 size, float angle = 0.0f, float strokeWidth = 1.0f, BRUSH_TYPE color = BLACK);

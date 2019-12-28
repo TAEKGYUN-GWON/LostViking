@@ -81,7 +81,6 @@ inline void SafeRelease(T* &p) { if (p) p->Release(); p = NULL; }
 extern HINSTANCE				_hInstance;
 extern HWND						_hWnd;
 extern POINT					_ptMouse;
-extern ID2D1HwndRenderTarget*	_RT;
 
 //==========================================
 // ## 19.22.22 ## 엔진 첫 걸음
