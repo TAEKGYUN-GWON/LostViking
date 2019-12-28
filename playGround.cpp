@@ -102,20 +102,8 @@ void playGround::update()
 
 	_world->Step(timeStep, velocityIterations, positionIterations);
 
-
-
-
 	//_player->Update();
 	FrameAnimation();
-
-
-
-
-
-
-
-
-
 
 	_angle += 0.008f;
 	_img3->SetAngle(_angle * DEGREE);

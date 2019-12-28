@@ -161,6 +161,8 @@
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="KeyControlComponent.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="Matrix2x2.h" />
+    <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="PhysicsBodyComponent.h" />
@@ -181,6 +183,7 @@
     <ClInclude Include="txtData.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Vector3.h" />
     <ClInclude Include="windowAPI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +202,8 @@
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="KeyControlComponent.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="Matrix2x2.cpp" />
+    <ClCompile Include="Matrix3x3.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
@@ -219,6 +224,7 @@
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="windowAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

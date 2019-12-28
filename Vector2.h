@@ -7,11 +7,13 @@ public:
 	float y;
 
 
-	Vector2():x(0),y(0) {};
+	Vector2():x(0),y(0) {}
 	//float값으로 벡터 설정
 	Vector2(float x, float y) : x(x), y(y) {}
 	//int 값으로 벡터 설정
 	Vector2(int x, int y) :x(x), y(y) {}
+	template<typename T, typename T2>
+	Vector2(T x, T2 y) : x((float)x), y((float)y) {}
 	Vector2(POINT pos):x(pos.x),y(pos.y){}
 	Vector2(POINTFLOAT pos) :x(pos.x), y(pos.y) {}
 	~Vector2() {};

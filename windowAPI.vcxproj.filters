@@ -64,6 +64,9 @@
     <Filter Include="2DGameFramework\Object\Component\header">
       <UniqueIdentifier>{126cfdf4-4201-448a-8695-e32eaa02db08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2DGameFramework\Metrix">
+      <UniqueIdentifier>{1df28ea1-f73c-49c6-9df3-7d7af41f9860}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -147,9 +150,6 @@
     <ClInclude Include="StateComponent.h">
       <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>2DGameFramework</Filter>
-    </ClInclude>
     <ClInclude Include="sceneManager.h">
       <Filter>2DGameFramework\Manager\header</Filter>
     </ClInclude>
@@ -176,6 +176,18 @@
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix2x2.h">
+      <Filter>2DGameFramework\Metrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3x3.h">
+      <Filter>2DGameFramework\Metrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>2DGameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>2DGameFramework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -242,9 +254,6 @@
     <ClCompile Include="timeManager.cpp">
       <Filter>2DGameFramework\Manager\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.cpp">
-      <Filter>2DGameFramework</Filter>
-    </ClCompile>
     <ClCompile Include="sceneManager.cpp">
       <Filter>2DGameFramework\Manager\cpp</Filter>
     </ClCompile>
@@ -271,6 +280,18 @@
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix2x2.cpp">
+      <Filter>2DGameFramework\Metrix</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix3x3.cpp">
+      <Filter>2DGameFramework\Metrix</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>2DGameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>2DGameFramework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
