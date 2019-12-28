@@ -2,6 +2,11 @@
 
 class Graphic
 {
+private:
+	static ID2D1HwndRenderTarget* _RT;
+public:
+	static void SetRendertarget();
+
 public:
 	typedef struct tagGraphicInfo
 	{

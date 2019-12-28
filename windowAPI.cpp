@@ -9,8 +9,6 @@ POINT _ptMouse;		//마우스 용 POINT
 
 playGround _pg;
 
-ID2D1HwndRenderTarget*	_RT;
-
 //함수의 프로토타입 선언
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 

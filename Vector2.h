@@ -16,12 +16,12 @@ public:
 	Vector2(POINTFLOAT pos) :x(pos.x), y(pos.y) {}
 	~Vector2() {};
 
-	static const Vector2 up;
-	static const Vector2 down;
-	static const Vector2 right;
-	static const Vector2 left;
-	static const Vector2 zero;
-	static const Vector2 one;
+	static Vector2 up;
+	static Vector2 down;
+	static Vector2 right;
+	static Vector2 left;
+	static Vector2 zero;
+	static Vector2 one;
 
 	static float Distance(Vector2 a, Vector2 b);
 	static float Dot(Vector2 lhs, Vector2 rhs);

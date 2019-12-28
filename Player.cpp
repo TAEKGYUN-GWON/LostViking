@@ -32,25 +32,29 @@ void Player::Update()
 
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
-		Vector2 a = Vector2::up; 
-		_trans->SetPos(Vector2(_trans->GetPos()+a*speed));
+		_trans->SetPos(Vector2(_trans->GetPos() + Vector2::up * speed));
 	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		Vector2 a = Vector2::down;
-		_trans->SetPos(Vector2(_trans->GetPos() + a * speed));
+		_trans->SetPos(Vector2(_trans->GetPos() + Vector2::down * speed));
 	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		Vector2 a = Vector2::left;
-		_trans->SetPos(Vector2(_trans->GetPos() + a * speed));
+		_trans->SetPos(Vector2(_trans->GetPos() + Vector2::left * speed));
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		Vector2 a = Vector2::right;
-		_trans->SetPos(Vector2(_trans->GetPos() + a * speed));
+		_trans->SetPos(Vector2(_trans->GetPos() + Vector2::right * speed));
+	}
+	if (_trans->GetX() > WINSIZEX / 2 &&
+		_trans->GetX() < 2000 - WINSIZEX / 2||
+		_trans->GetY() > WINSIZEY / 2 &&
+		_trans->GetY() < 1580 - WINSIZEY / 2 )
+	{
+		Vector2 A(_trans->GetY() - WINSIZEX / 2, _trans->GetY() - WINSIZEY / 2);
+		CAMERA->SetPosition(A);
 	}
 	super::Update();
 }

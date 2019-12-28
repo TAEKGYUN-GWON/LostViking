@@ -1,6 +1,6 @@
 #pragma once
-
 #include "singletonBase.h"
+
 class Camera :public singletonBase<Camera>
 {
 private:
@@ -8,24 +8,28 @@ private:
 	Vector2				_scale;
 	Vector2				_pos;
 	float				_angle;
-
+	float speed;
 public:
 	Camera() 
 	{
 		_scale = Vector2(1, 1);
 		_pos = Vector2().zero;
 		_angle = 0.0f;
+		speed = 70.f;
 	};
 	~Camera() {};
 
 	HRESULT init();
-	void release();
+	void Update( );
+	//void release();
 
-	void SetScale(Vector2 scale) { _scale = scale; };
-	void SetAngle(float angle) { _angle = angle; };
-	void SetPosition(Vector2 pos) { _pos = pos; };
+	void UpdateMatrix();
 
-	void SetMatrix(Vector2 pos);
+	//void SetScale(Vector2 scale) { _scale = scale; };
+	//void SetAngle(float angle) { _angle = angle; };
+	void SetPosition(Vector2 pos);
+
+	Vector2 GetPosition() { return _pos; }
 
 	D2D1_MATRIX_3X2_F GetMatrix() { return _matrix; }
 };
