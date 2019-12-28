@@ -9,6 +9,7 @@ GraphicComponent::GraphicComponent()
 }
 void GraphicComponent::Init(BOOL isFrame)
 {
+	_imgKey.clear();
 	_isFrame = isFrame;
 	_count = _curFrameX = _curFrameY = 0;
 	_FPS = 7;
@@ -31,11 +32,14 @@ void GraphicComponent::Render()
 			if (_curFrameX > GRAPHICMANAGER->FindImage(_imgKey)->GetMaxFrameX()) _curFrameX = 0;
 			_count = 0;
 		}
-
+		if (_imgKey.empty())return;
 		GRAPHICMANAGER->DrawFrameImage(_imgKey, _object->GetTrans()->GetPos(), _curFrameX, _curFrameY);
 	}
 	else
+	{
+		if (_imgKey.empty())return;
 		GRAPHICMANAGER->DrawImage(_imgKey, _object->GetTrans()->GetPos());
+	}
 }
 
 void GraphicComponent::Update()

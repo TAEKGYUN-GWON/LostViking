@@ -7,6 +7,7 @@ Object::Object()
 	_trans = AddComponent<TransformComponent>();
 	_trans->SetPos(Vector2::zero);
 	_trans->SetScale(Vector2(1,1));
+	_graphic = AddComponent<GraphicComponent>();
 }
 
 void Object::Update()
