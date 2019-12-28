@@ -68,8 +68,6 @@ HRESULT playGround::init()
 	//±× ¿Ü 
 	_tested = true;
 
-	_player = new Player;
-	_player->Init();
 	//_player->GetComponent<GraphicComponent>()->SetFPS(5);
 
 	_img = GRAPHICMANAGER->AddImage("eagle", L"eagle.png");
@@ -111,10 +109,8 @@ void playGround::update()
 	FrameAnimation();
 
 
-	_player->Update();
 
 
-	CAMERA->SetPosition(_player->GetTrans()->GetPos());
 
 
 
@@ -133,7 +129,6 @@ void playGround::update()
 void playGround::render()
 {
 
-	_player->Render();
 	draw();
 
 }

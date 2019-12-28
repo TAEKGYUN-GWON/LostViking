@@ -16,7 +16,11 @@
 
 using namespace std;
 #include "Box2D/Box2D.h"
+#ifdef _DEBUG
 #pragma comment(lib, "lib/x86_64/Debug/Box2D.lib")
+#else
+#pragma comment(lib, "lib/x86_64/Release/Box2D.lib")
+#endif
 //rrr
 #include "commonMacroFunction.h"
 #include "randomFunction.h"

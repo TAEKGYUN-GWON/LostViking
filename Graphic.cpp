@@ -143,6 +143,6 @@ void Graphic::FrameRender(Vector2 pos, int curFrameX, int curFrameY)
 
 	CAMERA->SetMatrix(Vector2(pos));
 
-	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans * CAMERA->GetMatrix());
+	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans );
 	if (_graphicInfo->bitmap) _RT->DrawBitmap(_graphicInfo->bitmap, &dxArea, _graphicInfo->alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &dxSrc);
 }
