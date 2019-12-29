@@ -2,7 +2,7 @@
 #include "PhysicsBodyComponent.h"
 #include "TransformComponent.h"
 #include "Object.h"
-void PhysicsBodyComponent::Init(BodyType type,BOOL isBullet, BOOL isSensor)
+void PhysicsBodyComponent::Init(BodyType type, float32 friction, float32 density, float32 restitution,BOOL isBullet, BOOL isSensor)
 {
 	_trans = _object->GetTrans();
 	_type = type;
@@ -29,8 +29,9 @@ void PhysicsBodyComponent::Init(BodyType type,BOOL isBullet, BOOL isSensor)
 			b2FixtureDef fixture;
 			fixture.isSensor = isSensor;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
 			fixture.shape = &shape;
-			fixture.density = 1.0f;
-			fixture.friction = 0.5f;
+			fixture.density = density;
+			fixture.friction = friction;
+			fixture.restitution = restitution;
 			_body->CreateFixture(&fixture);
 
 			break;
@@ -56,8 +57,8 @@ void PhysicsBodyComponent::Init(BodyType type,BOOL isBullet, BOOL isSensor)
 			b2FixtureDef fixture;
 			fixture.isSensor = isSensor;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
 			fixture.shape = &shape;
-			fixture.density = 1.0f;
-			fixture.friction = 0.8f;
+			fixture.density = density;
+			fixture.friction = friction;
 			_body->CreateFixture(&fixture);
 
 			break;
@@ -83,6 +84,8 @@ void PhysicsBodyComponent::Init(BodyType type,BOOL isBullet, BOOL isSensor)
 			b2FixtureDef fixture;
 			fixture.isSensor = isSensor;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
 			fixture.shape = &shape;
+			fixture.density = density;
+			fixture.friction = friction;
 			_body->CreateFixture(&fixture);
 
 			break;

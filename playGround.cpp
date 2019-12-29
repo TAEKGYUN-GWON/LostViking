@@ -60,7 +60,7 @@ HRESULT playGround::init()
 	t->SetName("t");
 	t->SetTag("t");
 	t->AddComponent<script>();
-	t->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC);
+	t->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC,0.5,1,0.5);
 
 	a = new Object;
 	a->GetTrans()->SetPos(WINSIZEX/2, WINSIZEY-100);
@@ -68,7 +68,7 @@ HRESULT playGround::init()
 	a->GetTrans()->SetScale(1000, 100);
 	a->SetName("a");
 	a->SetTag("a");
-	a->AddComponent<PhysicsBodyComponent>()->Init(STATIC);
+	a->AddComponent<PhysicsBodyComponent>()->Init(STATIC,1);
 	return S_OK;
 }
 
@@ -104,7 +104,7 @@ void playGround::update()
 
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(Vector2::b2Up*300, t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
+		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(Vector2::b2Up*300, t->GetComponent<PhysicsBodyComponent>()->GetWorldCenter(), true);
 	}
 
 	a->GetTrans()->SetPos(a->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
