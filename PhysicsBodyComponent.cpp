@@ -10,7 +10,7 @@ void PhysicsBodyComponent::Init(BodyType type)
 	{
 		case DYNAMIC:
 		{
-			Vector2 bodyPosition = { _trans->GetPos().x / 2.f, _trans->GetPos().y / 2.f };
+			Vector2 bodyPosition = { _trans->GetPos().x, _trans->GetPos().y };
 			bodyPosition = Convert(bodyPosition);
 
 			b2BodyDef bodyDef;
@@ -28,6 +28,8 @@ void PhysicsBodyComponent::Init(BodyType type)
 			b2FixtureDef fixture;
 			fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
 			fixture.shape = &shape;
+			fixture.density = 1.0f;
+			fixture.friction = 0.3f;
 			_body->CreateFixture(&fixture);
 
 			break;
@@ -35,7 +37,8 @@ void PhysicsBodyComponent::Init(BodyType type)
 
 		case STATIC:
 		{
-			Vector2 bodyPosition = { _trans->GetPos().x / 2.f, _trans->GetPos().y / 2.f };
+			//Vector2 bodyPosition = { _trans->GetPos().x / 2.f, _trans->GetPos().y / 2.f };
+			Vector2 bodyPosition = { _trans->GetPos().x , _trans->GetPos().y  };
 			bodyPosition = Convert(bodyPosition);
 
 			b2BodyDef bodyDef;
@@ -52,6 +55,7 @@ void PhysicsBodyComponent::Init(BodyType type)
 			b2FixtureDef fixture;
 			fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
 			fixture.shape = &shape;
+			fixture.density = 0.0f;
 			_body->CreateFixture(&fixture);
 
 			break;
@@ -59,7 +63,7 @@ void PhysicsBodyComponent::Init(BodyType type)
 
 		case KINEMATIC:
 		{
-			Vector2 bodyPosition = { _trans->GetPos().x / 2.f, _trans->GetPos().y / 2.f };
+			Vector2 bodyPosition = { _trans->GetPos().x , _trans->GetPos().y };
 			bodyPosition = Convert(bodyPosition);
 
 			b2BodyDef bodyDef;
@@ -99,7 +103,12 @@ void PhysicsBodyComponent::SetBodyPosition()
 
 Vector2 PhysicsBodyComponent::GetBodyPosition()
 {
-	return Vector2(_body->GetPosition().x * 100, _body->GetPosition().y * 100);
+	return Vector2(_body->GetPosition().x * 100.f, _body->GetPosition().y * 100.f);
+}
+
+Vector2 PhysicsBodyComponent::GetBodyScale()
+{
+	return Vector2(_body->GetTransform().p.x*100.f, _body->GetTransform().p.y*100.f);
 }
 
 Vector2 PhysicsBodyComponent::Convert(Vector2 origin)

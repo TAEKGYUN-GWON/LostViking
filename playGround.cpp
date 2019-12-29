@@ -2,6 +2,9 @@
 #include "playGround.h"
 #include "TransformComponent.h"
 #include "Object.h"
+#include "PhysicsBodyComponent.h"
+#include "Collider.h"
+#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 float32 timeStep;
 int32 velocityIterations;
 int32 positionIterations;
@@ -12,24 +15,11 @@ playGround::playGround()
 
 playGround::~playGround()
 {
-}
-
-HRESULT playGround::init()
-{
-	gameNode::init(true);
-	//shape - 2D 기하학 오브젝트 (ex. 원,다각형, box등)
-	//rigid body - 물리적으로 단단한 오브젝트
-	//fixture - body에 shape를 결속. 밀도,마찰력,반발력 부여 
-	
-	//중력 벡터 선언 후 물리 세계 정의 
-	b2Vec2 gravity(0.0f, - 10.0f);
-	_world = new b2World(gravity);
-	BOXWORLDMANAGER->SetWorld(_world);
 	//1. STATIC BODY 
 
-	//바디 정의 
+//바디 정의 
 	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0.0f,- 10.0f);
+	groundBodyDef.position.Set(0.0f, -10.0f);
 	_groundBody = _world->CreateBody(&groundBodyDef);
 
 	//shape 정의 
@@ -44,7 +34,7 @@ HRESULT playGround::init()
 	//바디 정의 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;		//타입 지정안하면 static body로 간주 
-	bodyDef.position.Set(0.0f,4.0f);
+	bodyDef.position.Set(0.0f, 4.0f);
 	_dynamicBody = _world->CreateBody(&bodyDef);
 
 	//shape 정의 
@@ -58,6 +48,24 @@ HRESULT playGround::init()
 	fixtureDef.friction = 0.3f;			//나머지는 기본값이 들어가 있고 다른 값 원할시 여기서 설정
 
 	_dynamicBody->CreateFixture(&fixtureDef);
+
+}
+
+HRESULT playGround::init()
+{
+	gameNode::init(true);
+	//shape - 2D 기하학 오브젝트 (ex. 원,다각형, box등)
+	//rigid body - 물리적으로 단단한 오브젝트
+	//fixture - body에 shape를 결속. 밀도,마찰력,반발력 부여 
+	
+	//중력 벡터 선언 후 물리 세계 정의 
+	b2Vec2 gravity(0.0f, 9.8);
+	_world = new b2World(gravity);
+	_world->SetAllowSleeping(true);
+	_world->SetContinuousPhysics(true);
+	BOXWORLDMANAGER->SetWorld(_world);
+	PHYSICSMANAGER->SetWorld(BOXWORLDMANAGER->GetWorld());
+	BOXWORLDMANAGER->GetWorld()->SetContactListener(PHYSICSMANAGER);
 
 
 	//시간 설정
@@ -78,6 +86,25 @@ HRESULT playGround::init()
 
 	_angle = 0.0f;
 
+	t = new Object;
+	t->GetTrans()->SetPos(WINSIZEX/2,WINSIZEY/2);
+
+	t->GetTrans()->SetScale(100,100);
+	t->SetName("t");
+	t->SetTag("t");
+	t->AddComponent<Collider>();
+	t->AddComponent<PhysicsBodyComponent>()->setGameObject(t);
+	t->GetComponent<PhysicsBodyComponent>()->Init(DYNAMIC);
+
+	a = new Object;
+	a->GetTrans()->SetPos(WINSIZEX/2, WINSIZEY-100);
+	
+	a->GetTrans()->SetScale(1000, 100);
+	a->SetName("a");
+	a->SetTag("a");
+	a->AddComponent<Collider>();
+	a->AddComponent<PhysicsBodyComponent>()->setGameObject(a);
+	a->GetComponent<PhysicsBodyComponent>()->Init(STATIC);
 	return S_OK;
 }
 
@@ -98,28 +125,22 @@ void playGround::update()
 {
 	gameNode::update();
 
-	_world->Step(timeStep, velocityIterations, positionIterations);
-	FrameAnimation();
+	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
 
-	//if (KEYMANAGER->isStayKeyDown('W')) CAMERA->SetPosition(
-	//	Vector2(CAMERA->GetPosition().x - 1.0f, CAMERA->GetPosition().y));
+	a->GetTrans()->SetPos(a->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
+	//a->GetTrans()->SetScale(a->GetComponent<PhysicsBodyComponent>()->GetBodyScale());
+	a->Update();
 
-
-	_angle += 0.008f;
-	_img3->SetAngle(_angle * DEGREE);
+	t->GetTrans()->SetPos(t->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
+	//t->GetTrans()->SetScale(t->GetComponent<PhysicsBodyComponent>()->GetBodyScale());
+	t->Update();
 }
 
 void playGround::render()
 {
-	// text sample 
-	char buffer[128];
-	sprintf_s(buffer,"x : %f\ny:%f",Vector2::up.x, Vector2::up.y);
-	GRAPHICMANAGER->DrawTextD2D(Vector2(0, 0), buffer, 20);
-
-	GRAPHICMANAGER->DrawTextD2D(Vector2(0, 70), L"아야어여오요우유으이", 20);
-
-	draw();
+	a->Render();
+	t->Render();
 }
 
 

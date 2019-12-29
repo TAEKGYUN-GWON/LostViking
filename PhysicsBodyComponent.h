@@ -21,6 +21,7 @@ public:
 	void Init(BodyType type);
 	void SetBodyPosition();
 	Vector2 GetBodyPosition();
+	Vector2 GetBodyScale();
 	float GetBodyAngle() { return _body->GetAngle(); }
 	inline b2Body* GetBody() { return _body; }
 	Vector2 Convert(Vector2 origin);

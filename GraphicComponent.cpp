@@ -17,11 +17,11 @@ void GraphicComponent::Init(BOOL isFrame)
 
 void GraphicComponent::Render()
 {
-	if (KEYMANAGER->isToggleKey(VK_F1))
-	{
+	//if (KEYMANAGER->isToggleKey(VK_F1))
+	//{
 		GRAPHICMANAGER->DrawCenterRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(),
 			BRUSH_TYPE::BLUE);
-	}
+	//}
 
 	if (_isFrame)
 	{

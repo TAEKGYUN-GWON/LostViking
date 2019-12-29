@@ -15,7 +15,8 @@ private:
 	int _curFrameX;
 	int _curFrameY;
 	int _count;
-
+	Object* t;
+	Object* a;
 	Graphic* _img;
 	Graphic* _img2;
 	Graphic* _img3;

@@ -24,11 +24,11 @@ public:
 	inline float GetRotateRadian() { return _rotate; }
 
 	//Vector2 타입으로 좌표 설정하기
-	inline void SetPos(Vector2 pos) { pos = pos; }
+	inline void SetPos(Vector2 pos) { this->pos = pos; }
 	//float 타입으로 좌표 설정하기
 	inline void SetPos(float x, float y) { pos = Vector2(x, y); }
 	//Vector2 타입으로 사이즈 설정하기
-	inline void SetScale(Vector2 scale) { scale = scale; }
+	inline void SetScale(Vector2 scale) { this->scale = scale; }
 	//float 타입으로 사이즈 설정하기
 	inline void SetScale(float w, float h) { scale = Vector2(w, h); }
 
