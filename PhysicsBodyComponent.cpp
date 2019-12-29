@@ -2,7 +2,7 @@
 #include "PhysicsBodyComponent.h"
 #include "TransformComponent.h"
 #include "Object.h"
-void PhysicsBodyComponent::Init(BodyType type)
+void PhysicsBodyComponent::Init(BodyType type,BOOL isBullet, BOOL isSensor)
 {
 	_trans = _object->GetTrans();
 	_type = type;
@@ -15,6 +15,7 @@ void PhysicsBodyComponent::Init(BodyType type)
 
 			b2BodyDef bodyDef;
 			bodyDef.type = b2BodyType::b2_dynamicBody; //static은 무조건 고정,dynamic은 움직임
+			if(isBullet) bodyDef.bullet;
 			bodyDef.userData = _object;
 			bodyDef.position.Set(bodyPosition.x, bodyPosition.y);
 			_body = BOXWORLDMANAGER->GetWorld()->CreateBody(&bodyDef);  //bodyDef의 내용을 바탕으로 body를 만듬
@@ -26,7 +27,7 @@ void PhysicsBodyComponent::Init(BodyType type)
 			shape.SetAsBox(bodySize.x, bodySize.y);
 
 			b2FixtureDef fixture;
-			fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
+			fixture.isSensor = isSensor;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
 			fixture.shape = &shape;
 			fixture.density = 1.0f;
 			fixture.friction = 0.5f;
@@ -53,7 +54,7 @@ void PhysicsBodyComponent::Init(BodyType type)
 			shape.SetAsBox(bodySize.x, bodySize.y);
 
 			b2FixtureDef fixture;
-			fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
+			fixture.isSensor = isSensor;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
 			fixture.shape = &shape;
 			fixture.density = 1.0f;
 			fixture.friction = 0.8f;
@@ -80,7 +81,7 @@ void PhysicsBodyComponent::Init(BodyType type)
 			shape.SetAsBox(bodySize.x, bodySize.y);
 
 			b2FixtureDef fixture;
-			fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
+			fixture.isSensor = isSensor;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
 			fixture.shape = &shape;
 			_body->CreateFixture(&fixture);
 

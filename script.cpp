@@ -14,9 +14,9 @@ script::~script()
 
 void script::CollisionBegin(void * obj)
 {
-	cout << "확인" << endl;
-	_object->SetIsActive(false);
-	_object->GetTrans()->SetPos(WINSIZEX/2, 200);
+	//cout << "확인" << endl;
+	//_object->SetIsActive(false);
+	//_object->GetTrans()->SetPos(WINSIZEX/2, 200);
 }
 
 void script::CollisionPreSolve(void * obj)

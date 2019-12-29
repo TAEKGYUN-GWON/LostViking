@@ -25,6 +25,13 @@ public:
 	static Vector2 zero;
 	static Vector2 one;
 
+	static b2Vec2 b2Up;
+	static b2Vec2 b2Down;
+	static b2Vec2 b2Right;
+	static b2Vec2 b2Left;
+	static b2Vec2 b2Zero;
+	static b2Vec2 b2One;
+
 	static float Distance(Vector2 a, Vector2 b);
 	static float Dot(Vector2 lhs, Vector2 rhs);
 

@@ -94,7 +94,7 @@ void playGround::update()
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 	
-		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(b2Vec2(-8,0), t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
+		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(Vector2::b2Left*8, t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
@@ -104,8 +104,7 @@ void playGround::update()
 
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-
-		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(b2Vec2(0, -300), t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
+		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(Vector2::b2Up*300, t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
 	}
 
 	a->GetTrans()->SetPos(a->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
@@ -118,6 +117,7 @@ void playGround::update()
 		t->GetComponent<PhysicsBodyComponent>()->SetBodyPosition();
 		t->SetIsActive(true);
 	}
+	
 	//t->GetTrans()->SetScale(t->GetComponent<PhysicsBodyComponent>()->GetBodyScale());
 	t->Update();
 	cout << t->GetIsActive() << endl;

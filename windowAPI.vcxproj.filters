@@ -190,7 +190,7 @@
       <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
     <ClInclude Include="script.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -297,7 +297,7 @@
       <Filter>2DGameFramework\Object\Component\cpp</Filter>
     </ClCompile>
     <ClCompile Include="script.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>2DGameFramework\Object\Component\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

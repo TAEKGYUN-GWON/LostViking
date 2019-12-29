@@ -31,6 +31,8 @@ inline bool b2IsValid(float32 x)
 #define	b2Sqrt(x)	sqrtf(x)
 #define	b2Atan2(y, x)	atan2f(y, x)
 
+
+
 /// A 2D column vector.
 struct b2Vec2
 {
@@ -40,15 +42,22 @@ struct b2Vec2
 	/// Construct using coordinates.
 	b2Vec2(float32 xIn, float32 yIn) : x(xIn), y(yIn) {}
 
+
+
 	/// Set this vector to all zeros.
 	void SetZero() { x = 0.0f; y = 0.0f; }
 
 	/// Set this vector to some specified coordinates.
 	void Set(float32 x_, float32 y_) { x = x_; y = y_; }
-
+	static b2Vec2 zero;
+	static b2Vec2 up;
+	static b2Vec2 down;
+	static b2Vec2 left;
+	static b2Vec2 right;
+	static b2Vec2 one;
 	/// Negate this vector.
 	b2Vec2 operator -() const { b2Vec2 v; v.Set(-x, -y); return v; }
-	
+	b2Vec2 operator*(float to) { b2Vec2 v; v.Set(x*to, y*to); return v; }
 	/// Read from and indexed element.
 	float32 operator () (int32 i) const
 	{
@@ -327,6 +336,12 @@ struct b2Rot
 	float32 s, c;
 };
 
+b2Vec2 b2Vec2::zero = b2Vec2(0, 0);
+b2Vec2 b2Vec2:: up = b2Vec2(0, 1);
+b2Vec2 b2Vec2:: down = b2Vec2(0, -1);
+b2Vec2 b2Vec2:: left = b2Vec2(-1, 0);
+b2Vec2 b2Vec2:: right = b2Vec2(1, 0);
+b2Vec2 b2Vec2:: one = b2Vec2(1, 1);
 /// A transform contains translation and rotation. It is used to represent
 /// the position and orientation of rigid frames.
 struct b2Transform
