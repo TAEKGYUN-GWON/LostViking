@@ -3,7 +3,7 @@
 #include "TransformComponent.h"
 #include "Object.h"
 #include "PhysicsBodyComponent.h"
-#include "Collider.h"
+#include "script.h"
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 float32 timeStep;
 int32 velocityIterations;
@@ -15,39 +15,6 @@ playGround::playGround()
 
 playGround::~playGround()
 {
-	//1. STATIC BODY 
-
-//바디 정의 
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0.0f, -10.0f);
-	_groundBody = _world->CreateBody(&groundBodyDef);
-
-	//shape 정의 
-	b2PolygonShape groundBox;
-	groundBox.SetAsBox(50.0f, 10.0f);	//width/2 와 height/2가 들어감
-
-	//fixture 더하기
-	_groundBody->CreateFixture(&groundBox, 0.0f);
-
-	//2. DYNAMIC BODY (어떠한 힘이 가해져 움직일 수 있는 바디)
-
-	//바디 정의 
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;		//타입 지정안하면 static body로 간주 
-	bodyDef.position.Set(0.0f, 4.0f);
-	_dynamicBody = _world->CreateBody(&bodyDef);
-
-	//shape 정의 
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1.0f, 1.0f);
-
-	//fixture 정의
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;
-	fixtureDef.density = 1.0f;			//dynamic body의 fixture중 최소 한개는 0가 아닌 density 값을 가져야 함.
-	fixtureDef.friction = 0.3f;			//나머지는 기본값이 들어가 있고 다른 값 원할시 여기서 설정
-
-	_dynamicBody->CreateFixture(&fixtureDef);
 
 }
 
@@ -92,9 +59,8 @@ HRESULT playGround::init()
 	t->GetTrans()->SetScale(100,100);
 	t->SetName("t");
 	t->SetTag("t");
-	t->AddComponent<Collider>();
-	t->AddComponent<PhysicsBodyComponent>()->setGameObject(t);
-	t->GetComponent<PhysicsBodyComponent>()->Init(DYNAMIC);
+	t->AddComponent<script>();
+	t->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC);
 
 	a = new Object;
 	a->GetTrans()->SetPos(WINSIZEX/2, WINSIZEY-100);
@@ -102,9 +68,7 @@ HRESULT playGround::init()
 	a->GetTrans()->SetScale(1000, 100);
 	a->SetName("a");
 	a->SetTag("a");
-	a->AddComponent<Collider>();
-	a->AddComponent<PhysicsBodyComponent>()->setGameObject(a);
-	a->GetComponent<PhysicsBodyComponent>()->Init(STATIC);
+	a->AddComponent<PhysicsBodyComponent>()->Init(STATIC);
 	return S_OK;
 }
 
@@ -127,19 +91,43 @@ void playGround::update()
 
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	{
+	
+		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(b2Vec2(-8,0), t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	{
+
+		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(b2Vec2(8, 0), t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	{
+
+		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(b2Vec2(0, -300), t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
+	}
 
 	a->GetTrans()->SetPos(a->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
 	//a->GetTrans()->SetScale(a->GetComponent<PhysicsBodyComponent>()->GetBodyScale());
 	a->Update();
-
-	t->GetTrans()->SetPos(t->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
+	if(t->GetIsActive())
+		t->GetTrans()->SetPos(t->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
+	else
+	{
+		t->GetComponent<PhysicsBodyComponent>()->SetBodyPosition();
+		t->SetIsActive(true);
+	}
 	//t->GetTrans()->SetScale(t->GetComponent<PhysicsBodyComponent>()->GetBodyScale());
 	t->Update();
+	cout << t->GetIsActive() << endl;
 }
 
 void playGround::render()
 {
 	a->Render();
+
+	//GRAPHICMANAGER->DrawRect(t->GetTrans()->pos, t->GetTrans()->scale, t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetAngle()*DEGREE);
 	t->Render();
 }
 

@@ -17,12 +17,6 @@ T* Object::AddComponent()
 {
 	Component* component = new T();
 
-	for (auto itr : _components)
-	{
-		if (itr->GetName() == component->GetName())
-			return (T*)itr;
-	}
-
 	component->setGameObject(this);
 	if(component->GetName()!="PhysicsBodyComponent")
 		component->Init();

@@ -26,7 +26,7 @@ void PhysicsManager::BeginContact(b2Contact * contacts)
 {
 	auto a = (Object*) contacts->GetFixtureA()->GetBody()->GetUserData();
 	auto b = (Object*) contacts->GetFixtureB()->GetBody()->GetUserData();
-	cout << "面倒" << endl;
+	//cout << "面倒" << endl;
 	if (!a || !b) return;
 
 	for (auto s : a->GetComponents<Collider>())
@@ -53,7 +53,7 @@ void PhysicsManager::EndContact(b2Contact * contacts)
 {
 	auto a = (Object*)contacts->GetFixtureA()->GetBody()->GetUserData();
 	auto b = (Object*)contacts->GetFixtureB()->GetBody()->GetUserData();
-	cout << "面倒" << endl;
+	//cout << "面倒" << endl;
 	if (!a || !b) return;
 
 	for (auto s : a->GetComponents<Collider>())

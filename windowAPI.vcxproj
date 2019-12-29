@@ -172,6 +172,7 @@
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
+    <ClInclude Include="script.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="StateComponent.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />
+    <ClCompile Include="script.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="StateComponent.cpp" />
     <ClCompile Include="stdafx.cpp">
