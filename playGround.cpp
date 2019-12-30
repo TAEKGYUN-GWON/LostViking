@@ -150,7 +150,7 @@ void playGround::draw()
 	//_img3->FrameRender(100, 150, _curFrameX, 0);
 	//GRAPHICMANAGER->DrawImage("bg", Vector2((float)GRAPHICMANAGER->FindImage("bg")->GetWidth()/2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
-	GRAPHICMANAGER->DrawRect(Vector2(200, 200), Vector2(200, 200), 45);
+//	GRAPHICMANAGER->DrawRect(Vector2(200, 200), Vector2(200, 200), 45);
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 45);
 	GRAPHICMANAGER->DrawRect(1900, 200, 200, 200, 45);
 	GRAPHICMANAGER->DrawFillRect(Vector2(300, 300), Vector2(100, 100), 45);
