@@ -37,7 +37,8 @@ HRESULT playGround::init()
 
 	_objMgr = new ObjectManager;
 	_objMgr->Init();
-
+	_uiMgr = new UIManager;
+	_uiMgr->Init();
 	return S_OK;
 }
 
@@ -47,7 +48,8 @@ void playGround::release()
 	
 	SAFE_OBJECT_RELEASE(_objMgr);
 	SAFE_DELETE(_objMgr);
-	
+	SAFE_OBJECT_RELEASE(_uiMgr);
+	SAFE_DELETE(_uiMgr);
 }
 
 void playGround::update()
@@ -56,7 +58,7 @@ void playGround::update()
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
 	_objMgr->Update();
-	
+	_uiMgr->Update();
 }
 
 void playGround::render()
@@ -67,7 +69,9 @@ void playGround::render()
 
 void playGround::draw()
 {
+	_uiMgr->Render();
 	_objMgr->Render();
+
 }
 
 
