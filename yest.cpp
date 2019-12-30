@@ -30,7 +30,6 @@ void yest::Update()
 	{
 		a->ApplyForce(Vector2::b2Left * 80);
 	}
-
 	super::Update();
 }
 

@@ -35,7 +35,7 @@ public:
 	//라디안값으로 회전값 세팅
 	inline void SetRotateToRadian(float rotate) { _rotate = rotate; }
 	//디그리 값으로 회전값 세팅
-	inline void SetRotateToDegree(float rotate) { _rotate = rotate * RADIAN; }
+	inline void SetRotateToDegree(float rotate) { _rotate = rotate * DEGREE; }
 	inline RECT* GetRect() { return &_rc; }
 	inline void SetRect(RECT rc) { _rc = rc; }
 	void SetRect();

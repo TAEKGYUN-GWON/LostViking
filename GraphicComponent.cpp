@@ -2,6 +2,7 @@
 #include "GraphicComponent.h"
 #include "TransformComponent.h"
 #include "Object.h"
+#include"PhysicsBodyComponent.h"
 GraphicComponent::GraphicComponent()
 {
 	_name = "GraphicComponent";
@@ -22,7 +23,11 @@ void GraphicComponent::Render()
 {
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), _object->GetTrans()->GetRotateDegree(), BRUSH_TYPE::BLUE);
+		PhysicsBodyComponent* a = _object->GetComponent< PhysicsBodyComponent>();
+		if(a!=nullptr)
+			GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), a->GetBody()->GetAngle()*DEGREE, BRUSH_TYPE::BLUE);
+		else
+			GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), _object->GetTrans()->GetRotateRadian(), BRUSH_TYPE::BLUE);
 	}
 
 	if (_imgKey.empty()) return;

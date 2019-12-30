@@ -237,6 +237,8 @@ void GraphicsManager::DrawRect(Vector2 pos, Vector2 size, float angle, float str
 
 	_renderTarget->SetTransform(Matrix3x2F::Identity() * rotation* CAMERA->GetMatrix());
 
+
+
 	_renderTarget->DrawRectangle(RectF(pos.x, pos.y, pos.x + size.x, pos.y + size.y), _brush[color], strokeWidth);
 }
 
