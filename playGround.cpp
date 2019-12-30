@@ -35,6 +35,7 @@ HRESULT playGround::init()
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
 
+	_uiManager->Init();
 	return S_OK;
 }
 
@@ -60,7 +61,7 @@ void playGround::render()
 
 void playGround::draw()
 {
-	
+	_uiManager->Render();
 }
 
 

@@ -1,9 +1,10 @@
 #pragma once
 #include "gameNode.h"
-
+#include"UIManager.h"
 class playGround : public gameNode
 {
 private:
+	UIManager* _uiManager;
 	
 public:
 	playGround();
