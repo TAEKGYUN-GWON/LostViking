@@ -66,6 +66,8 @@ public:
 	//void Render(float x, float y);
 	void Render(float x, float y, PIVOT pivot = PIVOT::CENTER);
 	void Render(Vector2 pos, PIVOT pivot = PIVOT::CENTER);
+	void RenderUI(float x, float y, PIVOT pivot = PIVOT::CENTER);
+	void RenderUI(Vector2 pos, PIVOT pivot = PIVOT::CENTER);
 	void FrameRender(float x, float y, int curFrameX, int curFrameY, PIVOT pivot = PIVOT::CENTER);
 	void FrameRender(Vector2 pos, int curFrameX, int curFrameY, PIVOT pivot = PIVOT::CENTER);
 	
@@ -85,6 +87,9 @@ public:
 
 	int GetCurrentFrameX() { return _graphicInfo->curFrameX; }
 	int GetCurrentFrameY() { return _graphicInfo->curFrameY; }
+
+	int GetFrameWidth() { return _graphicInfo->frameWidth; }
+	int GetFrameHeight() { return _graphicInfo->frameHeight; }
 
 	LPGRAPHIC_INFO GetGraphicInfo() { return _graphicInfo; }
 

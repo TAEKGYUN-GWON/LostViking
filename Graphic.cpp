@@ -76,8 +76,7 @@ HRESULT Graphic::Init(ID2D1Bitmap * bitmap, string key, wstring path, int maxFra
 	}
 
 	return S_OK;
-}
-
+}
 void Graphic::Release()
 {
 	if (_graphicInfo)
@@ -137,7 +136,61 @@ void Graphic::Render(Vector2 pos, PIVOT pivot)
 		break;
 	}
 
-	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans* CAMERA->GetMatrix());
+	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans * CAMERA->GetMatrix());
+	if (_graphicInfo->bitmap) _RT->DrawBitmap(_graphicInfo->bitmap, dxArea, _graphicInfo->alpha);
+}
+
+void Graphic::RenderUI(float x, float y, PIVOT pivot)
+{
+	_graphicInfo->size.x *= _graphicInfo->scale.x;
+	_graphicInfo->size.y *= _graphicInfo->scale.y;
+
+	Matrix3x2F rotation = Matrix3x2F::Rotation(_graphicInfo->angle, Point2F());
+	Matrix3x2F trans = Matrix3x2F::Translation(x, y);
+
+	D2D1_RECT_F dxArea;
+
+	switch (pivot)
+	{
+	case LEFT_TOP:
+		dxArea = RectF(0, 0, _graphicInfo->size.x, _graphicInfo->size.y);
+		break;
+	case CENTER:
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
+		break;
+	case BOTTOM:
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
+		break;
+	}
+
+	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans);
+	if (_graphicInfo->bitmap) _RT->DrawBitmap(_graphicInfo->bitmap, dxArea, _graphicInfo->alpha);
+}
+
+void Graphic::RenderUI(Vector2 pos, PIVOT pivot)
+{
+	_graphicInfo->size.x *= _graphicInfo->scale.x;
+	_graphicInfo->size.y *= _graphicInfo->scale.y;
+
+	Matrix3x2F rotation = Matrix3x2F::Rotation(_graphicInfo->angle, Point2F());
+	Matrix3x2F trans = Matrix3x2F::Translation(pos.x, pos.y);
+
+	D2D1_RECT_F dxArea;
+
+	switch (pivot)
+	{
+	case LEFT_TOP:
+		dxArea = RectF(0, 0, _graphicInfo->size.x, _graphicInfo->size.y);
+		break;
+	case CENTER:
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
+		break;
+	case BOTTOM:
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
+		break;
+	}
+
+	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans);
 	if (_graphicInfo->bitmap) _RT->DrawBitmap(_graphicInfo->bitmap, dxArea, _graphicInfo->alpha);
 }
 
