@@ -196,6 +196,12 @@
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrier.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -306,6 +312,12 @@
       <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
     <ClCompile Include="Wall.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrier.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
