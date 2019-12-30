@@ -35,9 +35,10 @@ HRESULT playGround::init()
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
 
-	a = new Object;
-	a->GetTrans()->SetPos(WINSIZEX / 2, WINSIZEY / 2);
-	a->GetTrans()->SetScale(50, 50);
+
+	_enemy = new Enemy;
+	_enemy->Init();
+
 	return S_OK;
 }
 
@@ -52,14 +53,17 @@ void playGround::update()
 {
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
-	a->Update();
+
+
+	_enemy->Update();
 }
 
 void playGround::render()
 {
 	draw();
-	a->Render();
+
 	
+	_enemy->Render();
 }
 
 

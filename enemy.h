@@ -1,35 +1,23 @@
 #pragma once
-#include "gameNode.h"
-
-class enemy : public gameNode
+#include "Object.h"
+class Enemy :	public Object
 {
-protected:
-	image* _imageName;
-	RECT _rc;
-	
-	int _currentFrameX;		//프레임이미지 1개를 가지가 각각 다른 프레임을 유지하려고
-	int _currentFrameY;
+private:
 
-	int _count;				//프레임 카운트용
-	int _fireCount;			//총알 발사용
-	int _rndFireCount;		//랜덤하게 쏠 변수
+
+protected:
+	typedef Object super;
 
 public:
-	enemy();
-	~enemy();
+	Enemy() {};
+	~Enemy() {};
 
-	HRESULT init();
-	HRESULT init(const char* imageName, POINT position);
-	void release();
-	void update();
-	void render();
+	virtual void Init() override;
+	virtual void Release() override;
+	virtual void Update() override;
+	virtual void Render() override;
 
-	void move();
-	void draw();
-
-	bool bulletCountFire();		//총알 쏘라고 신호를 줄 함수
-
-	inline RECT getRect() { return _rc; }
-
+	void Move();
+	void Shoot();
 };
 

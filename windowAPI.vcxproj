@@ -153,6 +153,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="GraphicComponent.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="GraphicComponent.cpp" />

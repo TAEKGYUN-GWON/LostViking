@@ -25,7 +25,9 @@ void GraphicComponent::Render()
 	{
 		PhysicsBodyComponent* a = _object->GetComponent< PhysicsBodyComponent>();
 		if(a!=nullptr)
+			//GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), a->GetBody()->GetAngle()*DEGREE, BRUSH_TYPE::BLUE);
 			GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), a->GetBody()->GetAngle()*DEGREE, BRUSH_TYPE::BLUE);
+
 		else
 			GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), _object->GetTrans()->GetRotateRadian(), BRUSH_TYPE::BLUE);
 	}
@@ -56,7 +58,7 @@ void GraphicComponent::Render()
 				}
 			}
 		}
-		GRAPHICMANAGER->DrawFrameImage(_imgKey, _object->GetTrans()->GetPos(), _curFrameX, _curFrameY, PIVOT::BOTTOM);
+		GRAPHICMANAGER->DrawFrameImage(_imgKey, _object->GetTrans()->GetPos(), _curFrameX, _curFrameY, PIVOT::CENTER);
 	}
 	else
 	{

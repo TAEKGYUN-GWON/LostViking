@@ -1,11 +1,14 @@
 #pragma once
 #include "gameNode.h"
+#include "Enemy.h"
 
 class playGround : public gameNode
 {
 private:
 	Object *a;
-	
+
+	Enemy * _enemy;
+
 public:
 	playGround();
 	~playGround();
