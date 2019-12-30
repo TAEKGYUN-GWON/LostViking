@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Object.h"
+#include "TransformComponent.h"
+#include "GraphicComponent.h"
 
 
 Object::Object()

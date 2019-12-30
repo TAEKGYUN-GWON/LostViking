@@ -192,6 +192,9 @@
     <ClInclude Include="script.h">
       <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
+    <ClInclude Include="yest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -298,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="script.cpp">
       <Filter>2DGameFramework\Object\Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="yest.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

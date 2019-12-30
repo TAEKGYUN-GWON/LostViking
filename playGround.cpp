@@ -52,15 +52,16 @@ HRESULT playGround::init()
 	_curFrameX = _curFrameY = _count = 0;
 
 	_angle = 0.0f;
-
+	ys = new yest;
+	ys->Init();
 	t = new Object;
 	t->GetTrans()->SetPos(WINSIZEX/2,WINSIZEY/2);
 
 	t->GetTrans()->SetScale(100,100);
 	t->SetName("t");
 	t->SetTag("t");
-	t->AddComponent<script>();
-	t->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC,0.5,1,0.5);
+	//t->AddComponent<script>();
+	t->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC,0.5,1);
 
 	a = new Object;
 	a->GetTrans()->SetPos(WINSIZEX/2, WINSIZEY-100);
@@ -120,13 +121,14 @@ void playGround::update()
 	
 	//t->GetTrans()->SetScale(t->GetComponent<PhysicsBodyComponent>()->GetBodyScale());
 	t->Update();
-	cout << t->GetIsActive() << endl;
+	ys->Update();
+	//cout << t->GetIsActive() << endl;
 }
 
 void playGround::render()
 {
 	a->Render();
-
+	ys->Render();
 	//GRAPHICMANAGER->DrawRect(t->GetTrans()->pos, t->GetTrans()->scale, t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetAngle()*DEGREE);
 	t->Render();
 }

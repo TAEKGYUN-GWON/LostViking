@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "yest.h"
 //BOX2D 예제코드 
 class playGround : public gameNode
 {
@@ -20,7 +21,7 @@ private:
 	Graphic* _img;
 	Graphic* _img2;
 	Graphic* _img3;
-
+	yest* ys;
 	float _x;
 	float _y;
 	float _angle;
