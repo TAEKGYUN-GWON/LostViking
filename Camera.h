@@ -16,7 +16,7 @@ public:
 		_scale = Vector2(1, 1);
 		_pos = Vector2().zero;
 		_angle = 0.0f;
-		_speed = 70.f;
+		_speed = 300.f;
 	};
 	~Camera() {};
 

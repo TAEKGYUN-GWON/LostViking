@@ -185,6 +185,7 @@
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
+    <ClInclude Include="Wall.h" />
     <ClInclude Include="windowAPI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +228,7 @@
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
+    <ClCompile Include="Wall.cpp" />
     <ClCompile Include="windowAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

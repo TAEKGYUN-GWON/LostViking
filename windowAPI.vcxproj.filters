@@ -195,6 +195,9 @@
     <ClInclude Include="UIManager.h">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -301,6 +304,9 @@
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

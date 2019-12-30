@@ -34,7 +34,7 @@ HRESULT playGround::init()
 	positionIterations = 3;
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
-
+	_uiManager = new UIManager;
 	_uiManager->Init();
 	return S_OK;
 }
@@ -43,14 +43,14 @@ void playGround::release()
 {
 	gameNode::release();
 
-	
+	_uiManager->Release();
 }
 
 void playGround::update()
 {
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
-	
+	_uiManager->Update();
 }
 
 void playGround::render()
