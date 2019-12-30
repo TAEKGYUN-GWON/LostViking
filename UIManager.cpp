@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "UIManager.h"
-
+#include"GraphicComponent.h"
 
 UIManager::UIManager()
 {
@@ -29,6 +29,9 @@ void UIManager::Init()
 	GRAPHICMANAGER->AddImage("oDeactive", L"img/background/OlafDeactivate.png");
 	test = new Wall;
 	test->Init();
+	auto a = test->GetComponent<GraphicComponent>();
+	a->SetStrokeWidth(4.f);
+	a->SetRectColor(BRUSH_TYPE::AQUAMARINE);
 }
 
 void UIManager::Release()
@@ -43,7 +46,9 @@ void UIManager::Update()
 void UIManager::Render()
 {
 	if(KEYMANAGER->isToggleKey(VK_F2))
-		GRAPHICMANAGER->FindImage("bg")->Render(Vector2(GRAPHICMANAGER->FindImage("bg")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
+		//GRAPHICMANAGER->FindImage("bg")->Render(Vector2(GRAPHICMANAGER->FindImage("bg")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
+		GRAPHICMANAGER->DrawImage("bg", Vector2(0, 0), LEFT_TOP);
+
 	test->Render();
 	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
 	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
