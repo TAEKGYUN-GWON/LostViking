@@ -35,13 +35,18 @@ HRESULT playGround::init()
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
 
+	_objMgr = new ObjectManager;
+	_objMgr->Init();
+
 	return S_OK;
 }
 
 void playGround::release()
 {
 	gameNode::release();
-
+	
+	SAFE_OBJECT_RELEASE(_objMgr);
+	SAFE_DELETE(_objMgr);
 	
 }
 
@@ -49,6 +54,8 @@ void playGround::update()
 {
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
+
+	_objMgr->Update();
 	
 }
 
@@ -60,7 +67,7 @@ void playGround::render()
 
 void playGround::draw()
 {
-	
+	_objMgr->Render();
 }
 
 
