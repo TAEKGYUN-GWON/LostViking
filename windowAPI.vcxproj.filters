@@ -67,6 +67,9 @@
     <Filter Include="2DGameFramework\Metrix">
       <UniqueIdentifier>{1df28ea1-f73c-49c6-9df3-7d7af41f9860}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Item">
+      <UniqueIdentifier>{45e44d4a-cf64-48d6-a91d-5e534e47492d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -189,6 +192,15 @@
     <ClInclude Include="Collider.h">
       <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>playGround\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Tomato.h">
+      <Filter>playGround\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -292,6 +304,15 @@
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>2DGameFramework\Object\Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>playGround\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Tomato.cpp">
+      <Filter>playGround\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
