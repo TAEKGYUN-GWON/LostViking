@@ -34,23 +34,31 @@ HRESULT playGround::init()
 	positionIterations = 3;
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
-	_uiManager = new UIManager;
-	_uiManager->Init();
+
+	_objMgr = new ObjectManager;
+	_objMgr->Init();
+	_uiMgr = new UIManager;
+	_uiMgr->Init();
 	return S_OK;
 }
 
 void playGround::release()
 {
 	gameNode::release();
-
-	_uiManager->Release();
+	
+	SAFE_OBJECT_RELEASE(_objMgr);
+	SAFE_DELETE(_objMgr);
+	SAFE_OBJECT_RELEASE(_uiMgr);
+	SAFE_DELETE(_uiMgr);
 }
 
 void playGround::update()
 {
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
-	_uiManager->Update();
+
+	_objMgr->Update();
+	_uiMgr->Update();
 }
 
 void playGround::render()
@@ -61,7 +69,9 @@ void playGround::render()
 
 void playGround::draw()
 {
-	_uiManager->Render();
+	_uiMgr->Render();
+	_objMgr->Render();
+
 }
 
 
