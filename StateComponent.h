@@ -20,6 +20,7 @@ enum Object_STATE
 	LEFT_HIT,
 	LADDER
 };
+
 class StateComponent : public Component
 {
 	Object_STATE _state;
