@@ -61,7 +61,7 @@ HRESULT playGround::init()
 	t->SetName("t");
 	t->SetTag("t");
 	//t->AddComponent<script>();
-	t->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC,0.5,1);
+	t->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC,0.5,1,0.5f);
 
 	a = new Object;
 	a->GetTrans()->SetPos(WINSIZEX/2, WINSIZEY-100);
@@ -92,15 +92,17 @@ void playGround::update()
 
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-	{
-	
-		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(Vector2::b2Left*8, t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
-	}
+	//if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	//{
+	//	
+	//	t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(Vector2::b2Left*8,
+	//		t->GetComponent<PhysicsBodyComponent>()->GetWorldCenter(), true);
+	//}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 
-		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(b2Vec2(8, 0), t->GetComponent<PhysicsBodyComponent>()->GetBody()->GetWorldCenter(), true);
+		t->GetComponent<PhysicsBodyComponent>()->GetBody()->ApplyForce(b2Vec2(8, 0),
+			t->GetComponent<PhysicsBodyComponent>()->GetWorldCenter(), true);
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
