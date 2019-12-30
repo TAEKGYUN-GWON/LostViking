@@ -7,6 +7,7 @@ public:
 	BoxWorldManager();
 	~BoxWorldManager();
 	virtual void Release();
+	void CreateWorld(b2Vec2 gravity);
 	void RemoveBody(b2Body* body);
 	void SetWorld();
 	void SetWorld(b2World* world);

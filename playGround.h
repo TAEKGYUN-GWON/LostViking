@@ -4,7 +4,6 @@
 class playGround : public gameNode
 {
 private:
-
 	
 public:
 	playGround();

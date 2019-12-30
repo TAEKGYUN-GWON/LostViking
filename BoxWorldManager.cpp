@@ -20,6 +20,14 @@ void BoxWorldManager::Release()
 	delete _world;
 }
 
+void BoxWorldManager::CreateWorld(b2Vec2 gravity)
+{
+	if (_world != nullptr) return;
+
+	_world = new b2World(gravity);
+	
+}
+
 void BoxWorldManager::RemoveBody(b2Body * body)
 {
 	_world->DestroyBody(body);
