@@ -4,6 +4,7 @@
 class playGround : public gameNode
 {
 private:
+	Object *a;
 	
 public:
 	playGround();
