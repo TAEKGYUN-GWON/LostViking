@@ -8,14 +8,15 @@ private:
 	Vector2				_scale;
 	Vector2				_pos;
 	float				_angle;
-	float speed;
+	float				_speed;
+
 public:
 	Camera() 
 	{
 		_scale = Vector2(1, 1);
 		_pos = Vector2().zero;
 		_angle = 0.0f;
-		speed = 70.f;
+		_speed = 70.f;
 	};
 	~Camera() {};
 

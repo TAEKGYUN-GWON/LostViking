@@ -21,6 +21,10 @@ enum BRUSH_TYPE
 	WHITE,
 	BLACK,
 	BLUE,
+	RED,
+	YELLOW,
+	GRAY,
+	GREEN,
 	BRUSH_NONE,
 };
 
@@ -79,10 +83,10 @@ public:
 
 	void Reload();
 
-	void DrawImage(string key, float x, float y);
-	void DrawImage(string key, Vector2 pos);
+	void DrawImage(string key, float x, float y, PIVOT pivot = PIVOT::CENTER);
+	void DrawImage(string key, Vector2 pos, PIVOT pivot = PIVOT::CENTER);
 
-	void DrawFrameImage(string key, Vector2 pos, float curFrameX, float curFrameY);
+	void DrawFrameImage(string key, Vector2 pos, float curFrameX, float curFrameY, PIVOT pivot = PIVOT::CENTER);
 
 	void DrawLine(int startX, int startY, int destX, int destY, BRUSH_TYPE color = BLACK);
 	void DrawLine(float startX, float startY, float destX, float destY, BRUSH_TYPE color = BLACK);
@@ -90,10 +94,9 @@ public:
 
 	void DrawRect(float x, float y, float width, float height, float angle = 0.0f, BRUSH_TYPE color = BLACK);
 	void DrawRect(Vector2 pos, Vector2 size, float angle = 0.0f, float strokeWidth = 1.0f, BRUSH_TYPE color = BLACK);
+	void DrawRect(Vector2 pos, Vector2 size, float angle = 0.0f, COLORREF rgb = RGB(0, 0, 0), PIVOT pivot = PIVOT::CENTER, float strokeWidth = 1.0f);
+	void DrawRect(Vector2 pos, Vector2 size, float angle = 0.0f, BRUSH_TYPE brush = BRUSH_TYPE::BLACK, PIVOT pivot = PIVOT::CENTER, float strokeWidth = 1.0f);
 	void DrawSkewRect(Vector2 pos, Vector2 size, float angle = 0.0f, float strokeWidth = 1.0f, BRUSH_TYPE color = BLACK);
-
-	void DrawCenterRect(float x, float y, float width, float height, BRUSH_TYPE color = BLACK);
-	void DrawCenterRect(Vector2 pos, Vector2 size, BRUSH_TYPE color = BLACK);
 
 	void DrawRoundRect(float x, float y, float width, float height, float radiusX, float radiusY, BRUSH_TYPE color = BLACK);
 	void DrawRoundRect(Vector2 pos, Vector2 size, Vector2 radius, BRUSH_TYPE color = BLACK);
@@ -107,13 +110,15 @@ public:
 	HRESULT AddTextFormat(wstring fontName, float size);
 
 	// txtSize : ±Û¾¾ Å©±â (±Û¾¾ ±æÀÌ X)
-	void DrawTextD2D(Vector2 pos, wstring txt, int txtSize, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
+	void DrawTextD2D(Vector2 pos, wstring txt, int txtSize, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_LEADING, wstring font = L"¸¼Àº°íµñ");
 	
-	void DrawTextD2D(Vector2 pos, const char* txt, int txtSize, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
+	void DrawTextD2D(Vector2 pos, const char* txt, int txtSize, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_LEADING, wstring font = L"¸¼Àº°íµñ");
 	
-	void DrawTextD2D(Vector2 pos, wstring txt, int txtSize, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
-	void DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
-	void DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_CENTER, wstring font = L"¸¼Àº°íµñ");
+	void DrawTextD2D(Vector2 pos, wstring txt, int txtSize, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_LEADING, wstring font = L"¸¼Àº°íµñ");
+	void DrawTextD2D(Vector2 pos, const char* txt, int txtSize, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_LEADING, wstring font = L"¸¼Àº°íµñ");
+	
+	void DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, BRUSH_TYPE color = BRUSH_TYPE::BLACK, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_LEADING, wstring font = L"¸¼Àº°íµñ");
+	void DrawTextField(Vector2 pos, wstring txt, int txtSize, int width, int height, float alpha, COLORREF rgb, DWRITE_TEXT_ALIGNMENT alig = DWRITE_TEXT_ALIGNMENT_LEADING, wstring font = L"¸¼Àº°íµñ");
 
 	ID2D1HwndRenderTarget* GetRenderTarget() { return _renderTarget; }
 };

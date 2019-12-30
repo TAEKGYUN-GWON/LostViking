@@ -174,6 +174,9 @@
     <ClInclude Include="Camera.h">
       <Filter>2DGameFramework\Manager\header</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="Matrix2x2.h">
       <Filter>2DGameFramework\Metrix</Filter>
     </ClInclude>
@@ -186,8 +189,11 @@
     <ClInclude Include="Vector3.h">
       <Filter>2DGameFramework</Filter>
     </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>2DGameFramework\Object\Component\header</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Eric.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="script.h">
       <Filter>2DGameFramework\Object\Component\header</Filter>
@@ -284,6 +290,9 @@
     <ClCompile Include="Camera.cpp">
       <Filter>2DGameFramework\Manager\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="Matrix2x2.cpp">
       <Filter>2DGameFramework\Metrix</Filter>
     </ClCompile>
@@ -296,8 +305,11 @@
     <ClCompile Include="Vector3.cpp">
       <Filter>2DGameFramework</Filter>
     </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>2DGameFramework\Object\Component\cpp</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Eric.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="script.cpp">
       <Filter>2DGameFramework\Object\Component\cpp</Filter>
