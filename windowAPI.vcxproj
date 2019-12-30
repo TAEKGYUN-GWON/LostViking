@@ -153,6 +153,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
+    <ClInclude Include="Eric.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="GraphicComponent.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -194,6 +196,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="Eric.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="GraphicComponent.cpp" />
@@ -207,6 +210,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />

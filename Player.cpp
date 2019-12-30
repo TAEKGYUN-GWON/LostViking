@@ -1,66 +1,67 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "PhysicsBodyComponent.h"
-#include "GraphicComponent.h"
-Player::Player()
-{
-}
-
-
-Player::~Player()
-{
-}
 
 void Player::Init()
 {
-	_name = "Erik";
 	_tag = "Player";
+	_name = "Player";
 	_trans->SetPos(WINSIZEX / 2, WINSIZEY / 2);
-	_trans->SetScale(Vector2(300, 293));
-	AddComponent<PhysicsBodyComponent>();
-	GetComponent<PhysicsBodyComponent>()->Init(DYNAMIC);
+	_trans->SetScale(100, 100);
 
-	_graphic = AddComponent<GraphicComponent>();
-	GetComponent<GraphicComponent>()->Init(true);
-	GetComponent<GraphicComponent>()->SetImgName("number1");
-
+	_graphic = GetComponent<GraphicComponent>();
+	_graphic->Init(true);
+	_graphic->SetImgName("number");
 }
 
 void Player::Update()
 {
-	float speed = 5.f;
-
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
-	{
-		_trans->SetPos(Vector2(_trans->GetPos() + Vector2::up * speed));
-	}
-
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-	{
-		_trans->SetPos(Vector2(_trans->GetPos() + Vector2::down * speed));
-	}
+	float speed = 75.0f;
 
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		_trans->SetPos(Vector2(_trans->GetPos() + Vector2::left * speed));
+		_trans->pos += Vector2().left * speed * TIMEMANAGER->getElapsedTime();
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		_trans->SetPos(Vector2(_trans->GetPos() + Vector2::right * speed));
+		_trans->pos += Vector2().right * speed * TIMEMANAGER->getElapsedTime();
 	}
-	if (_trans->GetX() > WINSIZEX / 2 &&
-		_trans->GetX() < 2000 - WINSIZEX / 2||
-		_trans->GetY() > WINSIZEY / 2 &&
-		_trans->GetY() < 1580 - WINSIZEY / 2 )
+	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
-		Vector2 A(_trans->GetY() - WINSIZEX / 2, _trans->GetY() - WINSIZEY / 2);
-		CAMERA->SetPosition(A);
+		_trans->pos += Vector2().up * speed * TIMEMANAGER->getElapsedTime();
 	}
+	else if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		_trans->pos += Vector2().down * speed * TIMEMANAGER->getElapsedTime();
+	}
+
+	//CAMERA->SetPosition(Vector2(_trans->pos.x - WINSIZEX / 2, _trans->pos.y - WINSIZEY / 2));
+
+	// frame test
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	{
+		_graphic->Start();
+	}
+	if (KEYMANAGER->isOnceKeyDown('1'))
+	{
+		_graphic->Stop();
+	}if (KEYMANAGER->isOnceKeyDown('2'))
+	{
+		_graphic->Pause();
+	}if (KEYMANAGER->isOnceKeyDown('3'))
+	{
+		_graphic->Resume();
+	}
+
 	super::Update();
 }
 
-void Player::Release()
+void Player::Render()
 {
-	super::Release();
+	super::Render();
 
+	char str[128];
+	sprintf_s(str, "curFrameX :  %d\nmaxFrameX : %d", _graphic->GetGraphic()->GetCurrentFrameX(), _graphic->GetGraphic()->GetMaxFrameX());
+	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2, 40), str, 20);
+	
+	if (_graphic->IsFrameEnd()) GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2, 10), L"animation end", 20);
 }

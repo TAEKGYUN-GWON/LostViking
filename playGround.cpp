@@ -76,7 +76,14 @@ HRESULT playGround::init()
 	GRAPHICMANAGER->AddImage("bg", L"bg.png");
 	_curFrameX = _curFrameY = _count = 0;
 
+	_pos = Vector2(WINSIZEX - 100, WINSIZEY / 2);
+
 	_angle = 0.0f;
+
+	_isPlayer1 = true;
+
+	_player = new Player;
+	_player->Init();
 
 	return S_OK;
 }
@@ -88,10 +95,12 @@ void playGround::release()
 	SAFE_OBJECT_RELEASE(_img);
 	SAFE_OBJECT_RELEASE(_img2);
 	SAFE_OBJECT_RELEASE(_img3);
+	SAFE_OBJECT_RELEASE(_player);
 
 	SAFE_DELETE(_img);
 	SAFE_DELETE(_img2);
 	SAFE_DELETE(_img3);
+	SAFE_DELETE(_player);
 }
 
 void playGround::update()
@@ -101,13 +110,35 @@ void playGround::update()
 	_world->Step(timeStep, velocityIterations, positionIterations);
 	FrameAnimation();
 
+	_player->Update();
 
-	//if (KEYMANAGER->isStayKeyDown('W')) CAMERA->SetPosition(
-	//	Vector2(CAMERA->GetPosition().x - 1.0f, CAMERA->GetPosition().y));
+	if (KEYMANAGER->isOnceKeyDown(VK_CONTROL))
+	{
+		_isPlayer1 = !_isPlayer1;
+	}
 
+	if(_isPlayer1) CAMERA->SetPosition(Vector2(_player->GetTrans()->GetPos().x - WINSIZEX / 2, _player->GetTrans()->GetPos().y - WINSIZEY / 2));
+	else CAMERA->SetPosition(Vector2(_pos.x - WINSIZEX / 2, _pos.y - WINSIZEY / 2));
+
+	if (KEYMANAGER->isStayKeyDown(VK_NUMPAD4))
+	{
+		_pos += Vector2().left * 70.0f * TIMEMANAGER->getElapsedTime();
+	}
+	else if (KEYMANAGER->isStayKeyDown(VK_NUMPAD6))
+	{
+		_pos += Vector2().right * 70.0f * TIMEMANAGER->getElapsedTime();
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_NUMPAD8))
+	{
+		_pos += Vector2().up * 70.0f * TIMEMANAGER->getElapsedTime();
+	}
+	else if (KEYMANAGER->isStayKeyDown(VK_NUMPAD5))
+	{
+		_pos += Vector2().down * 70.0f * TIMEMANAGER->getElapsedTime();
+	}
 
 	_angle += 0.008f;
-	_img3->SetAngle(_angle * DEGREE);
+	//_img3->SetAngle(_angle * DEGREE);
 }
 
 void playGround::render()
@@ -117,7 +148,6 @@ void playGround::render()
 	sprintf_s(buffer,"x : %f\ny:%f",Vector2::up.x, Vector2::up.y);
 	GRAPHICMANAGER->DrawTextD2D(Vector2(0, 0), buffer, 20);
 
-	GRAPHICMANAGER->DrawTextD2D(Vector2(0, 70), L"아야어여오요우유으이", 20);
 
 	draw();
 }
@@ -125,27 +155,21 @@ void playGround::render()
 
 void playGround::draw()
 {
-	char buffer[128];
-	sprintf_s(buffer, "DYNAMIC BODY: pos.x = %f pos.y =%f", _dynamicBody->GetPosition().x, _dynamicBody->GetPosition().y);
-	TextOut(getMemDC(), 50, 50, buffer, strlen(buffer));
-
-	sprintf_s(buffer, "DYNAMIC BODY: angle = %f", _dynamicBody->GetAngle());
-	TextOut(getMemDC(), 50, 70, buffer, strlen(buffer));
-
-	//_img->Render(WINSIZEX / 2, WINSIZEY / 2);
+	GRAPHICMANAGER->DrawImage("bg", Vector2().zero, PIVOT::LEFT_TOP);
+	_img->Render(_pos);
 	//_img2->FrameRender(100, 100, _curFrameX, 0);
 	//_img3->FrameRender(100, 150, _curFrameX, 0);
-	//GRAPHICMANAGER->DrawImage("bg", Vector2((float)GRAPHICMANAGER->FindImage("bg")->GetWidth()/2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
-	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 0.0f, BRUSH_TYPE::BLUE);
-	GRAPHICMANAGER->DrawRect(Vector2(200, 200), Vector2(200, 200), 45);
+
+	_player->Render();
+
+
 	GRAPHICMANAGER->DrawRect(200, 200, 200, 200, 45);
 	GRAPHICMANAGER->DrawRect(1900, 200, 200, 200, 45);
-	GRAPHICMANAGER->DrawFillRect(Vector2(300, 300), Vector2(100, 100), 45);
 	GRAPHICMANAGER->DrawSkewRect(Vector2(300, 200), Vector2(100, 100));
 	GRAPHICMANAGER->DrawSkewRect(Vector2(300, 200), Vector2(100, 100), 45);
 
 	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2 + 100, WINSIZEY / 2), L"test text", 25);
-	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2 + 90, WINSIZEY / 2 + 50), L"test text2", 25, 0.5f, RGB(100, 100, 255));
+	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2 + 100, WINSIZEY / 2 + 50), L"test text2", 25, 0.5f, RGB(100, 100, 255));
 	GRAPHICMANAGER->DrawTextField(Vector2(WINSIZEX / 2 + 300, WINSIZEY / 2), L"test text3", 25, 10, 20);
 }
 

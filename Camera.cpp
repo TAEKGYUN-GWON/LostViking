@@ -11,24 +11,24 @@ void Camera::Update()
 {
 	if (KEYMANAGER->isStayKeyDown('A'))
 	{
-		_pos += Vector2(-speed, 0.f)* TIMEMANAGER->getElapsedTime();
+		_pos += Vector2(-_speed, 0.f)* TIMEMANAGER->getElapsedTime();
 		UpdateMatrix();
 	}
 	else if (KEYMANAGER->isStayKeyDown('D'))
 	{
-		_pos += Vector2(speed, 0.f)* TIMEMANAGER->getElapsedTime();
+		_pos += Vector2(_speed, 0.f)* TIMEMANAGER->getElapsedTime();
 		UpdateMatrix();
 	}	
 
 	if (KEYMANAGER->isStayKeyDown('W'))
 	{
-		_pos += Vector2(0.f,-speed)* TIMEMANAGER->getElapsedTime();
+		_pos += Vector2(0.f,-_speed)* TIMEMANAGER->getElapsedTime();
 		UpdateMatrix();
 
 	}
 	else if (KEYMANAGER->isStayKeyDown('S'))
 	{
-		_pos += Vector2(0.f, speed)* TIMEMANAGER->getElapsedTime();
+		_pos += Vector2(0.f, _speed)* TIMEMANAGER->getElapsedTime();
 		UpdateMatrix();
 	}
 

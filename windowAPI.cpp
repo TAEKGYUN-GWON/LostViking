@@ -88,8 +88,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 
 			//===================================================
 			HRESULT hr = renderTarget->EndDraw();
-			//if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Reload();
-			if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Release();
+			if (hr == D2DERR_RECREATE_TARGET) GRAPHICMANAGER->Reload();
 		}
 	}
 

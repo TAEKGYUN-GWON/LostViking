@@ -1,5 +1,7 @@
 #pragma once
 #include "gameNode.h"
+#include "Player.h"
+
 //BOX2D 예제코드 
 class playGround : public gameNode
 {
@@ -20,9 +22,12 @@ private:
 	Graphic* _img2;
 	Graphic* _img3;
 
-	float _x;
-	float _y;
+	Vector2 _pos;
 	float _angle;
+
+	bool _isPlayer1;
+
+	Player* _player;
 	
 public:
 	playGround();
