@@ -1,5 +1,6 @@
 #pragma once
 #include "Tomato.h"
+#include "Meat.h"
 #include <vector>
 
 class ObjectManager 

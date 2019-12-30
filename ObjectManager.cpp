@@ -9,6 +9,11 @@ void ObjectManager::Init()
 	_vItem.push_back(item);
 
 
+	item = new Meat;
+	item->Init(Vector2(200, 200));
+	_vItem.push_back(item);
+
+
 }
 
 void ObjectManager::Release()
