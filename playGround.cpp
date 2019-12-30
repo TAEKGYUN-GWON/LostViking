@@ -35,6 +35,17 @@ HRESULT playGround::init()
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
 
+	c = new Character;
+	c->Init();
+
+	flore = new Object;
+	flore->Init();
+	flore->GetTrans()->SetPos(WINSIZEX / 2, WINSIZEY - 100);
+	flore->GetTrans()->SetScale(1000, 50);
+
+	auto a = flore->AddComponent<PhysicsBodyComponent>();
+	a->Init(STATIC, 0.5f);
+
 	return S_OK;
 }
 
@@ -49,18 +60,23 @@ void playGround::update()
 {
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
-	
+	flore->Update();
+	c->Update();
+
 }
 
 void playGround::render()
 {
+	flore->Render();
+	c->Render();
 	draw();
 }
 
 
 void playGround::draw()
 {
-	
+
+
 }
 
 

@@ -1,9 +1,13 @@
 #pragma once
 #include "gameNode.h"
+#include "Character.h"
 
 class playGround : public gameNode
 {
 private:
+
+	Character* c;
+	Object* flore;
 	
 public:
 	playGround();

@@ -9,7 +9,7 @@ class GraphicComponent;
 class Object
 {
 protected:
-	TransformComponent*_trans;
+	TransformComponent* _trans;
 	GraphicComponent *_graphic;
 	vector <Component*> _components;
 	string _name;

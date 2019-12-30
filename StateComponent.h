@@ -23,12 +23,12 @@ enum Object_STATE
 
 class StateComponent : public Component
 {
-	Object_STATE _state;
+	Object_STATE _objState;
 
 public:
 	StateComponent() { _name = "StateComponent"; }
-	inline Object_STATE GetState() { return _state; }
-	inline void SetState(Object_STATE state) { _state = state; }
+	inline Object_STATE GetState() { return _objState; }
+	inline void SetState(Object_STATE state) { _objState = state; }
 
 	//inline void SetDirection() { _direction *= -1; }
 	//inline int GetDirection() { return _direction; }

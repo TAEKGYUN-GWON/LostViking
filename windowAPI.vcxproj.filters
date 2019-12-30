@@ -67,6 +67,9 @@
     <Filter Include="2DGameFramework\Metrix">
       <UniqueIdentifier>{1df28ea1-f73c-49c6-9df3-7d7af41f9860}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Player">
+      <UniqueIdentifier>{3abdaf09-b9f0-4c68-b47a-e1396a92acb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -189,6 +192,9 @@
     <ClInclude Include="Collider.h">
       <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>playGround\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -293,6 +299,9 @@
     <ClCompile Include="Collider.cpp">
       <Filter>2DGameFramework\Object\Component\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>playGround\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowAPI.rc">
@@ -306,5 +315,10 @@
     <Image Include="windowAPI.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="windowAPI.vcxproj">
+      <Filter>playGround\Player</Filter>
+    </None>
   </ItemGroup>
 </Project>

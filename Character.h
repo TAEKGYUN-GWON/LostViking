@@ -10,11 +10,15 @@ protected:
 
 	typedef Object super;
 
-	StateComponent* _state;
+	StateComponent* _state;	
 	PhysicsBodyComponent* _physics;
 
-	int _hp;					//현재 체력
-	float _moveSpeedX, _moveSpeedY;			//움직이는 속도	
+	int upPower = 130;
+
+	int _hp;							//현재 체력
+	float _moveSpeedX, _moveSpeedY;		//움직이는 속도	
+
+	float mass;
 
 public:
 	Character();
@@ -26,8 +30,6 @@ public:
 
 	void KeyControl();
 
-	void XMove(float moveX);
-	void YMove(float moveY);
 	void SetHP(int amount) { _hp = amount; };
 
 	void Idle(string key);
