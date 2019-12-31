@@ -34,7 +34,29 @@ HRESULT playGround::init()
 	positionIterations = 3;
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
+	
+	//¹Ù´Ú
+	a = new Object;
+	a->GetTrans()->SetPos(WINSIZEX / 2, WINSIZEY - 100);
+	a->GetTrans()->SetScale(1000, 100);
+	a->SetName("a");
+	a->SetTag("a");
+	a->AddComponent<PhysicsBodyComponent>();
+	a->GetComponent<PhysicsBodyComponent>()->Init(STATIC,0);
 
+	//¿ÞÂÊ º®
+	leftWall = new Object;
+	leftWall->GetTrans()->SetPos(Vector2(200, WINSIZEY - 200));
+	leftWall->GetTrans()->SetScale(Vector2(100, 100));
+	leftWall->AddComponent<PhysicsBodyComponent>();
+	leftWall->GetComponent<PhysicsBodyComponent>()->Init(STATIC, 0);
+
+	//¿À¸¥ÂÊ º®
+	rightWall = new Object;
+	rightWall->GetTrans()->SetPos(Vector2(WINSIZEX - 200, WINSIZEY - 200));
+	rightWall->GetTrans()->SetScale(Vector2(100, 100));
+	rightWall->AddComponent<PhysicsBodyComponent>();
+	rightWall->GetComponent<PhysicsBodyComponent>()->Init(STATIC, 0);
 
 	_enemy = new Enemy;
 	_enemy->Init();
@@ -54,14 +76,24 @@ void playGround::update()
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
+	a->Update();
+	a->GetTrans()->SetPos(a->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
+	leftWall->Update();
+	leftWall->GetTrans()->SetPos(leftWall->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
+	rightWall->Update();
+	rightWall->GetTrans()->SetPos(rightWall->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
+
 
 	_enemy->Update();
+
 }
 
 void playGround::render()
 {
 	draw();
-
+	a->Render();
+	leftWall->Render();
+	rightWall->Render();
 	
 	_enemy->Render();
 }

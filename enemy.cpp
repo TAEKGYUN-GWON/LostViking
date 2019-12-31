@@ -5,6 +5,9 @@
 
 void Enemy::Init()
 {
+
+	_physics = AddComponent<PhysicsBodyComponent>();
+
 	GRAPHICMANAGER->AddFrameImage("greenAttack", L"greenAttack.png", 2, 2);
 	GRAPHICMANAGER->AddFrameImage("greenMove", L"greenMove.png", 3, 2);
 	GRAPHICMANAGER->AddImage("cannon_bullet", L"cannon_bullet.png");
@@ -14,11 +17,11 @@ void Enemy::Init()
 		GRAPHICMANAGER->FindImage("greenAttack")->GetFrameWidth(),
 		GRAPHICMANAGER->FindImage("greenAttack")->GetFrameHeight()));
 
-	_graphic->Init();
+	_graphic->Init(true, true);
 	//_graphic->SetImgName("greenAttack");
 	_graphic->SetImgName("greenMove");
 
-	
+	_physics->Init(DYNAMIC, 1.f);
 	
 }
 
@@ -28,6 +31,8 @@ void Enemy::Release()
 
 void Enemy::Update()
 {
+	Move();
+	Shoot();
 
 	super::Update();
 }
@@ -41,6 +46,17 @@ void Enemy::Render()
 
 void Enemy::Move()
 {
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	{
+		_physics->ApplyForce(Vector2::b2Left * 5.f);
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	{
+		_physics->ApplyForce(Vector2::b2Right * 5.f);
+	}
+
+	//trans 위치와 피직스 값 동기화
+	_trans->SetPos(_physics->GetBodyPosition());
 }
 
 void Enemy::Shoot()

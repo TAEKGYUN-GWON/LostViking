@@ -5,9 +5,13 @@
 class playGround : public gameNode
 {
 private:
-	Object *a;
+	Object* a;
+	Object* leftWall;
+	Object* rightWall;
 
-	Enemy * _enemy;
+
+
+	Enemy* _enemy;
 
 public:
 	playGround();

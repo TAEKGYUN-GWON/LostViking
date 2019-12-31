@@ -1,9 +1,24 @@
 #pragma once
 #include "Object.h"
+#include "PhysicsBodyComponent.h"
+
+enum ENEMY_STATE
+{
+	MOVE_LEFT,
+	MOVE_RIGHT,
+	ATTACK_LEFT,
+	ATTACK_RIGHT
+};
+
 class Enemy :	public Object
 {
 private:
+	bool _isLeft;
+	bool _isAttack;
+	int _speed;
+	ENEMY_STATE _state;
 
+	PhysicsBodyComponent* _physics;
 
 protected:
 	typedef Object super;
