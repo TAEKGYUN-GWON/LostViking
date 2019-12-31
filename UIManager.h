@@ -4,7 +4,7 @@ class UIManager
 {
 private:
 	vector<Wall*> _vWalls;
-	Wall* test;
+	Object *p;
 public:
 	UIManager();
 	~UIManager();

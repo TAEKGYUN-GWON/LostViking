@@ -38,7 +38,9 @@ void Camera::UpdateMatrix()
 {
 	_matrix = Matrix3x2F::Identity();
 //	_matrix = _matrix * Matrix3x2F::Scale(SizeF(_scale.x, _scale.y));
-	_matrix = _matrix * Matrix3x2F::Translation(-_pos.x,-_pos.y);
+	//Matrix3x3 scaleMatrix = Matrix3x3(0.3f, 0, 0, 0, 0.3f, 0, 0, 0, 1);
+	//scaleMatrix.To_D2D1_Matrix_3x2_F() *
+	_matrix = _matrix*  Matrix3x2F::Translation(-_pos.x,-_pos.y);
 
 }
 
