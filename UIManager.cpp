@@ -127,7 +127,7 @@ void UIManager::Init()
 
 		Barrier* barrier3 = new Barrier;
 		barrier3->SetScale(47, 320);
-		barrier3->SetPos(2732.5f, 816);
+		barrier3->SetPos(2532.5f, 816);
 		barrier3->AddPbody();
 		_vWalls.push_back(barrier3);
 
