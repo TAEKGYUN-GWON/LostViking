@@ -16,7 +16,7 @@ private:
 
 	//bool _isLeft;
 	//bool _isAttack;
-	int _speed;
+	float _speed;
 
 	ENEMY_STATE _state;
 
