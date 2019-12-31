@@ -23,14 +23,15 @@ void Enemy::Init()
 		GRAPHICMANAGER->FindImage("greenAttack")->GetFrameHeight()));
 
 	_graphic->Init(true, true);
-	//_graphic->SetImgName("greenAttack");
-	_graphic->SetImgName("greenMove");
+	//출력되는 그림
+	_graphic->SetImgName("greenMove"); 
 	_graphic->SetFrameY(1);
 
 	_physics->Init(DYNAMIC, 5.f, 3.f, 0);
 
 	_speed = 2.; //안쓸거같은데 일단 해둠
 	_state = MOVE_LEFT;
+	_isAttack = false;
 
 }
 
@@ -58,24 +59,26 @@ void Enemy::Move()
 	switch (_state)
 	{
 		case MOVE_LEFT:
-			_physics->GetBody()->SetLinearVelocity(Vector2::b2Left * _speed);
+			_graphic->SetImgName("greenMove");
 			_graphic->SetFrameY(1);
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Left * _speed);
+			
 		break;
 		case MOVE_RIGHT:
-			_physics->GetBody()->SetLinearVelocity(Vector2::b2Right * _speed);
+			_graphic->SetImgName("greenMove");
 			_graphic->SetFrameY(0);
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Right * _speed);
+			
 		break;
-		//case ATTACK_LEFT:
-
-
-		//break;
-		//case ATTACK_RIGHT:
-
-
-		//break;
+		case ATTACK_LEFT:
+			_graphic->SetImgName("greenAttack");
+			_graphic->SetFrameY(1);
+		break;
+		case ATTACK_RIGHT:
+			_graphic->SetImgName("greenAttack");
+			_graphic->SetFrameY(1);
+		break;
 	}
-
-
 
 	//trans 위치와 피직스 값 동기화
 	_trans->SetPos(_physics->GetBodyPosition());
@@ -83,4 +86,8 @@ void Enemy::Move()
 
 void Enemy::Shoot()
 {
+	if (_isAttack)
+	{
+		//내용
+	}
 }

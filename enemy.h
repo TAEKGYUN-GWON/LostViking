@@ -15,7 +15,7 @@ class Enemy :	public Object
 private:
 
 	//bool _isLeft;
-	//bool _isAttack;
+	bool _isAttack;
 	float _speed;
 
 	ENEMY_STATE _state;
