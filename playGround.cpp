@@ -41,13 +41,15 @@ HRESULT playGround::init()
 	a->GetTrans()->SetScale(1000, 100);
 	a->SetName("a");
 	a->SetTag("a");
-	a->AddComponent<PhysicsBodyComponent>();
+	a->AddComponent<PhysicsBodyComponent>(); //setgameobject 하지 말기
 	a->GetComponent<PhysicsBodyComponent>()->Init(STATIC,0);
 
 	//왼쪽 벽
 	leftWall = new Object;
 	leftWall->GetTrans()->SetPos(Vector2(200, WINSIZEY - 200));
 	leftWall->GetTrans()->SetScale(Vector2(100, 100));
+	leftWall->SetName("LEFT_WALL");
+	leftWall->SetTag("WALL");
 	leftWall->AddComponent<PhysicsBodyComponent>();
 	leftWall->GetComponent<PhysicsBodyComponent>()->Init(STATIC, 0);
 
@@ -55,6 +57,8 @@ HRESULT playGround::init()
 	rightWall = new Object;
 	rightWall->GetTrans()->SetPos(Vector2(WINSIZEX - 200, WINSIZEY - 200));
 	rightWall->GetTrans()->SetScale(Vector2(100, 100));
+	rightWall->SetName("RIGHT_WALL");
+	rightWall->SetTag("WALL");
 	rightWall->AddComponent<PhysicsBodyComponent>();
 	rightWall->GetComponent<PhysicsBodyComponent>()->Init(STATIC, 0);
 

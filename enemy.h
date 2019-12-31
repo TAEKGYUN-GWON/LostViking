@@ -13,9 +13,11 @@ enum ENEMY_STATE
 class Enemy :	public Object
 {
 private:
-	bool _isLeft;
-	bool _isAttack;
+
+	//bool _isLeft;
+	//bool _isAttack;
 	int _speed;
+
 	ENEMY_STATE _state;
 
 	PhysicsBodyComponent* _physics;
@@ -34,5 +36,7 @@ public:
 
 	void Move();
 	void Shoot();
+
+	void setState(ENEMY_STATE state) { _state = state; }
 };
 

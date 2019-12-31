@@ -219,6 +219,9 @@
     <ClInclude Include="enemy.h">
       <Filter>playGround\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyCollision.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -345,6 +348,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="enemy.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCollision.cpp">
       <Filter>playGround\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
