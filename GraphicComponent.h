@@ -1,5 +1,6 @@
 #pragma once
 #include"Component.h"
+
 class Object;
 
 class GraphicComponent : public Component
@@ -47,7 +48,6 @@ public:
 	inline void SetRectColor(BRUSH_TYPE color) { _color = color; }
 	inline void SetStrokeWidth(float strokeWidth) { _strokeWidth = strokeWidth; }
 	inline void SetPivot(PIVOT pivot) { _pivot = pivot; }
-
 
 	bool IsFrameEnd();
 	inline Graphic* GetGraphic() { return _graphic; }

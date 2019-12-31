@@ -11,7 +11,7 @@ private:
 	float				_speed;
 
 public:
-	Camera() 
+	Camera()
 	{
 		_scale = Vector2(1, 1);
 		_pos = Vector2().zero;
