@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "UIManager.h"
-
+#include"Floor.h"
+#include"Barrier.h"
 
 UIManager::UIManager()
 {
@@ -27,8 +28,17 @@ void UIManager::Init()
 	GRAPHICMANAGER->AddImage("oLive", L"img/background/OlafLive.png");
 	GRAPHICMANAGER->AddImage("oDead", L"img/background/OlafDead.png");
 	GRAPHICMANAGER->AddImage("oDeactive", L"img/background/OlafDeactivate.png");
-	test = new Wall;
-	test->Init();
+
+	for (int i = 0; i < 8; i++)
+	{
+		Wall* floor = new Floor;
+		floor->Init();
+		floor->SetScale(344.625f, 100);
+		floor->SetPos(floor->GetScale().x / 2 + i * floor->GetScale().x, 695);
+		floor->AddPbody();
+		_vWalls.push_back(floor);
+
+	}
 }
 
 void UIManager::Release()
@@ -37,14 +47,18 @@ void UIManager::Release()
 
 void UIManager::Update()
 {
-	test->Update();
+	for (Wall* wall : _vWalls)
+		wall->Update();
 }
 
 void UIManager::Render()
 {
 	if(KEYMANAGER->isToggleKey(VK_F2))
 		GRAPHICMANAGER->FindImage("bg")->Render(Vector2(GRAPHICMANAGER->FindImage("bg")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
-	test->Render();
+	
+	for (Wall* wall : _vWalls)
+		wall->Render();
+
 	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
 	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
 	//GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));

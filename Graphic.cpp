@@ -205,6 +205,8 @@ void Graphic::FrameRender(float x, float y, int curFrameX, int curFrameY, PIVOT 
 
 	int frame = _graphicInfo->curFrameY * _graphicInfo->maxFrameX + _graphicInfo->curFrameX;
 
+	_graphicInfo->size = GetFrameSize(frame);
+
 	_graphicInfo->size.x *= _graphicInfo->scale.x;
 	_graphicInfo->size.y *= _graphicInfo->scale.y;
 
@@ -216,16 +218,20 @@ void Graphic::FrameRender(float x, float y, int curFrameX, int curFrameY, PIVOT 
 	switch (pivot)
 	{
 	case LEFT_TOP:
-		dxArea = RectF(0, 0, _graphicInfo->size.x / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		//dxArea = RectF(0, 0, _graphicInfo->size.x / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		dxArea = RectF(0, 0, _graphicInfo->size.x, _graphicInfo->size.y);
 		break;
 	case CENTER:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y / 2);
+		//dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y / 2);
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
 		break;
 	case TOP:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		//dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		dxArea = RectF(-_graphicInfo->size.x / 2, 0, _graphicInfo->size.x / 2, _graphicInfo->size.y);
 		break;
 	case BOTTOM:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0);
+		//dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0);
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
 		break;
 	}
 
@@ -246,6 +252,8 @@ void Graphic::FrameRender(Vector2 pos, int curFrameX, int curFrameY, PIVOT pivot
 
 	int frame = _graphicInfo->curFrameY * _graphicInfo->maxFrameX + _graphicInfo->curFrameX;
 
+	_graphicInfo->size = GetFrameSize(frame);
+
 	_graphicInfo->size.x *= _graphicInfo->scale.x;
 	_graphicInfo->size.y *= _graphicInfo->scale.y;
 
@@ -258,16 +266,20 @@ void Graphic::FrameRender(Vector2 pos, int curFrameX, int curFrameY, PIVOT pivot
 	switch (pivot)
 	{
 	case LEFT_TOP:
-		dxArea = RectF(0, 0, _graphicInfo->size.x / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		//dxArea = RectF(0, 0, _graphicInfo->size.x / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		dxArea = RectF(0, 0, _graphicInfo->size.x, _graphicInfo->size.y);
 		break;
 	case CENTER:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y / 2);
+		//dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y / 2);
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
 		break;
 	case TOP:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		//dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		dxArea = RectF(-_graphicInfo->size.x / 2, 0, _graphicInfo->size.x / 2, _graphicInfo->size.y);
 		break;
 	case BOTTOM:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0);
+		//dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0);
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
 		break;
 	}
 

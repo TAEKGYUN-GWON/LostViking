@@ -67,6 +67,9 @@
     <Filter Include="2DGameFramework\Metrix">
       <UniqueIdentifier>{1df28ea1-f73c-49c6-9df3-7d7af41f9860}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Map&amp;UI">
+      <UniqueIdentifier>{85daec07-a251-4785-ae89-e7b019fa8077}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -189,8 +192,17 @@
     <ClInclude Include="Collider.h">
       <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>playGround</Filter>
+    <ClInclude Include="UIManager.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrier.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -296,8 +308,17 @@
     <ClCompile Include="Collider.cpp">
       <Filter>2DGameFramework\Object\Component\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>playGround</Filter>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrier.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
