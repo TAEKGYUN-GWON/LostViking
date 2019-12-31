@@ -46,6 +46,14 @@ HRESULT playGround::init()
 	auto a = flore->AddComponent<PhysicsBodyComponent>();
 	a->Init(STATIC, 0.5f);
 
+	_ladder = new Object;
+	_ladder->GetTrans()->SetPos(WINSIZEX / 2 - 200, WINSIZEY / 2 - 50);
+	_ladder->GetTrans()->SetScale(20, 400);
+	_ladder->SetName("LADDER");
+
+	a = _ladder->AddComponent<PhysicsBodyComponent>();
+	a->Init(STATIC, 1.f,1,0,0,1);
+
 	return S_OK;
 }
 
@@ -68,6 +76,7 @@ void playGround::update()
 void playGround::render()
 {
 	flore->Render();
+	_ladder->Render();
 	c->Render();
 	draw();
 }

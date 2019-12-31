@@ -6,6 +6,7 @@
 class TransformComponent;
 class GraphicComponent;
 
+
 class Object
 {
 protected:

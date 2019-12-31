@@ -8,6 +8,7 @@ private:
 
 	Character* c;
 	Object* flore;
+	Object* _ladder;
 	
 public:
 	playGround();

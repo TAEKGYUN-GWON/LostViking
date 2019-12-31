@@ -2,7 +2,6 @@
 #include "Object.h"
 #include "StateComponent.h"
 #include "PhysicsBodyComponent.h"
-#include "Collider.h"
 
 class Character : public Object
 {
@@ -20,6 +19,10 @@ protected:
 
 	float mass;
 
+	bool _isLadder;						//사다리 충돌중 판단
+
+
+
 public:
 	Character();
 	~Character();
@@ -30,7 +33,15 @@ public:
 
 	void KeyControl();
 
+	void SetState(Object_STATE state) { _state->SetState(state); }
+
 	void SetHP(int amount) { _hp = amount; };
+	int GetHP() { return _hp; }
+
+	void SetLadder(bool ladder) { _isLadder = ladder; }
+	bool GetLadder() { return _isLadder; };
+
+	string GetTag() { return _tag; }
 
 	void Idle(string key);
 	void Death(string key);
@@ -40,14 +51,10 @@ public:
 	void Ladder(string key);
 
 	void Ladder();
-
 	virtual void Special1() {};
 	virtual void Special2() {};
 
 
-
-
-	int GetHP() { return _hp; }
 
 };
 
