@@ -70,6 +70,9 @@
     <Filter Include="playGround\Item">
       <UniqueIdentifier>{45e44d4a-cf64-48d6-a91d-5e534e47492d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\mapObject">
+      <UniqueIdentifier>{333ec2ee-c7c4-406e-8b87-de55df672a76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -195,9 +198,6 @@
     <ClInclude Include="Item.h">
       <Filter>playGround\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Tomato.h">
-      <Filter>playGround\Item</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -209,6 +209,18 @@
     </ClInclude>
     <ClInclude Include="Meat.h">
       <Filter>playGround\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>playGround\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Tomato.h">
+      <Filter>playGround\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Plasma.h">
+      <Filter>playGround\mapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="RedgunTower.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +343,15 @@
     </ClCompile>
     <ClCompile Include="Meat.cpp">
       <Filter>playGround\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>playGround\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Plasma.cpp">
+      <Filter>playGround\mapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="RedgunTower.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

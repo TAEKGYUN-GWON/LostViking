@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="BoxWorldManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
@@ -170,9 +171,11 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="Plasma.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="RedgunTower.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -194,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BoxWorldManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -216,8 +220,10 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="Plasma.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="RedgunTower.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="StateComponent.cpp" />

@@ -30,5 +30,7 @@ void Tomato::Update()
 
 void Tomato::Ability()
 {
-
+	//인벤토리에 토마토에 대한 이미지, 위치값 넘어가야함
+	// name 인벤토리에서 
+	//또 뭐있지...
 }

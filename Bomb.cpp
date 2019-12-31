@@ -1,14 +1,13 @@
 #include "stdafx.h"
-#include "Meat.h"
-#include "GraphicComponent.h"
+#include "Bomb.h"
 
-void Meat::Init()
+void Bomb::Init()
 {
 }
 
-void Meat::Init(Vector2 pos)
+void Bomb::Init(Vector2 pos)
 {
-	_name = "Meat";
+	_name = "Bomb";
 	_tag = "Item";
 
 	_trans->pos = pos;
@@ -16,23 +15,18 @@ void Meat::Init(Vector2 pos)
 
 	_physic = AddComponent<PhysicsBodyComponent>();
 	_physic->Init(STATIC, 1);
-
-	//_graphic->set
-
 }
 
-void Meat::Release()
+void Bomb::Release()
 {
-	
 }
 
-void Meat::Update()
+void Bomb::Update()
 {
 	_trans->SetPos(_physic->GetBodyPosition());
-	
 }
 
-void Meat::Ability()
+void Bomb::Ability()
 {
 
 }
