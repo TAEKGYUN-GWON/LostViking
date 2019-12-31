@@ -2,18 +2,20 @@
 #include "GraphicComponent.h"
 #include "TransformComponent.h"
 #include "Object.h"
-#include"PhysicsBodyComponent.h"
+#include "PhysicsBodyComponent.h"
+
 GraphicComponent::GraphicComponent()
 {
 	_name = "GraphicComponent";
-
 }
+
 void GraphicComponent::Init(BOOL isFrame, BOOL isLoop)
 {
 	_imgKey.clear();
 	_isFrame = isFrame;
 	_isLoop = isLoop;
 	_isPlay = false;
+
 	_curFrameX = _curFrameY = 0;
 	_count = 0.0f;
 	_FPS = 1.0f / 1;
@@ -23,11 +25,12 @@ void GraphicComponent::Render()
 {
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		PhysicsBodyComponent* a = _object->GetComponent< PhysicsBodyComponent>();
-		if(a!=nullptr)
-			GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), a->GetBody()->GetAngle()*DEGREE, BRUSH_TYPE::BLUE);
+		PhysicsBodyComponent* a = _object->GetComponent<PhysicsBodyComponent>();
+
+		if (a != nullptr)
+			GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), a->GetBody()->GetAngle() * DEGREE, _color, _pivot, _strokeWidth);
 		else
-			GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), _object->GetTrans()->GetRotateRadian(), BRUSH_TYPE::BLUE);
+			GRAPHICMANAGER->DrawRect(_object->GetTrans()->GetPos(), _object->GetTrans()->GetScale(), _object->GetTrans()->GetRotateRadian(), _color, _pivot, _strokeWidth);
 	}
 
 	if (_imgKey.empty()) return;

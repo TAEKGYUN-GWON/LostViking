@@ -113,3 +113,11 @@ float Vector2::Dot(Vector2 lhs, Vector2 rhs)
 {
 	return lhs.x * rhs.x + lhs.y * rhs.y;
 }
+
+Vector2 Vector2::Lerp(Vector2 a, Vector2 b, float i)
+{
+	float x = (1 - i)*a.x + i * b.x;
+	float y = (1 - i)*a.y + i * b.y;
+
+	return Vector2(x, y);
+}

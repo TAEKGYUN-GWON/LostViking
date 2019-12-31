@@ -34,7 +34,7 @@ public:
 
 	static float Distance(Vector2 a, Vector2 b);
 	static float Dot(Vector2 lhs, Vector2 rhs);
-
+	static Vector2 Lerp(Vector2 a, Vector2 b, float i);
 
 	float Magnitude();
 	Vector2 Nomalized();

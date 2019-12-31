@@ -12,6 +12,7 @@ class Graphic
 {
 private:
 	static ID2D1HwndRenderTarget* _RT;
+
 public:
 	static void SetRendertarget();
 
@@ -81,6 +82,7 @@ public:
 
 	UINT GetWidth() { return _graphicInfo->bitmap->GetPixelSize().width; }
 	UINT GetHeight() { return _graphicInfo->bitmap->GetPixelSize().height; }
+	Vector2 GetFrameSize(int frame) { return Vector2(_vFrameRect[frame].Width, _vFrameRect[frame].Height); }
 
 	int GetMaxFrameX() { return _graphicInfo->maxFrameX - 1; }
 	int GetMaxFrameY() { return _graphicInfo->maxFrameY - 1; }

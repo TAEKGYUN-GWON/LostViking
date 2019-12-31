@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Graphic.h"
 
-
 ID2D1HwndRenderTarget* Graphic::_RT = nullptr;
 
 void Graphic::SetRendertarget()
@@ -61,7 +60,6 @@ HRESULT Graphic::Init(ID2D1Bitmap * bitmap, string key, wstring path, int maxFra
 		return E_FAIL;
 	}
 
-
 	WICRect rc;
 	for (int i = 0; i < _graphicInfo->maxFrameY; ++i)
 	{
@@ -104,6 +102,9 @@ void Graphic::Render(float x, float y, PIVOT pivot)
 	case CENTER:
 		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
 		break;
+	case TOP:
+		dxArea = RectF(-_graphicInfo->size.x / 2, 0, _graphicInfo->size.x / 2, _graphicInfo->size.y);
+		break;
 	case BOTTOM:
 		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
 		break;
@@ -130,6 +131,9 @@ void Graphic::Render(Vector2 pos, PIVOT pivot)
 		break;
 	case CENTER:
 		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
+		break;
+	case TOP:
+		dxArea = RectF(-_graphicInfo->size.x / 2, 0, _graphicInfo->size.x / 2, _graphicInfo->size.y);
 		break;
 	case BOTTOM:
 		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
@@ -158,6 +162,9 @@ void Graphic::RenderUI(float x, float y, PIVOT pivot)
 	case CENTER:
 		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
 		break;
+	case TOP:
+		dxArea = RectF(-_graphicInfo->size.x / 2, 0, _graphicInfo->size.x / 2, _graphicInfo->size.y);
+		break;
 	case BOTTOM:
 		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
 		break;
@@ -185,6 +192,9 @@ void Graphic::RenderUI(Vector2 pos, PIVOT pivot)
 	case CENTER:
 		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
 		break;
+	case TOP:
+		dxArea = RectF(-_graphicInfo->size.x / 2, 0, _graphicInfo->size.x / 2, _graphicInfo->size.y);
+		break;
 	case BOTTOM:
 		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
 		break;
@@ -205,6 +215,8 @@ void Graphic::FrameRender(float x, float y, int curFrameX, int curFrameY, PIVOT 
 
 	int frame = _graphicInfo->curFrameY * _graphicInfo->maxFrameX + _graphicInfo->curFrameX;
 
+	_graphicInfo->size = GetFrameSize(frame);
+
 	_graphicInfo->size.x *= _graphicInfo->scale.x;
 	_graphicInfo->size.y *= _graphicInfo->scale.y;
 
@@ -216,16 +228,16 @@ void Graphic::FrameRender(float x, float y, int curFrameX, int curFrameY, PIVOT 
 	switch (pivot)
 	{
 	case LEFT_TOP:
-		dxArea = RectF(0, 0, _graphicInfo->size.x / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		dxArea = RectF(0, 0, _graphicInfo->size.x, _graphicInfo->size.y);
 		break;
 	case CENTER:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y / 2);
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
 		break;
 	case TOP:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		dxArea = RectF(-_graphicInfo->size.x / 2, 0, _graphicInfo->size.x / 2, _graphicInfo->size.y);
 		break;
 	case BOTTOM:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0);
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
 		break;
 	}
 
@@ -246,6 +258,8 @@ void Graphic::FrameRender(Vector2 pos, int curFrameX, int curFrameY, PIVOT pivot
 
 	int frame = _graphicInfo->curFrameY * _graphicInfo->maxFrameX + _graphicInfo->curFrameX;
 
+	_graphicInfo->size = GetFrameSize(frame);
+
 	_graphicInfo->size.x *= _graphicInfo->scale.x;
 	_graphicInfo->size.y *= _graphicInfo->scale.y;
 
@@ -258,21 +272,20 @@ void Graphic::FrameRender(Vector2 pos, int curFrameX, int curFrameY, PIVOT pivot
 	switch (pivot)
 	{
 	case LEFT_TOP:
-		dxArea = RectF(0, 0, _graphicInfo->size.x / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		dxArea = RectF(0, 0, _graphicInfo->size.x, _graphicInfo->size.y);
 		break;
 	case CENTER:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y / 2);
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y / 2, _graphicInfo->size.x / 2, _graphicInfo->size.y / 2);
 		break;
 	case TOP:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, _graphicInfo->size.y);
+		dxArea = RectF(-_graphicInfo->size.x / 2, 0, _graphicInfo->size.x / 2, _graphicInfo->size.y);
 		break;
 	case BOTTOM:
-		dxArea = RectF(-_graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, -_graphicInfo->size.y, _graphicInfo->size.x / 2 / _graphicInfo->maxFrameX, 0);
+		dxArea = RectF(-_graphicInfo->size.x / 2, -_graphicInfo->size.y, _graphicInfo->size.x / 2, 0);
 		break;
 	}
 
 	D2D1_RECT_F dxSrc = RectF(_vFrameRect[frame].X, _vFrameRect[frame].Y, _vFrameRect[frame].X + _vFrameRect[frame].Width, _vFrameRect[frame].Y + _vFrameRect[frame].Height);
-
 
 	//D2D1_MATRIX_3X2_F cameraMatrix;
 	//cameraMatrix = Matrix3x2F::Scale(D2D1::SizeF(1, 1));
@@ -281,9 +294,7 @@ void Graphic::FrameRender(Vector2 pos, int curFrameX, int curFrameY, PIVOT pivot
 	
 	//Matrix3x2F::in // ¿ªÇà·Ä
 
-
 	//_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans * cameraMatrix);
-	//_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans);
 
 	_RT->SetTransform(Matrix3x2F::Identity() * rotation * trans * CAMERA->GetMatrix());
 	if (_graphicInfo->bitmap) _RT->DrawBitmap(_graphicInfo->bitmap, &dxArea, _graphicInfo->alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &dxSrc);
