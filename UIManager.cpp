@@ -31,7 +31,7 @@ void UIManager::Init()
 	test->Init();
 	auto a = test->GetComponent<GraphicComponent>();
 	a->SetStrokeWidth(4.f);
-	a->SetRectColor(BRUSH_TYPE::AQUAMARINE);
+	a->SetRectColor(Brush_type::AQUAMARINE);
 }
 
 void UIManager::Release()
