@@ -67,8 +67,8 @@
     <Filter Include="2DGameFramework\Metrix">
       <UniqueIdentifier>{1df28ea1-f73c-49c6-9df3-7d7af41f9860}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Item">
-      <UniqueIdentifier>{45e44d4a-cf64-48d6-a91d-5e534e47492d}</UniqueIdentifier>
+    <Filter Include="playGround\Map&amp;UI">
+      <UniqueIdentifier>{85daec07-a251-4785-ae89-e7b019fa8077}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -192,14 +192,26 @@
     <ClInclude Include="Collider.h">
       <Filter>2DGameFramework\Object\Component\header</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>playGround\Item</Filter>
+    <ClInclude Include="UIManager.h">
+      <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
-    <ClInclude Include="Tomato.h">
-      <Filter>playGround\Item</Filter>
+    <ClInclude Include="Wall.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Tomato.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrier.h">
+      <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -305,14 +317,26 @@
     <ClCompile Include="Collider.cpp">
       <Filter>2DGameFramework\Object\Component\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>playGround\Item</Filter>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
-    <ClCompile Include="Tomato.cpp">
-      <Filter>playGround\Item</Filter>
+    <ClCompile Include="Wall.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tomato.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrier.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
