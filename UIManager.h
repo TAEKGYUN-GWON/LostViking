@@ -8,6 +8,7 @@ private:
 	int count;
 	vector<Wall*> _vWalls;
 	Object *p;
+	Vector2 camera;
 public:
 	UIManager();
 	~UIManager();
@@ -15,7 +16,9 @@ public:
 	void Release();
 	void Update();
 	void Render();
-	void frame();
+	void Frame();
 	void DrawTwinkle();
+	void CameraMove();
+	void PMove();
 };
 

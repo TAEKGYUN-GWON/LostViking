@@ -7,7 +7,7 @@ Barrier::Barrier()
 {
 	_name = "Barrier";
 
-	_graphic->SetRectColor(BRUSH_TYPE::RED);
+	_graphic->SetRectColor(Brush_type::RED);
 }
 
 
