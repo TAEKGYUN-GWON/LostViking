@@ -29,6 +29,10 @@ void UIManager::Init()
 	GRAPHICMANAGER->AddImage("oDead", L"img/background/OlafDead.png");
 	GRAPHICMANAGER->AddImage("oDeactive", L"img/background/OlafDeactivate.png");
 
+	GRAPHICMANAGER->AddFrameImage("°Ë»¡ °¡·Î", L"img/background/twinkle/°Ë»¡ °¡·Î.png", 6, 1);
+	curFrameX4 = curFrameX6 = -1;
+	count = 0;
+
 	//for (int i = 0; i < 8; i++)
 	//{
 	//	Wall* floor = new Floor;
@@ -310,7 +314,7 @@ void UIManager::Init()
 
 		Wall* floor2 = new Floor;
 		floor2->SetScale(110, 48);
-		floor2->SetPos(56, 2076);
+		floor2->SetPos(85.f, 2076);
 		floor2->AddPbody();
 		_vWalls.push_back(floor2);
 
@@ -347,6 +351,8 @@ void UIManager::Release()
 
 void UIManager::Update()
 {
+	frame();
+
 	for (Wall* wall : _vWalls)
 		wall->Update();
 	auto a = p->GetComponent<PhysicsBodyComponent>();
@@ -371,6 +377,7 @@ void UIManager::Render()
 	p->Render();
 	for (Wall* wall : _vWalls)
 		wall->Render();
+	DrawTwinkle();
 
 	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
 	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
@@ -385,4 +392,36 @@ void UIManager::Render()
 	//GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
 
 	//GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+}
+
+void UIManager::frame()
+{
+	count++;
+	if (count > 5)
+	{
+		curFrameX4++;
+		curFrameX6++;
+		if (curFrameX4 >= 4) curFrameX4 = 0;
+		if (curFrameX6 >= 6) curFrameX6 = 0;
+		count = 0;
+	}
+}
+
+void UIManager::DrawTwinkle()
+{
+	//°Ë»¡ °¡·Î
+	{
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(2866.5f, 137), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(2524.5f, 836), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(2245.5f, 883), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(2617.5f, 1818), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(2617.5f, 2193), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(2617.5f, 2283), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(1962.5f, 2283), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(1310.5f, 1677), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(1402.5f, 1024), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(936.5f, 1305), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(656.5f, 1117), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(563.5f, 1771), curFrameX6, 0);
+	}
 }
