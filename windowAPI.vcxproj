@@ -148,6 +148,7 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="BoxWorldManager.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="commonMacroFunction.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="BoxWorldManager.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />

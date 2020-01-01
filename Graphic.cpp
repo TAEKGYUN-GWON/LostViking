@@ -24,6 +24,9 @@ HRESULT Graphic::Init(ID2D1Bitmap* bitmap, string key, wstring path)
 	_graphicInfo->alpha = 1.0f;
 	_graphicInfo->angle = 0.0f;
 
+	_graphicInfo->frameWidth = _graphicInfo->size.x;
+	_graphicInfo->frameHeight = _graphicInfo->size.y;
+
 	if (_graphicInfo->bitmap == nullptr)
 	{
 		Release();
