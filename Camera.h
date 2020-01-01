@@ -42,7 +42,7 @@ public:
 	void MoveTo(Vector2 endPos, float time);
 
 	Vector2 GetPosition() { return _pos; }
-	bool IscMoving();
+	bool IsMoving();
 
 	D2D1_MATRIX_3X2_F GetMatrix() { return _matrix; }
 };

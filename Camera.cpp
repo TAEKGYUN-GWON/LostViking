@@ -59,12 +59,9 @@ void Camera::UpdateMatrix()
 
 
 	Matrix3x3 * a;
-	/*a = new Matrix3x3(0.3f, 0,   0,
-					   0,  0.3f, 0,
-					   0,   0,   1);*/
 	a = new Matrix3x3(_distance,		0,		0,
-					   0,			_distance,  0,
-					   0,				0,		1);
+						  0,		_distance,  0,
+						  0,			0,		1);
 
 	_matrix = _matrix * a->To_D2D1_Matrix_3x2_F() * Matrix3x2F::Translation(-_pos.x, -_pos.y);
 }
@@ -88,7 +85,7 @@ void Camera::MoveTo(Vector2 endPos, float time)
 	_isMoving = true;
 }
 
-bool Camera::IscMoving()
+bool Camera::IsMoving()
 {
 	if (_isMoving) return true;
 	else return false;
