@@ -231,6 +231,15 @@
     <ClInclude Include="UnGravityScript.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCollision.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -369,6 +378,15 @@
       <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
     <ClCompile Include="UnGravityScript.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCollision.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

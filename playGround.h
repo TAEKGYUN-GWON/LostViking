@@ -3,13 +3,15 @@
 #include "ObjectManager.h"
 #include "UIManager.h"
 #include "enemy.h"
+#include "EnemyManager.h"
 
 class playGround : public gameNode
 {
 private:
 	ObjectManager* _objMgr;
 	UIManager* _uiMgr;
-	Enemy* _enemy;
+	//Enemy* _enemy;
+	EnemyManager* _enemyMgr;
 
 	Vector2 _pos;
 	Vector2 _pos2;

@@ -99,6 +99,7 @@ void UIManager::Init()
 		floor2->AddPbody();
 		_vWalls.push_back(floor2);
 
+
 		Wall* Ceiling = new Floor;
 		Ceiling->SetScale(1500, 40);
 		Ceiling->SetPos(1424.5f, 22.5f);

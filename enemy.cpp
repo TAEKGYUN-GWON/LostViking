@@ -4,35 +4,33 @@
 #include "GraphicComponent.h"
 #include "EnemyCollision.h"
 
-void Enemy::Init()
+void Enemy::Init(Vector2 pos, string image, float speed, ENEMY_STATE state, bool isattack, float timer, int direction)
 {
 	//충돌
 
 	_physics = AddComponent<PhysicsBodyComponent>();
 
-	GRAPHICMANAGER->AddFrameImage("greenAttack", L"greenAttack.png", 2, 2);
-	GRAPHICMANAGER->AddFrameImage("greenMove", L"greenMove.png", 3, 2);
-	GRAPHICMANAGER->AddImage("cannon_bullet", L"cannon_bullet.png");
+	_speed = speed; 
+	_state = state;
+	_isAttack = isattack;
+	_timer = timer;
+	_direction = direction; //왼쪽이 -1, 오른쪽이 1
+	_trans->pos = pos;
 
-	_trans->SetPos(Vector2(
-		WINSIZEX / 2, 
-		WINSIZEY-100));
+	_graphic->Init(true, true);
+	_graphic->SetImgName(image); 	//출력되는 그림
+	_graphic->SetFrameY(1);
+
 	_trans->SetScale(Vector2(
-		GRAPHICMANAGER->FindImage("greenAttack")->GetFrameWidth(),
-		GRAPHICMANAGER->FindImage("greenAttack")->GetFrameHeight()));
+		_graphic->GetGraphic()->GetFrameWidth(),
+		_graphic->GetGraphic()->GetFrameHeight()));
 
 	_physics->Init(DYNAMIC, 5.f, 3.f, 0);
 	_physics->GetBody()->SetFixedRotation(true);	//회전값 안받음
 	_physics->GetBody()->SetGravityScale(0);		//중력 안받음
 
-	_graphic->Init(true, true);
-	_graphic->SetImgName("greenMove"); 	//출력되는 그림
-	_graphic->SetFrameY(1);
 
 	AddComponent<EnemyCollision>();
-	_speed = 2.; //안쓸거같은데 일단 해둠
-	_state = MOVE_LEFT;
-	_isAttack = false;
 }
 
 void Enemy::Release()
@@ -49,8 +47,7 @@ void Enemy::Update()
 
 void Enemy::Render()
 {
-	//GRAPHICMANAGER->DrawFrameImage("greenAttack", Vector2(WINSIZEX / 2, WINSIZEY / 2), 0, 0);
-
+	
 	super::Render();
 }
 
@@ -59,25 +56,29 @@ void Enemy::Move()
 	switch (_state)
 	{
 		case MOVE_LEFT:
+			_direction = -1;
 			_graphic->SetImgName("greenMove");
 			_graphic->SetFrameY(1);
 			_physics->GetBody()->SetLinearVelocity(Vector2::b2Left * _speed);
 		
 		break;
 		case MOVE_RIGHT:
+			_direction = 1;
 			_graphic->SetImgName("greenMove");
 			_graphic->SetFrameY(0);
 			_physics->GetBody()->SetLinearVelocity(Vector2::b2Right * _speed);
 				
 		break;
 		case ATTACK_LEFT:
+			_direction = -1;
 			_graphic->SetImgName("greenAttack");
 			_graphic->SetFrameY(1);
 			_isAttack = true;
 		break;
 		case ATTACK_RIGHT:
+			_direction = 1;
 			_graphic->SetImgName("greenAttack");
-			_graphic->SetFrameY(1);
+			_graphic->SetFrameY(0);
 			_isAttack = true;
 		break;
 	}
@@ -92,15 +93,26 @@ void Enemy::Shoot()
 	{
 		if (_state == ATTACK_LEFT)
 		{
+		
 			_isAttack = false;
 			//총쏘기 내용 여기
-			_state = MOVE_LEFT; //한발 쏘고 다시 움직이라고..
+			_timer += TIMEMANAGER->getElapsedTime();
+			if (_timer >= 1.5f)
+			{
+				_state = MOVE_LEFT; //한발 쏘고 다시 움직이라고..
+				_timer = 0.f;
+			}
 		}
 		if (_state == ATTACK_RIGHT)
 		{
 			_isAttack = false;
 			//총쏘기 내용 여기
-			_state = MOVE_RIGHT;//한발 쏘고 다시 움직이라고..
+			_timer += TIMEMANAGER->getElapsedTime();
+			if (_timer >= 1.5f)
+			{
+				_state = MOVE_RIGHT;//한발 쏘고 다시 움직이라고..
+				_timer = 0.f;
+			}
 		}
 	}
 }

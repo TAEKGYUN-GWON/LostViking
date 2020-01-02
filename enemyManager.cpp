@@ -1,120 +1,65 @@
 #include "stdafx.h"
-#include "enemyManager.h"
-#include "spaceShip.h"
+#include "EnemyManager.h"
+#include"TransformComponent.h"
+#include"GraphicComponent.h"
 
-enemyManager::enemyManager()
+EnemyManager::EnemyManager()
+{
+}
+EnemyManager::~EnemyManager()
 {
 }
 
-
-enemyManager::~enemyManager()
+void EnemyManager::Init()
 {
-}
+	GRAPHICMANAGER->AddFrameImage("greenAttack", L"greenAttack.png", 2, 2);
+	GRAPHICMANAGER->AddFrameImage("greenMove", L"greenMove.png", 3, 2);
+	GRAPHICMANAGER->AddImage("cannon_bullet", L"cannon_bullet.png");
 
-HRESULT enemyManager::init()
-{
-	_bullet = new bullet;
-	_bullet->init("총알", 30, WINSIZEY);
-
-	return S_OK;
-}
-
-void enemyManager::release()
-{
-}
-
-void enemyManager::update()
-{
-	for (_viMinion = _vMinion.begin(); _viMinion != _vMinion.end(); ++_viMinion)
 	{
-		(*_viMinion)->update();
+		Enemy* enemy = new Enemy;
+		enemy->Init(Vector2(1772, 650), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
+
+		_vEnemy.push_back(enemy);
 	}
-
-	_bullet->update();
-	minionBulletFire();
-
-	collision();
-}
-
-void enemyManager::render()
-{
-	for (_viMinion = _vMinion.begin(); _viMinion != _vMinion.end(); ++_viMinion)
 	{
-		(*_viMinion)->render();
+		Enemy* enemy = new Enemy;
+		enemy->Init(Vector2(1000, 930), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
+
+		_vEnemy.push_back(enemy);
 	}
-
-	_bullet->render();
-}
-
-void enemyManager::setMinion()
-{
-	
-	for (int i = 0; i < 3; i++)
 	{
-		for (int j = 0; j < 6; j++)
-		{
-			enemy* ufo;
-			ufo = new minion;
-			ufo->init("enemy", PointMake(80 + j * 80, 80 + i * 100));
+		Enemy* enemy = new Enemy;
+		enemy->Init(Vector2(600, 1584), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
 
-			_vMinion.push_back(ufo);
-		}
+		_vEnemy.push_back(enemy);
 	}
-
-
-}
-
-void enemyManager::minionBulletFire()
-{
-	for (_viMinion = _vMinion.begin(); _viMinion != _vMinion.end(); ++_viMinion)
 	{
-		//미니언 벡터안에 담겨있는 미니언의 총알발사 신호가  true면
-		if ((*_viMinion)->bulletCountFire())
-		{
-			RECT rc = (*_viMinion)->getRect();
+		Enemy* enemy = new Enemy;
+		enemy->Init(Vector2(550, 2050), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
 
-			/*
-				_bullet->bulletFire(rc.left + (rc.right - rc.left) / 2,
-				rc.bottom + 5, -(PI / 2), 7.0f);
-			*/
-			_bullet->bulletFire(rc.left + (rc.right - rc.left) / 2,
-				rc.bottom + 5, 
-				getAngle((rc.left + rc.right) / 2,
-					(rc.top + rc.bottom) / 2, 
-					_ship->getShipImage()->getCenterX(),
-					_ship->getShipImage()->getCenterY()),
-				7.0f);
-
-		
-		}
+		_vEnemy.push_back(enemy);
 	}
-
-}
-
-void enemyManager::removeMinion(int arrNum)
-{
-	_vMinion.erase(_vMinion.begin() + arrNum);
-}
-
-void enemyManager::collision()
-{
-	for (int i = 0; i < _bullet->getVBullet().size(); i++)
 	{
-		RECT temp;
-		RECT rc = RectMakeCenter(_ship->getShipImage()->getCenterX(),
-			_ship->getShipImage()->getCenterY(),
-			_ship->getShipImage()->getWidth(),
-			_ship->getShipImage()->getHeight());
+		Enemy* enemy = new Enemy;
+		enemy->Init(Vector2(480, 2283), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
 
-		if (IntersectRect(&temp, &_bullet->getVBullet()[i].rc, &rc))
-		{
-			//우주선이 총알에 피격되었을때 체력을 닳게해줘랑
-			_ship->hitDamage(10);
-			_bullet->removeBullet(i);
-			break;
-		}
-
-
+		_vEnemy.push_back(enemy);
 	}
-	
+}
+
+void EnemyManager::Release()
+{
+}
+
+void EnemyManager::Update()
+{
+	for (Enemy *enemy : _vEnemy)
+		enemy->Update();
+}
+
+void EnemyManager::Render()
+{
+	for (Enemy *enemy : _vEnemy)
+		enemy->Render();
 }
