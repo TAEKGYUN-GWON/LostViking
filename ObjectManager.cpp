@@ -17,6 +17,11 @@ void ObjectManager::Init()
 	item->Init(Vector2(WINSIZEX / 2 + 100, WINSIZEY / 2));
 	_player.push_back(item);
 
+	Bullet* bullet = new Bullet;
+	bullet->Init("enemy_bullet", "Bullet", "enemy");
+	_objPool = new ObjectPool;
+	_objPool->Init<Bullet>(30, *bullet);
+
 	_nowCharactor = 0;
 }
 
@@ -34,10 +39,10 @@ void ObjectManager::Update()
 		_player[i]->Update();
 	}
 	
-	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
-	{
-		if ((*_viBullet)->GetIsActive()) (*_viBullet)->Update();
-	}
+	//for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
+	//{
+	//	if ((*_viBullet)->GetIsActive()) (*_viBullet)->Update();
+	//}
 	
 
 	float speed = 90.0f;
@@ -63,20 +68,23 @@ void ObjectManager::Render()
 		_player[i]->Render();
 	}
 
-	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
-	{
-		(*_viBullet)->Render();
-	}
+	//for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
+	//{
+
+	//	if((*_viBullet)->GetIsActive()) (*_viBullet)->Render();
+	//}
+
+	char str[128];
+	sprintf_s(str, "bullet : %d", _vBullet.size());
+	GRAPHICMANAGER->DrawTextD2D(Vector2(WINSIZEX / 2, 20), str, 20, ColorF::Red);
 }
 
 void ObjectManager::TomatoFire()
 {
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-		Bullet* bullet = new Bullet;
-		bullet->Init("enemy_bullet", "Bullet", "enemy");
-		bullet->Fire(_player[_nowCharactor]->GetTrans()->pos, PI2, 200.0f);
-
-		_vBullet.push_back(bullet);
+		((Bullet*)_objPool->GetPoolObject())->Fire(Vector2(_player[_nowCharactor]->GetTrans()->pos.x,
+			_player[_nowCharactor]->GetTrans()->pos.y), PI2, 200.0f);
+		_objPool->InssertActiveObject();
 	}
 }

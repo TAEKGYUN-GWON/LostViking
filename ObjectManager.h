@@ -2,6 +2,7 @@
 #include "Tomato.h"
 #include "Bullet.h"
 #include <vector>
+#include "ObjectPool.h"
 
 class ObjectManager 
 {
@@ -14,6 +15,8 @@ private:
 
 	int							_nowCharactor;
 	vector<Object*>				_player;
+
+	ObjectPool*					_objPool;
 
 public:
 	void Init();

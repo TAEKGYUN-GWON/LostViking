@@ -46,4 +46,10 @@ void Bullet::Move()
 	_physics->GetBody()->SetLinearVelocity(b2Vec2(cosf(_trans->GetRotateRadian()) * _speed,
 		-sinf(_trans->GetRotateRadian()) * _speed) * TIMEMANAGER->getElapsedTime());
 
+	if (_trans->pos.x > CAMERA->GetPosition().x + WINSIZEX)
+	{
+		_isActive = false;
+		_physics->SetBodyActive(false);
+
+	}
 }
