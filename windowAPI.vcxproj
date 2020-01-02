@@ -151,11 +151,13 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bulletScript.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
+    <ClInclude Include="ErikScript.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="Graphic.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="KeyControlComponent.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="Ladder.h" />
     <ClInclude Include="Matrix2x2.h" />
     <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="Object.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="ObjectPool.hpp" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -191,6 +195,7 @@
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="txtData.h" />
     <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UnGravityScript.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
@@ -204,10 +209,12 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="bulletScript.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="ErikScript.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="Graphic.cpp" />
@@ -218,6 +225,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyControlComponent.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="Matrix2x2.cpp" />
     <ClCompile Include="Matrix3x3.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -225,6 +233,7 @@
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />
@@ -242,6 +251,7 @@
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UnGravityScript.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />

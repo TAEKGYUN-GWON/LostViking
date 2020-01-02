@@ -3,6 +3,9 @@
 #include"Floor.h"
 #include"Barrier.h"
 #include "PhysicsBodyComponent.h"
+#include "Ladder.h"
+#include"GraphicComponent.h"
+#include"UnGravityScript.h"
 UIManager::UIManager()
 {
 }
@@ -343,14 +346,101 @@ void UIManager::Init()
 		barrier2->AddPbody();
 		_vWalls.push_back(barrier2);
 	}
+
+
+	{
+		Wall* barrier = new Barrier;
+		barrier->SetScale(25, 71);
+		barrier->SetPos(2744.5f, 615.5f);
+		barrier->AddPbody();
+		barrier->GetGraphic()->SetRectColor(Brush_type::BLACK);
+		barrier->SetName("eBarrier");
+		barrier->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		_vWalls.push_back(barrier);
+
+		Wall* barrier2 = new Barrier;
+		barrier2->SetScale(22, 50);
+		barrier2->SetPos(1582, 906);
+		barrier2->AddPbody();
+		barrier->GetGraphic()->SetRectColor(Brush_type::BLACK);
+		barrier2->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		barrier2->SetName("eBarrier");
+		_vWalls.push_back(barrier2);
+	}
+
+	{
+		Ladder* ladder1 = new Ladder;
+		ladder1->SetPos(937, 439.5f);
+		ladder1->SetScale(90, 423);
+		ladder1->SetName("Ladder1");
+		ladder1->AddPbody();
+		ladder1->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		_vWalls.push_back(ladder1);
+
+		Ladder* ladder2 = new Ladder;
+		ladder2->SetPos(1729, 439.5f);
+		ladder2->SetScale(90, 423);
+		ladder2->SetName("Ladder2");
+		ladder2->AddPbody();
+		ladder2->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		_vWalls.push_back(ladder2);
+
+		Ladder* ladder3 = new Ladder;
+		ladder3->SetPos(237, 1258);
+		ladder3->SetScale(95, 658);
+		ladder3->SetName("Ladder3");
+		ladder3->AddPbody();
+		ladder3->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		_vWalls.push_back(ladder3);
+
+		Ladder* ladder4 = new Ladder;
+		ladder4->SetPos(2244.5f, 1326.5f);
+		ladder4->SetScale(95, 330);
+		ladder4->SetName("Ladder4");
+		ladder4->AddPbody();
+		ladder4->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		_vWalls.push_back(ladder4);
+
+		Ladder* ladder5 = new Ladder;
+		ladder5->SetPos(751.5f, 1818.5f);
+		ladder5->SetScale(95, 467);
+		ladder5->SetName("Ladder5");
+		ladder5->AddPbody();
+		ladder5->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		_vWalls.push_back(ladder5);
+
+		Ladder* ladder6 = new Ladder;
+		ladder6->SetPos(189.5f, 2168.5f);
+		ladder6->SetScale(95, 235);
+		ladder6->SetName("Ladder6");
+		ladder6->AddPbody();
+		ladder6->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		_vWalls.push_back(ladder6);
+
+	}
+	GRAPHICMANAGER->AddFrameImage("UnGravity", L"img/background/twinkle/Áß·Â È­»ìÇ¥.png", 4, 1);
+	Ladder* unGravity = new Ladder;
+	unGravity->SetPos(1684, 1115);
+	unGravity->SetScale(188, 748);
+	unGravity->SetName("UnGravity");
+	unGravity->GetGraphic()->Init(true, true);
+	unGravity->GetGraphic()->SetImgName("UnGravity");
+	unGravity->GetGraphic()->SetPivot(PIVOT::CENTER);
+	unGravity->AddPbody();
+	unGravity->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+	unGravity->AddComponent<UnGravityScript>();
+	_vWalls.push_back(unGravity);
+
 	camera = Vector2::zero;
 
 	p = new Object;
 	p->GetTrans()->SetPos(WINSIZEX / 2+100, WINSIZEY / 2);
 	p->GetTrans()->SetScale(80,100);
+	p->SetTag("Player");
 	auto a = p->AddComponent<PhysicsBodyComponent>();
 	a->Init(DYNAMIC,0.5f);
 	//a->GetBody()->SetGravityScale(0);
+	//a->GetBody()->GetFixtureList()->SetSensor(true);
 }
 
 void UIManager::Release()
@@ -378,19 +468,19 @@ void UIManager::Render()
 		wall->Render();
 	DrawTwinkle();
 
-	GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-
-	GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-
-	GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(WINSIZEX / 2 - 105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-
-	GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
+	//GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	//
+	//GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	//GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
+	//GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	//
+	//GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	//GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(WINSIZEX / 2 - 105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	//GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	//
+	//GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
 	p->Render();
 }
 
@@ -424,7 +514,6 @@ void UIManager::DrawTwinkle()
 		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(656.5f, 1117), curFrameX6, 0);
 		GRAPHICMANAGER->DrawFrameImage("°Ë»¡ °¡·Î", Vector2(563.5f, 1771), curFrameX6, 0);
 	}
-
 	{
 		GRAPHICMANAGER->DrawFrameImage("°Ë»¡", Vector2(1823.5f, 137), curFrameX4, 0);
 		GRAPHICMANAGER->DrawFrameImage("°Ë»¡", Vector2(2057.5f, 441), curFrameX4, 0);
@@ -535,6 +624,7 @@ void UIManager::CameraMove()
 	{
 		camera += Vector2::right * 5;
 	}
+
 	CAMERA->SetPosition(camera);
 }
 
@@ -549,10 +639,12 @@ void UIManager::PMove()
 		a->ApplyForce(Vector2::b2Left * 8);
 	if(KEYMANAGER->isStayKeyDown(VK_NUMPAD6))
 		a->ApplyForce(Vector2::b2Right * 8);
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD8))
 		a->ApplyForce(Vector2::b2Up * 300);
+	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD0))
+		a->GetBody()->GetFixtureList()->SetFriction(10);
 	p->Update();
 	CAMERA->SetPosition(Vector2(p->GetTrans()->pos.x, p->GetTrans()->pos.y ));
 
-	a->GetBody()->SetGravityScale(0);
+	//a->GetBody()->SetGravityScale(0);
 }
