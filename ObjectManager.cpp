@@ -5,10 +5,12 @@ void ObjectManager::Init()
 {
 	Item* item;
 	item = new Tomato;
-	item->Init(Vector2(100,100));
+	//item->Init(Vector2(100, 100));
+	item->Init(Vector2(WINSIZEX / 2, WINSIZEY / 2));
 	_vItem.push_back(item);
-
-
+	
+	_bullet = new Bullet;
+	_bullet->Init("enemy_bullet", "Bullet", "enemy");
 }
 
 void ObjectManager::Release()
@@ -22,6 +24,9 @@ void ObjectManager::Update()
 	{
 		_vItem[i]->Update();
 	}
+
+	_bullet->Update();
+	TomatoFire();
 }
 
 void ObjectManager::Render()
@@ -30,4 +35,9 @@ void ObjectManager::Render()
 	{
 		_vItem[i]->Render();
 	}
+}
+
+void ObjectManager::TomatoFire()
+{
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _bullet->Fire(_vItem[0]->GetTrans()->pos, PI / 2, 1.0f);
 }
