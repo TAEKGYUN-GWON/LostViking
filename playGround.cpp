@@ -35,6 +35,11 @@ HRESULT playGround::init()
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
 
+	GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("plasma", L"laser.png", 3, 1);
+	GRAPHICMANAGER->AddImage("enemy_bullet", L"cannon_bullet.png");
+
 	_objMgr = new ObjectManager;
 	_objMgr->Init();
 	_uiMgr = new UIManager;
@@ -48,8 +53,8 @@ HRESULT playGround::init()
 	_isPlayer1 = true;
 
 	CAMERA->SetPosition(_pos);
-
 	CAMERA->MoveTo(_pos, 3.0f);
+
 
 	return S_OK;
 }
@@ -91,11 +96,11 @@ void playGround::update()
 
 	if (_isPlayer1)
 	{
-		if (!CAMERA->IscMoving()) CAMERA->SetPosition(_pos);
+		if (!CAMERA->IsMoving()) CAMERA->SetPosition(_pos);
 	}
 	else
 	{
-		if (!CAMERA->IscMoving()) CAMERA->SetPosition(_pos2);
+		if (!CAMERA->IsMoving()) CAMERA->SetPosition(_pos2);
 	}
 
 	_objMgr->Update();
@@ -108,7 +113,6 @@ void playGround::render()
 	draw();
 }
 
-
 void playGround::draw()
 {
 	_uiMgr->Render();
@@ -117,6 +121,9 @@ void playGround::draw()
 
 	GRAPHICMANAGER->DrawRect(_pos, Vector2(50, 50), 0.0f, ColorF::Red, CENTER, 3.0f);
 	GRAPHICMANAGER->DrawRect(_pos2, Vector2(50, 50), 0.0f, ColorF::Magenta, CENTER, 3.0f);
+
+	GRAPHICMANAGER->DrawFrameImage("number", Vector2(WINSIZEX / 2 - 50, WINSIZEY / 2), 0, 0);
+	GRAPHICMANAGER->DrawFrameImage("fatkachu", Vector2(WINSIZEX / 2 + 50, WINSIZEY / 2), 0, 0);
 }
 
 

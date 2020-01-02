@@ -7,6 +7,10 @@
 GraphicComponent::GraphicComponent()
 {
 	_name = "GraphicComponent";
+
+	_color = Brush_type::BLUE;
+	_pivot = PIVOT::CENTER;
+	_strokeWidth = 3.0f;
 }
 
 void GraphicComponent::Init(BOOL isFrame, BOOL isLoop)
@@ -45,7 +49,7 @@ void GraphicComponent::Render()
 			{
 				_count -= _FPS;
 				_curFrameX++;
-				if (_curFrameX > GRAPHICMANAGER->FindImage(_imgKey)->GetMaxFrameX())
+				if (_curFrameX > _maxFrameX)
 				{
 					if (_isLoop)
 					{
@@ -59,11 +63,11 @@ void GraphicComponent::Render()
 				}
 			}
 		}
-		GRAPHICMANAGER->DrawFrameImage(_imgKey, _object->GetTrans()->GetPos(), _curFrameX, _curFrameY, PIVOT::BOTTOM);
+		GRAPHICMANAGER->DrawFrameImage(_imgKey, _object->GetTrans()->GetPos(), _curFrameX, _curFrameY, _pivot);
 	}
 	else
 	{
-		GRAPHICMANAGER->DrawImage(_imgKey, _object->GetTrans()->GetPos());
+		GRAPHICMANAGER->DrawImage(_imgKey, _object->GetTrans()->GetPos(), _pivot);
 	}
 }
 
@@ -100,14 +104,16 @@ void GraphicComponent::SetImgName(string key)
 {
 	 _imgKey = key; 
 	 _graphic = GRAPHICMANAGER->FindImage(_imgKey); 
-	 _isPlay = true;
+	 _maxFrameX = _graphic->GetMaxFrameX();
+
+	 if(_isFrame) _isPlay = true;
 }
 
 bool GraphicComponent::IsFrameEnd()
 {
-	if (_curFrameX >= GRAPHICMANAGER->FindImage(_imgKey)->GetMaxFrameX())
+	if (_curFrameX >= _maxFrameX)
 	{
-		_curFrameX = GRAPHICMANAGER->FindImage(_imgKey)->GetMaxFrameX();
+		_curFrameX = _maxFrameX;
 		return true;
 	}
 	return false;

@@ -19,5 +19,5 @@ void Wall::Init()
 void Wall::AddPbody()
 {
 	_pBody = AddComponent<PhysicsBodyComponent>();
-	_pBody->Init(STATIC, 0.3f);
+	_pBody->Init(STATIC, 1.f);
 }

@@ -148,6 +148,8 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="BoxWorldManager.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="bulletScript.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="commonMacroFunction.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="KeyControlComponent.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="Ladder.h" />
     <ClInclude Include="Matrix2x2.h" />
     <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="Object.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="txtData.h" />
     <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UnGravityScript.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
@@ -200,6 +204,8 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="BoxWorldManager.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="bulletScript.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -217,6 +223,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyControlComponent.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="Matrix2x2.cpp" />
     <ClCompile Include="Matrix3x3.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -241,6 +248,7 @@
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UnGravityScript.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />

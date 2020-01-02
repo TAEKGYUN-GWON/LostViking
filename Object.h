@@ -30,7 +30,7 @@ public:
 	inline void SetTag(string tag) { _tag = tag; }
 	inline void SetIsActive(bool active) { _isActive = active; }
 	inline bool GetIsActive() { return _isActive; }
-	
+	inline GraphicComponent* GetGraphic() { return _graphic; }
 	void RemoveComponent(Component* component);
 	template<typename T>
 	T* AddComponent();
