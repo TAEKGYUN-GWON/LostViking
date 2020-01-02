@@ -1,39 +1,39 @@
 #include "stdafx.h"
-#include "Tomato.h"
-//#include "TransformComponent.h"
-//#include "PhysicsBodyComponent.h"
+#include "Computer.h"
 #include "GraphicComponent.h"
 
-void Tomato::Init()
+void Computer::Init()
 {
 }
 
-void Tomato::Init(Vector2 pos)
+void Computer::Init(Vector2 pos)
 {
-	_name = "Tomato";
-	_tag  = "Item";
 	_trans->pos = pos;
+	_name = "Computer";
+	_tag = "Object";
 	_graphic->Init(false, false);
 	_graphic->SetPivot(CENTER);
-	_graphic->SetImgName("tomato");
+	_graphic->SetImgName("computer");
 	_trans->scale = Vector2(_graphic->GetGraphic()->GetFrameWidth(),
 		_graphic->GetGraphic()->GetFrameHeight());
 	_physic = AddComponent<PhysicsBodyComponent>();
 	_physic->Init(STATIC, 1);
+
+
 }
 
-void Tomato::Release()
+void Computer::Release()
 {
+
+	super::Release();
 }
 
-void Tomato::Update()
+void Computer::Update()
 {
 	_trans->SetPos(_physic->GetBodyPosition());
+	super::Update();
 }
 
-void Tomato::Ability()
+void Computer::Ability()
 {
-	//인벤토리에 토마토에 대한 이미지, 위치값 넘어가야함
-	// name 인벤토리에서 
-	//또 뭐있지...
 }

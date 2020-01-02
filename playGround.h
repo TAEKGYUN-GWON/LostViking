@@ -11,11 +11,6 @@ private:
 	UIManager* _uiMgr;
 	PlayerManager* _playerMgr;
 
-	Vector2 _pos;
-	Vector2 _pos2;
-
-	bool _isPlayer1;
-
 public:
 	playGround();
 	~playGround();
