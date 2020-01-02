@@ -70,6 +70,9 @@
     <Filter Include="playGround\Map&amp;UI">
       <UniqueIdentifier>{85daec07-a251-4785-ae89-e7b019fa8077}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2DGameFramework\ObjectPool">
+      <UniqueIdentifier>{4ca1d902-f8ce-4dd4-bd64-fe87d373a08c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -213,14 +216,8 @@
     <ClInclude Include="Barrier.h">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
-    <ClInclude Include="Bomb.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Plasma.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Meat.h">
-      <Filter>소스 파일</Filter>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>2DGameFramework\ObjectPool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -347,14 +344,8 @@
     <ClCompile Include="Barrier.cpp">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
-    <ClCompile Include="Bomb.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Plasma.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Meat.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="ObjectPool.cpp">
+      <Filter>2DGameFramework\ObjectPool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

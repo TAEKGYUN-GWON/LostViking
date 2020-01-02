@@ -6,7 +6,7 @@ Floor::Floor()
 {
 	_name = "Floor";
 
-	_graphic->SetRectColor(BRUSH_TYPE::GREEN);
+	_graphic->SetRectColor(Brush_type::GREEN);
 }
 
 

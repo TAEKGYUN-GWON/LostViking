@@ -74,7 +74,7 @@ public:
 	
 	void SetSize(Vector2 size) { _graphicInfo->size = size; }
 	void SetAngle(float angle) { _graphicInfo->angle = angle; }
-	void SetScale(float scale) { _graphicInfo->scale = Vector2(scale, scale); }
+	void SetScale(Vector2 scale) { _graphicInfo->scale = scale; }
 	void SetAlpha(float alpha) { _graphicInfo->alpha = alpha; }
 
 	void SetCurrentFrameX(int frame) { _graphicInfo->curFrameX = frame; }

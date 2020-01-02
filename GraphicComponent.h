@@ -13,6 +13,8 @@ private:
 	int _curFrameX;
 	int _curFrameY;
 
+	int _maxFrameX;
+
 	float _count;
 	float _FPS;
 	float _strokeWidth;
@@ -20,17 +22,11 @@ private:
 	string _imgKey;
 	Graphic* _graphic;
 
-	BRUSH_TYPE _color;
+	Brush_type::Enum _color;
 	PIVOT _pivot;
 
 public:
 	GraphicComponent();
-	virtual void Init()
-	{ 
-		_color = BRUSH_TYPE::BLUE;
-		_pivot = PIVOT::CENTER;
-		_strokeWidth = 3.0f;
-	}
 	virtual void Init(BOOL isFrame = false, BOOL isLoop = false);
 
 	virtual void Render();
@@ -45,7 +41,8 @@ public:
 	void Resume();
 
 	void SetImgName(string key);
-	inline void SetRectColor(BRUSH_TYPE color) { _color = color; }
+	void SetMaxFrameX(int maxFrameX) { _maxFrameX = maxFrameX - 1; }
+	inline void SetRectColor(Brush_type::Enum color) { _color = color; }
 	inline void SetStrokeWidth(float strokeWidth) { _strokeWidth = strokeWidth; }
 	inline void SetPivot(PIVOT pivot) { _pivot = pivot; }
 

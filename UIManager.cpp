@@ -29,6 +29,17 @@ void UIManager::Init()
 	GRAPHICMANAGER->AddImage("oDead", L"img/background/OlafDead.png");
 	GRAPHICMANAGER->AddImage("oDeactive", L"img/background/OlafDeactivate.png");
 
+	GRAPHICMANAGER->AddFrameImage("검빨 가로", L"img/background/twinkle/검빨 가로.png", 6, 1);
+	GRAPHICMANAGER->AddFrameImage("검빨 세로", L"img/background/twinkle/검빨 세로.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("검빨", L"img/background/twinkle/검빨.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("검빨 매트릭스", L"img/background/twinkle/검빨 매트릭스.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("검빨 매트릭스", L"img/background/twinkle/검빨 매트릭스.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("줄", L"img/background/twinkle/일 자 두 줄과 네모 하나가 셋.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("검파 매트릭스", L"img/background/twinkle/검파 매트릭스.png", 6, 1);
+
+	curFrameX4 = curFrameX6 = -1;
+	count = 0;
+
 	//for (int i = 0; i < 8; i++)
 	//{
 	//	Wall* floor = new Floor;
@@ -310,7 +321,7 @@ void UIManager::Init()
 
 		Wall* floor2 = new Floor;
 		floor2->SetScale(110, 48);
-		floor2->SetPos(56, 2076);
+		floor2->SetPos(85.f, 2076);
 		floor2->AddPbody();
 		_vWalls.push_back(floor2);
 
@@ -332,7 +343,7 @@ void UIManager::Init()
 		barrier2->AddPbody();
 		_vWalls.push_back(barrier2);
 	}
-
+	camera = Vector2::zero;
 
 	p = new Object;
 	p->GetTrans()->SetPos(WINSIZEX / 2, WINSIZEY / 2);
@@ -347,21 +358,15 @@ void UIManager::Release()
 
 void UIManager::Update()
 {
+	Frame();
+	CameraMove();
+
 	for (Wall* wall : _vWalls)
 		wall->Update();
-	auto a = p->GetComponent<PhysicsBodyComponent>();
-	a->GetBody()->SetFixedRotation(true);
-		//fixrotation
-	p->GetTrans()->SetPos(a->GetBodyPosition());
-	//a->GetBody()->SetAngularVelocity(0);
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-		a->GetBody()->SetLinearVelocity(Vector2::b2Left * 1);
-	if(KEYMANAGER->isStayKeyDown(VK_RIGHT))
-		a->ApplyForce(Vector2::b2Right * 8);
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-		a->ApplyForce(Vector2::b2Up * 300);
-	p->Update();
-	//CAMERA->SetPosition(Vector2(p->GetTrans()->pos.x - WINSIZEX / 2, p->GetTrans()->pos.y - WINSIZEY / 2));
+
+	//PMove();
+
+	
 }
 
 void UIManager::Render()
@@ -371,6 +376,7 @@ void UIManager::Render()
 	p->Render();
 	for (Wall* wall : _vWalls)
 		wall->Render();
+	DrawTwinkle();
 
 	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
 	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
@@ -385,4 +391,165 @@ void UIManager::Render()
 	//GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
 
 	//GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+}
+
+void UIManager::Frame()
+{
+	count++;
+	if (count > 5)
+	{
+		curFrameX4++;
+		curFrameX6++;
+		if (curFrameX4 >= 4) curFrameX4 = 0;
+		if (curFrameX6 >= 6) curFrameX6 = 0;
+		count = 0;
+	}
+}
+
+void UIManager::DrawTwinkle()
+{
+	//검빨 가로
+	{
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(2866.5f, 137), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(2524.5f, 836), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(2245.5f, 883), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(2617.5f, 1818), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(2617.5f, 2193), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(2617.5f, 2283), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(1962.5f, 2283), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(1310.5f, 1677), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(1402.5f, 1024), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(936.5f, 1305), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(656.5f, 1117), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 가로", Vector2(563.5f, 1771), curFrameX6, 0);
+	}
+
+	{
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(1823.5f, 137), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2057.5f, 441), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2896.5f, 418), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2291.5f, 744), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2665.5f, 839), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2944.5f, 932), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2665.5f, 1493), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2945.5f, 1540), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2945.5f, 1958), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2946.5, 2286), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2339.5f, 2286), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2335.5f, 2004), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2335.5f, 2004), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(2335.5f, 1070), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(794.5f, 835), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(468.5f, 835), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(839.5f, 1489), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(185.5f, 1959), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨", Vector2(749.5f, 2192), curFrameX4, 0);
+	}
+	{
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(562, 324), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(1076, 137), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(1216, 439), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(1590, 558), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(2244, 371), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(2897, 278), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(1216, 836), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(189, 836), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 매트릭스", Vector2(563, 2192), curFrameX4, 0);
+	}
+	{
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(185.5f, 553), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(1215.5f, 557), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(1590.5f, 440), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(1448.5f, 137), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(1729.5, 137), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(1729.5, 137), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(2243.5f, 510), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(2243.5f, 510), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(2243.5f, 159), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(2896.5f, 558), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(2524.5f, 1071), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(2710.5f, 2005), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(889.5f, 837), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(282.5f, 837), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(936.5f, 1491), curFrameX6, 0);
+		GRAPHICMANAGER->DrawFrameImage("검파 매트릭스", Vector2(656.5f, 1958), curFrameX6, 0);
+	}
+	{
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2290.5f, 767.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2664.5f, 861.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2944.5f, 952.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2663.5f, 1512.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2944.5f, 1559.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2944.5f, 1981.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2944.5f, 2310.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2194.5f, 2214.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2194.5f, 2352.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2194.5f, 2352.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(2336.5f, 1747.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(1964.5f, 1701.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(1777.5f, 1701.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(1448.5f, 1701.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(1635.5f, 2263.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(1635.5f, 2263.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(1262.5f, 1794.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(1169.5f, 1888.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(422.5f, 1046.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("검빨 세로", Vector2(141.5f, 1702.5f), curFrameX4, 0);
+	}
+	{
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(2477.5f, 743.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(2944.5f, 1863.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(2944.5f, 1863.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(2430.5f, 1770.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(2057.5f, 1724.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(1777.5f, 1583.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(1356.5f, 1957.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(1076.5f, 2051.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(1076.5f, 1491.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(1263.5f, 1303.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(704.5f, 1303.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(983.5f, 1181.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(983.5f, 1181.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(796.5f, 1187.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(47.5f, 1258.5f), curFrameX4, 0);
+		GRAPHICMANAGER->DrawFrameImage("줄", Vector2(327.5f, 1677.5f), curFrameX4, 0);
+	}
+}
+
+void UIManager::CameraMove()
+{
+	if (KEYMANAGER->isStayKeyDown('W'))
+	{
+		camera += Vector2::up* 5;
+	}
+	if (KEYMANAGER->isStayKeyDown('S'))
+	{
+		camera += Vector2::down * 5;
+	}
+	if (KEYMANAGER->isStayKeyDown('A'))
+	{
+		camera += Vector2::left * 5;
+	}
+	if (KEYMANAGER->isStayKeyDown('D'))
+	{
+		camera += Vector2::right * 5;
+	}
+	CAMERA->SetPosition(camera);
+}
+
+void UIManager::PMove()
+{
+	auto a = p->GetComponent<PhysicsBodyComponent>();
+	a->GetBody()->SetFixedRotation(true);
+		//fixrotation
+	p->GetTrans()->SetPos(a->GetBodyPosition());
+	//a->GetBody()->SetAngularVelocity(0);
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+		a->GetBody()->SetLinearVelocity(Vector2::b2Left * 1);
+	if(KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		a->ApplyForce(Vector2::b2Right * 8);
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+		a->ApplyForce(Vector2::b2Up * 300);
+	p->Update();
+	CAMERA->SetPosition(Vector2(p->GetTrans()->pos.x - WINSIZEX / 2, p->GetTrans()->pos.y - WINSIZEY / 2));
 }
