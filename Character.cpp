@@ -33,13 +33,13 @@ void Character::Init()
 	_physics->Init(DYNAMIC,0.5f);
 
 	_state->SetState(RIGHT_IDLE);
-	GRAPHICMANAGER->AddFrameImage();
+	/*GRAPHICMANAGER->AddFrameImage();
 	_graphic->Init(true, true);
-	_graphic->SetImgName();
+	_graphic->SetImgName();*/
 
 	_physics->GetBody()->SetFixedRotation(true);
-	_isLadder = false;
-	_isDead = false;								//아뇨, 안죽었어용
+	_isLadder = false;	//사다리에 붙었는지
+	_isDead = false;	//아뇨, 안죽었어용
 }
 
 void Character::Update()
