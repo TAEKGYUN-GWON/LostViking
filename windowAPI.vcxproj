@@ -165,6 +165,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="KeyControlComponent.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="Ladder.h" />
     <ClInclude Include="Matrix2x2.h" />
     <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="Object.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyControlComponent.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="Matrix2x2.cpp" />
     <ClCompile Include="Matrix3x3.cpp" />
     <ClCompile Include="Object.cpp" />
