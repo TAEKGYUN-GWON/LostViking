@@ -18,31 +18,31 @@ void EnemyManager::Init()
 
 	{
 		Enemy* enemy = new Enemy;
-		enemy->Init(Vector2(1772, 650), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
+		enemy->Init(Vector2(1772, 600), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
 
 		_vEnemy.push_back(enemy);
 	}
 	{
 		Enemy* enemy = new Enemy;
-		enemy->Init(Vector2(1000, 930), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
+		enemy->Init(Vector2(1000, 880), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
 
 		_vEnemy.push_back(enemy);
 	}
 	{
 		Enemy* enemy = new Enemy;
-		enemy->Init(Vector2(600, 1584), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
+		enemy->Init(Vector2(600, 1534), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
 
 		_vEnemy.push_back(enemy);
 	}
 	{
 		Enemy* enemy = new Enemy;
-		enemy->Init(Vector2(550, 2050), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
+		enemy->Init(Vector2(550, 2000), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
 
 		_vEnemy.push_back(enemy);
 	}
 	{
 		Enemy* enemy = new Enemy;
-		enemy->Init(Vector2(480, 2283), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
+		enemy->Init(Vector2(480, 2233), "greenAttack", 2.f, MOVE_LEFT, false, 0.f, -1);
 
 		_vEnemy.push_back(enemy);
 	}

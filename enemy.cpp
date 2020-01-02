@@ -25,7 +25,7 @@ void Enemy::Init(Vector2 pos, string image, float speed, ENEMY_STATE state, bool
 		_graphic->GetGraphic()->GetFrameWidth(),
 		_graphic->GetGraphic()->GetFrameHeight()));
 
-	_physics->Init(DYNAMIC, 5.f, 3.f, 0);
+	_physics->Init(DYNAMIC, 5.f, 3.f, 0,false,true);
 	_physics->GetBody()->SetFixedRotation(true);	//회전값 안받음
 	_physics->GetBody()->SetGravityScale(0);		//중력 안받음
 
