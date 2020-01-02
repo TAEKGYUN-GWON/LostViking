@@ -63,11 +63,11 @@ void GraphicComponent::Render()
 				}
 			}
 		}
-		GRAPHICMANAGER->DrawFrameImage(_imgKey, _object->GetTrans()->GetPos(), _curFrameX, _curFrameY, PIVOT::BOTTOM);
+		GRAPHICMANAGER->DrawFrameImage(_imgKey, _object->GetTrans()->GetPos(), _curFrameX, _curFrameY, _pivot);
 	}
 	else
 	{
-		GRAPHICMANAGER->DrawImage(_imgKey, _object->GetTrans()->GetPos());
+		GRAPHICMANAGER->DrawImage(_imgKey, _object->GetTrans()->GetPos(), _pivot);
 	}
 }
 
