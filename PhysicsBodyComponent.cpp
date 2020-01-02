@@ -2,6 +2,7 @@
 #include "PhysicsBodyComponent.h"
 #include "TransformComponent.h"
 #include "Object.h"
+
 void PhysicsBodyComponent::Init(BodyType type, float32 friction, float32 density, float32 restitution,BOOL isBullet, BOOL isSensor)
 {
 	_trans = _object->GetTrans();

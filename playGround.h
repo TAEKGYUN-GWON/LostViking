@@ -2,16 +2,13 @@
 #include "gameNode.h"
 #include "ObjectManager.h"
 #include "UIManager.h"
-#include "enemy.h"
-#include "EnemyManager.h"
-
+#include "PlayerManager.h"
 class playGround : public gameNode
 {
 private:
 	ObjectManager* _objMgr;
 	UIManager* _uiMgr;
-	//Enemy* _enemy;
-	EnemyManager* _enemyMgr;
+	PlayerManager* _playerMgr;
 
 	Vector2 _pos;
 	Vector2 _pos2;

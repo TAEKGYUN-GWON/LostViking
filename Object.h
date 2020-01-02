@@ -6,10 +6,11 @@
 class TransformComponent;
 class GraphicComponent;
 
+
 class Object
 {
 protected:
-	TransformComponent*_trans;
+	TransformComponent* _trans;
 	GraphicComponent *_graphic;
 	vector <Component*> _components;
 	string _name;
@@ -23,6 +24,7 @@ public:
 	virtual void Update();
 	virtual void Release();
 	virtual void Render();
+
 	virtual inline TransformComponent* GetTrans() { return _trans; }
 	inline string GetName() { return _name; }
 	inline void SetName(string name) { _name = name; }

@@ -73,6 +73,9 @@
     <Filter Include="2DGameFramework\ObjectPool">
       <UniqueIdentifier>{4ca1d902-f8ce-4dd4-bd64-fe87d373a08c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Character">
+      <UniqueIdentifier>{e01c5691-e303-4864-adb9-8cd570367e8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -231,17 +234,14 @@
     <ClInclude Include="UnGravityScript.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Character.h">
+      <Filter>playGround\Character</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyCollision.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="ErikScript.h">
+      <Filter>playGround\Character</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectPool.hpp">
-      <Filter>2DGameFramework\ObjectPool</Filter>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>playGround\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -383,14 +383,14 @@
     <ClCompile Include="UnGravityScript.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Character.cpp">
+      <Filter>playGround\Character</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyCollision.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="ErikScript.cpp">
+      <Filter>playGround\Character</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyManager.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>playGround\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

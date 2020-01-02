@@ -40,16 +40,13 @@ HRESULT playGround::init()
 	GRAPHICMANAGER->AddFrameImage("plasma", L"laser.png", 3, 1);
 	GRAPHICMANAGER->AddImage("enemy_bullet", L"cannon_bullet.png");
 
+	_playerMgr = new PlayerManager;
+	_playerMgr->Init();
+
 	_objMgr = new ObjectManager;
 	_objMgr->Init();
 	_uiMgr = new UIManager;
 	_uiMgr->Init();
-
-	//_enemy = new Enemy;
-	//_enemy->Init(2.f, MOVE_LEFT, false, 0.f, -1);
-	_enemyMgr = new EnemyManager;
-	_enemyMgr->Init();
-
 
 	_pos = Vector2(WINSIZEX / 2- 200, WINSIZEY / 2);
 	_pos2 = Vector2(WINSIZEX / 2 + 200, WINSIZEY / 2);
@@ -71,6 +68,8 @@ void playGround::release()
 	SAFE_DELETE(_objMgr);
 	SAFE_OBJECT_RELEASE(_uiMgr);
 	SAFE_DELETE(_uiMgr);
+	SAFE_OBJECT_RELEASE(_playerMgr);
+	SAFE_DELETE(_playerMgr);
 }
 
 void playGround::update()
@@ -108,9 +107,8 @@ void playGround::update()
 	}
 
 	_objMgr->Update();
+	_playerMgr->Update();
 	_uiMgr->Update();
-	//_enemy->Update();
-	_enemyMgr->Update();
 }
 
 void playGround::render()
@@ -122,15 +120,12 @@ void playGround::draw()
 {
 	_uiMgr->Render();
 	_objMgr->Render();
-	//_enemy->Render();
-	_enemyMgr->Render();
-
+	_playerMgr->Render();
 	GRAPHICMANAGER->DrawRect(_pos, Vector2(50, 50), 0.0f, ColorF::Red, CENTER, 3.0f);
 	GRAPHICMANAGER->DrawRect(_pos2, Vector2(50, 50), 0.0f, ColorF::Magenta, CENTER, 3.0f);
 
 	GRAPHICMANAGER->DrawFrameImage("number", Vector2(WINSIZEX / 2 - 50, WINSIZEY / 2), 0, 0);
 	GRAPHICMANAGER->DrawFrameImage("fatkachu", Vector2(WINSIZEX / 2 + 50, WINSIZEY / 2), 0, 0);
-
 }
 
 
