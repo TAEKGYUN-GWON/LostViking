@@ -4,7 +4,6 @@
 #include "GraphicComponent.h"
 Wall::Wall()
 {
-
 	_tag = "Wall";
 }
 
@@ -20,5 +19,5 @@ void Wall::Init()
 void Wall::AddPbody()
 {
 	_pBody = AddComponent<PhysicsBodyComponent>();
-	_pBody->Init(STATIC, 0.5);
+	_pBody->Init(STATIC, 0.3f);
 }

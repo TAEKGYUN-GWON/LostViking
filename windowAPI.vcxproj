@@ -171,6 +171,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="playGround.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="Matrix3x3.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="playGround.cpp" />

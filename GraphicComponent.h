@@ -1,5 +1,6 @@
 #pragma once
 #include"Component.h"
+
 class Object;
 
 class GraphicComponent : public Component
@@ -19,14 +20,14 @@ private:
 	string _imgKey;
 	Graphic* _graphic;
 
-	BRUSH_TYPE _color;
+	Brush_type::Enum _color;
 	PIVOT _pivot;
 
 public:
 	GraphicComponent();
 	virtual void Init()
 	{ 
-		_color = BRUSH_TYPE::BLUE;
+		_color = Brush_type::BLUE;
 		_pivot = PIVOT::CENTER;
 		_strokeWidth = 3.0f;
 	}
@@ -44,10 +45,9 @@ public:
 	void Resume();
 
 	void SetImgName(string key);
-	inline void SetRectColor(BRUSH_TYPE color) { _color = color; }
+	inline void SetRectColor(Brush_type::Enum color) { _color = color; }
 	inline void SetStrokeWidth(float strokeWidth) { _strokeWidth = strokeWidth; }
 	inline void SetPivot(PIVOT pivot) { _pivot = pivot; }
-
 
 	bool IsFrameEnd();
 	inline Graphic* GetGraphic() { return _graphic; }

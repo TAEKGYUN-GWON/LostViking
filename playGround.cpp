@@ -34,36 +34,20 @@ HRESULT playGround::init()
 	positionIterations = 3;
 
 	//=============================== 이 밑으로 init ==============================
-	
-	//바닥
-	a = new Object;
-	a->GetTrans()->SetPos(WINSIZEX / 2, WINSIZEY - 100);
-	a->GetTrans()->SetScale(1000, 100);
-	a->SetName("a");
-	a->SetTag("a");
-	a->AddComponent<PhysicsBodyComponent>(); //setgameobject 하지 말기
-	a->GetComponent<PhysicsBodyComponent>()->Init(STATIC,0);
 
-	//왼쪽 벽
-	leftWall = new Object;
-	leftWall->GetTrans()->SetPos(Vector2(200, WINSIZEY - 200));
-	leftWall->GetTrans()->SetScale(Vector2(100, 100));
-	leftWall->SetName("LEFT_WALL");
-	leftWall->SetTag("WALL");
-	leftWall->AddComponent<PhysicsBodyComponent>();
-	leftWall->GetComponent<PhysicsBodyComponent>()->Init(STATIC, 0);
+	_objMgr = new ObjectManager;
+	_objMgr->Init();
+	_uiMgr = new UIManager;
+	_uiMgr->Init();
 
-	//오른쪽 벽
-	rightWall = new Object;
-	rightWall->GetTrans()->SetPos(Vector2(WINSIZEX - 200, WINSIZEY - 200));
-	rightWall->GetTrans()->SetScale(Vector2(100, 100));
-	rightWall->SetName("RIGHT_WALL");
-	rightWall->SetTag("WALL");
-	rightWall->AddComponent<PhysicsBodyComponent>();
-	rightWall->GetComponent<PhysicsBodyComponent>()->Init(STATIC, 0);
+	_pos = Vector2(WINSIZEX / 2- 200, WINSIZEY / 2);
+	_pos2 = Vector2(WINSIZEX / 2 + 200, WINSIZEY / 2);
 
-	_enemy = new Enemy;
-	_enemy->Init();
+	_isPlayer1 = true;
+
+	CAMERA->SetPosition(_pos);
+
+	CAMERA->MoveTo(_pos, 3.0f);
 
 	return S_OK;
 }
@@ -71,8 +55,11 @@ HRESULT playGround::init()
 void playGround::release()
 {
 	gameNode::release();
-
 	
+	SAFE_OBJECT_RELEASE(_objMgr);
+	SAFE_DELETE(_objMgr);
+	SAFE_OBJECT_RELEASE(_uiMgr);
+	SAFE_DELETE(_uiMgr);
 }
 
 void playGround::update()
@@ -80,32 +67,52 @@ void playGround::update()
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
-	a->Update();
-	a->GetTrans()->SetPos(a->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
-	leftWall->Update();
-	leftWall->GetTrans()->SetPos(leftWall->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
-	rightWall->Update();
-	rightWall->GetTrans()->SetPos(rightWall->GetComponent<PhysicsBodyComponent>()->GetBodyPosition());
 
+	float speed = 90.0f;
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _pos.x -= speed * TIMEMANAGER->getElapsedTime();
+	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _pos.x += speed * TIMEMANAGER->getElapsedTime();
+	if (KEYMANAGER->isStayKeyDown(VK_UP)) _pos.y -= speed * TIMEMANAGER->getElapsedTime();
+	else if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _pos.y += speed * TIMEMANAGER->getElapsedTime();
 
-	_enemy->Update();
+	if (KEYMANAGER->isOnceKeyDown(VK_CONTROL))
+	{
+		_isPlayer1 = !_isPlayer1;
+		if (_isPlayer1)
+		{
+			CAMERA->MoveTo(_pos, 2.0f);
+		}
+		else
+		{
+			CAMERA->MoveTo(_pos2, 2.0f);
+		}
+	}
 
+	if (_isPlayer1)
+	{
+		if (!CAMERA->IscMoving()) CAMERA->SetPosition(_pos);
+	}
+	else
+	{
+		if (!CAMERA->IscMoving()) CAMERA->SetPosition(_pos2);
+	}
+
+	_objMgr->Update();
+	_uiMgr->Update();
 }
 
 void playGround::render()
 {
 	draw();
-	a->Render();
-	leftWall->Render();
-	rightWall->Render();
-	
-	_enemy->Render();
 }
 
 
 void playGround::draw()
 {
-	
+	_uiMgr->Render();
+	_objMgr->Render();
+
+	GRAPHICMANAGER->DrawRect(_pos, Vector2(50, 50), 0.0f, ColorF::Red, CENTER, 3.0f);
+	GRAPHICMANAGER->DrawRect(_pos2, Vector2(50, 50), 0.0f, ColorF::Magenta, CENTER, 3.0f);
 }
 
 

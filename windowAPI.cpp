@@ -101,7 +101,46 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
-	return _pg.MainProc(hWnd, iMessage, wParam, lParam);
+	//return _pg.MainProc(hWnd, iMessage, wParam, lParam);
+
+	PAINTSTRUCT ps;
+	HDC			hdc;
+
+	switch (iMessage)
+	{
+	case WM_CREATE:
+
+		break;
+
+	case WM_MOUSEMOVE:
+		_ptMouse.x = static_cast<float>(LOWORD(lParam));
+		_ptMouse.y = static_cast<float>(HIWORD(lParam));
+		break;
+	case WM_MOUSEWHEEL:
+	{
+		int wheel = GET_WHEEL_DELTA_WPARAM(wParam) > 0 ? 1.0f : -1.0f;
+		CAMERA->SetDistance(wheel * 0.05f);
+		break;
+	}
+	case WM_KEYDOWN:
+	{
+		switch (wParam)
+		{
+		case VK_ESCAPE:
+			PostQuitMessage(0);
+			break;
+
+		}
+	}
+	break;
+
+
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	}
+
+	return (DefWindowProc(hWnd, iMessage, wParam, lParam));
 }
 
 //클라이언트 영역 재조정
