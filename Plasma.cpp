@@ -13,6 +13,11 @@ void Plasma::Init(Vector2 pos)
 	_trans->pos = pos;
 	_name = "Plasma";
 	_tag  = "Object";
+	_graphic->Init(true, true);
+	_graphic->SetPivot(LEFT_TOP);
+	_graphic->SetImgName("plasma");
+	_trans->scale = Vector2(_graphic->GetGraphic()->GetFrameWidth(), 
+		_graphic->GetGraphic()->GetFrameHeight());
 	_physic = AddComponent<PhysicsBodyComponent>();
 	_physic->Init(STATIC, 1);
 }

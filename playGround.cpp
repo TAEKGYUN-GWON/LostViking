@@ -38,6 +38,7 @@ HRESULT playGround::init()
 	GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
 	GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
 	GRAPHICMANAGER->AddImage("enemy_bullet", L"cannon_bullet.png");
+	GRAPHICMANAGER->AddFrameImage("plasma", L"img/object/laser.png", 3, 1);
 
 	_objMgr = new ObjectManager;
 	_objMgr->Init();

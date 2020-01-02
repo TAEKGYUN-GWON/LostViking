@@ -20,11 +20,11 @@ void ObjectManager::Init()
 
 	Plasma* plasma;
 	plasma = new Plasma;
-	plasma->Init(Vector2(400, 400));
+	plasma->Init(Vector2(865, 234));
 	_vObject.push_back(plasma);
 
 	plasma = new Plasma;
-	plasma->Init(Vector2(400, 600));
+	plasma->Init(Vector2(1145, 230));
 	_vObject.push_back(plasma);
 
 
