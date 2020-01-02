@@ -76,6 +76,9 @@
     <Filter Include="playGround\Character">
       <UniqueIdentifier>{e01c5691-e303-4864-adb9-8cd570367e8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Object">
+      <UniqueIdentifier>{27ce405d-2774-49b4-b144-63136784c283}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -243,8 +246,23 @@
     <ClInclude Include="PlayerManager.h">
       <Filter>playGround\Character</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectPool.hpp">
-      <Filter>2DGameFramework\ObjectPool</Filter>
+    <ClInclude Include="Bomb.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Meat.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Plasma.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Computer.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="RedgunTower.h">
+      <Filter>playGround\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -394,6 +412,24 @@
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
       <Filter>playGround\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Meat.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Plasma.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Computer.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="RedgunTower.cpp">
+      <Filter>playGround\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

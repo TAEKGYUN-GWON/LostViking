@@ -77,7 +77,8 @@ HRESULT Graphic::Init(ID2D1Bitmap * bitmap, string key, wstring path, int maxFra
 	}
 
 	return S_OK;
-}
+}
+
 void Graphic::Release()
 {
 	if (_graphicInfo)
