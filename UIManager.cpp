@@ -37,7 +37,7 @@ void UIManager::Init()
 	GRAPHICMANAGER->AddFrameImage("줄", L"img/background/twinkle/일 자 두 줄과 네모 하나가 셋.png", 4, 1);
 	GRAPHICMANAGER->AddFrameImage("검파 매트릭스", L"img/background/twinkle/검파 매트릭스.png", 6, 1);
 
-	curFrameX4 = curFrameX6 = -1;
+	curFrameX4 = curFrameX6 = 0;
 	count = 0;
 
 	//for (int i = 0; i < 8; i++)
@@ -346,10 +346,11 @@ void UIManager::Init()
 	camera = Vector2::zero;
 
 	p = new Object;
-	p->GetTrans()->SetPos(WINSIZEX / 2, WINSIZEY / 2);
+	p->GetTrans()->SetPos(WINSIZEX / 2+100, WINSIZEY / 2);
 	p->GetTrans()->SetScale(80,100);
 	auto a = p->AddComponent<PhysicsBodyComponent>();
 	a->Init(DYNAMIC,0.5f);
+	//a->GetBody()->SetGravityScale(0);
 }
 
 void UIManager::Release()
@@ -359,12 +360,12 @@ void UIManager::Release()
 void UIManager::Update()
 {
 	Frame();
-	CameraMove();
+	//CameraMove();
 
 	for (Wall* wall : _vWalls)
 		wall->Update();
 
-	//PMove();
+	PMove();
 
 	
 }
@@ -373,24 +374,24 @@ void UIManager::Render()
 {
 	if(KEYMANAGER->isToggleKey(VK_F2))
 		GRAPHICMANAGER->FindImage("bg")->Render(Vector2(GRAPHICMANAGER->FindImage("bg")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
-	p->Render();
 	for (Wall* wall : _vWalls)
 		wall->Render();
 	DrawTwinkle();
 
-	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	//GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
+	GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
 
-	//GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	//GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
+	GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
 
-	//GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(WINSIZEX / 2 - 105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(WINSIZEX / 2 - 105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
 
-	//GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+	GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+	p->Render();
 }
 
 void UIManager::Frame()
@@ -544,12 +545,14 @@ void UIManager::PMove()
 		//fixrotation
 	p->GetTrans()->SetPos(a->GetBodyPosition());
 	//a->GetBody()->SetAngularVelocity(0);
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-		a->GetBody()->SetLinearVelocity(Vector2::b2Left * 1);
-	if(KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	if (KEYMANAGER->isStayKeyDown(VK_NUMPAD4))
+		a->ApplyForce(Vector2::b2Left * 8);
+	if(KEYMANAGER->isStayKeyDown(VK_NUMPAD6))
 		a->ApplyForce(Vector2::b2Right * 8);
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		a->ApplyForce(Vector2::b2Up * 300);
 	p->Update();
-	CAMERA->SetPosition(Vector2(p->GetTrans()->pos.x - WINSIZEX / 2, p->GetTrans()->pos.y - WINSIZEY / 2));
+	CAMERA->SetPosition(Vector2(p->GetTrans()->pos.x, p->GetTrans()->pos.y ));
+
+	a->GetBody()->SetGravityScale(0);
 }
