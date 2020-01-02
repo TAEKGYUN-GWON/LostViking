@@ -73,6 +73,12 @@
     <Filter Include="2DGameFramework\ObjectPool">
       <UniqueIdentifier>{4ca1d902-f8ce-4dd4-bd64-fe87d373a08c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\gameobject">
+      <UniqueIdentifier>{98f45f5e-88b9-4062-8c68-4d1e828d0bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\gameobject\item">
+      <UniqueIdentifier>{8eea1a69-5ead-4f22-ad46-ae87b8ed1fff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -204,15 +210,6 @@
     <ClInclude Include="Floor.h">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Tomato.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Barrier.h">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
@@ -223,6 +220,36 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Ladder.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletScript.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>playGround\gameobject\item</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>playGround\gameobject\item</Filter>
+    </ClInclude>
+    <ClInclude Include="Meat.h">
+      <Filter>playGround\gameobject\item</Filter>
+    </ClInclude>
+    <ClInclude Include="Plasma.h">
+      <Filter>playGround\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Tomato.h">
+      <Filter>playGround\gameobject\item</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>playGround\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="RedgunTower.h">
+      <Filter>playGround\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Computer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -338,15 +365,6 @@
     <ClCompile Include="Floor.cpp">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Tomato.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Barrier.cpp">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
@@ -357,6 +375,36 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Ladder.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletScript.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>playGround\gameobject\item</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>playGround\gameobject\item</Filter>
+    </ClCompile>
+    <ClCompile Include="Meat.cpp">
+      <Filter>playGround\gameobject\item</Filter>
+    </ClCompile>
+    <ClCompile Include="Plasma.cpp">
+      <Filter>playGround\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Tomato.cpp">
+      <Filter>playGround\gameobject\item</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>playGround\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="RedgunTower.cpp">
+      <Filter>playGround\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Computer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

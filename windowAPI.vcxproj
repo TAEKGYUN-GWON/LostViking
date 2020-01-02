@@ -151,10 +151,12 @@
     <ClInclude Include="BoxWorldManager.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bulletScript.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Computer.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="Floor.h" />
@@ -181,6 +183,7 @@
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="RedgunTower.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -207,9 +210,11 @@
     <ClCompile Include="BoxWorldManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="bulletScript.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Computer.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="Floor.cpp" />
@@ -234,6 +239,7 @@
     <ClCompile Include="Plasma.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="RedgunTower.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="StateComponent.cpp" />

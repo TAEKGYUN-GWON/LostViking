@@ -14,7 +14,7 @@ void Plasma::Init(Vector2 pos)
 	_name = "Plasma";
 	_tag  = "Object";
 	_graphic->Init(true, true);
-	_graphic->SetPivot(LEFT_TOP);
+	_graphic->SetPivot(CENTER);
 	_graphic->SetImgName("plasma");
 	_trans->scale = Vector2(_graphic->GetGraphic()->GetFrameWidth(), 
 		_graphic->GetGraphic()->GetFrameHeight());

@@ -4,6 +4,8 @@
 #include "Bomb.h"
 #include "Plasma.h"
 #include "RedgunTower.h"
+#include "Computer.h"
+#include "Button.h"
 #include <vector>
 
 class ObjectManager 

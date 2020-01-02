@@ -36,10 +36,14 @@ HRESULT playGround::init()
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
 
 	GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
-	GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
-	GRAPHICMANAGER->AddFrameImage("plasma", L"laser.png", 3, 1);
+	//GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
 	GRAPHICMANAGER->AddImage("enemy_bullet", L"cannon_bullet.png");
+	//¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡áobject¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á
 	GRAPHICMANAGER->AddFrameImage("plasma", L"img/object/laser.png", 3, 1);
+	GRAPHICMANAGER->AddImage("bomba", L"img/object/bomba.png");
+	GRAPHICMANAGER->AddImage("tomato", L"img/object/tomato.png");
+	GRAPHICMANAGER->AddFrameImage("Tower", L"img/object/cannon.png", 2, 2);
+	GRAPHICMANAGER->AddImage("computer", L"img/object/computer.png");
 
 	_objMgr = new ObjectManager;
 	_objMgr->Init();

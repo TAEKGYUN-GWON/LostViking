@@ -3,21 +3,20 @@
 #include "TransformComponent.h"
 #include "PhysicsBodyComponent.h"
 
-class RedgunTower : public Object
+class Button : public Object
 {
 private:
-	float _count;
 	PhysicsBodyComponent* _physic;
 protected:
 	typedef Object super;
 public:
-	RedgunTower() {};
-	~RedgunTower() {};
+	Button() {};
+	~Button() {};
 
 	virtual void Init();
-	virtual void Init(Vector2 pos, int frameY);
+	virtual void Init(Vector2 pos);
 	virtual void Release() override;
 	virtual void Update() override;
-	bool IsBulletFire();
+	virtual void Ability();
 };
 

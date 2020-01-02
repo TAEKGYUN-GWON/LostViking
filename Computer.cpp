@@ -1,41 +1,39 @@
 #include "stdafx.h"
-#include "RedgunTower.h"
+#include "Computer.h"
 #include "GraphicComponent.h"
 
-void RedgunTower::Init()
+void Computer::Init()
 {
 }
 
-void RedgunTower::Init(Vector2 pos, int frameY)
+void Computer::Init(Vector2 pos)
 {
-
-	_name = "Tower";
-	_tag = "Object";
 	_trans->pos = pos;
-	_graphic->Init(true, true);
+	_name = "Computer";
+	_tag = "Object";
+	_graphic->Init(false, false);
 	_graphic->SetPivot(CENTER);
-	_graphic->SetImgName("Tower");
-	_graphic->SetFrameY(frameY);
-	_graphic->SetFPS(0.3f);
+	_graphic->SetImgName("computer");
 	_trans->scale = Vector2(_graphic->GetGraphic()->GetFrameWidth(),
 		_graphic->GetGraphic()->GetFrameHeight());
 	_physic = AddComponent<PhysicsBodyComponent>();
 	_physic->Init(STATIC, 1);
+
+
 }
 
-void RedgunTower::Release()
+void Computer::Release()
 {
 
 	super::Release();
 }
 
-void RedgunTower::Update()
+void Computer::Update()
 {
 	_trans->SetPos(_physic->GetBodyPosition());
 	super::Update();
 }
 
-bool RedgunTower::IsBulletFire()
+void Computer::Ability()
 {
-	return false;
 }
