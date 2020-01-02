@@ -4,6 +4,7 @@
 #include"Barrier.h"
 #include "PhysicsBodyComponent.h"
 #include "Ladder.h"
+#include"GraphicComponent.h"
 UIManager::UIManager()
 {
 }
@@ -394,8 +395,19 @@ void UIManager::Init()
 		ladder6->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 		_vWalls.push_back(ladder6);
 
-
 	}
+	GRAPHICMANAGER->AddFrameImage("UnGravity", L"img/background/twinkle/중력 화살표.png", 4, 1);
+	Ladder* unGravity = new Ladder;
+	unGravity->SetPos(1684, 1115);
+	unGravity->SetScale(188, 748);
+	unGravity->SetName("UnGravity");
+	unGravity->GetGraphic()->Init(true, true);
+	unGravity->GetGraphic()->SetImgName("UnGravity");
+	unGravity->GetGraphic()->SetPivot(PIVOT::CENTER);
+	unGravity->AddPbody();
+	unGravity->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+	_vWalls.push_back(unGravity);
+
 	camera = Vector2::zero;
 
 	p = new Object;
