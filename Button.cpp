@@ -12,15 +12,7 @@ void Button::Init(Vector2 pos)
 	_name = "button";
 	_tag = "Object";
 
-	_graphic->Init(true, false);
-	_graphic->SetPivot(CENTER);
-
-
-	_graphic->SetFrameX(0);
-	_trans->scale = Vector2(_graphic->GetGraphic()->GetFrameWidth(),
-		_graphic->GetGraphic()->GetFrameHeight());
-	_physic = AddComponent<PhysicsBodyComponent>();
-	_physic->Init(STATIC, 1);
+	
 
 	 
 }

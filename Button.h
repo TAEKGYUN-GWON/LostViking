@@ -18,5 +18,7 @@ public:
 	virtual void Release() override;
 	virtual void Update() override;
 	virtual void Ability();
+	inline void SetPhysics(PhysicsBodyComponent* physics) { _physic = physics; }
+	inline PhysicsBodyComponent* GetPhysics() { return _physic; }
 };
 

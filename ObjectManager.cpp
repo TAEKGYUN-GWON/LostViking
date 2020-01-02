@@ -80,22 +80,55 @@ void ObjectManager::Init()
 
 	//¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¹öÆ°¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á
 	GRAPHICMANAGER->AddFrameImage("button", L"img/object/switch on off2.png", 3, 1);
-	GRAPHICMANAGER->AddFrameImage("switch", L"img/object/switch_2.png", 3, 1);
+	GRAPHICMANAGER->AddFrameImage("switch", L"img/object/switch_2.png", 2, 1);
 
 	Button* button;
 	button = new Button;
 	button->Init(Vector2(1036, 156));
+	button->GetGraphic()->Init(true, false);
+	button->GetGraphic()->SetPivot(CENTER);
 	button->GetGraphic()->SetImgName("button");
+	button->GetGraphic()->SetFrameX(0);
+	button->GetTrans()->scale = Vector2(button->GetGraphic()->GetGraphic()->GetFrameWidth(),
+		button->GetGraphic()->GetGraphic()->GetFrameHeight());
+	button->SetPhysics(button->AddComponent<PhysicsBodyComponent>());
+	button->GetPhysics()->Init(STATIC, 1);
 	_vObject.push_back(button);
 
 	button = new Button;
 	button->Init(Vector2(1942, 156));
+	button->GetGraphic()->Init(true, false);
+	button->GetGraphic()->SetPivot(CENTER);
 	button->GetGraphic()->SetImgName("button");
+	button->GetGraphic()->SetFrameX(0);
+	button->GetTrans()->scale = Vector2(button->GetGraphic()->GetGraphic()->GetFrameWidth(),
+		button->GetGraphic()->GetGraphic()->GetFrameHeight());
+	button->SetPhysics(button->AddComponent<PhysicsBodyComponent>());
+	button->GetPhysics()->Init(STATIC, 1);
 	_vObject.push_back(button);
 
 	button = new Button;
 	button->Init(Vector2(2384, 2014));
+	button->GetGraphic()->Init(true, false);
+	button->GetGraphic()->SetPivot(CENTER);
 	button->GetGraphic()->SetImgName("button");
+	button->GetGraphic()->SetFrameX(0);
+	button->GetTrans()->scale = Vector2(button->GetGraphic()->GetGraphic()->GetFrameWidth(),
+		button->GetGraphic()->GetGraphic()->GetFrameHeight());
+	button->SetPhysics(button->AddComponent<PhysicsBodyComponent>());
+	button->GetPhysics()->Init(STATIC,1);
+	_vObject.push_back(button);
+
+	button = new Button;
+	button->Init(Vector2(1821, 1444));
+	button->GetGraphic()->Init(true, false);
+	button->GetGraphic()->SetPivot(CENTER);
+	button->GetGraphic()->SetImgName("switch");
+	button->GetGraphic()->SetFrameX(0);
+	button->GetTrans()->scale = Vector2(button->GetGraphic()->GetGraphic()->GetFrameWidth(),
+		button->GetGraphic()->GetGraphic()->GetFrameHeight());
+	button->SetPhysics(button->AddComponent<PhysicsBodyComponent>());
+	button->GetPhysics()->Init(STATIC, 1);
 	_vObject.push_back(button);
 
 
