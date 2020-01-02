@@ -44,7 +44,8 @@ HRESULT playGround::init()
 	_objMgr->Init();
 	_uiMgr = new UIManager;
 	_uiMgr->Init();
-
+	_playerMgr = new PlayerManager;
+	_playerMgr->Init();
 
 	//CAMERA->SetPosition(_pos);
 	//CAMERA->MoveTo(_pos, 3.0f);
@@ -61,6 +62,8 @@ void playGround::release()
 	SAFE_DELETE(_objMgr);
 	SAFE_OBJECT_RELEASE(_uiMgr);
 	SAFE_DELETE(_uiMgr);
+	SAFE_OBJECT_RELEASE(_playerMgr);
+	SAFE_DELETE(_playerMgr);
 }
 
 void playGround::update()
@@ -68,7 +71,7 @@ void playGround::update()
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
-
+	_playerMgr->Update();
 	_objMgr->Update();
 	//_uiMgr->Update();
 }
@@ -82,7 +85,7 @@ void playGround::draw()
 {
 	_uiMgr->Render();
 	_objMgr->Render();
-
+	_playerMgr->Render();
 }
 
 
