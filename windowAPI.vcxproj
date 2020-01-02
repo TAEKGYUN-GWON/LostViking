@@ -176,6 +176,7 @@
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="ObjectPool.hpp" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="playGround.h" />

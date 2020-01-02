@@ -240,6 +240,9 @@
     <ClInclude Include="EnemyManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectPool.hpp">
+      <Filter>2DGameFramework\ObjectPool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

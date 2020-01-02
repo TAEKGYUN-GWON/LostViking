@@ -10,7 +10,7 @@ class ObjectPool
 public:
 	ObjectPool();
 	~ObjectPool();
-	void Init(int size, Object* obj);
+	
 	void InssertPool(int num);
 	void InssertActiveObject();
 
@@ -18,5 +18,11 @@ public:
 	inline Object* GetActivePoolObject(int num) { return ActivePool[num]; }
 	inline int GetPoolSize() { return pool.size(); }
 	inline int GetActivePoolSize() { return ActivePool.size(); }
+	inline priority_queue<Object*> GetPool() { return pool; }
+	inline vector<Object*> GetActivePool() { return ActivePool; }
+	template<typename T>
+	void Init(int size, Object obj);
 };
+#include"ObjectPool.hpp"
+
 
