@@ -21,6 +21,7 @@ void ErikScript::CollisionBegin(void * obj)
 	{
 		cout << "»ç´Ù¸® ºÎµúÈû" << endl; 
 		me->SetLadder(true);
+		me->SetGravity(0);
 	}
 }
 	
@@ -37,6 +38,6 @@ void ErikScript::CollisionEnd(void * obj)
 	if (to->GetName() == "LADDER")
 	{
 		cout << "»ç´Ù¸® ¶³¾îÁü" << endl;
-		me->SetLadder(false);
+		me->SetLadder(false);  
 	}
 }

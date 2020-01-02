@@ -16,6 +16,7 @@ protected:
 
 	int _hp;							//현재 체력
 	float _moveSpeedX, _moveSpeedY;		//움직이는 속도	
+	float _friction;
 
 	float mass;
 
@@ -40,6 +41,8 @@ public:
 
 	void SetLadder(bool ladder) { _isLadder = ladder; }
 	bool GetLadder() { return _isLadder; };
+
+	void SetGravity(float gravity) { _physics->GetBody()->SetGravityScale(gravity); }
 
 	string GetTag() { return _tag; }
 

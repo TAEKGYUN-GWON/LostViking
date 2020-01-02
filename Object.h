@@ -24,6 +24,7 @@ public:
 	virtual void Update();
 	virtual void Release();
 	virtual void Render();
+
 	virtual inline TransformComponent* GetTrans() { return _trans; }
 	inline string GetName() { return _name; }
 	inline void SetName(string name) { _name = name; }

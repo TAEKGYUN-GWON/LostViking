@@ -20,7 +20,7 @@ void Character::Init()
 	_moveSpeedX = 10.f;
 	_moveSpeedY = 1.f;
 
-	_tag = "Player";
+	_tag = "Viking";
 	//_physics->Init(DYNAMIC);
 
 	_state =  AddComponent<StateComponent>();
@@ -30,7 +30,7 @@ void Character::Init()
 	_trans->SetScale(84, 100);
 	_trans->SetPos(WINSIZEX / 2, 200);
 
-	_physics->Init(DYNAMIC, 0.5f);
+	_physics->Init(DYNAMIC,0.9f);
 
 	_state->SetState(RIGHT_IDLE);
 
@@ -87,6 +87,14 @@ void Character::KeyControl()
 	{
 		_state->SetState(LEFT_IDLE);
 		_physics->ApplyForce(Vector2::b2Left * _moveSpeedX);
+
+		b2Fixture* f;
+		for (f = _physics->GetBody()->GetFixtureList(); f; f = f->GetNext())
+		{
+			f->SetFriction(20.f);
+		}
+
+		//_physics->GetBody()->GetFixtureList()->SetDensity(100);
 		//_physics->ApplyForce(Vector2::b2Right * _moveSpeedX);
 		//Idle(이미지이름);
 	}
@@ -132,12 +140,12 @@ void Character::KeyControl()
 
 	/*if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		_isLadder = !_isLadder;// = false;*/
-}
+
 
 	if (!_isLadder)
 		_trans->SetPos(_physics->GetBodyPosition());
-	else
-		_physics->SetBodyPosition();
+	//else
+		//_physics->SetBodyPosition();
 
 
 }

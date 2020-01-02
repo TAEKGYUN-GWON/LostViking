@@ -54,6 +54,15 @@ HRESULT playGround::init()
 	a = _ladder->AddComponent<PhysicsBodyComponent>();
 	a->Init(STATIC, 1.f,1,0,0,1);
 
+	_ladderUnder = new Object;
+	_ladderUnder->GetTrans()->SetPos(_ladder->GetTrans()->GetPos().x, _ladder->GetTrans()->GetPos().y - 200);
+	_ladderUnder->GetTrans()->SetScale(50, 20);
+	_ladderUnder->SetName("LADDERUnder");
+
+	a = _ladderUnder->AddComponent<PhysicsBodyComponent>();
+	a->Init(STATIC, 1.f, 1, 0, 0, 1);
+
+
 	return S_OK;
 }
 
@@ -70,6 +79,12 @@ void playGround::update()
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 	flore->Update();
 	c->Update();
+
+	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD8))
+	{
+
+		//_ladderUnder->GetTrans()->SetPos(_ladderUnder->GetTrans()->GetBodyPosition());
+	}
 
 }
 

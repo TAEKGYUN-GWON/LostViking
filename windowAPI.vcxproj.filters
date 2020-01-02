@@ -198,6 +198,9 @@
     <ClInclude Include="ErikScript.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -308,6 +311,9 @@
     <ClCompile Include="ErikScript.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowAPI.rc">
@@ -321,10 +327,5 @@
     <Image Include="windowAPI.ico">
       <Filter>리소스 파일</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="windowAPI.vcxproj">
-      <Filter>playGround\Player</Filter>
-    </None>
   </ItemGroup>
 </Project>

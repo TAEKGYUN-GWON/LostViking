@@ -9,7 +9,11 @@ private:
 	Character* c;
 	Object* flore;
 	Object* _ladder;
-	
+	Object* _ladderUnder;
+
+	PhysicsBodyComponent* _physics;
+
+
 public:
 	playGround();
 	~playGround();
