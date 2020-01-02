@@ -12,6 +12,7 @@ class Graphic
 {
 private:
 	static ID2D1HwndRenderTarget* _RT;
+
 public:
 	static void SetRendertarget();
 
@@ -66,12 +67,14 @@ public:
 	//void Render(float x, float y);
 	void Render(float x, float y, PIVOT pivot = PIVOT::CENTER);
 	void Render(Vector2 pos, PIVOT pivot = PIVOT::CENTER);
+	void RenderUI(float x, float y, PIVOT pivot = PIVOT::CENTER);
+	void RenderUI(Vector2 pos, PIVOT pivot = PIVOT::CENTER);
 	void FrameRender(float x, float y, int curFrameX, int curFrameY, PIVOT pivot = PIVOT::CENTER);
 	void FrameRender(Vector2 pos, int curFrameX, int curFrameY, PIVOT pivot = PIVOT::CENTER);
 	
 	void SetSize(Vector2 size) { _graphicInfo->size = size; }
 	void SetAngle(float angle) { _graphicInfo->angle = angle; }
-	void SetScale(float scale) { _graphicInfo->scale = Vector2(scale, scale); }
+	void SetScale(Vector2 scale) { _graphicInfo->scale = scale; }
 	void SetAlpha(float alpha) { _graphicInfo->alpha = alpha; }
 
 	void SetCurrentFrameX(int frame) { _graphicInfo->curFrameX = frame; }
@@ -79,12 +82,16 @@ public:
 
 	UINT GetWidth() { return _graphicInfo->bitmap->GetPixelSize().width; }
 	UINT GetHeight() { return _graphicInfo->bitmap->GetPixelSize().height; }
+	Vector2 GetFrameSize(int frame) { return Vector2(_vFrameRect[frame].Width, _vFrameRect[frame].Height); }
 
 	int GetMaxFrameX() { return _graphicInfo->maxFrameX - 1; }
 	int GetMaxFrameY() { return _graphicInfo->maxFrameY - 1; }
 
 	int GetCurrentFrameX() { return _graphicInfo->curFrameX; }
 	int GetCurrentFrameY() { return _graphicInfo->curFrameY; }
+
+	int GetFrameWidth() { return _graphicInfo->frameWidth; }
+	int GetFrameHeight() { return _graphicInfo->frameHeight; }
 
 	LPGRAPHIC_INFO GetGraphicInfo() { return _graphicInfo; }
 

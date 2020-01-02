@@ -26,7 +26,7 @@ public:
 	HDC getMemDC() { return _backBuffer->getMemDC(); }
 	HDC getHDC() { return _hdc; }
 
-	LRESULT MainProc(HWND, UINT, WPARAM, LPARAM);
+	//LRESULT MainProc(HWND, UINT, WPARAM, LPARAM);
 
 };
 

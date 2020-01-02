@@ -35,32 +35,23 @@ HRESULT playGround::init()
 
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
 
-	c = new Character;
-	c->Init();
+	GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("plasma", L"laser.png", 3, 1);
+	GRAPHICMANAGER->AddImage("enemy_bullet", L"cannon_bullet.png");
 
-	flore = new Object;
-	flore->Init();
-	flore->GetTrans()->SetPos(WINSIZEX / 2, WINSIZEY - 100);
-	flore->GetTrans()->SetScale(1000, 50);
+	_objMgr = new ObjectManager;
+	_objMgr->Init();
+	_uiMgr = new UIManager;
+	_uiMgr->Init();
 
-	auto a = flore->AddComponent<PhysicsBodyComponent>();
-	a->Init(STATIC, 0.5f);
+	_pos = Vector2(WINSIZEX / 2- 200, WINSIZEY / 2);
+	_pos2 = Vector2(WINSIZEX / 2 + 200, WINSIZEY / 2);
 
-	_ladder = new Object;
-	_ladder->GetTrans()->SetPos(WINSIZEX / 2 - 200, WINSIZEY / 2 - 50);
-	_ladder->GetTrans()->SetScale(20, 400);
-	_ladder->SetName("LADDER");
+	_isPlayer1 = true;
 
-	a = _ladder->AddComponent<PhysicsBodyComponent>();
-	a->Init(STATIC, 1.f,1,0,0,1);
-
-	_ladderUnder = new Object;
-	_ladderUnder->GetTrans()->SetPos(_ladder->GetTrans()->GetPos().x, _ladder->GetTrans()->GetPos().y - 200);
-	_ladderUnder->GetTrans()->SetScale(50, 20);
-	_ladderUnder->SetName("LADDERUnder");
-
-	a = _ladderUnder->AddComponent<PhysicsBodyComponent>();
-	a->Init(STATIC, 1.f, 1, 0, 0, 1);
+	CAMERA->SetPosition(_pos);
+	CAMERA->MoveTo(_pos, 3.0f);
 
 
 	return S_OK;
@@ -69,38 +60,66 @@ HRESULT playGround::init()
 void playGround::release()
 {
 	gameNode::release();
-
 	
+	SAFE_OBJECT_RELEASE(_objMgr);
+	SAFE_DELETE(_objMgr);
+	SAFE_OBJECT_RELEASE(_uiMgr);
+	SAFE_DELETE(_uiMgr);
 }
 
 void playGround::update()
 {
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
-	flore->Update();
-	c->Update();
 
-	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD8))
+
+	float speed = 90.0f;
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _pos.x -= speed * TIMEMANAGER->getElapsedTime();
+	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _pos.x += speed * TIMEMANAGER->getElapsedTime();
+	if (KEYMANAGER->isStayKeyDown(VK_UP)) _pos.y -= speed * TIMEMANAGER->getElapsedTime();
+	else if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _pos.y += speed * TIMEMANAGER->getElapsedTime();
+
+	if (KEYMANAGER->isOnceKeyDown(VK_CONTROL))
 	{
-
-		//_ladderUnder->GetTrans()->SetPos(_ladderUnder->GetTrans()->GetBodyPosition());
+		_isPlayer1 = !_isPlayer1;
+		if (_isPlayer1)
+		{
+			CAMERA->MoveTo(_pos, 2.0f);
+		}
+		else
+		{
+			CAMERA->MoveTo(_pos2, 2.0f);
+		}
 	}
 
+	if (_isPlayer1)
+	{
+		if (!CAMERA->IsMoving()) CAMERA->SetPosition(_pos);
+	}
+	else
+	{
+		if (!CAMERA->IsMoving()) CAMERA->SetPosition(_pos2);
+	}
+
+	_objMgr->Update();
+	_uiMgr->Update();
 }
 
 void playGround::render()
 {
-	flore->Render();
-	_ladder->Render();
-	c->Render();
 	draw();
 }
 
-
 void playGround::draw()
 {
+	_uiMgr->Render();
+	_objMgr->Render();
 
+	GRAPHICMANAGER->DrawRect(_pos, Vector2(50, 50), 0.0f, ColorF::Red, CENTER, 3.0f);
+	GRAPHICMANAGER->DrawRect(_pos2, Vector2(50, 50), 0.0f, ColorF::Magenta, CENTER, 3.0f);
 
+	GRAPHICMANAGER->DrawFrameImage("number", Vector2(WINSIZEX / 2 - 50, WINSIZEY / 2), 0, 0);
+	GRAPHICMANAGER->DrawFrameImage("fatkachu", Vector2(WINSIZEX / 2 + 50, WINSIZEY / 2), 0, 0);
 }
 
 

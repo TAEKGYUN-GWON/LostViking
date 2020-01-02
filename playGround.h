@@ -1,18 +1,17 @@
 #pragma once
 #include "gameNode.h"
-#include "Character.h"
-
+#include "ObjectManager.h"
+#include "UIManager.h"
 class playGround : public gameNode
 {
 private:
+	ObjectManager* _objMgr;
+	UIManager* _uiMgr;
 
-	Character* c;
-	Object* flore;
-	Object* _ladder;
-	Object* _ladderUnder;
+	Vector2 _pos;
+	Vector2 _pos2;
 
-	PhysicsBodyComponent* _physics;
-
+	bool _isPlayer1;
 
 public:
 	playGround();
