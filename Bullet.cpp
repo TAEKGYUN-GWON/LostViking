@@ -43,6 +43,7 @@ void Bullet::Fire(Vector2 pos, float angle, float speed)
 
 void Bullet::Move()
 {
-	_physics->GetBody()->SetLinearVelocity(Vector2::b2Right * _speed * TIMEMANAGER->getElapsedTime());
+	_physics->GetBody()->SetLinearVelocity(b2Vec2(cosf(_trans->GetRotateRadian()) * _speed,
+		-sinf(_trans->GetRotateRadian()) * _speed) * TIMEMANAGER->getElapsedTime());
 
 }

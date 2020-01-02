@@ -16,6 +16,8 @@ void ObjectManager::Init()
 	item = new Tomato;
 	item->Init(Vector2(WINSIZEX / 2 + 100, WINSIZEY / 2));
 	_player.push_back(item);
+
+	_nowCharactor = 0;
 }
 
 void ObjectManager::Release()
@@ -73,8 +75,7 @@ void ObjectManager::TomatoFire()
 	{
 		Bullet* bullet = new Bullet;
 		bullet->Init("enemy_bullet", "Bullet", "enemy");
-		//bullet->Fire(_vItem[0]->GetTrans()->pos, PI / 2, 200.0f);
-		bullet->Fire(_player[_nowCharactor]->GetTrans()->pos, PI / 2, 200.0f);
+		bullet->Fire(_player[_nowCharactor]->GetTrans()->pos, PI2, 200.0f);
 
 		_vBullet.push_back(bullet);
 	}
