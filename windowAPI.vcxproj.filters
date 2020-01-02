@@ -213,6 +213,15 @@
     <ClInclude Include="Barrier.h">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Plasma.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Meat.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -337,6 +346,15 @@
     </ClCompile>
     <ClCompile Include="Barrier.cpp">
       <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Plasma.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Meat.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

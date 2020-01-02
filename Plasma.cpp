@@ -10,8 +10,6 @@ void Plasma::Init()
 void Plasma::Init(Vector2 pos)
 {
 	
-
-
 	_trans->pos = pos;
 	_name = "Plasma";
 	_tag  = "Object";
