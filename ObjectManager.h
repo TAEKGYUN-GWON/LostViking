@@ -6,6 +6,7 @@
 #include "RedgunTower.h"
 #include "Computer.h"
 #include "Button.h"
+#include "Elevator.h"
 #include <vector>
 
 class ObjectManager 

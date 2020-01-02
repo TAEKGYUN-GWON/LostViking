@@ -210,13 +210,7 @@
     <ClInclude Include="Floor.h">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Tomato.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Barrier.h">
@@ -262,6 +256,15 @@
       <Filter>playGround\Object</Filter>
     </ClInclude>
     <ClInclude Include="RedgunTower.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Tomato.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Elevator.h">
       <Filter>playGround\Object</Filter>
     </ClInclude>
   </ItemGroup>
@@ -377,13 +380,7 @@
     <ClCompile Include="Floor.cpp">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Tomato.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Barrier.cpp">
@@ -429,6 +426,15 @@
       <Filter>playGround\Object</Filter>
     </ClCompile>
     <ClCompile Include="RedgunTower.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Tomato.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Elevator.cpp">
       <Filter>playGround\Object</Filter>
     </ClCompile>
   </ItemGroup>
