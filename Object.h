@@ -6,10 +6,11 @@
 class TransformComponent;
 class GraphicComponent;
 
+
 class Object
 {
 protected:
-	TransformComponent*_trans;
+	TransformComponent* _trans;
 	GraphicComponent *_graphic;
 	vector <Component*> _components;
 	string _name;
@@ -23,6 +24,7 @@ public:
 	virtual void Update();
 	virtual void Release();
 	virtual void Render();
+
 	virtual inline TransformComponent* GetTrans() { return _trans; }
 	inline string GetName() { return _name; }
 	inline void SetName(string name) { _name = name; }
@@ -30,7 +32,7 @@ public:
 	inline void SetTag(string tag) { _tag = tag; }
 	inline void SetIsActive(bool active) { _isActive = active; }
 	inline bool GetIsActive() { return _isActive; }
-	
+	inline GraphicComponent* GetGraphic() { return _graphic; }
 	void RemoveComponent(Component* component);
 	template<typename T>
 	T* AddComponent();
