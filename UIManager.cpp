@@ -691,7 +691,7 @@ void UIManager::ElevatorMove()
 		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
 			if (_elevator->GetElevatorPos() == bottom) return;
-			_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Down*2);
+			_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Down);
 			_elevator->SetIsUp(down);
 			_elevator->SetStop(false);
 			_elevator->SetElevatorPos(middle);
@@ -700,7 +700,7 @@ void UIManager::ElevatorMove()
 		if (KEYMANAGER->isOnceKeyDown(VK_UP))
 		{
 			if (_elevator->GetElevatorPos() == top) return;
-			_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Up*2);
+			_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Up);
 			_elevator->SetIsUp(up);
 			_elevator->SetStop(false);
 			_elevator->SetElevatorPos(middle);

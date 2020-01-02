@@ -160,6 +160,9 @@
     <ClInclude Include="Computer.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
+    <ClInclude Include="Elevator.h" />
+    <ClInclude Include="ElevatorFloor.h" />
+    <ClInclude Include="ElevatorScript.h" />
     <ClInclude Include="ErikScript.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="gameNode.h" />
@@ -222,6 +225,9 @@
     <ClCompile Include="Computer.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="Elevator.cpp" />
+    <ClCompile Include="ElevatorFloor.cpp" />
+    <ClCompile Include="ElevatorScript.cpp" />
     <ClCompile Include="ErikScript.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gameNode.cpp" />

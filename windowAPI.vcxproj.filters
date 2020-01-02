@@ -264,6 +264,15 @@
     <ClInclude Include="RedgunTower.h">
       <Filter>playGround\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Elevator.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ElevatorFloor.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ElevatorScript.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -430,6 +439,15 @@
     </ClCompile>
     <ClCompile Include="RedgunTower.cpp">
       <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Elevator.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ElevatorFloor.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ElevatorScript.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
