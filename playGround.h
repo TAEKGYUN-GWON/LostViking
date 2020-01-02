@@ -2,11 +2,14 @@
 #include "gameNode.h"
 #include "ObjectManager.h"
 #include "UIManager.h"
+#include "enemy.h"
+
 class playGround : public gameNode
 {
 private:
 	ObjectManager* _objMgr;
 	UIManager* _uiMgr;
+	Enemy* _enemy;
 
 	Vector2 _pos;
 	Vector2 _pos2;

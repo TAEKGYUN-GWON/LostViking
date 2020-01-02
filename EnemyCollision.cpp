@@ -20,17 +20,27 @@ void EnemyCollision::CollisionBegin(void * obj)
 	//ÃÊ·Ï ¿¡³Ê¹Ì
 	Enemy* enemy = (Enemy*)_object;
 
-	//¿ÞÂÊ º®¿¡ ´êÀ¸¸é
-	if (collisionObj->GetName() == "LEFT_WALL")
+	//º®¿¡ ´êÀ¸¸é
+	if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && enemy->GetState()== MOVE_LEFT)
 	{
-		enemy->setState(MOVE_RIGHT);
+		enemy->SetState(MOVE_RIGHT);
 	}
-	//¿À¸¥ÂÊ º®¿¡ ´êÀ¸¸é
-	if (collisionObj->GetName() == "RIGHT_WALL")
+	else if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && enemy->GetState() == MOVE_RIGHT)
 	{
-		enemy->setState(MOVE_LEFT);
+		enemy->SetState(MOVE_LEFT);
+	}
+
+	//Ä³¸¯ÅÍ¶û ´êÀ¸¸é
+	else if (collisionObj->GetTag() == "Character" && enemy->GetState() == MOVE_LEFT)
+	{
+		enemy->SetState(ATTACK_LEFT);
+	}
+	else if (collisionObj->GetTag() == "Character" && enemy->GetState() == MOVE_RIGHT)
+	{
+		enemy->SetState(ATTACK_RIGHT);
 	}
 }
+
 
 void EnemyCollision::CollisionEnd(void * obj)
 {

@@ -39,6 +39,8 @@ HRESULT playGround::init()
 	_objMgr->Init();
 	_uiMgr = new UIManager;
 	_uiMgr->Init();
+	_enemy = new Enemy;
+	_enemy->Init();
 
 	_pos = Vector2(WINSIZEX / 2- 200, WINSIZEY / 2);
 	_pos2 = Vector2(WINSIZEX / 2 + 200, WINSIZEY / 2);
@@ -98,6 +100,7 @@ void playGround::update()
 
 	_objMgr->Update();
 	_uiMgr->Update();
+	_enemy->Update();
 }
 
 void playGround::render()
@@ -110,6 +113,7 @@ void playGround::draw()
 {
 	_uiMgr->Render();
 	_objMgr->Render();
+	_enemy->Render();
 
 	GRAPHICMANAGER->DrawRect(_pos, Vector2(50, 50), 0.0f, ColorF::Red, CENTER, 3.0f);
 	GRAPHICMANAGER->DrawRect(_pos2, Vector2(50, 50), 0.0f, ColorF::Magenta, CENTER, 3.0f);

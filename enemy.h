@@ -37,6 +37,7 @@ public:
 	void Move();
 	void Shoot();
 
-	void setState(ENEMY_STATE state) { _state = state; }
+	void SetState(ENEMY_STATE state) { this->_state = state; }
+	ENEMY_STATE GetState() { return _state; }
 };
 

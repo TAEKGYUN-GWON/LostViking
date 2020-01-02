@@ -1,7 +1,10 @@
 #pragma once
 #include "Collider.h"
+
+
 class EnemyCollision :	public Collider
 {
+
 public:
 	EnemyCollision();
 	~EnemyCollision();
