@@ -79,10 +79,10 @@ void playGround::update()
 
 
 	float speed = 90.0f;
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _pos.x -= speed * TIMEMANAGER->getElapsedTime();
+	/*if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _pos.x -= speed * TIMEMANAGER->getElapsedTime();
 	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _pos.x += speed * TIMEMANAGER->getElapsedTime();
 	if (KEYMANAGER->isStayKeyDown(VK_UP)) _pos.y -= speed * TIMEMANAGER->getElapsedTime();
-	else if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _pos.y += speed * TIMEMANAGER->getElapsedTime();
+	else if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _pos.y += speed * TIMEMANAGER->getElapsedTime();*/
 
 	if (KEYMANAGER->isOnceKeyDown(VK_CONTROL))
 	{
@@ -108,7 +108,7 @@ void playGround::update()
 
 	_objMgr->Update();
 	_playerMgr->Update();
-	_uiMgr->Update();
+	//_uiMgr->Update();
 }
 
 void playGround::render()

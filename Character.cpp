@@ -20,7 +20,7 @@ void Character::Init()
 	_moveSpeedX = 10.f;
 	_moveSpeedY = 1.f;
 
-	_tag = "Viking";
+	_tag = "Player";
 	//_physics->Init(DYNAMIC);
 
 	_state =  AddComponent<StateComponent>();
@@ -28,13 +28,18 @@ void Character::Init()
 	AddComponent<ErikScript>();
 
 	_trans->SetScale(84, 100);
-	_trans->SetPos(WINSIZEX / 2, 200);
+	_trans->SetPos(WINSIZEX / 2 - 200, 200);
 
-	_physics->Init(DYNAMIC,0.9f);
+	_physics->Init(DYNAMIC,0.5f);
 
 	_state->SetState(RIGHT_IDLE);
+	/*GRAPHICMANAGER->AddFrameImage();
+	_graphic->Init(true, true);
+	_graphic->SetImgName();*/
 
-	_isLadder = false;
+	_physics->GetBody()->SetFixedRotation(true);
+	_isLadder = false;	//사다리에 붙었는지
+	_isDead = false;	//아뇨, 안죽었어용
 }
 
 void Character::Update()
@@ -43,6 +48,7 @@ void Character::Update()
 
 	KeyControl();
 
+	CAMERA->SetPosition(_trans->GetPos());
 	cout << _state->GetState() << endl;
 }
 
@@ -55,45 +61,22 @@ void Character::KeyControl()
 {
 	if (_isLadder)
 	{
+		if (KEYMANAGER->isOnceKeyDown(VK_UP))
+			_physics->GetBody()->SetGravityScale(0);
 		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
-			/*if (_state->GetState() == LEFT_IDLE || _state->GetState() == LEFT_MOVE)
-			{
-				_state->SetState(RIGHT_MOVE);
-				//_physics->ApplyForce(Vector2::b2Up * upPower);
-				Ladder();
-			}
-			else if (_state->GetState() == RIGHT_IDLE || _state->GetState() == RIGHT_MOVE)
-			{
-
-				_state->SetState(RIGHT_MOVE);
-				Ladder();
-			}*/
-
-			if (_isLadder)
-				_trans->SetPos(_trans->pos + Vector2::up * 3);
-		}
-		/*if (KEYMANAGER->isStayKeyDown(VK_UP))
-			_trans->SetPos(_trans->pos + Vector2::up * 3);*/
-	}
-	else
-	{
-		if (KEYMANAGER->isOnceKeyDown(VK_UP))
-		{
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Up * _moveSpeedY);
 		}
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 	{
+
+
 		_state->SetState(LEFT_IDLE);
 		_physics->ApplyForce(Vector2::b2Left * _moveSpeedX);
 
-		b2Fixture* f;
-		for (f = _physics->GetBody()->GetFixtureList(); f; f = f->GetNext())
-		{
-			f->SetFriction(20.f);
-		}
-
+		_physics->GetBody()->SetGravityScale(1);
 		//_physics->GetBody()->GetFixtureList()->SetDensity(100);
 		//_physics->ApplyForce(Vector2::b2Right * _moveSpeedX);
 		//Idle(이미지이름);
@@ -116,12 +99,12 @@ void Character::KeyControl()
 	{
 		_state->SetState(RIGHT_IDLE);
 		_physics->ApplyForce(Vector2::b2Right * _moveSpeedX);
+		_physics->GetBody()->SetGravityScale(1);
 		//Idle(이미지이름);
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_state->SetState(RIGHT_MOVE);
-		//_physics->GetBody()->SetLinearVelocity(Vector2::b2Right * 3);
 		_physics->ApplyForce(Vector2::b2Right * _moveSpeedX);
 		//Move(이미지이름);
 	}
@@ -130,6 +113,7 @@ void Character::KeyControl()
 	{
 		_state->SetState(RIGHT_IDLE);
 
+		//_graphic->SetImgName();
 	}
 
 
@@ -138,14 +122,13 @@ void Character::KeyControl()
 
 	}
 
-	/*if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-		_isLadder = !_isLadder;// = false;*/
+	if (KEYMANAGER->isOnceKeyDown('E'))
+	{
+
+	}
 
 
-	if (!_isLadder)
-		_trans->SetPos(_physics->GetBodyPosition());
-	//else
-		//_physics->SetBodyPosition();
+	_trans->SetPos(_physics->GetBodyPosition());
 
 
 }
@@ -178,9 +161,4 @@ void Character::Ladder(string key)
 void Character::Move(string key)
 {
 	_graphic->SetImgName(key);
-}
-
-void Character::Ladder()
-{
-	//_state->SetState(LADDER);
 }
