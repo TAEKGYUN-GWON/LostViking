@@ -12,6 +12,8 @@ protected:
 	StateComponent* _state;	
 	PhysicsBodyComponent* _physics;
 
+	Vector2 _lastPos;
+
 	int count;							//
 	int _hp;							//현재 체력
 	float _moveSpeedX, _moveSpeedY;		//움직이는 속도	
@@ -19,8 +21,12 @@ protected:
 
 	float mass;
 
-	bool _isLadder;						//사다리 충돌중 판단
+	bool _isLadder, _isLaddering;		//사다리 충돌중 판단
+	bool _isGround;						//땅입니까?
+	bool _isFloating;					//떨어지고 있습니까
+	bool _isPush;						//벽을 밀고있습니까
 	bool _isDead;						//야,야야,죽었냐?
+	bool _isActive;						//오브젝트와의 상호작용
 
 public:
 	Character();
@@ -31,6 +37,7 @@ public:
 	virtual void Release();
 
 	void KeyControl();
+	void PosCorrection();
 
 	void SetState(Object_STATE state) { _state->SetState(state); }
 
@@ -39,6 +46,9 @@ public:
 
 
 	void SetLadder(bool ladder) { _isLadder = ladder; }
+	void SetPush(bool push) { _isPush = push; }
+	void DeadSetting() { _isDead = true; }
+
 	bool GetLadder() { return _isLadder; };
 
 	void SetGravity(float gravity) { _physics->GetBody()->SetGravityScale(gravity); }
@@ -52,7 +62,6 @@ public:
 	void Move(string key);
 	void Ladder(string key);
 
-	void Ladder();
 	virtual void Special1() {};
 	virtual void Special2() {};
 
