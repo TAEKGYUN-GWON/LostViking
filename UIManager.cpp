@@ -433,12 +433,12 @@ void UIManager::Init()
 
 	camera = Vector2::zero;
 
-	p = new Object;
-	p->GetTrans()->SetPos(WINSIZEX / 2+100, WINSIZEY / 2);
-	p->GetTrans()->SetScale(80,100);
-	p->SetTag("Player");
-	auto a = p->AddComponent<PhysicsBodyComponent>();
-	a->Init(DYNAMIC,0.5f);
+	//p = new Object;
+	//p->GetTrans()->SetPos(WINSIZEX / 2+100, WINSIZEY / 2);
+	//p->GetTrans()->SetScale(80,100);
+	//p->SetTag("Player");
+	//auto a = p->AddComponent<PhysicsBodyComponent>();
+	//a->Init(DYNAMIC,0.5f);
 	//a->GetBody()->SetGravityScale(0);
 	//a->GetBody()->GetFixtureList()->SetSensor(true);
 }
@@ -455,7 +455,7 @@ void UIManager::Update()
 	for (Wall* wall : _vWalls)
 		wall->Update();
 
-	PMove();
+	//PMove();
 
 	
 }
@@ -481,7 +481,7 @@ void UIManager::Render()
 	//GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
 	//
 	//GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
-	p->Render();
+	//p->Render();
 }
 
 void UIManager::Frame()

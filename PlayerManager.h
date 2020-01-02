@@ -4,7 +4,7 @@
 class PlayerManager
 {
 private:
-	vector<Character> _vPlayer;
+	vector<Character*> _vPlayer;
 
 public:
 	PlayerManager();
@@ -14,5 +14,7 @@ public:
 	void Release();
 	void Update();
 	void Render();
+
+
 
 };
