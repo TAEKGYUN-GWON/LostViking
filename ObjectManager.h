@@ -9,9 +9,11 @@ private:
 	vector<Item*>				_vItem;
 	vector<Item*>::iterator		_viItem;
 
-	//vector<Bullet*>				_vBullet;
-	//vector<Bullet*>::iterator	_viBullet;
-	Bullet*						_bullet;
+	vector<Bullet*>				_vBullet;
+	vector<Bullet*>::iterator	_viBullet;
+
+	int							_nowCharactor;
+	vector<Object*>				_player;
 
 public:
 	void Init();

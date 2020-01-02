@@ -8,11 +8,6 @@ private:
 	ObjectManager* _objMgr;
 	UIManager* _uiMgr;
 
-	Vector2 _pos;
-	Vector2 _pos2;
-
-	bool _isPlayer1;
-
 public:
 	playGround();
 	~playGround();

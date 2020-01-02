@@ -45,13 +45,9 @@ HRESULT playGround::init()
 	_uiMgr = new UIManager;
 	_uiMgr->Init();
 
-	_pos = Vector2(WINSIZEX / 2- 200, WINSIZEY / 2);
-	_pos2 = Vector2(WINSIZEX / 2 + 200, WINSIZEY / 2);
 
-	_isPlayer1 = true;
-
-	CAMERA->SetPosition(_pos);
-	CAMERA->MoveTo(_pos, 3.0f);
+	//CAMERA->SetPosition(_pos);
+	//CAMERA->MoveTo(_pos, 3.0f);
 
 
 	return S_OK;
@@ -73,34 +69,6 @@ void playGround::update()
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
 
-	float speed = 90.0f;
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _pos.x -= speed * TIMEMANAGER->getElapsedTime();
-	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _pos.x += speed * TIMEMANAGER->getElapsedTime();
-	if (KEYMANAGER->isStayKeyDown(VK_UP)) _pos.y -= speed * TIMEMANAGER->getElapsedTime();
-	else if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _pos.y += speed * TIMEMANAGER->getElapsedTime();
-
-	if (KEYMANAGER->isOnceKeyDown(VK_CONTROL))
-	{
-		_isPlayer1 = !_isPlayer1;
-		if (_isPlayer1)
-		{
-			CAMERA->MoveTo(_pos, 2.0f);
-		}
-		else
-		{
-			CAMERA->MoveTo(_pos2, 2.0f);
-		}
-	}
-
-	if (_isPlayer1)
-	{
-		if (!CAMERA->IsMoving()) CAMERA->SetPosition(_pos);
-	}
-	else
-	{
-		if (!CAMERA->IsMoving()) CAMERA->SetPosition(_pos2);
-	}
-
 	_objMgr->Update();
 	//_uiMgr->Update();
 }
@@ -115,11 +83,6 @@ void playGround::draw()
 	_uiMgr->Render();
 	_objMgr->Render();
 
-	GRAPHICMANAGER->DrawRect(_pos, Vector2(50, 50), 0.0f, ColorF::Red, CENTER, 3.0f);
-	GRAPHICMANAGER->DrawRect(_pos2, Vector2(50, 50), 0.0f, ColorF::Magenta, CENTER, 3.0f);
-
-	GRAPHICMANAGER->DrawFrameImage("number", Vector2(WINSIZEX / 2 - 50, WINSIZEY / 2), 0, 0);
-	GRAPHICMANAGER->DrawFrameImage("fatkachu", Vector2(WINSIZEX / 2 + 50, WINSIZEY / 2), 0, 0);
 }
 
 
