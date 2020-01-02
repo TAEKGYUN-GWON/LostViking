@@ -76,6 +76,9 @@
     <Filter Include="playGround\Character">
       <UniqueIdentifier>{e01c5691-e303-4864-adb9-8cd570367e8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Enemy">
+      <UniqueIdentifier>{c072afc2-b09f-46e2-9084-5d8fbab96865}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -243,6 +246,15 @@
     <ClInclude Include="PlayerManager.h">
       <Filter>playGround\Character</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCollision.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -391,6 +403,15 @@
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
       <Filter>playGround\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCollision.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>playGround\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
