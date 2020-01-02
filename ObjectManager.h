@@ -1,26 +1,30 @@
 #pragma once
 #include "Tomato.h"
-#include "Bullet.h"
+#include "Meat.h"
+#include "Bomb.h"
+#include "Plasma.h"
+#include "RedgunTower.h"
+#include "Computer.h"
+#include "Button.h"
 #include <vector>
 
 class ObjectManager 
 {
 private:
-	vector<Item*>				_vItem;
-	vector<Item*>::iterator		_viItem;
 
-	vector<Bullet*>				_vBullet;
-	vector<Bullet*>::iterator	_viBullet;
+	vector<Item*>			_vItem;
+	vector<Item*>::iterator	_viItem;
 
-	int							_nowCharactor;
-	vector<Object*>				_player;
+	vector<Object*>				_vObject;
+	vector<Object*>::iterator	_viObject;
+
+	bool _isTest;
 
 public:
+
 	void Init();
 	void Release();
 	void Update();
 	void Render();
-
-	void TomatoFire();
 };
 
