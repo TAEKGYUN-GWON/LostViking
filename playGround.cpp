@@ -37,6 +37,7 @@ HRESULT playGround::init()
 
 	GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
 	GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("plasma", L"laser.png", 3, 1);
 	GRAPHICMANAGER->AddImage("enemy_bullet", L"cannon_bullet.png");
 
 	_objMgr = new ObjectManager;
@@ -101,14 +102,13 @@ void playGround::update()
 	}
 
 	_objMgr->Update();
-	_uiMgr->Update();
+	//_uiMgr->Update();
 }
 
 void playGround::render()
 {
 	draw();
 }
-
 
 void playGround::draw()
 {
