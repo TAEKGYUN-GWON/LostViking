@@ -40,6 +40,9 @@ HRESULT playGround::init()
 	GRAPHICMANAGER->AddFrameImage("plasma", L"laser.png", 3, 1);
 	GRAPHICMANAGER->AddImage("enemy_bullet", L"cannon_bullet.png");
 
+	_playerMgr = new PlayerManager;
+	_playerMgr->Init();
+
 	_objMgr = new ObjectManager;
 	_objMgr->Init();
 	_uiMgr = new UIManager;
@@ -65,6 +68,8 @@ void playGround::release()
 	SAFE_DELETE(_objMgr);
 	SAFE_OBJECT_RELEASE(_uiMgr);
 	SAFE_DELETE(_uiMgr);
+	SAFE_OBJECT_RELEASE(_playerMgr);
+	SAFE_DELETE(_playerMgr);
 }
 
 void playGround::update()
@@ -102,6 +107,7 @@ void playGround::update()
 	}
 
 	_objMgr->Update();
+	_playerMgr->Update();
 	_uiMgr->Update();
 }
 
@@ -114,7 +120,7 @@ void playGround::draw()
 {
 	_uiMgr->Render();
 	_objMgr->Render();
-
+	_playerMgr->Render();
 	GRAPHICMANAGER->DrawRect(_pos, Vector2(50, 50), 0.0f, ColorF::Red, CENTER, 3.0f);
 	GRAPHICMANAGER->DrawRect(_pos2, Vector2(50, 50), 0.0f, ColorF::Magenta, CENTER, 3.0f);
 

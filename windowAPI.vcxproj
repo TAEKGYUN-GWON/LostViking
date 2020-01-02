@@ -151,11 +151,13 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bulletScript.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
+    <ClInclude Include="ErikScript.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="Graphic.h" />
@@ -175,6 +177,7 @@
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -205,10 +208,12 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="bulletScript.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="ErikScript.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="Graphic.cpp" />
@@ -227,6 +232,7 @@
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />
