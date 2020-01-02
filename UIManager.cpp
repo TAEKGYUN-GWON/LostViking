@@ -5,6 +5,7 @@
 #include "PhysicsBodyComponent.h"
 #include "Ladder.h"
 #include"GraphicComponent.h"
+#include"UnGravityScript.h"
 UIManager::UIManager()
 {
 }
@@ -346,6 +347,27 @@ void UIManager::Init()
 		_vWalls.push_back(barrier2);
 	}
 
+
+	{
+		Wall* barrier = new Barrier;
+		barrier->SetScale(25, 71);
+		barrier->SetPos(2744.5f, 615.5f);
+		barrier->AddPbody();
+		barrier->GetGraphic()->SetRectColor(Brush_type::BLACK);
+		barrier->SetName("eBarrier");
+		barrier->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		_vWalls.push_back(barrier);
+
+		Wall* barrier2 = new Barrier;
+		barrier2->SetScale(22, 50);
+		barrier2->SetPos(1582, 906);
+		barrier2->AddPbody();
+		barrier->GetGraphic()->SetRectColor(Brush_type::BLACK);
+		barrier2->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+		barrier2->SetName("eBarrier");
+		_vWalls.push_back(barrier2);
+	}
+
 	{
 		Ladder* ladder1 = new Ladder;
 		ladder1->SetPos(937, 439.5f);
@@ -406,6 +428,7 @@ void UIManager::Init()
 	unGravity->GetGraphic()->SetPivot(PIVOT::CENTER);
 	unGravity->AddPbody();
 	unGravity->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
+	unGravity->AddComponent<UnGravityScript>();
 	_vWalls.push_back(unGravity);
 
 	camera = Vector2::zero;
@@ -413,6 +436,7 @@ void UIManager::Init()
 	p = new Object;
 	p->GetTrans()->SetPos(WINSIZEX / 2+100, WINSIZEY / 2);
 	p->GetTrans()->SetScale(80,100);
+	p->SetTag("Player");
 	auto a = p->AddComponent<PhysicsBodyComponent>();
 	a->Init(DYNAMIC,0.5f);
 	//a->GetBody()->SetGravityScale(0);
@@ -426,12 +450,12 @@ void UIManager::Release()
 void UIManager::Update()
 {
 	Frame();
-	CameraMove();
+	//CameraMove();
 
 	for (Wall* wall : _vWalls)
 		wall->Update();
 
-	//PMove();
+	PMove();
 
 	
 }
@@ -444,19 +468,19 @@ void UIManager::Render()
 		wall->Render();
 	DrawTwinkle();
 
-	GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-
-	GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-
-	GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(WINSIZEX / 2 - 105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-
-	GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
+	//GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	//
+	//GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	//GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
+	//GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	//
+	//GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	//GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(WINSIZEX / 2 - 105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
+	//GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
+	//
+	//GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
 	p->Render();
 }
 

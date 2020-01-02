@@ -191,6 +191,7 @@
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="txtData.h" />
     <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UnGravityScript.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
@@ -243,6 +244,7 @@
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UnGravityScript.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />

@@ -102,7 +102,7 @@ void playGround::update()
 	}
 
 	_objMgr->Update();
-	//_uiMgr->Update();
+	_uiMgr->Update();
 }
 
 void playGround::render()
