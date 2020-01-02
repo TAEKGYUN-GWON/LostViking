@@ -2,16 +2,13 @@
 #include "gameNode.h"
 #include "ObjectManager.h"
 #include "UIManager.h"
+#include "PlayerManager.h"
 class playGround : public gameNode
 {
 private:
 	ObjectManager* _objMgr;
 	UIManager* _uiMgr;
-
-	Vector2 _pos;
-	Vector2 _pos2;
-
-	bool _isPlayer1;
+	PlayerManager* _playerMgr;
 
 public:
 	playGround();

@@ -73,6 +73,12 @@
     <Filter Include="2DGameFramework\ObjectPool">
       <UniqueIdentifier>{4ca1d902-f8ce-4dd4-bd64-fe87d373a08c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Character">
+      <UniqueIdentifier>{e01c5691-e303-4864-adb9-8cd570367e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Object">
+      <UniqueIdentifier>{27ce405d-2774-49b4-b144-63136784c283}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -231,14 +237,32 @@
     <ClInclude Include="UnGravityScript.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Elevator.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Character.h">
+      <Filter>playGround\Character</Filter>
     </ClInclude>
-    <ClInclude Include="ElevatorScript.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="ErikScript.h">
+      <Filter>playGround\Character</Filter>
     </ClInclude>
-    <ClInclude Include="ElevatorFloor.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>playGround\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Meat.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Plasma.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Computer.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="RedgunTower.h">
+      <Filter>playGround\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -380,14 +404,32 @@
     <ClCompile Include="UnGravityScript.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Elevator.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Character.cpp">
+      <Filter>playGround\Character</Filter>
     </ClCompile>
-    <ClCompile Include="ElevatorScript.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="ErikScript.cpp">
+      <Filter>playGround\Character</Filter>
     </ClCompile>
-    <ClCompile Include="ElevatorFloor.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>playGround\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Meat.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Plasma.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Computer.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="RedgunTower.cpp">
+      <Filter>playGround\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

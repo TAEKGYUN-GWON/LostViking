@@ -32,9 +32,10 @@ public:
 	virtual void Render();
 	virtual void Update() override;
 
+	inline void SetFrameX(int frameX) { _curFrameX = frameX; }
 	inline void SetFrameY(int frameY) { _curFrameY = frameY; }
-	inline void SetFPS(int time) { _FPS = 1.0f / time; }
-
+	inline void SetFPS(float time) { _FPS = 1.0f / time; }
+	inline string GetImgKey() { return _imgKey; }
 	void Start();
 	void Stop();
 	void Pause();
