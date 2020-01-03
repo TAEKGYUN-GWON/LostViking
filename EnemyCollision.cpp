@@ -55,6 +55,9 @@ void EnemyCollision::CollisionBegin(void * obj)
 		enemy->SetState(ATTACK_RIGHT);
 		enemy->SetAttack(true);
 	}
+
+	//ÃÑ¾ËÀÌ¶û ´êÀ¸¸é
+
 }
 
 

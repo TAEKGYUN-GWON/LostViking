@@ -70,6 +70,9 @@ void EnemyManager::Update()
 	//활성화된 총알을 업데이트 해주는 과정
 	for (Object *B : _objectPool->GetActivePool())
 		B->Update();
+
+	
+	EnemyFire();
 }
 
 void EnemyManager::Render()
@@ -80,4 +83,51 @@ void EnemyManager::Render()
 	//활성화된 총알을 그리는 과정
 	for (Object *B : _objectPool->GetActivePool())
 		B->Render();
+}
+
+void EnemyManager::EnemyFire()
+{
+	for (Enemy *enemy : _vEnemy)
+	{
+		if (enemy->GetState() == ATTACK_LEFT)
+		{
+			if (enemy->IsFire())
+			{
+
+				((Bullet*)_objectPool->GetPoolObject())->Fire(
+					(Vector2(enemy->GetTrans()->pos.x + 10, enemy->GetTrans()->pos.y)),
+					PI, 100);
+				
+				//오브젝트풀에서 총알을 꺼내오는 것
+				_objectPool->InssertActiveObject();
+							
+			}
+		}
+		if (enemy->GetState() == ATTACK_RIGHT)
+		{
+			if (enemy->IsFire())
+			{
+
+				((Bullet*)_objectPool->GetPoolObject())->Fire(
+					(Vector2(enemy->GetTrans()->pos.x + 10, enemy->GetTrans()->pos.y)),
+					0, 100);
+
+				_objectPool->InssertActiveObject();
+			
+			}
+		}
+	}	
+
+	//끝난 총알을 다시 오브젝트풀에 넣는 것
+	for (int i = 0; i < _objectPool->GetActivePoolSize(); i++)
+	{
+		if (!_objectPool->GetActivePool()[i]->GetIsActive())
+		{
+			_objectPool->GetActivePool()[i]->GetComponent<PhysicsBodyComponent>()->GetBody()->SetActive(false);
+			_objectPool->InssertPool(i);
+		}
+	}
+
+
+
 }

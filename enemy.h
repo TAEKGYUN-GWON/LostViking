@@ -20,6 +20,8 @@ private:
 	float _fireCount;
 	int _direction; //-1 ¿Þ, 1¿À
 
+
+
 	ENEMY_STATE _state;
 
 	PhysicsBodyComponent* _physics;
@@ -42,6 +44,7 @@ public:
 
 	//setter
 	void SetState(ENEMY_STATE state) { this->_state = state; }
+	void SetAttack(bool isattack) { _isAttack = isattack; }
 
 	//getter
 	int GetDirection() { return _direction; }
@@ -49,6 +52,6 @@ public:
 	virtual inline PhysicsBodyComponent* GetPhysics() { return _physics; }
 	//virtual inline PhysicsBodyComponent* GetPhysics() { return _physics; }
 	//virtual inline TransformComponent* GetTrans() { return _trans; }
-	bool SetAttack(bool isattack) { _isAttack = isattack; }
+	bool GetAttack() { return _isAttack; }
 };
 
