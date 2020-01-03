@@ -21,7 +21,6 @@ private:
 	vector<Object*>				_vObject;
 	vector<Object*>::iterator	_viObject;
 
-	bool _isTest;
 	ObjectPool*					_objPool;
 
 	vector<D2DEffect*>			_vEffect;

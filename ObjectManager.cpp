@@ -7,10 +7,6 @@
 
 void ObjectManager::Init()
 {
-	_isTest = true;
-
-
-
 	Item* item;
 	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■토마토■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
 	item = new Tomato;
@@ -36,11 +32,13 @@ void ObjectManager::Init()
 	item = new Bomb;
 	item->Init(Vector2(2080, 208));
 	item->AddComponent<BombScript>();
+	item->AddComponent<ItemScript>();
 	_vItem.push_back(item);
 
 	item = new Bomb;
 	item->Init(Vector2(2080, 160));
 	item->AddComponent<BombScript>();
+	item->AddComponent<ItemScript>();
 	_vItem.push_back(item);
 	
 	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■플라즈마■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
@@ -50,35 +48,35 @@ void ObjectManager::Init()
 	plasma->SetName("Plasma1");
 	_vObject.push_back(plasma);
 
-	//plasma = new Plasma;
-	//plasma->Init(Vector2(1145, 140));
-	//plasma->SetName("Plasma2");
-	//_vObject.push_back(plasma);
-	//
-	//plasma = new Plasma;
-	//plasma->Init(Vector2(1987, 133));
-	//plasma->SetName("Plasma3");
-	//_vObject.push_back(plasma);
-	//
-	//plasma = new Plasma;
-	//plasma->Init(Vector2(2594, 1070));
-	//plasma->SetName("Plasma4");
-	//_vObject.push_back(plasma);
-	//
-	//plasma = new Plasma;
-	//plasma->Init(Vector2(2640, 1070));
-	//plasma->SetName("Plasma5");
-	//_vObject.push_back(plasma);
-	//
-	//plasma = new Plasma;
-	//plasma->Init(Vector2(2454, 2004));
-	//plasma->SetName("Plasma6");
-	//_vObject.push_back(plasma);
-	//
-	//plasma = new Plasma;
-	//plasma->Init(Vector2(1660, 2001));
-	//plasma->SetName("Plasma7");
-	//_vObject.push_back(plasma);
+	plasma = new Plasma;
+	plasma->Init(Vector2(1145, 140));
+	plasma->SetName("Plasma2");
+	_vObject.push_back(plasma);
+	
+	plasma = new Plasma;
+	plasma->Init(Vector2(1987, 133));
+	plasma->SetName("Plasma3");
+	_vObject.push_back(plasma);
+	
+	plasma = new Plasma;
+	plasma->Init(Vector2(2594, 1070));
+	plasma->SetName("Plasma4");
+	_vObject.push_back(plasma);
+	
+	plasma = new Plasma;
+	plasma->Init(Vector2(2640, 1070));
+	plasma->SetName("Plasma5");
+	_vObject.push_back(plasma);
+	
+	plasma = new Plasma;
+	plasma->Init(Vector2(2454, 2004));
+	plasma->SetName("Plasma6");
+	_vObject.push_back(plasma);
+	
+	plasma = new Plasma;
+	plasma->Init(Vector2(1660, 2001));
+	plasma->SetName("Plasma7");
+	_vObject.push_back(plasma);
 
 	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■포탑■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
 	RedgunTower* tower;
@@ -175,11 +173,6 @@ void ObjectManager::Release()
 
 void ObjectManager::Update()
 {
-	if (KEYMANAGER->isOnceKeyDown('Q'))
-	{
-		_isTest = !_isTest;
-		_vObject[0]->SetIsActive(_isTest);
-	}
 	for (int i = 0; i < _vItem.size(); i++)
 	{
 		if (!_vItem[i]->GetIsActive()) _vItem[i]->SetIsActive(false);
@@ -220,6 +213,12 @@ void ObjectManager::Update()
 
 	PlasmaOff("Button1", "Plasma1");
 	PlasmaOff("Button1", "Plasma2");
+	PlasmaOff("Button2", "Plasma3");
+	PlasmaOff("Button3", "Plasma6");
+	PlasmaOff("Computer", "Plasma4");
+	PlasmaOff("Computer", "Plasma5");
+	PlasmaOff("Computer", "Plasma7");
+
 
 	for (Object* a : _objPool->GetActivePool()) a->Update();
 

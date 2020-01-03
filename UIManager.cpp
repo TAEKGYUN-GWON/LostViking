@@ -636,7 +636,7 @@ void UIManager::Init()
 	camera = Vector2::zero;
 
 	p = new Object;
-	p->GetTrans()->SetPos(1821, 1444);
+	p->GetTrans()->SetPos(170, 600);
 	p->GetTrans()->SetScale(80,100);
 	p->SetTag("Player");
 	auto a = p->AddComponent<PhysicsBodyComponent>();
