@@ -71,7 +71,11 @@ void Camera::SetPosition(Vector2 pos)
 	//_pos = pos; 
 	_pos.x = pos.x - WINSIZEX / 2;
 	_pos.y = pos.y - WINSIZEY / 2;
+	if (_pos.x <= 0)_pos.x = 0;
+	if (_pos.y <= 0)_pos.y = 0;
 
+	if (_pos.x + WINSIZEX >= GRAPHICMANAGER->FindImage("bg")->GetWidth()) _pos.x = GRAPHICMANAGER->FindImage("bg")->GetWidth() - WINSIZEX;
+	if (_pos.y + WINSIZEY >= GRAPHICMANAGER->FindImage("bg")->GetHeight()) _pos.y = GRAPHICMANAGER->FindImage("bg")->GetHeight() - WINSIZEY;
 	UpdateMatrix();
 }
 
