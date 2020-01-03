@@ -9,6 +9,10 @@ private:
 	Vector2				_pos;
 	Vector2				_startPos;
 	Vector2				_endPos;
+
+	Vector2				_shakeUpPos;
+	Vector2				__shakeDownPos;
+
 	float				_angle;
 	float				_speed;
 	float				_lerpCount;

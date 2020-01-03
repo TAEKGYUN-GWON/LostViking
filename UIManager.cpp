@@ -9,6 +9,7 @@
 #include"ElevatorFloor.h"
 #include"Gate.h"
 #include"GateScript.h"
+#include"ButtonScript.h"
 UIManager::UIManager()
 {
 }
@@ -619,16 +620,30 @@ void UIManager::Init()
 	unGravity->AddComponent<UnGravityScript>();
 	_vWalls.push_back(unGravity);
 
+	_button = new Button;
+	_button->Init(Vector2(1821, 1444));
+	_button->GetGraphic()->Init(true);
+	_button->SetName("switch");
+	_button->GetGraphic()->SetPivot(CENTER);
+	_button->GetGraphic()->SetImgName("switch");
+	_button->GetGraphic()->SetFPS(0.7f);
+	_button->GetTrans()->scale = Vector2(_button->GetGraphic()->GetGraphic()->GetFrameWidth(),
+		_button->GetGraphic()->GetGraphic()->GetFrameHeight());
+	_button->SetPhysics(_button->AddComponent<PhysicsBodyComponent>());
+	_button->GetPhysics()->Init(STATIC, 1, 1.0f, 0.0f, false, true);
+	_button->AddComponent<ButtonScript>();
 	camera = Vector2::zero;
 
 	p = new Object;
-	p->GetTrans()->SetPos(WINSIZEX / 2+100, WINSIZEY / 2);
+	p->GetTrans()->SetPos(1821, 1444);
 	p->GetTrans()->SetScale(80,100);
 	p->SetTag("Player");
 	auto a = p->AddComponent<PhysicsBodyComponent>();
 	a->Init(DYNAMIC,0.5f);
 	//a->GetBody()->SetGravityScale(0);
 	//a->GetBody()->GetFixtureList()->SetSensor(true);
+	_exit = new EXIT;
+	_exit->Init();
 }
 
 void UIManager::Release()
@@ -642,22 +657,62 @@ void UIManager::Update()
 
 	for (Wall* wall : _vWalls)
 		wall->Update();
-	
+
+	if (_button->GetCollision())
+	{
+		if (KEYMANAGER->isOnceKeyDown('S'))
+		{
+			_button->GetGraphic()->Stop();
+			_button->GetGraphic()->Start();
+			if(_button->GetIsActive())
+				_button->SetIsActive(false);
+			else
+				_button->SetIsActive(true);
+		}
+	}
+
+	if (!_button->GetIsActive())
+	{
+		for (Wall* wall : _vWalls)
+
+		{
+			if (wall->GetName() == "UnGravity")
+				wall->GetComponent<UnGravityScript>()->SetOn(true);
+
+		}
+	}
+	else
+	{
+		for (Wall* wall : _vWalls)
+
+		{
+			if (wall->GetName() == "UnGravity")
+				wall->GetComponent<UnGravityScript>()->SetOn(false);
+
+		}
+	}
+
+	_exit->Update();
 	PMove();
 	ElevatorMove();
 	GateMove();
+	_button->Update();
+
 }
 
 void UIManager::Render()
 {
 	//if(KEYMANAGER->isToggleKey(VK_F2))
 		GRAPHICMANAGER->FindImage("bg")->Render(Vector2(GRAPHICMANAGER->FindImage("bg")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
-	for (Wall* wall : _vWalls)
-		wall->Render();
-	
+		for (Wall* wall : _vWalls)
+		{
+			
+			wall->Render();
+		}
 	DrawTwinkle();
 
-
+	_exit->Render();
+	_button->Render();
 	p->Render();
 }
 

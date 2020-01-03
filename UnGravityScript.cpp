@@ -17,7 +17,8 @@ void UnGravityScript::CollisionBegin(void * obj)
 	Object* b = (Object*) obj;
 	if (b->GetTag() == "Player")
 	{
-		b->GetComponent<PhysicsBodyComponent>()->GetBody()->SetGravityScale(-0.1);
+		if(on)
+			b->GetComponent<PhysicsBodyComponent>()->GetBody()->SetGravityScale(-0.1);
 	}
 }
 
@@ -26,6 +27,6 @@ void UnGravityScript::CollisionEnd(void * obj)
 	Object* b = (Object*)obj;
 	if (b->GetTag() == "Player")
 	{
-		b->GetComponent<PhysicsBodyComponent>()->GetBody()->SetGravityScale(1);
+			b->GetComponent<PhysicsBodyComponent>()->GetBody()->SetGravityScale(1);
 	}
 }

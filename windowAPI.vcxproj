@@ -169,6 +169,8 @@
     <ClInclude Include="EnemyCollision.h" />
     <ClInclude Include="enemyManager.h" />
     <ClInclude Include="ErikScript.h" />
+    <ClInclude Include="EXIT.h" />
+    <ClInclude Include="EXITScript.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="Gate.h" />
@@ -243,6 +245,8 @@
     <ClCompile Include="EnemyCollision.cpp" />
     <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="ErikScript.cpp" />
+    <ClCompile Include="EXIT.cpp" />
+    <ClCompile Include="EXITScript.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="Gate.cpp" />
