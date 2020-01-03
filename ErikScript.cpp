@@ -50,6 +50,8 @@ void ErikScript::CollisionBegin(void * obj)
 		//ÇÇ¸¦ ±ð´Â´Ù
 		cout << "ÃÑ¾ËÀÌ¶û ´êÀ½" << endl;
 		to->SetIsActive(false);
+		me->SetHP(-1);
+		cout << me->GetHP() << endl;
 	}
 }
 	

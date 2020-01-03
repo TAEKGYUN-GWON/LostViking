@@ -31,7 +31,7 @@ void Erik::Update()
 {
 	super::Update();
 
-	KeyControl();
+	//KeyControl();
 
 	ImageControl();
 
@@ -46,7 +46,7 @@ void Erik::Render()
 
 }
 
-void Erik::KeyControl()
+void Erik::KeyControl1()
 {
 	if (_isLaddering) //매달려 있을 때
 	{

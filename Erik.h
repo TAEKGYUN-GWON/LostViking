@@ -16,7 +16,7 @@ public:
 	virtual void Init(float spawnX, float spawnY) override;
 	virtual void Update() override;
 	virtual void Render();
-	void KeyControl();
+	void KeyControl1();
 
 	void ImageControl();
 };
