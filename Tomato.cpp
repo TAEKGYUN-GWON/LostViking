@@ -19,7 +19,7 @@ void Tomato::Init(Vector2 pos)
 	_trans->scale = Vector2(_graphic->GetGraphic()->GetFrameWidth(),
 		_graphic->GetGraphic()->GetFrameHeight());
 	_physic = AddComponent<PhysicsBodyComponent>();
-	_physic->Init(STATIC, 1);
+	_physic->Init(STATIC, 1, 1.0f, 0.0f, false, true);
 }
 
 void Tomato::Release()

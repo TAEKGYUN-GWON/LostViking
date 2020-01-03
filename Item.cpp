@@ -13,6 +13,7 @@ void Item::Init()
 
 void Item::Init(Vector2 pos)
 {
+
 }
 
 void Item::Release()

@@ -148,6 +148,7 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BombScript.h" />
     <ClInclude Include="BoxWorldManager.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bulletScript.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemScript.h" />
     <ClInclude Include="KeyControlComponent.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="Ladder.h" />
@@ -217,6 +219,7 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BombScript.cpp" />
     <ClCompile Include="BoxWorldManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="bulletScript.cpp" />
@@ -242,6 +245,7 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemScript.cpp" />
     <ClCompile Include="KeyControlComponent.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="Ladder.cpp" />

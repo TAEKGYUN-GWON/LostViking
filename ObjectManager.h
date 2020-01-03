@@ -7,6 +7,7 @@
 #include "Computer.h"
 #include "Button.h"
 #include "D2DEffect.h"
+#include "Bullet.h"
 #include <vector>
 #include "ObjectPool.h"
 
@@ -31,7 +32,7 @@ public:
 	void Release();
 	void Update();
 	void Render();
-
 	void PlasmaOff(string btn, string pla);
+	void Fire();
 };
 

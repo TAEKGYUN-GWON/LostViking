@@ -3,12 +3,11 @@
 #include "TransformComponent.h"
 #include "PhysicsBodyComponent.h"
 
-
-
 class RedgunTower : public Object
 {
 private:
-	float _count;
+	float _fireCount;
+
 	PhysicsBodyComponent* _physic;
 protected:
 	typedef Object super;
@@ -21,5 +20,6 @@ public:
 	virtual void Release() override;
 	virtual void Update() override;
 	bool IsBulletFire();
+
 };
 
