@@ -294,6 +294,12 @@
     <ClInclude Include="Olaf.h">
       <Filter>playGround\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Erik.h">
+      <Filter>playGround\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Baleog.h">
+      <Filter>playGround\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -486,6 +492,12 @@
       <Filter>playGround\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Olaf.cpp">
+      <Filter>playGround\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Erik.cpp">
+      <Filter>playGround\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Baleog.cpp">
       <Filter>playGround\Character</Filter>
     </ClCompile>
   </ItemGroup>

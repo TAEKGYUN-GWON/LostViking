@@ -27,13 +27,13 @@ void Character::Init(float spawnX, float spawnY)
 	_physics = AddComponent<PhysicsBodyComponent>();
 	AddComponent<ErikScript>();
 
-	_trans->SetScale(84, 100);
+	_trans->SetScale(80, 100);
 	//_trans->SetPos(WINSIZEX / 2 - 200, 200);
 	_trans->SetPos(spawnX, spawnY);
 
 	_physics->Init(DYNAMIC,.5f,.5f);
 
-	_lastPos = _physics->GetBodyPosition();
+	//_lastPos = _physics->GetBodyPosition();
 
 	_state->SetState(RIGHT_IDLE);
 	/*GRAPHICMANAGER->AddFrameImage("");
@@ -93,8 +93,6 @@ void Character::KeyControl()
 			_isLaddering = false;
 			SetGravity(1);
 			_state->SetState(LEFT_IDLE);
-			//cout << _state->GetState() << endl;
-			//이미지 변경
 		}
 
 		//오른쪽
@@ -203,7 +201,8 @@ void Character::KeyControl()
 			{
 				_isLaddering = true;
 				SetGravity(0);
-				PosCorrection();
+				_trans->pos.x = _LadderPos.x;
+				_physics->SetBodyPosition();
 				_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
 			}
 		}
@@ -224,10 +223,13 @@ void Character::Movement(b2Vec2 b2v, float power)
 	_physics->GetBody()->SetLinearVelocity(b2v * (power - 1));
 }
 
-void Character::PosCorrection()
+void Character::PosCorrection(Object* obj)
 {
 	//위치 보정...
-	_trans->SetPos(_trans->GetPos().)
+	//_trans->SetPos(_trans->GetPos())
+	//float xx = _trans->GetPos().x - obj->GetTrans()->GetPos.x;
+
+	//_trans->SetPos(Vector2(_trans->GetPos().x + xx, _trans->GetPos().y));
 }
 
 void Character::CheckLR()
@@ -236,4 +238,9 @@ void Character::CheckLR()
 		_state->SetState(LEFT_FLOATING);
 	else if (_state->GetState() == RIGHT_IDLE || _state->GetState() == RIGHT_MOVE)
 		_state->SetState(RIGHT_FLOATING);
+}
+
+void Character::ChangeImage(string key)
+{
+	 _graphic->SetImgName(key);
 }

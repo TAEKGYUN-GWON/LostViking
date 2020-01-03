@@ -12,7 +12,9 @@ protected:
 	StateComponent* _state;	
 	PhysicsBodyComponent* _physics;
 
-	//Vector2 _lastPos;
+	//Object 
+
+	Vector2 _LadderPos;
 
 	//int count;							//
 	int _hp;							//현재 체력
@@ -36,10 +38,11 @@ public:
 	virtual void Release();
 
 	void KeyControl();
-	void PosCorrection();
+	void PosCorrection(Object* obj);
 	void Moving(b2Vec2 b2v, float power);
 	void Movement(b2Vec2 b2c, float power);
 	void CheckLR();
+	void ChangeImage(string key);
 
 	void SetState(Object_STATE state) { _state->SetState(state); }
 
@@ -56,13 +59,10 @@ public:
 
 	void SetGravity(float gravity) { _physics->GetBody()->SetGravityScale(gravity); }
 
-	string GetTag() { return _tag; }
-
-
 	virtual void Special1() {};
 	virtual void Special2() {};
 
-
+	void Correction(Vector2 LadderPos) { _LadderPos = LadderPos; }
 
 };
 

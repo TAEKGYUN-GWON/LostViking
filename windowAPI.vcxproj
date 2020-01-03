@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="Baleog.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="BoxWorldManager.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="EnemyCollision.h" />
     <ClInclude Include="enemyManager.h" />
+    <ClInclude Include="Erik.h" />
     <ClInclude Include="ErikScript.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="gameNode.h" />
@@ -219,6 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="Baleog.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BoxWorldManager.cpp" />
@@ -240,6 +243,7 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EnemyCollision.cpp" />
     <ClCompile Include="enemyManager.cpp" />
+    <ClCompile Include="Erik.cpp" />
     <ClCompile Include="ErikScript.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gameNode.cpp" />

@@ -2,7 +2,7 @@
 #include "ErikScript.h"
 #include "Object.h"
 #include "Character.h"
-
+#include"TransformComponent.h"
 ErikScript::ErikScript()
 {
 }
@@ -27,6 +27,7 @@ void ErikScript::CollisionBegin(void * obj)
 	{
 		cout << "»ç´Ù¸® ºÎµúÈû" << endl; 
 		me->SetLadder(true);
+		me->Correction(to->GetTrans()->GetPos());
 		//me->SetGravity(0.1f);
 	}
 	if (to->GetName() == "Barrier")
@@ -41,7 +42,7 @@ void ErikScript::CollisionPreSolve(void * obj)
 {
 	Object* to = (Object*)obj;
 	Character* me = (Character*)_object;
-	if (to->GetName() == "Ladder1")
+	if (to->GetTag() == "Ladder")
 	{
 		cout << "´ê°íÀÌµû" << endl;
 	}
