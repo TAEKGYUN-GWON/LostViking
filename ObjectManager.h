@@ -6,25 +6,24 @@
 #include "RedgunTower.h"
 #include "Computer.h"
 #include "Button.h"
-#include "Elevator.h"
-#include "Bullet.h"
-#include "ObjectPool.h"
+#include "D2DEffect.h"
 #include <vector>
+#include "ObjectPool.h"
 
 class ObjectManager 
 {
 private:
 
-	vector<Item*>			_vItem;
-	vector<Item*>::iterator	_viItem;
+	vector<Item*>				_vItem;
+	vector<Item*>::iterator		_viItem;
 
 	vector<Object*>				_vObject;
 	vector<Object*>::iterator	_viObject;
 
-	
-	ObjectPool* _objPool;
-
 	bool _isTest;
+	ObjectPool*					_objPool;
+
+	vector<D2DEffect*>			_vEffect;
 
 public:
 
@@ -32,5 +31,7 @@ public:
 	void Release();
 	void Update();
 	void Render();
+
+	void PlasmaOff(string btn, string pla);
 };
 

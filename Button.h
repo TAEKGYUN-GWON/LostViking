@@ -7,6 +7,7 @@ class Button : public Object
 {
 private:
 	PhysicsBodyComponent* _physic;
+	bool _isCollision;
 protected:
 	typedef Object super;
 public:
@@ -20,5 +21,7 @@ public:
 	virtual void Ability();
 	inline void SetPhysics(PhysicsBodyComponent* physics) { _physic = physics; }
 	inline PhysicsBodyComponent* GetPhysics() { return _physic; }
+	inline void SetCollision(bool on) { _isCollision = on; }
+	inline bool GetCollision() { return _isCollision; }
 };
 

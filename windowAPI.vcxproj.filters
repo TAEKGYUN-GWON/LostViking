@@ -264,14 +264,14 @@
     <ClInclude Include="RedgunTower.h">
       <Filter>playGround\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Elevator.h">
-      <Filter>playGround\Map&amp;UI</Filter>
+    <ClInclude Include="ObjectPool.hpp">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ElevatorFloor.h">
-      <Filter>playGround\Map&amp;UI</Filter>
+    <ClInclude Include="ButtonScript.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ElevatorScript.h">
-      <Filter>playGround\Map&amp;UI</Filter>
+    <ClInclude Include="D2DEffect.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -440,14 +440,11 @@
     <ClCompile Include="RedgunTower.cpp">
       <Filter>playGround\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Elevator.cpp">
-      <Filter>playGround\Map&amp;UI</Filter>
+    <ClCompile Include="ButtonScript.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ElevatorFloor.cpp">
-      <Filter>playGround\Map&amp;UI</Filter>
-    </ClCompile>
-    <ClCompile Include="ElevatorScript.cpp">
-      <Filter>playGround\Map&amp;UI</Filter>
+    <ClCompile Include="D2DEffect.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

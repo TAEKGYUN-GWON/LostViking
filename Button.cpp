@@ -10,7 +10,7 @@ void Button::Init(Vector2 pos)
 {
 	_trans->pos = pos;
 	_name = "button";
-	_tag = "Object";
+	_tag = "Button";
 
 	
 

@@ -51,10 +51,7 @@ void GraphicComponent::Render()
 				_curFrameX++;
 				if (_curFrameX > _maxFrameX)
 				{
-					if (_isLoop)
-					{
-						_curFrameX = 0;
-					}
+					if (_isLoop) _curFrameX = 0;
 					else
 					{
 						_curFrameX--;
