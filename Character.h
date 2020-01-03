@@ -33,6 +33,7 @@ public:
 	void KeyControl();
 
 	void SetState(Object_STATE state) { _state->SetState(state); }
+	StateComponent* GetState() { return _state; }
 
 	void SetHP(int amount) { _hp = amount; };
 	int GetHP() { return _hp; }
