@@ -7,6 +7,8 @@
 #include"GraphicComponent.h"
 #include"UnGravityScript.h"
 #include"ElevatorFloor.h"
+#include"Gate.h"
+#include"GateScript.h"
 UIManager::UIManager()
 {
 }
@@ -18,6 +20,10 @@ UIManager::~UIManager()
 
 void UIManager::Init()
 {
+#pragma region img
+
+
+
 	GRAPHICMANAGER->AddImage("UI", L"img/background/UI.png");
 	GRAPHICMANAGER->AddImage("bg", L"img/background/Background2.png");
 
@@ -33,6 +39,9 @@ void UIManager::Init()
 	GRAPHICMANAGER->AddImage("oDead", L"img/background/OlafDead.png");
 	GRAPHICMANAGER->AddImage("oDeactive", L"img/background/OlafDeactivate.png");
 
+	GRAPHICMANAGER->AddImage("GateDown", L"img/background/GateDown.png");
+	GRAPHICMANAGER->AddImage("GateUp", L"img/background/GateUp.png");
+
 	GRAPHICMANAGER->AddFrameImage("°Ë»¡ °¡·Î", L"img/background/twinkle/°Ë»¡ °¡·Î.png", 6, 1);
 	GRAPHICMANAGER->AddFrameImage("°Ë»¡ ¼¼·Î", L"img/background/twinkle/°Ë»¡ ¼¼·Î.png", 4, 1);
 	GRAPHICMANAGER->AddFrameImage("°Ë»¡", L"img/background/twinkle/°Ë»¡.png", 4, 1);
@@ -43,7 +52,7 @@ void UIManager::Init()
 
 	curFrameX4 = curFrameX6 = 0;
 	count = 0;
-
+#pragma endregion
 	//for (int i = 0; i < 8; i++)
 	//{
 	//	Wall* floor = new Floor;
@@ -54,6 +63,10 @@ void UIManager::Init()
 	//	_vWalls.push_back(floor);
 
 	//}
+#pragma region floorAndBarrier
+
+
+
 	{
 		Wall* floor = new Floor;
 		floor->SetScale(2761.f, 90);
@@ -355,7 +368,7 @@ void UIManager::Init()
 		barrier->SetPos(2744.5f, 615.5f);
 		barrier->AddPbody();
 		barrier->GetGraphic()->SetRectColor(Brush_type::BLACK);
-		barrier->SetName("eBarrier");
+		barrier->SetName("earrier");
 		barrier->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 		_vWalls.push_back(barrier);
 
@@ -368,6 +381,11 @@ void UIManager::Init()
 		barrier2->SetName("eBarrier");
 		_vWalls.push_back(barrier2);
 	}
+#pragma endregion
+
+#pragma region Ladder
+
+
 
 	{
 		Ladder* ladder1 = new Ladder;
@@ -426,6 +444,12 @@ void UIManager::Init()
 
 	}
 
+#pragma endregion
+
+#pragma region Elevator
+
+
+
 	{
 		Wall* floor = new ElevatorFloor;
 		floor->SetScale(94, 27);
@@ -446,7 +470,7 @@ void UIManager::Init()
 
 		floor = new ElevatorFloor;
 		floor->SetScale(94, 15);
-		floor->SetPos(2803, 2150.8f);
+		floor->SetPos(2803, 2151.f);
 		floor->SetTag("Elevator");
 		floor->SetName("ElevatorBottom");
 		floor->Init();
@@ -456,6 +480,131 @@ void UIManager::Init()
 	_elevator = new Elevator;
 	_elevator->Init();
 	_vWalls.push_back(_elevator);
+#pragma endregion
+
+
+	{
+		Gate* gate = new Gate;
+		Vector2 pos(683, 543.5f);
+		Vector2 scale(50, 75);
+		string key = "GateUp";
+		gate->Init(pos, scale, key);
+		gate->SetTag("Gate1");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 pos2(683, 618.5);
+		Vector2 scale2(50, 75);
+		key = "GateDown";
+		gate->Init(pos2, scale2, key);
+		gate->SetTag("Gate1");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 posg(683, 570);
+		Vector2 scaleg(50, 140);
+		key = "Gate1";
+		gate->Init(posg, scaleg, key, true);
+		_vWalls.push_back(gate);
+
+
+
+		gate = new Gate;
+		Vector2 pos3(1289, 543.5f);
+		Vector2 scale3(50, 75);
+		key = "GateUp";
+		gate->Init(pos3, scale3, key);
+		gate->SetTag("Gate2");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 pos4(1289, 618.5);
+		Vector2 scale4(50, 75);
+		key = "GateDown";
+		gate->Init(pos4, scale4, key);
+		gate->SetTag("Gate2");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 posr(1289, 570);
+		Vector2 scaler(50, 140);
+		key = "Gate2";
+		gate->Init(posr, scaler, key, true);
+		_vWalls.push_back(gate);
+
+
+		gate = new Gate;
+		Vector2 pos5(308, 1943.5f);
+		Vector2 scale5(50, 75);
+		key = "GateUp";
+		gate->Init(pos5, scale5, key);
+		gate->SetTag("Gate3");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 pos6(308, 2018.5f);
+		Vector2 scale6(50, 75);
+		key = "GateDown";
+		gate->Init(pos6, scale6, key);
+		gate->SetTag("Gate3");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 pose(308, 1980);
+		Vector2 scalee(50, 140);
+		key = "Gate3";
+		gate->Init(pose, scalee, key, true);
+		_vWalls.push_back(gate);
+
+
+
+		gate = new Gate;
+		Vector2 pos7(682, 2179.5f);
+		Vector2 scale7(50, 75);
+		key = "GateUp";
+		gate->Init(pos7, scale7, key);
+		gate->SetTag("Gate4");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 pos8(682, 2254.5f);
+		Vector2 scale8(50, 75);
+		key = "GateDown";
+		gate->Init(pos8, scale8, key);
+		gate->SetTag("Gate4");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 posw(682, 2220);
+		Vector2 scalew(50, 140);
+		key = "Gate4";
+		gate->Init(posw, scalew, key, true);
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 pos9(2135, 535.5f);
+		Vector2 scale9(50, 75);
+		key = "GateUp";
+		gate->Init(pos9, scale9, key);
+		gate->SetTag("Gate5");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 pos10(2135, 610.5f);
+		Vector2 scale10(50, 75);
+		key = "GateDown";
+		gate->Init(pos10, scale10, key);
+		gate->SetTag("Gate5");
+		_vWalls.push_back(gate);
+
+		gate = new Gate;
+		Vector2 posj(2135, 560);
+		Vector2 scalej(50, 140);
+		key = "Gate5";
+		gate->Init(posj, scalej, key, true);
+		_vWalls.push_back(gate);
+	}
+
 
 	GRAPHICMANAGER->AddFrameImage("UnGravity", L"img/background/twinkle/Áß·Â È­»ìÇ¥.png", 4, 1);
 	Ladder* unGravity = new Ladder;
@@ -496,6 +645,7 @@ void UIManager::Update()
 	
 	PMove();
 	ElevatorMove();
+	GateMove();
 }
 
 void UIManager::Render()
@@ -724,4 +874,263 @@ void UIManager::ElevatorMove()
 	{
 		_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Zero);
 	}
+}
+
+void UIManager::GateMove()
+{
+	for (Wall* wall : _vWalls)
+	{
+		if (wall->GetName() == "Gate1")
+		{
+			Gate* gate = (Gate*)wall;
+			if (gate->GetIsOn())
+			{
+				for (Wall* wall2 : _vWalls)
+				{
+					if (wall2->GetTag() == "Gate1")
+					{
+
+						if (wall2->GetName() == "GateUp")
+						{
+							Gate* up = (Gate*)wall2;
+							if (up->GetPos().y > up->GetUpPos().y)
+								up->Up();
+						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							if (down->GetPos().y < down->GetDownPos().y)
+								down->Down();
+						}
+
+					}
+				}
+			}
+
+			else
+			{
+				for (Wall* wall2 : _vWalls)
+				{
+					if (wall2->GetTag() == "Gate1")
+					{
+
+						if (wall2->GetName() == "GateUp")
+						{
+							Gate* up = (Gate*)wall2;
+							up->Originally();
+						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							down->Originally();
+						}
+
+					}
+				}
+			}
+
+		}
+
+
+		if (wall->GetName() == "Gate2")
+		{
+			Gate* gate = (Gate*)wall;
+			if (gate->GetIsOn())
+			{
+				for (Wall* wall2 : _vWalls)
+				{
+					if (wall2->GetTag() == "Gate2")
+					{
+						if (wall2->GetName() == "GateUp")
+						{
+							Gate* up = (Gate*)wall2;
+							if (up->GetPos().y > up->GetUpPos().y)
+								up->Up();
+						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							if (down->GetPos().y < down->GetDownPos().y)
+								down->Down();
+						}
+
+					}
+				}
+			}
+			else
+			{
+				for (Wall* wall2 : _vWalls)
+				{
+					if (wall2->GetTag() == "Gate2")
+					{
+
+						if (wall2->GetName() == "GateUp")
+						{
+							Gate* up = (Gate*)wall2;
+							up->Originally();
+						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							down->Originally();
+						}
+
+					}
+				}
+			}
+
+		}
+
+
+
+		if (wall->GetName() == "Gate3")
+		{
+			Gate* gate = (Gate*)wall;
+			if (gate->GetIsOn())
+			{
+				for (Wall* wall2 : _vWalls)
+				{
+					if (wall2->GetTag() == "Gate3")
+					{
+						if (wall2->GetName() == "GateUp")
+						{
+							Gate* up = (Gate*)wall2;
+							if (up->GetPos().y > up->GetUpPos().y)
+								up->Up();
+						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							if (down->GetPos().y < down->GetDownPos().y)
+								down->Down();
+						}
+
+					}
+				}
+			}
+			else
+			{
+				for (Wall* wall2 : _vWalls)
+				{
+					if (wall2->GetTag() == "Gate3")
+					{
+
+						if (wall2->GetName() == "GateUp")
+						{
+							Gate* up = (Gate*)wall2;
+							up->Originally();
+						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							down->Originally();
+						}
+
+					}
+				}
+			}
+
+		}
+
+
+		if (wall->GetName() == "Gate4")
+		{
+			Gate* gate = (Gate*)wall;
+			if (gate->GetIsOn())
+			{
+				for (Wall* wall2 : _vWalls)
+				{
+					if (wall2->GetTag() == "Gate4")
+					{
+						if (wall2->GetName() == "GateUp")
+						{
+							Gate* up = (Gate*)wall2;
+							if (up->GetPos().y > up->GetUpPos().y)
+								up->Up();
+						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							if (down->GetPos().y < down->GetDownPos().y)
+								down->Down();
+						}
+
+					}
+				}
+			}
+			else
+			{
+				for (Wall* wall2 : _vWalls)
+				{
+					if (wall2->GetTag() == "Gate4")
+					{
+
+						if (wall2->GetName() == "GateUp")
+						{
+							Gate* up = (Gate*)wall2;
+							up->Originally();
+						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							down->Originally();
+						}
+
+					}
+				}
+			}
+
+
+
+			if (wall->GetName() == "Gate5")
+			{
+				Gate* gate = (Gate*)wall;
+				if (gate->GetIsOn())
+				{
+					for (Wall* wall2 : _vWalls)
+					{
+						if (wall2->GetTag() == "Gate5")
+						{
+							if (wall2->GetName() == "GateUp")
+							{
+								Gate* up = (Gate*)wall2;
+								if (up->GetPos().y > up->GetUpPos().y)
+									up->Up();
+							}
+							else
+							{
+								Gate* down = (Gate*)wall2;
+								if (down->GetPos().y < down->GetDownPos().y)
+									down->Down();
+							}
+
+						}
+					}
+				}
+				else
+				{
+					for (Wall* wall2 : _vWalls)
+					{
+						if (wall2->GetTag() == "Gate5")
+						{
+
+							if (wall2->GetName() == "GateUp")
+							{
+								Gate* up = (Gate*)wall2;
+								up->Originally();
+							}
+							else
+							{
+								Gate* down = (Gate*)wall2;
+								down->Originally();
+							}
+
+						}
+					}
+				}
+
+			}
+		}
+	}
+
 }

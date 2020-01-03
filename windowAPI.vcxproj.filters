@@ -294,6 +294,12 @@
     <ClInclude Include="Inventory.h">
       <Filter>playGround\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Gate.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GateScript.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -487,6 +493,12 @@
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>playGround\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Gate.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GateScript.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -171,6 +171,8 @@
     <ClInclude Include="ErikScript.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="Gate.h" />
+    <ClInclude Include="GateScript.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="GraphicComponent.h" />
     <ClInclude Include="GraphicsManager.h" />
@@ -243,6 +245,8 @@
     <ClCompile Include="ErikScript.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="Gate.cpp" />
+    <ClCompile Include="GateScript.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="GraphicComponent.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
