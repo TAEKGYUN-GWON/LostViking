@@ -210,7 +210,13 @@
     <ClInclude Include="Floor.h">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="ObjectManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Tomato.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Barrier.h">
@@ -258,14 +264,14 @@
     <ClInclude Include="RedgunTower.h">
       <Filter>playGround\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Tomato.h">
-      <Filter>playGround\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>playGround\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Elevator.h">
-      <Filter>playGround\Object</Filter>
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ElevatorFloor.h">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ElevatorScript.h">
+      <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -380,7 +386,13 @@
     <ClCompile Include="Floor.cpp">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tomato.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Barrier.cpp">
@@ -428,14 +440,14 @@
     <ClCompile Include="RedgunTower.cpp">
       <Filter>playGround\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Tomato.cpp">
-      <Filter>playGround\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>playGround\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Elevator.cpp">
-      <Filter>playGround\Object</Filter>
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ElevatorFloor.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ElevatorScript.cpp">
+      <Filter>playGround\Map&amp;UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,37 +1,35 @@
 #include "stdafx.h"
 #include "Elevator.h"
-#include "GraphicComponent.h"
+#include"GraphicComponent.h"
+#include"TransformComponent.h"
+#include"ElevatorScript.h"
+#include"PhysicsBodyComponent.h"
+Elevator::Elevator()
+{
+}
+
+
+Elevator::~Elevator()
+{
+}
 
 void Elevator::Init()
 {
-}
-
-void Elevator::Init(Vector2 pos)
-{
-	_trans->pos = pos;
-	_name = "elevator";
-	_tag = "Object";
-	_graphic->SetPivot(CENTER);
-	_graphic->SetImgName("elevator");
-	_trans->scale = Vector2(_graphic->GetGraphic()->GetFrameWidth(),
-		_graphic->GetGraphic()->GetFrameHeight());
-	_physic = AddComponent<PhysicsBodyComponent>();
-	_physic->Init(KINEMATIC, 1);
-
-}
-
-void Elevator::Release()
-{
-
-	super::Release();
+	GRAPHICMANAGER->AddImage("Elevator", L"img/background/Elevator.png");
+	_graphic->SetImgName("Elevator");
+	_trans->SetScale(_graphic->GetGraphic()->GetWidth(), _graphic->GetGraphic()->GetHeight());
+	_trans->SetPos(2804, 675.5f);
+	isOn = false;
+	isUp = up;
+	AddComponent<ElevatorScript>();
+	_pBody = AddComponent<PhysicsBodyComponent>();
+	_pBody->Init(KINEMATIC, 1.f);
+	_tag = "Elevator";
+	_name = "Elevator";
 }
 
 void Elevator::Update()
 {
-	_trans->SetPos(_physic->GetBodyPosition());
-	super::Update();
-}
-
-void Elevator::Ability()
-{
+	super::super::Update();
+	_trans->SetPos(_pBody->GetBodyPosition());
 }
