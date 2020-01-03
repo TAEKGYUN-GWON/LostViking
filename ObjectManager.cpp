@@ -153,6 +153,8 @@ void ObjectManager::Init()
 	GRAPHICMANAGER->AddFrameImage("effect", L"firecracker.png", 19, 1);
 
 
+
+
 }
 
 void ObjectManager::Release()
