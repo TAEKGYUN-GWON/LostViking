@@ -49,6 +49,5 @@ public:
 
 	bool IsFrameEnd();
 	inline Graphic* GetGraphic() { return _graphic; }
-	inline string GetImgKey() { return _imgKey; }
 };
 

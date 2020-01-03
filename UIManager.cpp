@@ -6,6 +6,8 @@
 #include "Ladder.h"
 #include"GraphicComponent.h"
 #include"UnGravityScript.h"
+
+
 UIManager::UIManager()
 {
 }
@@ -438,9 +440,12 @@ void UIManager::Init()
 	p->GetTrans()->SetScale(80,100);
 	p->SetTag("Player");
 	auto a = p->AddComponent<PhysicsBodyComponent>();
+	//p->AddComponent<ButtonScript>();
 	a->Init(DYNAMIC,0.5f);
 	//a->GetBody()->SetGravityScale(0);
 	//a->GetBody()->GetFixtureList()->SetSensor(true);
+
+	
 }
 
 void UIManager::Release()

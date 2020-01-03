@@ -16,7 +16,9 @@ void Bullet::Init(string imgKey, string tag, string name)
 
 	_physics = AddComponent<PhysicsBodyComponent>();
 	_physics->Init(BodyType::DYNAMIC, 1.0f);
+
 	AddComponent<bulletScript>();
+
 	_physics->GetBody()->SetFixedRotation(true);
 
 	_physics->GetBody()->SetGravityScale(0);
