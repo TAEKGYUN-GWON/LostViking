@@ -374,6 +374,7 @@ void UIManager::Init()
 		ladder1->SetPos(937, 439.5f);
 		ladder1->SetScale(90, 423);
 		ladder1->SetName("Ladder1");
+		ladder1->SetTag("Ladder");
 		ladder1->AddPbody();
 		ladder1->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 		_vWalls.push_back(ladder1);
@@ -382,6 +383,7 @@ void UIManager::Init()
 		ladder2->SetPos(1729, 439.5f);
 		ladder2->SetScale(90, 423);
 		ladder2->SetName("Ladder2");
+		ladder2->SetTag("Ladder");
 		ladder2->AddPbody();
 		ladder2->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 		_vWalls.push_back(ladder2);
@@ -390,6 +392,7 @@ void UIManager::Init()
 		ladder3->SetPos(237, 1258);
 		ladder3->SetScale(95, 658);
 		ladder3->SetName("Ladder3");
+		ladder3->SetTag("Ladder");
 		ladder3->AddPbody();
 		ladder3->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 		_vWalls.push_back(ladder3);
@@ -398,6 +401,7 @@ void UIManager::Init()
 		ladder4->SetPos(2244.5f, 1326.5f);
 		ladder4->SetScale(95, 330);
 		ladder4->SetName("Ladder4");
+		ladder4->SetTag("Ladder");
 		ladder4->AddPbody();
 		ladder4->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 		_vWalls.push_back(ladder4);
@@ -406,6 +410,7 @@ void UIManager::Init()
 		ladder5->SetPos(751.5f, 1818.5f);
 		ladder5->SetScale(95, 467);
 		ladder5->SetName("Ladder5");
+		ladder5->SetTag("Ladder");
 		ladder5->AddPbody();
 		ladder5->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 		_vWalls.push_back(ladder5);
@@ -414,6 +419,7 @@ void UIManager::Init()
 		ladder6->SetPos(189.5f, 2168.5f);
 		ladder6->SetScale(95, 235);
 		ladder6->SetName("Ladder6");
+		ladder6->SetTag("Ladder");
 		ladder6->AddPbody();
 		ladder6->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 		_vWalls.push_back(ladder6);
