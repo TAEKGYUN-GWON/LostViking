@@ -1,6 +1,7 @@
 #pragma once
 #include "Wall.h"
 #include"Elevator.h"
+#include"PlayerManager.h"
 class UIManager
 {
 private:
@@ -11,6 +12,7 @@ private:
 	Object *p;
 	Elevator *_elevator;
 	Vector2 camera;
+	PlayerManager* _pMgr;
 public:
 	UIManager();
 	~UIManager();
@@ -18,11 +20,13 @@ public:
 	void Release();
 	void Update();
 	void Render();
+	void UiRender();
 	void Frame();
 	void DrawTwinkle();
 	void CameraMove();
 	void PMove();
 	void ElevatorMove();
 	Elevator* GetElevator() { return _elevator; }
+	void SetPlayerManagerLink(PlayerManager* pMgr) { _pMgr = pMgr; }
 };
 

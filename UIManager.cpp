@@ -494,27 +494,34 @@ void UIManager::Update()
 
 void UIManager::Render()
 {
-	if(KEYMANAGER->isToggleKey(VK_F2))
+	//if(KEYMANAGER->isToggleKey(VK_F2))
 		GRAPHICMANAGER->FindImage("bg")->Render(Vector2(GRAPHICMANAGER->FindImage("bg")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
 	for (Wall* wall : _vWalls)
 		wall->Render();
 	
 	DrawTwinkle();
 
-	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	//GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-	//
-	//GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	//GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-	//
-	//GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(WINSIZEX / 2 - 105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-	//
-	//GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+
 	p->Render();
+}
+
+void UIManager::UiRender()
+{
+	GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+	
+	GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(245, 596));
+	//GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(245, 596));
+	//GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(245, 596));
+	
+	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(533,596.5f));
+	GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(533,596.5f));
+	//GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(533,596.5f));
+	
+	//GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(821,596.5f));
+	GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(821,596.5f));
+	//GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(821,596.5f));
+	
+	
 }
 
 void UIManager::Frame()

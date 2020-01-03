@@ -53,7 +53,7 @@ HRESULT playGround::init()
 	_playerMgr->Init();
 	_enemyMgr = new EnemyManager;
 	_enemyMgr->Init();
-
+	_uiMgr->SetPlayerManagerLink(_playerMgr);
 	//CAMERA->SetPosition(_pos);
 	//CAMERA->MoveTo(_pos, 3.0f);
 
@@ -95,6 +95,8 @@ void playGround::draw()
 	_objMgr->Render();
 	_playerMgr->Render();
 	_enemyMgr->Render();
+	if (KEYMANAGER->isToggleKey(VK_F2))
+		_uiMgr->UiRender();
 }
 
 
