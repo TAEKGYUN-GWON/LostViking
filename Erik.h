@@ -1,5 +1,6 @@
 #pragma once
-class Erik
+#include "Character.h"
+class Erik :public Character
 {
 public:
 	Erik();
