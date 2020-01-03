@@ -21,11 +21,11 @@ void EnemyCollision::CollisionBegin(void * obj)
 	Enemy* enemy = (Enemy*)_object;
 
 	//º®¿¡ ´êÀ¸¸é
-	if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && enemy->GetState()== MOVE_LEFT)
+	if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier"|| collisionObj->GetTag() == "Gate") && enemy->GetState()== MOVE_LEFT)
 	{
 		enemy->SetState(MOVE_RIGHT);
 	}
-	else if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && enemy->GetState() == MOVE_RIGHT)
+	else if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier" || collisionObj->GetTag() == "Gate") && enemy->GetState() == MOVE_RIGHT)
 	{
 		enemy->SetState(MOVE_LEFT);
 	}
