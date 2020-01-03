@@ -28,5 +28,7 @@ public:
 	void ElevatorMove();
 	Elevator* GetElevator() { return _elevator; }
 	void SetPlayerManagerLink(PlayerManager* pMgr) { _pMgr = pMgr; }
+	void GateMove();
+
 };
 

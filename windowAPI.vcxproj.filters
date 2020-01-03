@@ -294,11 +294,11 @@
     <ClInclude Include="Olaf.h">
       <Filter>playGround\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Erik.h">
-      <Filter>playGround\Character</Filter>
+    <ClInclude Include="Gate.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Baleog.h">
-      <Filter>playGround\Character</Filter>
+    <ClInclude Include="GateScript.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -494,11 +494,11 @@
     <ClCompile Include="Olaf.cpp">
       <Filter>playGround\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Erik.cpp">
-      <Filter>playGround\Character</Filter>
+    <ClCompile Include="Gate.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Baleog.cpp">
-      <Filter>playGround\Character</Filter>
+    <ClCompile Include="GateScript.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

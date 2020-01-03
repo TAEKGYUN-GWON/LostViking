@@ -2,7 +2,7 @@
 #include "EnemyCollision.h"
 #include "Object.h"
 #include "enemy.h"
-
+#include "Gate.h"
 EnemyCollision::EnemyCollision()
 {
 }
@@ -21,13 +21,27 @@ void EnemyCollision::CollisionBegin(void * obj)
 	Enemy* enemy = (Enemy*)_object;
 
 	//벽에 닿으면
-	if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && enemy->GetState()== MOVE_LEFT)
+	if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && enemy->GetState() == MOVE_LEFT)
 	{
+
 		enemy->SetState(MOVE_RIGHT);
 	}
-	else if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && enemy->GetState() == MOVE_RIGHT)
+	else if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier" ) && enemy->GetState() == MOVE_RIGHT)
 	{
 		enemy->SetState(MOVE_LEFT);
+	}
+
+	else if (collisionObj->GetTag() == "Gate"&& enemy->GetState() == MOVE_LEFT || enemy->GetState() == ATTACK_LEFT)
+	{
+		Gate* gate = (Gate*)collisionObj;
+		if (!gate->GetIsOn())
+			enemy->SetState(MOVE_RIGHT);
+	}
+	else if (collisionObj->GetTag() == "Gate"&& enemy->GetState() == MOVE_RIGHT || enemy->GetState() == ATTACK_RIGHT)
+	{
+		Gate* gate = (Gate*)collisionObj;
+		if (!gate->GetIsOn())
+			enemy->SetState(MOVE_LEFT);
 	}
 
 	//캐릭터랑 닿으면
