@@ -1,10 +1,7 @@
 #include "stdafx.h"
 #include "Bomb.h"
 #include "GraphicComponent.h"
-
-void Bomb::Init()
-{
-}
+#include "PhysicsBodyComponent.h"
 
 void Bomb::Init(Vector2 pos)
 {
@@ -21,7 +18,7 @@ void Bomb::Init(Vector2 pos)
 		_graphic->GetGraphic()->GetFrameHeight());
 
 	_physic = AddComponent<PhysicsBodyComponent>();
-	_physic->Init(STATIC, 1);
+	_physic->Init(STATIC, 1, 1.0f, 0.0f, false, true);
 }
 
 void Bomb::Release()
@@ -35,5 +32,19 @@ void Bomb::Update()
 
 void Bomb::Ability()
 {
+
+}
+
+void Bomb::IsExplosion()
+{
+	_timer += TIMEMANAGER->getElapsedTime();
+
+	if (_timer >= 3)
+	{
+		_isBomb = true;
+
+		_isActive = false;
+
+	}
 
 }

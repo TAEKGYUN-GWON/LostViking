@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "ButtonScript.h"
 #include "Button.h"
-#include "GraphicComponent.h"
 
 void ButtonScript::CollisionBegin(void * obj)
 {
@@ -10,10 +9,7 @@ void ButtonScript::CollisionBegin(void * obj)
 
 	if (to->GetTag() == "Player")
 	{
-		//me->GetComponent<GraphicComponent>()->Stop();
-		//me->GetComponent<GraphicComponent>()->Start();
 		me->SetCollision(true);
-		cout << "??" << endl;
 	}
 }
 
@@ -28,8 +24,6 @@ void ButtonScript::CollisionEnd(void * obj)
 
 	if (to->GetTag() == "Player")
 	{
-		//me->GetComponent<GraphicComponent>()->Stop();
-		//me->GetComponent<GraphicComponent>()->Start();
 		me->SetCollision(false);
 	}
 }

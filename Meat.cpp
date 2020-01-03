@@ -15,7 +15,7 @@ void Meat::Init(Vector2 pos)
 	_trans->scale = Vector2(100, 100);
 
 	_physic = AddComponent<PhysicsBodyComponent>();
-	_physic->Init(STATIC, 1);
+	_physic->Init(STATIC, 1, 1.0f, 0.0f, false, true);
 
 	//_graphic->set
 
