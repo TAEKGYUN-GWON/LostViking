@@ -131,13 +131,6 @@ void ObjectManager::Init()
 	button->GetPhysics()->Init(STATIC, 1);
 	_vObject.push_back(button);
 
-	//¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¿¤·¹º£ÀÌÅÍ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á
-	GRAPHICMANAGER->AddImage("elevator", L"img/object/Elevator.png");
-
-	Elevator* elevator;
-	elevator = new Elevator;
-	elevator->Init(Vector2(2800, 670));
-	_vObject.push_back(elevator);
 
 
 
