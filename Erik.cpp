@@ -102,6 +102,7 @@ void Erik::ImageControl()
 		_graphic->SetFrameX(1);
 		ChangeImage("eric_death2");
 		break;
+	}
 }
 
 

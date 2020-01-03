@@ -40,6 +40,19 @@ void Olaf::Update()
 	ShieldMove();
 
 	ImageControl();
+
+	for (int i = 0; i < _shields.size(); i++)
+		_shields[i]->Update();
+}
+
+void Olaf::Render()
+{
+	super::Render();
+
+	for (int i = 0; i < _shields.size(); i++)
+	{
+		_shields[i]->Render();
+	}
 }
 
 void Olaf::ImageControl()
@@ -142,13 +155,14 @@ void Olaf::SetShield()
 {
 	_upShield = new Object();
 	_upShield->SetTag("UpShield");
-	_upShield->AddComponent<PhysicsBodyComponent>()->Init(STATIC,1.f);
-	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 50);
-	_upShield->GetTrans()->SetScale(80, 30);
+	_upShield->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC,1.f);
+	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 100);
+	_upShield->GetTrans()->SetScale(10 , 10);
 
+	_shields.push_back(_upShield);
 }
 
 void Olaf::ShieldMove()
 {
-
+	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 50);
 }
