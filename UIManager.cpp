@@ -615,6 +615,7 @@ void UIManager::Init()
 	unGravity->GetGraphic()->Init(true, true);
 	unGravity->GetGraphic()->SetImgName("UnGravity");
 	unGravity->GetGraphic()->SetPivot(PIVOT::CENTER);
+	unGravity->GetGraphic()->Stop();
 	unGravity->AddPbody();
 	unGravity->getPbody()->GetBody()->GetFixtureList()->SetSensor(true);
 	unGravity->AddComponent<UnGravityScript>();
@@ -677,8 +678,10 @@ void UIManager::Update()
 
 		{
 			if (wall->GetName() == "UnGravity")
+			{
 				wall->GetComponent<UnGravityScript>()->SetOn(true);
-
+				wall->GetGraphic()->Resume();
+			}
 		}
 	}
 	else
@@ -687,7 +690,10 @@ void UIManager::Update()
 
 		{
 			if (wall->GetName() == "UnGravity")
+			{
 				wall->GetComponent<UnGravityScript>()->SetOn(false);
+				wall->GetGraphic()->Stop();
+			}
 
 		}
 	}
