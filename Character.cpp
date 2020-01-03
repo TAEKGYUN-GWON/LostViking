@@ -131,7 +131,7 @@ void Character::KeyControl()
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
-			Moving(Vector2::b2Left, _moveSpeedX);
+			NormalMove(Vector2::b2Left, _moveSpeedX);
 			_state->SetState(LEFT_IDLE);
 			cout << _state->GetState() << endl;
 		}
@@ -149,9 +149,9 @@ void Character::KeyControl()
 			}
 
 			if(_isFloating)
-				Moving(Vector2::b2Left, _moveSpeedX);
+				NormalMove(Vector2::b2Left, _moveSpeedX);
 			else
-				Movement(Vector2::b2Left, _moveSpeedX);
+				SlowMove(Vector2::b2Left, _moveSpeedX);
 
 
 			cout << _state->GetState() << endl;
@@ -166,7 +166,7 @@ void Character::KeyControl()
 		//¿À¸¥ÂÊ
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
-			Moving(Vector2::b2Right, _moveSpeedX);
+			NormalMove(Vector2::b2Right, _moveSpeedX);
 			cout << _state->GetState() << endl;
 
 			_state->SetState(RIGHT_IDLE);
@@ -187,9 +187,9 @@ void Character::KeyControl()
 			}
 
 			if (_isFloating)
-				Moving(Vector2::b2Right, _moveSpeedX);
+				NormalMove(Vector2::b2Right, _moveSpeedX);
 			else
-				Movement(Vector2::b2Right, _moveSpeedX);
+				SlowMove(Vector2::b2Right, _moveSpeedX);
 			cout << _state->GetState() << endl;
 		}
 		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
@@ -219,12 +219,12 @@ void Character::KeyControl()
 
 }
 
-void Character::Moving(b2Vec2 b2v, float power)
+void Character::NormalMove(b2Vec2 b2v, float power)
 {
 	_physics->ApplyForce(b2v * power);
 }
 
-void Character::Movement(b2Vec2 b2v, float power)
+void Character::SlowMove(b2Vec2 b2v, float power)
 {
 	_physics->GetBody()->SetLinearVelocity(b2v * (power - 1));
 }

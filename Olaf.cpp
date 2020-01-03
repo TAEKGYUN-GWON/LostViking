@@ -26,6 +26,7 @@ void Olaf::Init(float spawnX, float spawnY)
 	GRAPHICMANAGER->AddFrameImage("olaf_pushwall", L"img/Characters/Olaf/olaf_8_pushwall.png", 4, 2);
 	GRAPHICMANAGER->AddFrameImage("olaf_death1", L"img/Characters/Olaf/olaf_9_death1.png", 6, 2);
 	GRAPHICMANAGER->AddFrameImage("olaf_death2", L"img/Characters/Olaf/olaf_9_death2.png", 2, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_death2", L"img/Characters/Olaf/olaf_9_death2.png", 2, 2);
 
 	super::Init(spawnX, spawnY);
 
@@ -53,9 +54,9 @@ void Olaf::Update()
 		{
 			_isFloating = false;
 
-			if (_state->GetState() == LEFT_FLOATING)
+			if (_state->GetState() == LEFT_FLOATING || _state->GetState() == O_LEFT_SHIELD_CONTROL)
 				_state->SetState(LEFT_IDLE);
-			else if (_state->GetState() == RIGHT_FLOATING)
+			else if (_state->GetState() == RIGHT_FLOATING || _state->GetState() == O_RIGHT_SHIELD_CONTROL)
 				_state->SetState(RIGHT_IDLE);
 
 			cout << _state->GetState() << endl;
@@ -88,92 +89,100 @@ void Olaf::ImageControl()
 
 	switch (_state->GetState())
 	{
-		case RIGHT_IDLE:
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_idle_shieldAhead"); 
-			break;
-		case LEFT_IDLE:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_idle_shieldAhead");
-			break;
-		case RIGHT_MOVE:
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_move_shieldAhead");
-			break;
-		case LEFT_MOVE:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_move_shieldAhead");
-			break;
-		case RIGHT_DEATH: //일반적인 죽음 (전기는 따로 있음)
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_death1");
-			break;
-		case LEFT_DEATH:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_death1");
-			break;
-		case RIGHT_PUSH:
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_pushwall");
-			break;
-		case LEFT_PUSH:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_pushwall");
-			break;
-		case RIGHT_HIT:
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_hit");
-			break;
-		case LEFT_HIT:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_hit");
-			break;
-		case RIGHT_FLOATING:
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_floating");
-			break;
-		case LEFT_FLOATING:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_floating");
-			break;
-		case RIGHT_SPECIAL1: //날아서 내려오기
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_flyingdown");
-			break;
-		case LEFT_SPECIAL1:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_flyingdown");
-			break;
-		case RIGHT_SPECIAL2: //방패 위로해서 발판되기
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_shieldUp");
-			break;
-		case LEFT_SPECIAL2:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_shieldUp");
-			break;
-		case LADDER:
-			//이건 봐서 이미지 수정해야할듯
-			//사다리 꼭대기에 닿았을 때 상태가 따로 없어서 이미지 이상함
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_ladder");
-			break;
-		case EXTRA1: //방패 머리위로 하고 MOVE RIGHT
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_move_shieldUp");
-			break;
-		case EXTRA2: //방패 머리위로 하고 MOVE LEFT
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_move_shieldUp");
-			break;
-		case EXTRA3:
-			_graphic->SetFrameY(0);
-			ChangeImage("olaf_death2");
-			break;
-		case EXTRA4:
-			_graphic->SetFrameY(1);
-			ChangeImage("olaf_death2");
-
+	case RIGHT_IDLE:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_idle_shieldAhead");
+		break;
+	case LEFT_IDLE:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_idle_shieldAhead");
+		break;
+	case RIGHT_MOVE:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_move_shieldAhead");
+		break;
+	case LEFT_MOVE:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_move_shieldAhead");
+		break;
+	case RIGHT_DEATH: //일반적인 죽음 (전기는 따로 있음)
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_death1");
+		break;
+	case LEFT_DEATH:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_death1");
+		break;
+	case RIGHT_PUSH:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_pushwall");
+		break;
+	case LEFT_PUSH:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_pushwall");
+		break;
+	case RIGHT_HIT:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_hit");
+		break;
+	case LEFT_HIT:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_hit");
+		break;
+	case RIGHT_FLOATING:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_floating");
+		break;
+	case LEFT_FLOATING:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_floating");
+		break;
+	case RIGHT_SPECIAL1: //날아서 내려오기
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_flyingdown");
+		break;
+	case LEFT_SPECIAL1:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_flyingdown");
+		break;
+	case RIGHT_SPECIAL2: //방패 위로해서 발판되기
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_shieldUp");
+		break;
+	case LEFT_SPECIAL2:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_shieldUp");
+		break;
+	case LADDER:
+		//이건 봐서 이미지 수정해야할듯
+		//사다리 꼭대기에 닿았을 때 상태가 따로 없어서 이미지 이상함
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_ladder");
+		break;
+	case EXTRA1: //방패 머리위로 하고 MOVE RIGHT
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_move_shieldUp");
+		break;
+	case EXTRA2: //방패 머리위로 하고 MOVE LEFT
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_move_shieldUp");
+		break;
+	case EXTRA3:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_death2");
+		break;
+	case EXTRA4:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_death2");
+		break;
+	case O_LEFT_SHIELD_CONTROL:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_flyingdown");
+		break;
+	case O_RIGHT_SHIELD_CONTROL:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_flyingdown");
+		break;
 	}
 	//keycontrol이랑 연계해서 상태 몇개 더 추가하는게 좋을 것 같음..
 
@@ -219,6 +228,15 @@ void Olaf::KeyControl()
 {
 	if (_isLaddering)
 	{
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+		{
+			_state->SetState(LADDER);
+		}
+		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		{
+			_state->SetState(LADDER);
+		}
+
 		//왼쪽
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
@@ -227,7 +245,7 @@ void Olaf::KeyControl()
 			SetGravity(1);
 
 			//if (_state->GetState() != LEFT_SPECIAL2)
-				_state->SetState(LEFT_IDLE);
+				_state->SetState(LEFT_FLOATING);
 		}
 
 		//오른쪽
@@ -236,7 +254,7 @@ void Olaf::KeyControl()
 			_trans->SetPos(Vector2(_trans->GetPos().x + _moveSpeedX, _trans->GetPos().y));
 			_isLaddering = false;
 			SetGravity(1);
-			_state->SetState(RIGHT_IDLE);
+			_state->SetState(RIGHT_FLOATING);
 		}
 
 		//위
@@ -265,12 +283,14 @@ void Olaf::KeyControl()
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
-			Moving(Vector2::b2Left, _moveSpeedX);
+			NormalMove(Vector2::b2Left, _moveSpeedX);
 
 			/*if (_state->GetState() != LEFT_SPECIAL2)
 				_state->SetState(LEFT_IDLE); */
 
-			if (_state->GetState() != EXTRA2 && _state->GetState() != LEFT_SPECIAL2)
+			if (_state->GetState() == O_LEFT_SHIELD_CONTROL || _state->GetState() == O_RIGHT_SHIELD_CONTROL)
+				_state->SetState(O_LEFT_SHIELD_CONTROL);
+			else if (_state->GetState() != EXTRA2 && _state->GetState() != LEFT_SPECIAL2)
 				_state->SetState(LEFT_IDLE);
 
 			cout << _state->GetState() << endl;
@@ -280,23 +300,23 @@ void Olaf::KeyControl()
 			if (_isPush && _isGround)
 			{
 				_state->SetState(LEFT_PUSH);
-
 			}
 			else
 			{
 				/*if (!_isFloating)
 					_state->SetState(LEFT_MOVE); */
-				
-				if (_state->GetState() == LEFT_SPECIAL2 || _state->GetState() == EXTRA2)
+				if(_state->GetState() == O_RIGHT_SHIELD_CONTROL)
+					_state->SetState(O_LEFT_SHIELD_CONTROL);
+				else if (_state->GetState() == LEFT_SPECIAL2 || _state->GetState() == EXTRA2)
 					_state->SetState(EXTRA2);
 				else if (!_isFloating)
 					_state->SetState(LEFT_MOVE);
 			}
 
-			if (_isFloating)
-				Moving(Vector2::b2Left, _moveSpeedX);
+			if (_isFloating && _state->GetState() != O_LEFT_SHIELD_CONTROL && _state->GetState() != O_RIGHT_SHIELD_CONTROL)
+				NormalMove(Vector2::b2Left, _moveSpeedX);
 			else
-				Movement(Vector2::b2Left, _moveSpeedX);
+				SlowMove(Vector2::b2Left, _moveSpeedX);
 
 
 			cout << _state->GetState() << endl;
@@ -305,8 +325,10 @@ void Olaf::KeyControl()
 		{
 			//_state->SetState(LEFT_IDLE);
 
-			if (_state->GetState() == EXTRA2)
-				_state->SetState(LEFT_SPECIAL2);
+			 if (_state->GetState() == O_LEFT_SHIELD_CONTROL)
+				_state->SetState(O_LEFT_SHIELD_CONTROL);
+			else if (_state->GetState() == EXTRA2)
+				_state->SetState(LEFT_SPECIAL2); 
 			else
 				_state->SetState(LEFT_IDLE);
 
@@ -317,10 +339,12 @@ void Olaf::KeyControl()
 		//오른쪽
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
-			Moving(Vector2::b2Right, _moveSpeedX);
+			NormalMove(Vector2::b2Right, _moveSpeedX);
 			cout << _state->GetState() << endl;
 
-			if (_state->GetState() != EXTRA1 && _state->GetState() != RIGHT_SPECIAL2)
+			if (_state->GetState() == O_RIGHT_SHIELD_CONTROL)
+				_state->SetState(O_RIGHT_SHIELD_CONTROL);
+			else if (_state->GetState() != EXTRA1 && _state->GetState() != RIGHT_SPECIAL2)
 				_state->SetState(RIGHT_IDLE);
 		}
 		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
@@ -331,24 +355,29 @@ void Olaf::KeyControl()
 			}
 			else
 			{
-				if (_state->GetState() == RIGHT_SPECIAL2 || _state->GetState() == EXTRA1)
+				if (_state->GetState() == O_LEFT_SHIELD_CONTROL)
+					_state->SetState(O_RIGHT_SHIELD_CONTROL);
+				else if (_state->GetState() == RIGHT_SPECIAL2 || _state->GetState() == EXTRA1)
 					_state->SetState(EXTRA1);
 				else if (!_isFloating)
 					_state->SetState(RIGHT_MOVE);
 			}
 
-			if (_isFloating)
-				Moving(Vector2::b2Right, _moveSpeedX);
+			if (_isFloating && _state->GetState() != O_LEFT_SHIELD_CONTROL && _state->GetState() != O_RIGHT_SHIELD_CONTROL)
+				NormalMove(Vector2::b2Right, _moveSpeedX);
 			else
-				Movement(Vector2::b2Right, _moveSpeedX);
+				SlowMove(Vector2::b2Right, _moveSpeedX);
 			cout << _state->GetState() << endl;
 		}
 		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 		{
-			if (_state->GetState() == EXTRA1)
+			if (_state->GetState() == O_RIGHT_SHIELD_CONTROL)
+				_state->SetState(O_RIGHT_SHIELD_CONTROL);
+			else if (_state->GetState() == EXTRA1)
 				_state->SetState(RIGHT_SPECIAL2);
 			else
 				_state->SetState(RIGHT_IDLE);
+		
 
 			_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
 			cout << _state->GetState() << endl;
@@ -411,27 +440,43 @@ void Olaf::ShildChange()
 	{
 		_state->SetState(LEFT_MOVE);
 	}
+	else if (_state->GetState() == RIGHT_FLOATING)
+	{
+		_state->SetState(O_RIGHT_SHIELD_CONTROL);
+	}
+	else if (_state->GetState() == LEFT_FLOATING)
+	{
+		_state->SetState(O_LEFT_SHIELD_CONTROL);
+	}
+	else if (_state->GetState() == O_RIGHT_SHIELD_CONTROL)
+	{
+		_state->SetState(RIGHT_FLOATING);
+	}
+	else if (_state->GetState() == O_LEFT_SHIELD_CONTROL)
+	{
+		_state->SetState(LEFT_FLOATING);
+	}
 	
 }
 
 void Olaf::ShieldState()
 {
 	
-
-	if (_state->GetState() == RIGHT_IDLE || _state->GetState() == RIGHT_MOVE)
+	if (_state->GetState() == RIGHT_IDLE || _state->GetState() == RIGHT_MOVE || _state->GetState() == RIGHT_FLOATING)
 	{
 		_upShield->SetIsActive(false);
 		_leftShield->SetIsActive(false);
 		_rightShield->SetIsActive(true);
 	}
-	if (_state->GetState() == LEFT_IDLE || _state->GetState() == LEFT_MOVE)
+	if (_state->GetState() == LEFT_IDLE || _state->GetState() == LEFT_MOVE || _state->GetState() == LEFT_FLOATING)
 	{
 		_upShield->SetIsActive(false);
 		_leftShield->SetIsActive(true);
 		_rightShield->SetIsActive(false);
 	}
 	if (_state->GetState() == RIGHT_SPECIAL2 || _state->GetState() == LEFT_SPECIAL2
-		|| _state->GetState() == EXTRA1 || _state->GetState() == EXTRA2 )
+		|| _state->GetState() == EXTRA1 || _state->GetState() == EXTRA2
+		|| _state->GetState() == O_RIGHT_SHIELD_CONTROL || _state->GetState() == O_LEFT_SHIELD_CONTROL)
 	{
 		_upShield->SetIsActive(true);
 		_leftShield->SetIsActive(false);
