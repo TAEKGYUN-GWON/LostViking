@@ -29,6 +29,8 @@ void Enemy::Init(Vector2 pos, string image, float speed, ENEMY_STATE state, bool
 	_physics->GetBody()->SetFixedRotation(true);	//회전값 안받음
 	_physics->GetBody()->SetGravityScale(0);		//중력 안받음
 
+	_timer = _fireCount = 0;
+	_direction = 0;
 
 	AddComponent<EnemyCollision>();
 }
@@ -40,7 +42,7 @@ void Enemy::Release()
 void Enemy::Update()
 {
 	Move();
-	Shoot();
+	Attack();
 
 	super::Update();
 }
@@ -87,7 +89,7 @@ void Enemy::Move()
 	_trans->SetPos(_physics->GetBodyPosition());
 }
 
-void Enemy::Shoot()
+void Enemy::Attack()
 {
 	if (_isAttack)
 	{
@@ -115,4 +117,16 @@ void Enemy::Shoot()
 			}
 		}
 	}
+}
+
+bool Enemy::IsFire()
+{
+	_fireCount += TIMEMANAGER->getElapsedTime();
+	if (_fireCount >= 1.5f)
+	{
+		_fireCount = 0;
+		return true;
+	}
+	
+	return false;
 }

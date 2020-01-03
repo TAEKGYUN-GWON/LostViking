@@ -31,13 +31,13 @@ void EnemyCollision::CollisionBegin(void * obj)
 		enemy->SetState(MOVE_LEFT);
 	}
 
-	if (collisionObj->GetTag() == "Gate"&& enemy->GetState() == MOVE_LEFT)
+	else if (collisionObj->GetTag() == "Gate"&& enemy->GetState() == MOVE_LEFT || enemy->GetState() == ATTACK_LEFT)
 	{
 		Gate* gate = (Gate*)collisionObj;
 		if (!gate->GetIsOn())
 			enemy->SetState(MOVE_RIGHT);
 	}
-	else if (collisionObj->GetTag() == "Gate"&& enemy->GetState() == MOVE_RIGHT)
+	else if (collisionObj->GetTag() == "Gate"&& enemy->GetState() == MOVE_RIGHT || enemy->GetState() == ATTACK_RIGHT)
 	{
 		Gate* gate = (Gate*)collisionObj;
 		if (!gate->GetIsOn())
@@ -48,11 +48,16 @@ void EnemyCollision::CollisionBegin(void * obj)
 	if (collisionObj->GetTag() == "Player" && enemy->GetState() == MOVE_LEFT)
 	{
 		enemy->SetState(ATTACK_LEFT);
+		enemy->SetAttack(true);
 	}
 	else if (collisionObj->GetTag() == "Player" && enemy->GetState() == MOVE_RIGHT)
 	{
 		enemy->SetState(ATTACK_RIGHT);
+		enemy->SetAttack(true);
 	}
+
+	
+
 }
 
 

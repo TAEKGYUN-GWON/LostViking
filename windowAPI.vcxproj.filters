@@ -282,7 +282,7 @@
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Inventory.h">
+    <ClInclude Include="Olaf.h">
       <Filter>playGround\Character</Filter>
     </ClInclude>
     <ClInclude Include="EXIT.h">
@@ -488,7 +488,7 @@
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Inventory.cpp">
+    <ClCompile Include="Olaf.cpp">
       <Filter>playGround\Character</Filter>
     </ClCompile>
     <ClCompile Include="EXIT.cpp">

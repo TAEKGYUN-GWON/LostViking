@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="Baleog.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="BoxWorldManager.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="EnemyCollision.h" />
     <ClInclude Include="enemyManager.h" />
+    <ClInclude Include="Erik.h" />
     <ClInclude Include="ErikScript.h" />
     <ClInclude Include="EXIT.h" />
     <ClInclude Include="EXITScript.h" />
@@ -193,6 +195,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="ObjectPool.hpp" />
+    <ClInclude Include="Olaf.h" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Plasma.h" />
@@ -223,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="Baleog.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BoxWorldManager.cpp" />
@@ -244,6 +248,7 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EnemyCollision.cpp" />
     <ClCompile Include="enemyManager.cpp" />
+    <ClCompile Include="Erik.cpp" />
     <ClCompile Include="ErikScript.cpp" />
     <ClCompile Include="EXIT.cpp" />
     <ClCompile Include="EXITScript.cpp" />
@@ -267,6 +272,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjectPool.cpp" />
+    <ClCompile Include="Olaf.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Plasma.cpp" />
