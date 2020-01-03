@@ -2,6 +2,7 @@
 #include "EnemyManager.h"
 #include"TransformComponent.h"
 #include"GraphicComponent.h"
+#include "Bullet.h"
 
 EnemyManager::EnemyManager()
 {
@@ -46,6 +47,15 @@ void EnemyManager::Init()
 
 		_vEnemy.push_back(enemy);
 	}
+
+	GRAPHICMANAGER->AddImage("BulletImage", L"cannon_bullet.png");
+
+	Bullet *bullet = new Bullet;
+	bullet->Init("BulletImage", "Bullet","enemyBullet");
+	
+	_objectPool = new ObjectPool;
+	_objectPool->Init<Bullet>(50, *bullet);
+
 }
 
 void EnemyManager::Release()
@@ -56,10 +66,18 @@ void EnemyManager::Update()
 {
 	for (Enemy *enemy : _vEnemy)
 		enemy->Update();
+
+	//활성화된 총알을 업데이트 해주는 과정
+	for (Object *B : _objectPool->GetActivePool())
+		B->Update();
 }
 
 void EnemyManager::Render()
 {
 	for (Enemy *enemy : _vEnemy)
 		enemy->Render();
+
+	//활성화된 총알을 그리는 과정
+	for (Object *B : _objectPool->GetActivePool())
+		B->Render();
 }
