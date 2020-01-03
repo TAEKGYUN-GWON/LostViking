@@ -26,6 +26,7 @@ void Character::Init(float spawnX, float spawnY)
 	_state =  AddComponent<StateComponent>();
 	_physics = AddComponent<PhysicsBodyComponent>();
 	AddComponent<ErikScript>();
+	_graphic->Init(true, true);
 
 	_trans->SetScale(80, 100);
 	//_trans->SetPos(WINSIZEX / 2 - 200, 200);
