@@ -23,6 +23,10 @@ public:
 
 	void SetShield();
 	void ShieldMove();
+	void ShildChange();
+	void ShieldState();
+
+	void KeyControl();
 	
 	void ImageControl();
 };

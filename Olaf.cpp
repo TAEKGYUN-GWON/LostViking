@@ -22,7 +22,7 @@ void Olaf::Init(float spawnX, float spawnY)
 	GRAPHICMANAGER->AddFrameImage("olaf_hit", L"img/Characters/Olaf/olaf_4_hit.png", 1, 2);
 	GRAPHICMANAGER->AddFrameImage("olaf_ladder", L"img/Characters/Olaf/olaf_5_laddering.png", 4, 1);
 	GRAPHICMANAGER->AddFrameImage("olaf_flyingdown", L"img/Characters/Olaf/olaf_6_flyingdown.png", 4, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_shieldUp", L"img/Characters/Olaf/olaf_7_shieldUp.png", 3, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_shieldUp", L"img/Characters/Olaf/olaf_7_shieldUp.png", 2, 2);
 	GRAPHICMANAGER->AddFrameImage("olaf_pushwall", L"img/Characters/Olaf/olaf_8_pushwall.png", 4, 2);
 	GRAPHICMANAGER->AddFrameImage("olaf_death1", L"img/Characters/Olaf/olaf_9_death1.png", 6, 2);
 	GRAPHICMANAGER->AddFrameImage("olaf_death2", L"img/Characters/Olaf/olaf_9_death2.png", 2, 2);
@@ -39,7 +39,34 @@ void Olaf::Update()
 
 	ShieldMove();
 
+	KeyControl();
+	
+	if (!_isLaddering && !_isGround)
+	{
+		_isFloating = true;
+		CheckLR();
+		cout << _state->GetState() << endl;
+	}
+	else if (_isFloating)
+	{
+		if (_isGround)
+		{
+			_isFloating = false;
+
+			if (_state->GetState() == LEFT_FLOATING)
+				_state->SetState(LEFT_IDLE);
+			else if (_state->GetState() == RIGHT_FLOATING)
+				_state->SetState(RIGHT_IDLE);
+
+			cout << _state->GetState() << endl;
+		}
+	}
+
+	CAMERA->SetPosition(_trans->GetPos());
+
 	ImageControl();
+
+	ShieldState();
 
 	for (int i = 0; i < _shields.size(); i++)
 		_shields[i]->Update();
@@ -51,7 +78,8 @@ void Olaf::Render()
 
 	for (int i = 0; i < _shields.size(); i++)
 	{
-		_shields[i]->Render();
+		if(_shields[i]->GetIsActive())
+			_shields[i]->Render();
 	}
 }
 
@@ -131,19 +159,19 @@ void Olaf::ImageControl()
 			ChangeImage("olaf_ladder");
 			break;
 		case EXTRA1: //방패 머리위로 하고 MOVE RIGHT
-			_graphic->SetFrameX(0);
+			_graphic->SetFrameY(0);
 			ChangeImage("olaf_move_shieldUp");
 			break;
 		case EXTRA2: //방패 머리위로 하고 MOVE LEFT
-			_graphic->SetFrameX(1);
+			_graphic->SetFrameY(1);
 			ChangeImage("olaf_move_shieldUp");
 			break;
 		case EXTRA3:
-			_graphic->SetFrameX(0);
+			_graphic->SetFrameY(0);
 			ChangeImage("olaf_death2");
 			break;
 		case EXTRA4:
-			_graphic->SetFrameX(1);
+			_graphic->SetFrameY(1);
 			ChangeImage("olaf_death2");
 
 	}
@@ -155,14 +183,258 @@ void Olaf::SetShield()
 {
 	_upShield = new Object();
 	_upShield->SetTag("UpShield");
-	_upShield->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC,1.f);
-	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 100);
-	_upShield->GetTrans()->SetScale(10 , 10);
+	_upShield->AddComponent<PhysicsBodyComponent>()->Init(STATIC,1.f);
+	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 60);
+	_upShield->GetTrans()->SetScale(80 , 10);
+	_upShield->SetIsActive(false);
+
+	_leftShield = new Object();
+	_leftShield->SetTag("LeftShield");
+	_leftShield->AddComponent<PhysicsBodyComponent>()->Init(STATIC, 1.f);
+	_leftShield->GetTrans()->SetPos(_trans->GetPos().x - 60, _trans->GetPos().y);
+	_leftShield->GetTrans()->SetScale(10, 80);
+	_upShield->SetIsActive(false);
+
+	_rightShield = new Object();
+	_rightShield->SetTag("RightShield");
+	_rightShield->AddComponent<PhysicsBodyComponent>()->Init(STATIC, 1.f);
+	_rightShield->GetTrans()->SetPos(_trans->GetPos().x + 60, _trans->GetPos().y);
+	_rightShield->GetTrans()->SetScale(10, 80);
 
 	_shields.push_back(_upShield);
+	_shields.push_back(_leftShield);
+	_shields.push_back(_rightShield);
+
 }
 
 void Olaf::ShieldMove()
 {
-	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 50);
+	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 60);
+	_leftShield->GetTrans()->SetPos(_trans->GetPos().x - 60, _trans->GetPos().y);
+	_rightShield->GetTrans()->SetPos(_trans->GetPos().x + 60, _trans->GetPos().y);
+	
+}
+
+void Olaf::KeyControl()
+{
+	if (_isLaddering)
+	{
+		//왼쪽
+		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x - _moveSpeedX, _trans->GetPos().y));
+			_isLaddering = false;
+			SetGravity(1);
+
+			//if (_state->GetState() != LEFT_SPECIAL2)
+				_state->SetState(LEFT_IDLE);
+		}
+
+		//오른쪽
+		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x + _moveSpeedX, _trans->GetPos().y));
+			_isLaddering = false;
+			SetGravity(1);
+			_state->SetState(RIGHT_IDLE);
+		}
+
+		//위
+		if (KEYMANAGER->isOnceKeyDown(VK_UP))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x, _trans->GetPos().y - _moveSpeedY));
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_UP))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x, _trans->GetPos().y - _moveSpeedY));
+		}
+
+		//아래
+		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x, _trans->GetPos().y + _moveSpeedY));
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x, _trans->GetPos().y + _moveSpeedY));
+		}
+
+		_physics->SetBodyPosition();
+	}
+	else if (!_isLaddering)
+	{
+		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			Moving(Vector2::b2Left, _moveSpeedX);
+
+			/*if (_state->GetState() != LEFT_SPECIAL2)
+				_state->SetState(LEFT_IDLE); */
+
+			if (_state->GetState() != EXTRA2 && _state->GetState() != LEFT_SPECIAL2)
+				_state->SetState(LEFT_IDLE);
+
+			cout << _state->GetState() << endl;
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+		{
+			if (_isPush && _isGround)
+			{
+				_state->SetState(LEFT_PUSH);
+
+			}
+			else
+			{
+				/*if (!_isFloating)
+					_state->SetState(LEFT_MOVE); */
+				
+				if (_state->GetState() == LEFT_SPECIAL2 || _state->GetState() == EXTRA2)
+					_state->SetState(EXTRA2);
+				else if (!_isFloating)
+					_state->SetState(LEFT_MOVE);
+			}
+
+			if (_isFloating)
+				Moving(Vector2::b2Left, _moveSpeedX);
+			else
+				Movement(Vector2::b2Left, _moveSpeedX);
+
+
+			cout << _state->GetState() << endl;
+		}
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+		{
+			//_state->SetState(LEFT_IDLE);
+
+			if (_state->GetState() == EXTRA2)
+				_state->SetState(LEFT_SPECIAL2);
+			else
+				_state->SetState(LEFT_IDLE);
+
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
+			cout << _state->GetState() << endl;
+		}
+
+		//오른쪽
+		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			Moving(Vector2::b2Right, _moveSpeedX);
+			cout << _state->GetState() << endl;
+
+			if (_state->GetState() != EXTRA1 && _state->GetState() != RIGHT_SPECIAL2)
+				_state->SetState(RIGHT_IDLE);
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		{
+			if (_isPush && _isGround)
+			{
+				_state->SetState(RIGHT_PUSH);
+			}
+			else
+			{
+				if (_state->GetState() == RIGHT_SPECIAL2 || _state->GetState() == EXTRA1)
+					_state->SetState(EXTRA1);
+				else if (!_isFloating)
+					_state->SetState(RIGHT_MOVE);
+			}
+
+			if (_isFloating)
+				Moving(Vector2::b2Right, _moveSpeedX);
+			else
+				Movement(Vector2::b2Right, _moveSpeedX);
+			cout << _state->GetState() << endl;
+		}
+		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		{
+			if (_state->GetState() == EXTRA1)
+				_state->SetState(RIGHT_SPECIAL2);
+			else
+				_state->SetState(RIGHT_IDLE);
+
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
+			cout << _state->GetState() << endl;
+		}
+
+		//위
+		if (KEYMANAGER->isOnceKeyDown(VK_UP))
+		{
+			if (_isLadder)
+			{
+				_isLaddering = true;
+				SetGravity(0);
+				_trans->pos.x = _LadderPos.x;
+				_state->SetState(LADDER);
+				_physics->SetBodyPosition();
+				_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
+			}
+		}
+
+		_trans->SetPos(_physics->GetBodyPosition());
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('D'))
+	{
+		ShildChange();
+	}
+	
+	if (KEYMANAGER->isOnceKeyDown('F'))
+	{
+		ShildChange();
+	}
+		
+}
+
+void Olaf::ShildChange()
+{
+	if (_state->GetState() == RIGHT_IDLE || _state->GetState() == RIGHT_MOVE)
+	{
+		_state->SetState(RIGHT_SPECIAL2);
+		cout << _state->GetState() << endl;
+	}
+	else if (_state->GetState() == LEFT_IDLE || _state->GetState() == LEFT_MOVE)
+	{
+		_state->SetState(LEFT_SPECIAL2);
+		cout << _state->GetState() << endl;
+	}
+	else if (_state->GetState() == RIGHT_SPECIAL2)
+	{
+		_state->SetState(RIGHT_IDLE);
+	}
+	else if (_state->GetState() == LEFT_SPECIAL2)
+	{
+		_state->SetState(LEFT_IDLE);
+	}
+	else if (_state->GetState() == EXTRA1)
+	{
+		_state->SetState(RIGHT_MOVE);
+	}
+	else if (_state->GetState() == EXTRA2)
+	{
+		_state->SetState(LEFT_MOVE);
+	}
+	
+}
+
+void Olaf::ShieldState()
+{
+	
+
+	if (_state->GetState() == RIGHT_IDLE || _state->GetState() == RIGHT_MOVE)
+	{
+		_upShield->SetIsActive(false);
+		_leftShield->SetIsActive(false);
+		_rightShield->SetIsActive(true);
+	}
+	if (_state->GetState() == LEFT_IDLE || _state->GetState() == LEFT_MOVE)
+	{
+		_upShield->SetIsActive(false);
+		_leftShield->SetIsActive(true);
+		_rightShield->SetIsActive(false);
+	}
+	if (_state->GetState() == RIGHT_SPECIAL2 || _state->GetState() == LEFT_SPECIAL2
+		|| _state->GetState() == EXTRA1 || _state->GetState() == EXTRA2 )
+	{
+		_upShield->SetIsActive(true);
+		_leftShield->SetIsActive(false);
+		_rightShield->SetIsActive(false);
+	}
 }

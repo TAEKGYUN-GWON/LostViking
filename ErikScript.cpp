@@ -23,7 +23,13 @@ void ErikScript::CollisionBegin(void * obj)
 		cout << "¹Ù´ÚÀÌ¶û ´êÀ½" << endl;
 		me->SetGround(true);
 	}
-	if (to->GetName() == "Ladder1")
+
+	if (to->GetName() == "Ladder1" ||
+		to->GetName() == "Ladder2" ||
+		to->GetName() == "Ladder3" ||
+		to->GetName() == "Ladder4" ||
+		to->GetName() == "Ladder5" ||
+		to->GetName() == "Ladder6")
 	{
 		cout << "»ç´Ù¸® ºÎµúÈû" << endl; 
 		me->SetLadder(true);
@@ -58,7 +64,12 @@ void ErikScript::CollisionEnd(void * obj)
 		cout << "¹Ù´ÚÀÌ¶û ¶³¾îÁü" << endl;
 		me->SetGround(false);
 	}
-	if (to->GetName() == "Ladder1")
+	if (to->GetName() == "Ladder1" ||
+		to->GetName() == "Ladder2" ||
+		to->GetName() == "Ladder3" ||
+		to->GetName() == "Ladder4" ||
+		to->GetName() == "Ladder5" ||
+		to->GetName() == "Ladder6")
 	{
 		cout << "»ç´Ù¸® ¶³¾îÁü" << endl;
 		me->SetLadder(false);

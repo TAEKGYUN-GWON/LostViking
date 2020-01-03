@@ -52,7 +52,7 @@ void Character::Update()
 {
 	super::Update();
 
-	KeyControl();
+	/*KeyControl();
 
 	if (!_isLaddering && !_isGround)
 	{
@@ -75,7 +75,7 @@ void Character::Update()
 		}
 	}
 
-	CAMERA->SetPosition(_trans->GetPos());
+	CAMERA->SetPosition(_trans->GetPos());*/
 }
 
 void Character::Release()
@@ -181,6 +181,9 @@ void Character::KeyControl()
 			{
 				if(!_isFloating)
 					_state->SetState(RIGHT_MOVE);
+
+				if (_state->GetState() == RIGHT_SPECIAL2)
+					_state->SetState(EXTRA1);
 			}
 
 			if (_isFloating)
