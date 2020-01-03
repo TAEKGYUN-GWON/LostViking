@@ -6,7 +6,8 @@
 #include "Ladder.h"
 #include"GraphicComponent.h"
 #include"UnGravityScript.h"
-#include"ElevatorFloor.h"
+
+
 UIManager::UIManager()
 {
 }
@@ -419,38 +420,6 @@ void UIManager::Init()
 		_vWalls.push_back(ladder6);
 
 	}
-
-	{
-		Wall* floor = new ElevatorFloor;
-		floor->SetScale(94, 27);
-		floor->SetPos(2803, 638.5f);
-		floor->SetTag("Elevator");
-		floor->SetName("ElevatorTop");
-		floor->Init();
-		_vWalls.push_back(floor);
-
-
-		floor = new ElevatorFloor;
-		floor->SetScale(94, 27);
-		floor->SetPos(2803, 1223.f);
-		floor->SetTag("Elevator");
-		floor->SetName("ElevatorMiddle");
-		floor->Init();
-		_vWalls.push_back(floor);
-
-		floor = new ElevatorFloor;
-		floor->SetScale(94, 15);
-		floor->SetPos(2803, 2150.8f);
-		floor->SetTag("Elevator");
-		floor->SetName("ElevatorBottom");
-		floor->Init();
-		_vWalls.push_back(floor);
-
-	}
-	_elevator = new Elevator;
-	_elevator->Init();
-	_vWalls.push_back(_elevator);
-
 	GRAPHICMANAGER->AddFrameImage("UnGravity", L"img/background/twinkle/중력 화살표.png", 4, 1);
 	Ladder* unGravity = new Ladder;
 	unGravity->SetPos(1684, 1115);
@@ -471,9 +440,12 @@ void UIManager::Init()
 	p->GetTrans()->SetScale(80,100);
 	p->SetTag("Player");
 	auto a = p->AddComponent<PhysicsBodyComponent>();
+	//p->AddComponent<ButtonScript>();
 	a->Init(DYNAMIC,0.5f);
 	//a->GetBody()->SetGravityScale(0);
 	//a->GetBody()->GetFixtureList()->SetSensor(true);
+
+	
 }
 
 void UIManager::Release()
@@ -487,9 +459,10 @@ void UIManager::Update()
 
 	for (Wall* wall : _vWalls)
 		wall->Update();
-	
+
 	PMove();
-	ElevatorMove();
+
+	
 }
 
 void UIManager::Render()
@@ -498,7 +471,6 @@ void UIManager::Render()
 		GRAPHICMANAGER->FindImage("bg")->Render(Vector2(GRAPHICMANAGER->FindImage("bg")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
 	for (Wall* wall : _vWalls)
 		wall->Render();
-	
 	DrawTwinkle();
 
 	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
@@ -679,36 +651,5 @@ void UIManager::PMove()
 	p->Update();
 	CAMERA->SetPosition(Vector2(p->GetTrans()->pos.x, p->GetTrans()->pos.y ));
 
-	
-
 	//a->GetBody()->SetGravityScale(0);
-}
-
-void UIManager::ElevatorMove()
-{
-	if (_elevator->GetIsOn())
-	{
-		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
-		{
-			if (_elevator->GetElevatorPos() == bottom) return;
-			_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Down);
-			_elevator->SetIsUp(down);
-			_elevator->SetStop(false);
-			_elevator->SetElevatorPos(middle);
-		}
-
-		if (KEYMANAGER->isOnceKeyDown(VK_UP))
-		{
-			if (_elevator->GetElevatorPos() == top) return;
-			_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Up);
-			_elevator->SetIsUp(up);
-			_elevator->SetStop(false);
-			_elevator->SetElevatorPos(middle);
-		}
-	}
-
-	if (_elevator->GetStop())
-	{
-		_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Zero);
-	}
 }

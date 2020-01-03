@@ -152,12 +152,14 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bulletScript.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonScript.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Computer.h" />
+    <ClInclude Include="D2DEffect.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="Elevator.h" />
@@ -182,6 +184,7 @@
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="ObjectPool.hpp" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Plasma.h" />
@@ -218,11 +221,13 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="bulletScript.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonScript.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Computer.cpp" />
+    <ClCompile Include="D2DEffect.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="Elevator.cpp" />

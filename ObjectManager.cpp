@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "ObjectManager.h"
-#include"GraphicComponent.h"
+#include "GraphicComponent.h"
+#include "ButtonScript.h"
+
 void ObjectManager::Init()
 {
 	_isTest = true;
@@ -34,30 +36,39 @@ void ObjectManager::Init()
 	Plasma* plasma;
 	plasma = new Plasma;
 	plasma->Init(Vector2(865, 140));
+	plasma->SetName("Plasma1");
 	_vObject.push_back(plasma);
 
 	plasma = new Plasma;
 	plasma->Init(Vector2(1145, 140));
+	plasma->SetName("Plasma2");
 	_vObject.push_back(plasma);
 
 	plasma = new Plasma;
 	plasma->Init(Vector2(1987, 133));
+	plasma->SetName("Plasma3");
 	_vObject.push_back(plasma);
-
+	
 	plasma = new Plasma;
 	plasma->Init(Vector2(2594, 1070));
+	plasma->SetName("Plasma4");
 	_vObject.push_back(plasma);
+	
 	plasma = new Plasma;
 	plasma->Init(Vector2(2640, 1070));
+	plasma->SetName("Plasma5");
 	_vObject.push_back(plasma);
-
+	
 	plasma = new Plasma;
-	plasma->Init(Vector2(2455, 2000));
+	plasma->Init(Vector2(2454, 2004));
+	plasma->SetName("Plasma6");
 	_vObject.push_back(plasma);
-
+	
 	plasma = new Plasma;
 	plasma->Init(Vector2(1660, 2001));
+	plasma->SetName("Plasma7");
 	_vObject.push_back(plasma);
+
 	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■포탑■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
 	RedgunTower* tower;
 	tower = new RedgunTower;
@@ -79,64 +90,77 @@ void ObjectManager::Init()
 	_vObject.push_back(com);
 
 	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■버튼■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-	GRAPHICMANAGER->AddFrameImage("button", L"img/object/switch on off2.png", 3, 1);
+	GRAPHICMANAGER->AddFrameImage("button", L"img/object/switch on off.png", 2, 1);
 	GRAPHICMANAGER->AddFrameImage("switch", L"img/object/switch_2.png", 2, 1);
-
+	
 	Button* button;
 	button = new Button;
 	button->Init(Vector2(1036, 156));
-	button->GetGraphic()->Init(true, false);
+	button->GetGraphic()->Init(true);
+	button->SetName("Button1");
 	button->GetGraphic()->SetPivot(CENTER);
 	button->GetGraphic()->SetImgName("button");
-	button->GetGraphic()->SetFrameX(0);
+	button->GetGraphic()->SetFPS(0.7f);
 	button->GetTrans()->scale = Vector2(button->GetGraphic()->GetGraphic()->GetFrameWidth(),
 		button->GetGraphic()->GetGraphic()->GetFrameHeight());
 	button->SetPhysics(button->AddComponent<PhysicsBodyComponent>());
-	button->GetPhysics()->Init(STATIC, 1);
+	button->GetPhysics()->Init(STATIC, 1, 1.0f, 0.0f, false, true);
+	button->AddComponent<ButtonScript>();
 	_vObject.push_back(button);
 
 	button = new Button;
 	button->Init(Vector2(1942, 156));
-	button->GetGraphic()->Init(true, false);
+	button->GetGraphic()->Init(true);
+	button->SetName("Button2");
 	button->GetGraphic()->SetPivot(CENTER);
 	button->GetGraphic()->SetImgName("button");
-	button->GetGraphic()->SetFrameX(0);
+	button->GetGraphic()->SetFPS(0.7f);
 	button->GetTrans()->scale = Vector2(button->GetGraphic()->GetGraphic()->GetFrameWidth(),
 		button->GetGraphic()->GetGraphic()->GetFrameHeight());
 	button->SetPhysics(button->AddComponent<PhysicsBodyComponent>());
-	button->GetPhysics()->Init(STATIC, 1);
+	button->GetPhysics()->Init(STATIC, 1, 1.0f, 0.0f, false, true);
+	button->AddComponent<ButtonScript>();
 	_vObject.push_back(button);
 
 	button = new Button;
 	button->Init(Vector2(2384, 2014));
-	button->GetGraphic()->Init(true, false);
+	button->GetGraphic()->Init(true);
+	button->SetName("Button3");
 	button->GetGraphic()->SetPivot(CENTER);
 	button->GetGraphic()->SetImgName("button");
-	button->GetGraphic()->SetFrameX(0);
+	button->GetGraphic()->SetFPS(0.7f);
 	button->GetTrans()->scale = Vector2(button->GetGraphic()->GetGraphic()->GetFrameWidth(),
 		button->GetGraphic()->GetGraphic()->GetFrameHeight());
 	button->SetPhysics(button->AddComponent<PhysicsBodyComponent>());
-	button->GetPhysics()->Init(STATIC,1);
+	button->GetPhysics()->Init(STATIC,1, 1.0f, 0.0f, false, true);
+	button->AddComponent<ButtonScript>();
 	_vObject.push_back(button);
 
 	button = new Button;
 	button->Init(Vector2(1821, 1444));
-	button->GetGraphic()->Init(true, false);
+	button->GetGraphic()->Init(true);
+	button->SetName("switch");
 	button->GetGraphic()->SetPivot(CENTER);
 	button->GetGraphic()->SetImgName("switch");
-	button->GetGraphic()->SetFrameX(0);
+	button->GetGraphic()->SetFPS(0.7f);
 	button->GetTrans()->scale = Vector2(button->GetGraphic()->GetGraphic()->GetFrameWidth(),
 		button->GetGraphic()->GetGraphic()->GetFrameHeight());
 	button->SetPhysics(button->AddComponent<PhysicsBodyComponent>());
-	button->GetPhysics()->Init(STATIC, 1);
+	button->GetPhysics()->Init(STATIC, 1, 1.0f, 0.0f, false, true);
+	button->AddComponent<ButtonScript>();
 	_vObject.push_back(button);
+
+	GRAPHICMANAGER->AddFrameImage("effect", L"firecracker.png", 19, 1);
 
 
 }
 
 void ObjectManager::Release()
 {
-
+	_vItem.clear();
+	_vObject.clear();
+	_vEffect.clear();
+	SAFE_DELETE(_objPool);
 }
 
 void ObjectManager::Update()
@@ -154,6 +178,37 @@ void ObjectManager::Update()
 	{
 		_vObject[i]->Update();
 	}
+
+	for (Object* i : _vObject)
+	{
+		if (i->GetTag() == "Button")
+		{
+			Button* button = (Button*)i;
+			if (button->GetCollision())
+			{
+				if (KEYMANAGER->isOnceKeyDown('S'))
+				{
+					button->GetGraphic()->Stop();
+					button->GetGraphic()->Start();
+					button->SetIsActive(false);
+
+					D2DEffect* effect = new D2DEffect;
+					effect->Init(Vector2(button->GetTrans()->pos.x, button->GetTrans()->pos.y - 60));
+					_vEffect.push_back(effect);
+				}
+			}
+		}
+		if (!i->GetIsActive()) i->GetComponent<PhysicsBodyComponent>()->GetBody()->GetFixtureList()->SetSensor(true);
+	}
+
+	for (int i = 0; i < _vEffect.size(); ++i)
+	{
+		_vEffect[i]->Update();
+		if (_vEffect[i]->GetGraphic()->IsFrameEnd()) _vEffect.erase(_vEffect.begin() + i);
+	}
+
+	PlasmaOff("Button1", "Plasma1");
+	PlasmaOff("Button1", "Plasma2");
 }
 
 void ObjectManager::Render()
@@ -164,7 +219,28 @@ void ObjectManager::Render()
 	}
 	for (int i = 0; i < _vObject.size(); i++)
 	{
-		if(_vObject[i]->GetIsActive())
-			_vObject[i]->Render();
+		if(_vObject[i]->GetIsActive()|| _vObject[i]->GetTag()=="Button") _vObject[i]->Render();
+	}
+
+	for (D2DEffect* i : _vEffect) i->Render();
+}
+
+void ObjectManager::PlasmaOff(string btn, string pla)
+{
+	for (Object* i : _vObject)
+	{
+		if (i->GetName() == btn)
+		{
+			if (!i->GetIsActive())
+			{
+				for (Object* j : _vObject)
+				{
+					if (j->GetName() == pla)
+					{
+						j->SetIsActive(false);
+					}
+				}
+			}
+		}
 	}
 }
