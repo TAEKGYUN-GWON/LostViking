@@ -5,8 +5,8 @@ class PhysicsBodyComponent;
 class Wall : public Object
 {
 private:
-	PhysicsBodyComponent* _pBody;
 protected:
+	PhysicsBodyComponent* _pBody;
 	typedef Object super;
 public:
 	Wall();

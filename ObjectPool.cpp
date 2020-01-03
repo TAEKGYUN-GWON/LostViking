@@ -12,6 +12,7 @@ ObjectPool::~ObjectPool()
 }
 
 
+
 void ObjectPool::InssertPool(int num)
 {
 	ActivePool[num]->SetIsActive(false);

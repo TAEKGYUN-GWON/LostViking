@@ -11,8 +11,7 @@ void Plasma::Init(Vector2 pos)
 {
 	
 	_trans->pos = pos;
-	_name = "Plasma";
-	_tag  = "Object";
+	_tag  = "Plasma";
 	_graphic->Init(true, true);
 	_graphic->SetPivot(CENTER);
 	_graphic->SetImgName("plasma");

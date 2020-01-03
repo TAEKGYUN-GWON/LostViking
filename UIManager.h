@@ -1,5 +1,6 @@
 #pragma once
 #include "Wall.h"
+#include"Elevator.h"
 class UIManager
 {
 private:
@@ -8,6 +9,7 @@ private:
 	int count;
 	vector<Wall*> _vWalls;
 	Object *p;
+	Elevator *_elevator;
 	Vector2 camera;
 public:
 	UIManager();
@@ -20,5 +22,7 @@ public:
 	void DrawTwinkle();
 	void CameraMove();
 	void PMove();
+	void ElevatorMove();
+	Elevator* GetElevator() { return _elevator; }
 };
 
