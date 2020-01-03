@@ -47,5 +47,6 @@ public:
 	virtual inline PhysicsBodyComponent* GetPhysics() { return _physics; }
 	//virtual inline PhysicsBodyComponent* GetPhysics() { return _physics; }
 	//virtual inline TransformComponent* GetTrans() { return _trans; }
+	bool SetAttack(bool isattack) { _isAttack = isattack; }
 };
 
