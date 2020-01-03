@@ -131,7 +131,11 @@ void ObjectManager::Init()
 	button->GetPhysics()->Init(STATIC, 1);
 	_vObject.push_back(button);
 
-
+	GRAPHICMANAGER->AddImage("cannon_bullet", L"cannon_bullet.png");
+	Bullet* bullet = new Bullet;
+	bullet->Init("cannon_bullet", "Bullet", "cannon_bullet");
+	_objPool = new ObjectPool;
+	_objPool->Init(50, bullet);
 
 
 }
@@ -156,6 +160,8 @@ void ObjectManager::Update()
 	{
 		_vObject[i]->Update();
 	}
+
+	for (Object* a : _objPool->GetActivePool())
 }
 
 void ObjectManager::Render()

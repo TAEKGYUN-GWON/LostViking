@@ -7,6 +7,8 @@
 #include "Computer.h"
 #include "Button.h"
 #include "Elevator.h"
+#include "Bullet.h"
+#include "ObjectPool.h"
 #include <vector>
 
 class ObjectManager 
@@ -18,6 +20,9 @@ private:
 
 	vector<Object*>				_vObject;
 	vector<Object*>::iterator	_viObject;
+
+	
+	ObjectPool* _objPool;
 
 	bool _isTest;
 
