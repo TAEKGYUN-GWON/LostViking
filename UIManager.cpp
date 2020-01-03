@@ -683,7 +683,7 @@ void UIManager::PMove()
 
 	//a->GetBody()->SetGravityScale(0);
 }
-
+//¿¤¸®º£ÀÌÅÍ
 void UIManager::ElevatorMove()
 {
 	if (_elevator->GetIsOn())
