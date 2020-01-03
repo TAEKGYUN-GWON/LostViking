@@ -5,5 +5,9 @@ class Erik :public Character
 public:
 	Erik();
 	~Erik();
-};
 
+	virtual void Init();
+	virtual void Update();
+
+	void ImageControl();
+};
