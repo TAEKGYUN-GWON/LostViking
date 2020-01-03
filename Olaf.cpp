@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Olaf.h"
 #include "GraphicComponent.h"
+#include "TransformComponent.h"
 
 Olaf::Olaf()
 {
@@ -11,24 +12,34 @@ Olaf::~Olaf()
 {
 }
 
-void Olaf::Init()
+void Olaf::Init(float spawnX, float spawnY)
 {
-	GRAPHICMANAGER->AddFrameImage("olaf_idle_shieldAhead", L"olaf_1_idle_shieldAhead.png", 2, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_move_shieldAhead", L"olaf_2_move_shieldAhead.png", 8, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_move_shieldUp", L"olaf_2_move_shieldUp.png", 8, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_floating", L"olaf_3_floating.png", 2, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_hit", L"olaf_4_hit.png", 1, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_ladder", L"olaf_5_ladder.png", 6, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_flyingdown", L"olaf_6_flyingdown.png", 4, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_shieldUp", L"olaf_7_shieldUp.png", 3, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_pushwall", L"olaf_8_pushwall.png", 4, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_death1", L"olaf_9_death1.png", 6, 2);
-	GRAPHICMANAGER->AddFrameImage("olaf_death2", L"olaf_9_death2.png", 2, 2);
+
+	GRAPHICMANAGER->AddFrameImage("olaf_idle_shieldAhead", L"img/Characters/Olaf/olaf_1_idle_shieldAhead.png", 2, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_move_shieldAhead", L"img/Characters/Olaf/olaf_2_move_shieldAhead.png", 8, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_move_shieldUp", L"img/Characters/Olaf/olaf_2_move_shieldUp.png", 8, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_floating", L"img/Characters/Olaf/olaf_3_floating.png", 2, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_hit", L"img/Characters/Olaf/olaf_4_hit.png", 1, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_ladder", L"img/Characters/Olaf/olaf_5_laddering.png", 4, 1);
+	GRAPHICMANAGER->AddFrameImage("olaf_flyingdown", L"img/Characters/Olaf/olaf_6_flyingdown.png", 4, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_shieldUp", L"img/Characters/Olaf/olaf_7_shieldUp.png", 3, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_pushwall", L"img/Characters/Olaf/olaf_8_pushwall.png", 4, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_death1", L"img/Characters/Olaf/olaf_9_death1.png", 6, 2);
+	GRAPHICMANAGER->AddFrameImage("olaf_death2", L"img/Characters/Olaf/olaf_9_death2.png", 2, 2);
+
+	super::Init(spawnX, spawnY);
+
+	SetShield();
 
 }
 
 void Olaf::Update()
 {
+	super::Update();
+
+	ShieldMove();
+
+	ImageControl();
 }
 
 void Olaf::ImageControl()
@@ -124,5 +135,20 @@ void Olaf::ImageControl()
 
 	}
 	//keycontrol이랑 연계해서 상태 몇개 더 추가하는게 좋을 것 같음..
+
+}
+
+void Olaf::SetShield()
+{
+	_upShield = new Object();
+	_upShield->SetTag("UpShield");
+	_upShield->AddComponent<PhysicsBodyComponent>()->Init(STATIC,1.f);
+	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 50);
+	_upShield->GetTrans()->SetScale(80, 30);
+
+}
+
+void Olaf::ShieldMove()
+{
 
 }

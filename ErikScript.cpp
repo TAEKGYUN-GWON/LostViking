@@ -18,7 +18,7 @@ void ErikScript::CollisionBegin(void * obj)
 	Character* me = (Character*)_object;
 
 
-	if (to->GetName() == "Floor")
+	if (to->GetName() == "Floor" || to->GetName() == "Elevator")
 	{
 		cout << "¹Ù´ÚÀÌ¶û ´êÀ½" << endl;
 		me->SetGround(true);

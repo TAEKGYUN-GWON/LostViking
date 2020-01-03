@@ -13,11 +13,14 @@ PlayerManager::~PlayerManager()
 
 void PlayerManager::Init()
 {
-	Character* c = new Character;
-	c->Init(WINSIZEX / 2 - 200, 200);
+	/*Character* c = new Character;
+	c->Init(WINSIZEX / 2 - 200, 200);*/
 
+	Olaf* o = new Olaf;
+	o->Init(WINSIZEX / 2 - 300, 300);
 
-	_vPlayer.push_back(c);
+	_vPlayer.push_back(o);
+	//_vPlayer.push_back(c);
 }
 
 void PlayerManager::Release()
