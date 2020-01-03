@@ -56,7 +56,7 @@ void EnemyCollision::CollisionBegin(void * obj)
 		enemy->SetAttack(true);
 	}
 
-	//ÃÑ¾ËÀÌ¶û ´êÀ¸¸é
+	
 
 }
 

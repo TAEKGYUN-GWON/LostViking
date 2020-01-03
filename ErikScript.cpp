@@ -35,6 +35,16 @@ void ErikScript::CollisionBegin(void * obj)
 		cout << "º®ÀÌ¶û ´êÀ½" << endl;
 		me->SetPush(true);
 	}
+
+	//ÀûÀÇ ÃÑ¾ËÀÌ¶û ´ê´Â°Å Ã¼Å©
+	//ÅÂ±× Bullet ÀÌ¶ó ¸ðµç ÃÑ¾ËÀÓ
+	if (to->GetTag() == "Bullet")
+	{
+		//ÃÑ¾ËÀ» Áö¿ì°í
+		//ÇÇ¸¦ ±ð´Â´Ù
+		cout << "ÃÑ¾ËÀÌ¶û ´êÀ½" << endl;
+		to->SetIsActive(false);
+	}
 }
 	
 
