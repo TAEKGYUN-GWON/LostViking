@@ -1,6 +1,8 @@
 #pragma once
 #include "Character.h"
 #include "Erik.h"
+#include "Olaf.h"
+
 
 
 class PlayerManager

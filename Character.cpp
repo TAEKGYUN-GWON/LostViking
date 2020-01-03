@@ -52,7 +52,7 @@ void Character::Update()
 {
 	super::Update();
 
-	KeyControl();
+	/*KeyControl();
 
 	if (!_isLaddering && !_isGround)
 	{
@@ -75,7 +75,7 @@ void Character::Update()
 		}
 	}
 
-	CAMERA->SetPosition(_trans->GetPos());
+	CAMERA->SetPosition(_trans->GetPos());*/
 }
 
 void Character::Release()
@@ -140,6 +140,7 @@ void Character::KeyControl()
 			if (_isPush && _isGround)
 			{
 				_state->SetState(LEFT_PUSH);
+
 			}
 			else
 			{
@@ -180,6 +181,9 @@ void Character::KeyControl()
 			{
 				if(!_isFloating)
 					_state->SetState(RIGHT_MOVE);
+
+				if (_state->GetState() == RIGHT_SPECIAL2)
+					_state->SetState(EXTRA1);
 			}
 
 			if (_isFloating)
@@ -203,6 +207,7 @@ void Character::KeyControl()
 				_isLaddering = true;
 				SetGravity(0);
 				_trans->pos.x = _LadderPos.x;
+				_state->SetState(LADDER);
 				_physics->SetBodyPosition();
 				_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
 			}

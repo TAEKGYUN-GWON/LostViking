@@ -9,9 +9,9 @@ void ObjectManager::Init()
 
 	Item* item;
 	//¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡áÅä¸¶Åä¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á  
-	item = new Tomato;
+	/*item = new Tomato;
 	item->Init(Vector2(420,530));
-	_vItem.push_back(item);
+	_vItem.push_back(item);*/
 
 	item = new Tomato;
 	item->Init(Vector2(783, 192));

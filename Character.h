@@ -37,7 +37,7 @@ public:
 	virtual void Update();
 	virtual void Release();
 
-	void KeyControl();
+	virtual void KeyControl();
 	void PosCorrection(Object* obj);
 	void Moving(b2Vec2 b2v, float power);
 	void Movement(b2Vec2 b2c, float power);
