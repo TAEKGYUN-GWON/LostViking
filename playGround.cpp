@@ -51,6 +51,8 @@ HRESULT playGround::init()
 	_uiMgr->Init();
 	_playerMgr = new PlayerManager;
 	_playerMgr->Init();
+	_enemyMgr = new EnemyManager;
+	_enemyMgr->Init();
 
 	//CAMERA->SetPosition(_pos);
 	//CAMERA->MoveTo(_pos, 3.0f);
@@ -79,6 +81,7 @@ void playGround::update()
 	_playerMgr->Update();
 	_objMgr->Update();
 	_uiMgr->Update();
+	_enemyMgr->Update();
 }
 
 void playGround::render()
@@ -91,6 +94,7 @@ void playGround::draw()
 	_uiMgr->Render();
 	_objMgr->Render();
 	_playerMgr->Render();
+	_enemyMgr->Render();
 }
 
 
