@@ -133,32 +133,10 @@ void Character::KeyControl()
 
 }
 
-void Character::Idle(string key)
+void Character::ChangeImage(string key)
 {
 	_graphic->SetImgName(key);
 }
 
-void Character::Death(string key)
-{
-	_graphic->SetImgName(key);
-}
 
-void Character::Floating(string key)
-{
-	_graphic->SetImgName(key);
-}
 
-void Character::Hit(string key)
-{
-	_graphic->SetImgName(key);
-}
-
-void Character::Ladder(string key)
-{
-	_graphic->SetImgName(key);
-}
-
-void Character::Move(string key)
-{
-	_graphic->SetImgName(key);
-}

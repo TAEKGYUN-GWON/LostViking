@@ -291,6 +291,9 @@
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Olaf.h">
+      <Filter>playGround\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -481,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Olaf.cpp">
+      <Filter>playGround\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
