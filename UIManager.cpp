@@ -502,7 +502,7 @@ void UIManager::Init()
 
 		gate = new Gate;
 		Vector2 posg(683, 570);
-		Vector2 scaleg(50, 140);
+		Vector2 scaleg(95, 140);
 		key = "Gate1";
 		gate->Init(posg, scaleg, key, true);
 		_vWalls.push_back(gate);
@@ -527,7 +527,7 @@ void UIManager::Init()
 
 		gate = new Gate;
 		Vector2 posr(1289, 570);
-		Vector2 scaler(50, 140);
+		Vector2 scaler(95, 140);
 		key = "Gate2";
 		gate->Init(posr, scaler, key, true);
 		_vWalls.push_back(gate);
@@ -551,7 +551,7 @@ void UIManager::Init()
 
 		gate = new Gate;
 		Vector2 pose(308, 1980);
-		Vector2 scalee(50, 140);
+		Vector2 scalee(95, 140);
 		key = "Gate3";
 		gate->Init(pose, scalee, key, true);
 		_vWalls.push_back(gate);
@@ -576,7 +576,7 @@ void UIManager::Init()
 
 		gate = new Gate;
 		Vector2 posw(682, 2220);
-		Vector2 scalew(50, 140);
+		Vector2 scalew(95, 140);
 		key = "Gate4";
 		gate->Init(posw, scalew, key, true);
 		_vWalls.push_back(gate);
@@ -599,7 +599,7 @@ void UIManager::Init()
 
 		gate = new Gate;
 		Vector2 posj(2135, 560);
-		Vector2 scalej(50, 140);
+		Vector2 scalej(95, 140);
 		key = "Gate5";
 		gate->Init(posj, scalej, key, true);
 		_vWalls.push_back(gate);
@@ -1082,53 +1082,54 @@ void UIManager::GateMove()
 
 
 
-			if (wall->GetName() == "Gate5")
+
+
+			}
+		if (wall->GetName() == "Gate5")
+		{
+			Gate* gate = (Gate*)wall;
+			if (gate->GetIsOn())
 			{
-				Gate* gate = (Gate*)wall;
-				if (gate->GetIsOn())
+				for (Wall* wall2 : _vWalls)
 				{
-					for (Wall* wall2 : _vWalls)
+					if (wall2->GetTag() == "Gate5")
 					{
-						if (wall2->GetTag() == "Gate5")
+						if (wall2->GetName() == "GateUp")
 						{
-							if (wall2->GetName() == "GateUp")
-							{
-								Gate* up = (Gate*)wall2;
-								if (up->GetPos().y > up->GetUpPos().y)
-									up->Up();
-							}
-							else
-							{
-								Gate* down = (Gate*)wall2;
-								if (down->GetPos().y < down->GetDownPos().y)
-									down->Down();
-							}
-
+							Gate* up = (Gate*)wall2;
+							if (up->GetPos().y > up->GetUpPos().y)
+								up->Up();
 						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							if (down->GetPos().y < down->GetDownPos().y)
+								down->Down();
+						}
+
 					}
 				}
-				else
+			}
+			else
+			{
+				for (Wall* wall2 : _vWalls)
 				{
-					for (Wall* wall2 : _vWalls)
+					if (wall2->GetTag() == "Gate5")
 					{
-						if (wall2->GetTag() == "Gate5")
+
+						if (wall2->GetName() == "GateUp")
 						{
-
-							if (wall2->GetName() == "GateUp")
-							{
-								Gate* up = (Gate*)wall2;
-								up->Originally();
-							}
-							else
-							{
-								Gate* down = (Gate*)wall2;
-								down->Originally();
-							}
-
+							Gate* up = (Gate*)wall2;
+							up->Originally();
 						}
+						else
+						{
+							Gate* down = (Gate*)wall2;
+							down->Originally();
+						}
+
 					}
 				}
-
 			}
 		}
 	}
