@@ -138,5 +138,3 @@ void Character::ChangeImage(string key)
 	_graphic->SetImgName(key);
 }
 
-
-

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Olaf.h"
-
+#include "GraphicComponent.h"
 
 Olaf::Olaf()
 {
@@ -33,4 +33,77 @@ void Olaf::Update()
 
 void Olaf::ImageControl()
 {
+
+	switch (_state->GetState())
+	{
+	case RIGHT_IDLE:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_1_idle_shieldAhead"); 
+		break;
+	case LEFT_IDLE:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_1_idle_shieldAhead");
+		break;
+	case RIGHT_MOVE:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_2_move_shieldAhead");
+		break;
+	case LEFT_MOVE:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_2_move_shieldAhead");
+		break;
+	case RIGHT_DEATH:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_9_death1");
+		break;
+	case LEFT_DEATH:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_9_death1");
+		break;
+	case RIGHT_PUSH:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_8_pushwall");
+		break;
+	case LEFT_PUSH:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_8_pushwall");
+		break;
+	case RIGHT_HIT:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_4_hit");
+		break;
+	case LEFT_HIT:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_4_hit");
+		break;
+	case RIGHT_FLOATING:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_3_floating");
+		break;
+	case LEFT_FLOATING:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_3_floating");
+		break;
+	case RIGHT_SPECIAL1: //날아서 내려오기
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_6_flyingdown");
+		break;
+	case LEFT_SPECIAL1:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_6_flyingdown");
+		break;
+	case RIGHT_SPECIAL2: //방패 위로해서 발판되기
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_7_shieldUp");
+		break;
+	case LEFT_SPECIAL2:
+		_graphic->SetFrameY(1);
+		ChangeImage("olaf_7_shieldUp");
+		break;
+	case LADDER:
+		_graphic->SetFrameY(0);
+		ChangeImage("olaf_5_ladder");
+		break;
+	}
+
 }
