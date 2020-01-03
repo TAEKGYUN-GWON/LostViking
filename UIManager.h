@@ -2,6 +2,8 @@
 #include "Wall.h"
 #include"Elevator.h"
 #include"PlayerManager.h"
+#include"EXIT.h"
+#include "Button.h"
 class UIManager
 {
 private:
@@ -13,6 +15,9 @@ private:
 	Elevator *_elevator;
 	Vector2 camera;
 	PlayerManager* _pMgr;
+	EXIT* _exit;
+	Button* _button;
+
 public:
 	UIManager();
 	~UIManager();
@@ -29,6 +34,6 @@ public:
 	Elevator* GetElevator() { return _elevator; }
 	void SetPlayerManagerLink(PlayerManager* pMgr) { _pMgr = pMgr; }
 	void GateMove();
-
+	bool GetGameEnd() { return _exit->GameEnd(); }
 };
 
