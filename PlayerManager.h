@@ -1,7 +1,6 @@
 #pragma once
 #include "Character.h"
-#include "StateComponent.h"
-#include "Graphic.h"
+
 
 class PlayerManager
 {
@@ -19,6 +18,5 @@ public:
 	void Update();
 	void Render();
 
-	void Draw();
 
 };

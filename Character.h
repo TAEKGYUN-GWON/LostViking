@@ -46,16 +46,13 @@ public:
 
 	string GetTag() { return _tag; }
 
-	void Idle(string key);
-	void Death(string key);
-	void Floating(string key);
-	void Hit(string key);
-	void Move(string key);
-	void Ladder(string key);
+	void ChangeImage(string key); //문지예가 만듦
 
 	void Ladder();
 	virtual void Special1() {};
 	virtual void Special2() {};
+
+
 
 
 
