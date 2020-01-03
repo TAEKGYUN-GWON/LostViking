@@ -14,11 +14,11 @@ Character::~Character()
 
 }
 
-void Character::Init()
+void Character::Init(float spawnX, float spawnY)
 {
 	_hp = 3;
-	_moveSpeedX = 10.f;
-	_moveSpeedY = 1.f;
+	_moveSpeedX = 4.f;
+	_moveSpeedY = 2.f;
 
 	_tag = "Player";
 	//_physics->Init(DYNAMIC);
@@ -28,9 +28,10 @@ void Character::Init()
 	AddComponent<ErikScript>();
 
 	_trans->SetScale(84, 100);
-	_trans->SetPos(WINSIZEX / 2 - 200, 200);
+	//_trans->SetPos(WINSIZEX / 2 - 200, 200);
+	_trans->SetPos(spawnX, spawnY);
 
-	_physics->Init(DYNAMIC,.9f);
+	_physics->Init(DYNAMIC,.5f,.5f);
 
 	_lastPos = _physics->GetBodyPosition();
 
@@ -43,21 +44,37 @@ void Character::Init()
 	_isLadder = _isLaddering = false;				//사다리 안타고있어요
 	_isDead = false;								//아뇨, 안죽었어용
 	_isActive = false;								//상호작용 안할꺼에용
+	_isGround = false;								//땅을 밟고 있습니까?
 }
 
 void Character::Update()
 {
 	super::Update();
 
-	if (!_isLadder && !_isGround)
-		_isFloating = true;
-	else
-		_isFloating = false;
-
 	KeyControl();
 
+	if (!_isLaddering && !_isGround)
+	{
+		_isFloating = true;
+		CheckLR();
+		cout << _state->GetState() << endl;
+	}
+	else if (_isFloating)
+	{
+		if (_isGround)
+		{
+			_isFloating = false;
+
+			if (_state->GetState() == LEFT_FLOATING)
+				_state->SetState(LEFT_IDLE);
+			else if (_state->GetState() == RIGHT_FLOATING)
+				_state->SetState(RIGHT_IDLE);
+
+			cout << _state->GetState() << endl;
+		}
+	}
+
 	CAMERA->SetPosition(_trans->GetPos());
-	//cout << _state->GetState() << endl;
 }
 
 void Character::Release()
@@ -67,44 +84,156 @@ void Character::Release()
 
 void Character::KeyControl()
 {
-	
-	//_trans->SetPos(_physics->GetBodyPosition());
-	//_physics->SetBodyPosition();
+	if (_isLaddering)
+	{
+		//왼쪽
+		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x - _moveSpeedX, _trans->GetPos().y));
+			_isLaddering = false;
+			SetGravity(1);
+			_state->SetState(LEFT_IDLE);
+			//cout << _state->GetState() << endl;
+			//이미지 변경
+		}
+
+		//오른쪽
+		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x + _moveSpeedX, _trans->GetPos().y));
+			_isLaddering = false;
+			SetGravity(1);
+			_state->SetState(RIGHT_IDLE);
+		}
+		
+		//위
+		if (KEYMANAGER->isOnceKeyDown(VK_UP))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x, _trans->GetPos().y - _moveSpeedY));
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_UP))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x, _trans->GetPos().y - _moveSpeedY));
+		}
+
+		//아래
+		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x, _trans->GetPos().y + _moveSpeedY));
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+		{
+			_trans->SetPos(Vector2(_trans->GetPos().x, _trans->GetPos().y + _moveSpeedY));
+		}
+
+		_physics->SetBodyPosition();
+	}
+	else if (!_isLaddering)
+	{
+		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			Moving(Vector2::b2Left, _moveSpeedX);
+			_state->SetState(LEFT_IDLE);
+			cout << _state->GetState() << endl;
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+		{
+			if (_isPush && _isGround)
+			{
+				_state->SetState(LEFT_PUSH);
+			}
+			else
+			{
+				if (!_isFloating)
+					_state->SetState(LEFT_MOVE);
+			}
+
+			if(_isFloating)
+				Moving(Vector2::b2Left, _moveSpeedX);
+			else
+				Movement(Vector2::b2Left, _moveSpeedX);
 
 
+			cout << _state->GetState() << endl;
+		}
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+		{
+			_state->SetState(LEFT_IDLE);
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
+			cout << _state->GetState() << endl;
+		}
+
+		//오른쪽
+		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			Moving(Vector2::b2Right, _moveSpeedX);
+			cout << _state->GetState() << endl;
+
+			_state->SetState(RIGHT_IDLE);
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		{
+			if (_isPush && _isGround)
+			{
+				_state->SetState(RIGHT_PUSH);
+			}
+			else
+			{
+				if(!_isFloating)
+					_state->SetState(RIGHT_MOVE);
+			}
+
+			if (_isFloating)
+				Moving(Vector2::b2Right, _moveSpeedX);
+			else
+				Movement(Vector2::b2Right, _moveSpeedX);
+			cout << _state->GetState() << endl;
+		}
+		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		{
+			_state->SetState(RIGHT_IDLE);
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
+			cout << _state->GetState() << endl;
+		}
+
+		//위
+		if (KEYMANAGER->isOnceKeyDown(VK_UP))
+		{
+			if (_isLadder)
+			{
+				_isLaddering = true;
+				SetGravity(0);
+				PosCorrection();
+				_physics->GetBody()->SetLinearVelocity(Vector2::b2Zero);
+			}
+		}
+
+		_trans->SetPos(_physics->GetBodyPosition());
+	}
+
+
+}
+
+void Character::Moving(b2Vec2 b2v, float power)
+{
+	_physics->ApplyForce(b2v * power);
+}
+
+void Character::Movement(b2Vec2 b2v, float power)
+{
+	_physics->GetBody()->SetLinearVelocity(b2v * (power - 1));
 }
 
 void Character::PosCorrection()
 {
-
+	//위치 보정...
+	_trans->SetPos(_trans->GetPos().)
 }
 
-void Character::Idle(string key)
+void Character::CheckLR()
 {
-	_graphic->SetImgName(key);
-}
-
-void Character::Death(string key)
-{
-	_graphic->SetImgName(key);
-}
-
-void Character::Floating(string key)
-{
-	_graphic->SetImgName(key);
-}
-
-void Character::Hit(string key)
-{
-	_graphic->SetImgName(key);
-}
-
-void Character::Ladder(string key)
-{
-	_graphic->SetImgName(key);
-}
-
-void Character::Move(string key)
-{
-	_graphic->SetImgName(key);
+	if (_state->GetState() == LEFT_IDLE || _state->GetState() == LEFT_MOVE)
+		_state->SetState(LEFT_FLOATING);
+	else if (_state->GetState() == RIGHT_IDLE || _state->GetState() == RIGHT_MOVE)
+		_state->SetState(RIGHT_FLOATING);
 }

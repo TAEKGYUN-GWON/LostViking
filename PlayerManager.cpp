@@ -14,7 +14,7 @@ PlayerManager::~PlayerManager()
 void PlayerManager::Init()
 {
 	Character* c = new Character;
-	c->Init();
+	c->Init(WINSIZEX / 2 - 200, 200);
 
 
 	_vPlayer.push_back(c);

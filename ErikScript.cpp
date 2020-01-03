@@ -21,6 +21,7 @@ void ErikScript::CollisionBegin(void * obj)
 	if (to->GetName() == "Floor")
 	{
 		cout << "¹Ù´ÚÀÌ¶û ´êÀ½" << endl;
+		me->SetGround(true);
 	}
 	if (to->GetName() == "Ladder1")
 	{
@@ -54,6 +55,7 @@ void ErikScript::CollisionEnd(void * obj)
 	if (to->GetName() == "Floor")
 	{
 		cout << "¹Ù´ÚÀÌ¶û ¶³¾îÁü" << endl;
+		me->SetGround(false);
 	}
 	if (to->GetName() == "Ladder1")
 	{
