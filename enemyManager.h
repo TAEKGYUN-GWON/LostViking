@@ -1,47 +1,20 @@
 #pragma once
-#include "gameNode.h"
-#include "minion.h"
-#include "bullets.h"
-#include <vector>
+#include "enemy.h"
 
-//헤더파일 꼬임방지를 위한 클래스 전방선언
-class spaceShip;
-
-class enemyManager : public gameNode
+class EnemyManager
 {
 private:
-	typedef vector<enemy*>				vEnemy;
-	typedef vector<enemy*>::iterator	viEnemy;
+	vector<Enemy*> _vEnemy;
 
-private:
-	vEnemy _vMinion;
-	viEnemy _viMinion;
-
-	bullet* _bullet;
-	spaceShip* _ship;
 
 public:
-	enemyManager();
-	~enemyManager();
+	EnemyManager();
+	~EnemyManager();
 
-	HRESULT init();
-	void release();
-	void update();
-	void render();
-
-	//미니언 셋팅 함수
-	void setMinion();
-
-	//미니언 총알 발사 명령 함수
-	void minionBulletFire();
-
-	void removeMinion(int arrNum);
-
-	void collision();
-
-	void setSpaceShipMemoryAddressLink(spaceShip* ship) { _ship = ship; }
-
-	vector<enemy*> getVMinion() { return _vMinion; }
-	vector<enemy*>::iterator getViMinion() { return _viMinion; }
+	void Init();
+	void Release();
+	void Update();
+	void Render();
+	
 };
 

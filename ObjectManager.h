@@ -1,24 +1,37 @@
 #pragma once
 #include "Tomato.h"
-#include "Bullet.h"
+#include "Meat.h"
+#include "Bomb.h"
+#include "Plasma.h"
+#include "RedgunTower.h"
+#include "Computer.h"
+#include "Button.h"
+#include "D2DEffect.h"
 #include <vector>
+#include "ObjectPool.h"
 
 class ObjectManager 
 {
 private:
+
 	vector<Item*>				_vItem;
 	vector<Item*>::iterator		_viItem;
 
-	//vector<Bullet*>				_vBullet;
-	//vector<Bullet*>::iterator	_viBullet;
-	Bullet*						_bullet;
+	vector<Object*>				_vObject;
+	vector<Object*>::iterator	_viObject;
+
+	bool _isTest;
+	ObjectPool*					_objPool;
+
+	vector<D2DEffect*>			_vEffect;
 
 public:
+
 	void Init();
 	void Release();
 	void Update();
 	void Render();
 
-	void TomatoFire();
+	void PlasmaOff(string btn, string pla);
 };
 

@@ -6,6 +6,7 @@
 #include "Ladder.h"
 #include"GraphicComponent.h"
 #include"UnGravityScript.h"
+#include"ElevatorFloor.h"
 UIManager::UIManager()
 {
 }
@@ -418,6 +419,38 @@ void UIManager::Init()
 		_vWalls.push_back(ladder6);
 
 	}
+
+	{
+		Wall* floor = new ElevatorFloor;
+		floor->SetScale(94, 27);
+		floor->SetPos(2803, 638.5f);
+		floor->SetTag("Elevator");
+		floor->SetName("ElevatorTop");
+		floor->Init();
+		_vWalls.push_back(floor);
+
+
+		floor = new ElevatorFloor;
+		floor->SetScale(94, 27);
+		floor->SetPos(2803, 1223.f);
+		floor->SetTag("Elevator");
+		floor->SetName("ElevatorMiddle");
+		floor->Init();
+		_vWalls.push_back(floor);
+
+		floor = new ElevatorFloor;
+		floor->SetScale(94, 15);
+		floor->SetPos(2803, 2150.8f);
+		floor->SetTag("Elevator");
+		floor->SetName("ElevatorBottom");
+		floor->Init();
+		_vWalls.push_back(floor);
+
+	}
+	_elevator = new Elevator;
+	_elevator->Init();
+	_vWalls.push_back(_elevator);
+
 	GRAPHICMANAGER->AddFrameImage("UnGravity", L"img/background/twinkle/중력 화살표.png", 4, 1);
 	Ladder* unGravity = new Ladder;
 	unGravity->SetPos(1684, 1115);
@@ -433,12 +466,12 @@ void UIManager::Init()
 
 	camera = Vector2::zero;
 
-	//p = new Object;
-	//p->GetTrans()->SetPos(WINSIZEX / 2+100, WINSIZEY / 2);
-	//p->GetTrans()->SetScale(80,100);
-	//p->SetTag("Player");
-	//auto a = p->AddComponent<PhysicsBodyComponent>();
-	//a->Init(DYNAMIC,0.5f);
+	p = new Object;
+	p->GetTrans()->SetPos(WINSIZEX / 2+100, WINSIZEY / 2);
+	p->GetTrans()->SetScale(80,100);
+	p->SetTag("Player");
+	auto a = p->AddComponent<PhysicsBodyComponent>();
+	a->Init(DYNAMIC,0.5f);
 	//a->GetBody()->SetGravityScale(0);
 	//a->GetBody()->GetFixtureList()->SetSensor(true);
 }
@@ -454,34 +487,41 @@ void UIManager::Update()
 
 	for (Wall* wall : _vWalls)
 		wall->Update();
-
-	//PMove();
-
 	
+	PMove();
+	ElevatorMove();
 }
 
 void UIManager::Render()
 {
-	if(KEYMANAGER->isToggleKey(VK_F2))
+	//if(KEYMANAGER->isToggleKey(VK_F2))
 		GRAPHICMANAGER->FindImage("bg")->Render(Vector2(GRAPHICMANAGER->FindImage("bg")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg")->GetHeight() / 2));
 	for (Wall* wall : _vWalls)
 		wall->Render();
+	
 	DrawTwinkle();
 
-	//GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	//GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-	//
-	//GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(WINSIZEX / 2-105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight()-20));
-	//GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(WINSIZEX-458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-	//
-	//GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(250, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(WINSIZEX / 2 - 105, WINSIZEY - GRAPHICMANAGER->FindImage("bLive")->GetHeight() - 20));
-	//GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(WINSIZEX - 458, WINSIZEY - GRAPHICMANAGER->FindImage("oLive")->GetHeight() - 20));
-	//
-	//GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
-	//p->Render();
+
+	p->Render();
+}
+
+void UIManager::UiRender()
+{
+	GRAPHICMANAGER->FindImage("UI")->RenderUI(Vector2(WINSIZEX / 2, WINSIZEY-GRAPHICMANAGER->FindImage("UI")->GetHeight()/2));
+	
+	GRAPHICMANAGER->FindImage("eLive")->RenderUI(Vector2(245, 596));
+	//GRAPHICMANAGER->FindImage("eDeactive")->RenderUI(Vector2(245, 596));
+	//GRAPHICMANAGER->FindImage("eDead")->RenderUI(Vector2(245, 596));
+	
+	//GRAPHICMANAGER->FindImage("bLive")->RenderUI(Vector2(533,596.5f));
+	GRAPHICMANAGER->FindImage("bDeactive")->RenderUI(Vector2(533,596.5f));
+	//GRAPHICMANAGER->FindImage("bDead")->RenderUI(Vector2(533,596.5f));
+	
+	//GRAPHICMANAGER->FindImage("oLive")->RenderUI(Vector2(821,596.5f));
+	GRAPHICMANAGER->FindImage("oDeactive")->RenderUI(Vector2(821,596.5f));
+	//GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(821,596.5f));
+	
+	
 }
 
 void UIManager::Frame()
@@ -646,5 +686,36 @@ void UIManager::PMove()
 	p->Update();
 	CAMERA->SetPosition(Vector2(p->GetTrans()->pos.x, p->GetTrans()->pos.y ));
 
+	
+
 	//a->GetBody()->SetGravityScale(0);
+}
+//엘리베이터
+void UIManager::ElevatorMove()
+{
+	if (_elevator->GetIsOn())
+	{
+		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+		{
+			if (_elevator->GetElevatorPos() == bottom) return;
+			_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Down);
+			_elevator->SetIsUp(down);
+			_elevator->SetStop(false);
+			_elevator->SetElevatorPos(middle);
+		}
+
+		if (KEYMANAGER->isOnceKeyDown(VK_UP))
+		{
+			if (_elevator->GetElevatorPos() == top) return;
+			_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Up);
+			_elevator->SetIsUp(up);
+			_elevator->SetStop(false);
+			_elevator->SetElevatorPos(middle);
+		}
+	}
+
+	if (_elevator->GetStop())
+	{
+		_elevator->getPbody()->GetBody()->SetLinearVelocity(Vector2::b2Zero);
+	}
 }

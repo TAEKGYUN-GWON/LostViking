@@ -36,25 +36,26 @@ HRESULT playGround::init()
 	//=============================== ÀÌ ¹ØÀ¸·Î init ==============================
 
 	GRAPHICMANAGER->AddFrameImage("number", L"number.png", 4, 1);
-	GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
-	GRAPHICMANAGER->AddFrameImage("plasma", L"laser.png", 3, 1);
+	//GRAPHICMANAGER->AddFrameImage("fatkachu", L"fatkachu.png", 4, 1);
 	GRAPHICMANAGER->AddImage("enemy_bullet", L"cannon_bullet.png");
-
-	_playerMgr = new PlayerManager;
-	_playerMgr->Init();
+	//¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡áobject¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á
+	GRAPHICMANAGER->AddFrameImage("plasma", L"img/object/laser.png", 3, 1);
+	GRAPHICMANAGER->AddImage("bomba", L"img/object/bomba.png");
+	GRAPHICMANAGER->AddImage("tomato", L"img/object/tomato.png");
+	GRAPHICMANAGER->AddFrameImage("Tower", L"img/object/cannon.png", 2, 2);
+	GRAPHICMANAGER->AddImage("computer", L"img/object/computer.png");
 
 	_objMgr = new ObjectManager;
 	_objMgr->Init();
 	_uiMgr = new UIManager;
 	_uiMgr->Init();
-
-	_pos = Vector2(WINSIZEX / 2- 200, WINSIZEY / 2);
-	_pos2 = Vector2(WINSIZEX / 2 + 200, WINSIZEY / 2);
-
-	_isPlayer1 = true;
-
-	CAMERA->SetPosition(_pos);
-	CAMERA->MoveTo(_pos, 3.0f);
+	_playerMgr = new PlayerManager;
+	_playerMgr->Init();
+	_enemyMgr = new EnemyManager;
+	_enemyMgr->Init();
+	_uiMgr->SetPlayerManagerLink(_playerMgr);
+	//CAMERA->SetPosition(_pos);
+	//CAMERA->MoveTo(_pos, 3.0f);
 
 
 	return S_OK;
@@ -77,38 +78,10 @@ void playGround::update()
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
 
-
-	float speed = 90.0f;
-	/*if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _pos.x -= speed * TIMEMANAGER->getElapsedTime();
-	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _pos.x += speed * TIMEMANAGER->getElapsedTime();
-	if (KEYMANAGER->isStayKeyDown(VK_UP)) _pos.y -= speed * TIMEMANAGER->getElapsedTime();
-	else if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _pos.y += speed * TIMEMANAGER->getElapsedTime();*/
-
-	if (KEYMANAGER->isOnceKeyDown(VK_CONTROL))
-	{
-		_isPlayer1 = !_isPlayer1;
-		if (_isPlayer1)
-		{
-			CAMERA->MoveTo(_pos, 2.0f);
-		}
-		else
-		{
-			CAMERA->MoveTo(_pos2, 2.0f);
-		}
-	}
-
-	if (_isPlayer1)
-	{
-		if (!CAMERA->IsMoving()) CAMERA->SetPosition(_pos);
-	}
-	else
-	{
-		if (!CAMERA->IsMoving()) CAMERA->SetPosition(_pos2);
-	}
-
-	_objMgr->Update();
 	_playerMgr->Update();
-	//_uiMgr->Update();
+	_objMgr->Update();
+	_uiMgr->Update();
+	_enemyMgr->Update();
 }
 
 void playGround::render()
@@ -121,11 +94,9 @@ void playGround::draw()
 	_uiMgr->Render();
 	_objMgr->Render();
 	_playerMgr->Render();
-	GRAPHICMANAGER->DrawRect(_pos, Vector2(50, 50), 0.0f, ColorF::Red, CENTER, 3.0f);
-	GRAPHICMANAGER->DrawRect(_pos2, Vector2(50, 50), 0.0f, ColorF::Magenta, CENTER, 3.0f);
-
-	GRAPHICMANAGER->DrawFrameImage("number", Vector2(WINSIZEX / 2 - 50, WINSIZEY / 2), 0, 0);
-	GRAPHICMANAGER->DrawFrameImage("fatkachu", Vector2(WINSIZEX / 2 + 50, WINSIZEY / 2), 0, 0);
+	_enemyMgr->Render();
+	if (KEYMANAGER->isToggleKey(VK_F2))
+		_uiMgr->UiRender();
 }
 
 

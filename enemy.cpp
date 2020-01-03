@@ -1,86 +1,118 @@
 #include "stdafx.h"
-#include "enemy.h"
+#include "Enemy.h"
+#include "TransformComponent.h"
+#include "GraphicComponent.h"
+#include "EnemyCollision.h"
+
+void Enemy::Init(Vector2 pos, string image, float speed, ENEMY_STATE state, bool isattack, float timer, int direction)
+{
+	//충돌
+
+	_physics = AddComponent<PhysicsBodyComponent>();
+
+	_speed = speed; 
+	_state = state;
+	_isAttack = isattack;
+	_timer = timer;
+	_direction = direction; //왼쪽이 -1, 오른쪽이 1
+	_trans->pos = pos;
+
+	_graphic->Init(true, true);
+	_graphic->SetImgName(image); 	//출력되는 그림
+	_graphic->SetFrameY(1);
+
+	_trans->SetScale(Vector2(
+		_graphic->GetGraphic()->GetFrameWidth(),
+		_graphic->GetGraphic()->GetFrameHeight()));
+
+	_physics->Init(DYNAMIC, 5.f, 3.f, 0,false,true);
+	_physics->GetBody()->SetFixedRotation(true);	//회전값 안받음
+	_physics->GetBody()->SetGravityScale(0);		//중력 안받음
 
 
-enemy::enemy()
+	AddComponent<EnemyCollision>();
+}
+
+void Enemy::Release()
 {
 }
 
-
-enemy::~enemy()
+void Enemy::Update()
 {
+	Move();
+	Shoot();
+
+	super::Update();
 }
 
-HRESULT enemy::init()
+void Enemy::Render()
 {
-
-	return S_OK;
+	
+	super::Render();
 }
 
-HRESULT enemy::init(const char * imageName, POINT position)
+void Enemy::Move()
 {
-	_currentFrameX = _currentFrameY = 0;
-	_count = _fireCount = 0;
-
-	_imageName = IMAGEMANAGER->findImage(imageName);
-
-	_rndFireCount = RND->getFromIntTo(1, 1000);
-
-	_rc = RectMakeCenter(position.x, position.y,
-		_imageName->getFrameWidth(), _imageName->getFrameHeight());
-
-
-	return S_OK;
-}
-
-void enemy::release()
-{
-}
-
-void enemy::update()
-{
-	_count++;
-
-	if (_count % 2 == 0)
+	switch (_state)
 	{
-		if (_currentFrameX >= _imageName->getMaxFrameX()) _currentFrameX = 0;
-
-		_imageName->setFrameX(_currentFrameX);
-		_currentFrameX++;
-		_count = 0;
+		case MOVE_LEFT:
+			_direction = -1;
+			_graphic->SetImgName("greenMove");
+			_graphic->SetFrameY(1);
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Left * _speed);
+		
+		break;
+		case MOVE_RIGHT:
+			_direction = 1;
+			_graphic->SetImgName("greenMove");
+			_graphic->SetFrameY(0);
+			_physics->GetBody()->SetLinearVelocity(Vector2::b2Right * _speed);
+				
+		break;
+		case ATTACK_LEFT:
+			_direction = -1;
+			_graphic->SetImgName("greenAttack");
+			_graphic->SetFrameY(1);
+			_isAttack = true;
+		break;
+		case ATTACK_RIGHT:
+			_direction = 1;
+			_graphic->SetImgName("greenAttack");
+			_graphic->SetFrameY(0);
+			_isAttack = true;
+		break;
 	}
 
+	//trans 위치와 피직스 값 동기화
+	_trans->SetPos(_physics->GetBodyPosition());
 }
 
-
-void enemy::render()
+void Enemy::Shoot()
 {
-	draw();
-}
-
-
-void enemy::move()
-{
-}
-
-
-void enemy::draw()
-{
-	_imageName->frameRender(getMemDC(), _rc.left, _rc.top, _currentFrameX, _currentFrameY);
-}
-
-bool enemy::bulletCountFire()
-{
-	_fireCount++;
-
-	if (_fireCount % _rndFireCount == 0)
+	if (_isAttack)
 	{
-		_fireCount = 0;
-		_rndFireCount = RND->getFromIntTo(1, 1000);
-
-		return true;
+		if (_state == ATTACK_LEFT)
+		{
+		
+			_isAttack = false;
+			//총쏘기 내용 여기
+			_timer += TIMEMANAGER->getElapsedTime();
+			if (_timer >= 1.5f)
+			{
+				_state = MOVE_LEFT; //한발 쏘고 다시 움직이라고..
+				_timer = 0.f;
+			}
+		}
+		if (_state == ATTACK_RIGHT)
+		{
+			_isAttack = false;
+			//총쏘기 내용 여기
+			_timer += TIMEMANAGER->getElapsedTime();
+			if (_timer >= 1.5f)
+			{
+				_state = MOVE_RIGHT;//한발 쏘고 다시 움직이라고..
+				_timer = 0.f;
+			}
+		}
 	}
-
-
-	return false;
 }

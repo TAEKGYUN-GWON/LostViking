@@ -16,6 +16,7 @@ protected:
 	string _name;
 	string _tag;
 	bool _isActive = true;
+	bool allawsUpdate = true;
 
 public:
 	Object();
@@ -30,8 +31,13 @@ public:
 	inline void SetName(string name) { _name = name; }
 	inline string GetTag() { return _tag; }
 	inline void SetTag(string tag) { _tag = tag; }
+	inline void SetIsActive() { _isActive = !_isActive; }
 	inline void SetIsActive(bool active) { _isActive = active; }
 	inline bool GetIsActive() { return _isActive; }
+	inline bool GetAllawsUpdate() { return allawsUpdate; }
+	inline void SetAllawsUpdate() { allawsUpdate = !allawsUpdate; }
+	inline void SetAllawsUpdate(bool active) { allawsUpdate = active; }
+	
 	inline GraphicComponent* GetGraphic() { return _graphic; }
 	void RemoveComponent(Component* component);
 	template<typename T>
