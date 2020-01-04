@@ -12,49 +12,57 @@ protected:
 	StateComponent* _state;	
 	PhysicsBodyComponent* _physics;
 
-	int count;							//
+	//Object 
+
+	Vector2 _LadderPos;
+
+	//int count;							//
 	int _hp;							//현재 체력
 	float _moveSpeedX, _moveSpeedY;		//움직이는 속도	
-	float _friction;
+	//float _friction;
+	//float mass;
 
-	float mass;
-
-	bool _isLadder;						//사다리 충돌중 판단
+	bool _isLadder, _isLaddering;		//사다리 충돌중 판단
+	bool _isGround;						//땅입니까?
+	bool _isFloating;					//떨어지고 있습니까
+	bool _isPush;						//벽을 밀고있습니까
 	bool _isDead;						//야,야야,죽었냐?
+	bool _isActive;						//오브젝트와의 상호작용
 
 public:
 	Character();
 	~Character();
 
-	virtual void Init();
+	virtual void Init(float spawnX, float spawnY);
 	virtual void Update();
 	virtual void Release();
 
-	void KeyControl();
+	virtual void KeyControl();
+	void PosCorrection(Object* obj);
+	void Moving(b2Vec2 b2v, float power);
+	void Movement(b2Vec2 b2c, float power);
+	void CheckLR();
+	void ChangeImage(string key);
 
 	void SetState(Object_STATE state) { _state->SetState(state); }
-	StateComponent* GetState() { return _state; }
 
 	void SetHP(int amount) { _hp = amount; };
 	int GetHP() { return _hp; }
 
 
 	void SetLadder(bool ladder) { _isLadder = ladder; }
+	void SetPush(bool push) { _isPush = push; }
+	void SetGround(bool ground) { _isGround = ground; }
+	void DeadSetting() { _isDead = true; }
+
 	bool GetLadder() { return _isLadder; };
 
 	void SetGravity(float gravity) { _physics->GetBody()->SetGravityScale(gravity); }
 
-	string GetTag() { return _tag; }
-
-	void ChangeImage(string key); //문지예가 만듦
-
-	void Ladder();
 	virtual void Special1() {};
 	virtual void Special2() {};
 
-
-
-
+	void Correction(Vector2 LadderPos) { _LadderPos = LadderPos; }
 
 };
 

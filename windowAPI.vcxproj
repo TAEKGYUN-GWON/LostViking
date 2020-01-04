@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="Baleog.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="BombScript.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="EnemyCollision.h" />
     <ClInclude Include="enemyManager.h" />
+    <ClInclude Include="Erik.h" />
     <ClInclude Include="ErikScript.h" />
     <ClInclude Include="EXIT.h" />
     <ClInclude Include="EXITScript.h" />
@@ -226,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="Baleog.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BombScript.cpp" />
@@ -248,6 +251,7 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EnemyCollision.cpp" />
     <ClCompile Include="enemyManager.cpp" />
+    <ClCompile Include="Erik.cpp" />
     <ClCompile Include="ErikScript.cpp" />
     <ClCompile Include="EXIT.cpp" />
     <ClCompile Include="EXITScript.cpp" />

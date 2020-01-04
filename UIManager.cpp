@@ -27,7 +27,7 @@ void UIManager::Init()
 
 	GRAPHICMANAGER->AddImage("UI", L"img/background/UI.png");
 	GRAPHICMANAGER->AddImage("bg", L"img/background/Background2.png");
-
+	GRAPHICMANAGER->AddImage("bg2", L"img/background/Background3.png");
 	GRAPHICMANAGER->AddImage("bLive", L"img/background/BaleogLive.png");
 	GRAPHICMANAGER->AddImage("bDead", L"img/background/BaleogDead.png");
 	GRAPHICMANAGER->AddImage("bDeactive", L"img/background/BaleogDeactivate.png");
@@ -50,6 +50,8 @@ void UIManager::Init()
 	GRAPHICMANAGER->AddFrameImage("검빨 매트릭스", L"img/background/twinkle/검빨 매트릭스.png", 4, 1);
 	GRAPHICMANAGER->AddFrameImage("줄", L"img/background/twinkle/일 자 두 줄과 네모 하나가 셋.png", 4, 1);
 	GRAPHICMANAGER->AddFrameImage("검파 매트릭스", L"img/background/twinkle/검파 매트릭스.png", 6, 1);
+
+	
 
 	curFrameX4 = curFrameX6 = 0;
 	count = 0;
@@ -641,6 +643,21 @@ void UIManager::Init()
 	p->SetTag("Player");
 	auto a = p->AddComponent<PhysicsBodyComponent>();
 	a->Init(DYNAMIC,0.5f);
+
+	//b2PolygonShape shape;
+	//Vector2 pSize = p->GetTrans()->scale + Vector2(30, 30);
+	//pSize = PhysicsBodyComponent::Convert(pSize);
+	//shape.SetAsBox(pSize.x, pSize.y);
+
+	//b2FixtureDef fixture;
+	//fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
+	//fixture.shape = &shape;
+	//fixture.density = 0;
+	//fixture.friction = 0;
+	//fixture.restitution = 0;
+	//a->GetBody()->CreateFixture(&fixture);
+
+	
 	//a->GetBody()->SetGravityScale(0);
 	//a->GetBody()->GetFixtureList()->SetSensor(true);
 	_exit = new EXIT;
@@ -739,6 +756,11 @@ void UIManager::UiRender()
 	//GRAPHICMANAGER->FindImage("oDead")->RenderUI(Vector2(821,596.5f));
 	
 	
+}
+
+void UIManager::BehindRender()
+{
+	GRAPHICMANAGER->FindImage("bg2")->Render(Vector2(GRAPHICMANAGER->FindImage("bg2")->GetWidth() / 2, GRAPHICMANAGER->FindImage("bg2")->GetHeight() / 2));
 }
 
 void UIManager::Frame()
