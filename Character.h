@@ -55,7 +55,7 @@ public:
 	void SetLadder(bool ladder) { _isLadder = ladder; }
 	void SetPush(bool push) { _isPush = push; }
 	void SetGround(bool ground) { _isGround = ground; }
-	void DeadSetting() { _isDead = true; }
+	void DeadSetting(Object_STATE objStat) { _isDead = true; _state->SetState(objStat); }
 
 	bool GetLadder() { return _isLadder; };
 
