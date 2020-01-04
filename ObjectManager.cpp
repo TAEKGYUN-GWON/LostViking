@@ -25,7 +25,7 @@ void ObjectManager::Init()
 	_vItem.push_back(item);
 	//¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á°í±â¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á  
 	item = new Meat;
-	item->Init(Vector2(200, 200));
+	item->Init(Vector2(2600, 850));
 	item->AddComponent<ItemScript>();
 	_vItem.push_back(item);
 	//¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡áÆøÅº¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á  
@@ -237,6 +237,20 @@ void ObjectManager::Update()
 		}
 		if (!i->GetIsActive()) i->GetComponent<PhysicsBodyComponent>()->GetBody()->GetFixtureList()->SetSensor(true);
 	}
+
+	for (Item* i : _vItem)
+	{
+		if (i->GetName() == "Bomb")
+		{
+			Bomb* item = (Bomb*)i;
+			if (item->GetColliosion())
+			{
+				item->SetBomb(true);
+			}
+		}
+	}
+
+
 
 }
 
