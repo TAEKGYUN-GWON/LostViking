@@ -26,6 +26,7 @@ public:
 	void Update();
 	void Render();
 	void UiRender();
+	void BehindRender();
 	void Frame();
 	void DrawTwinkle();
 	void CameraMove();
