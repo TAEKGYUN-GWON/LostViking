@@ -11,7 +11,7 @@ protected:
 
 	StateComponent* _state;	
 	PhysicsBodyComponent* _physics;
-
+	Inventory* _inventory;
 	//Object 
 
 	Vector2 _LadderPos;
@@ -68,5 +68,6 @@ public:
 	void Correction(Vector2 LadderPos) { _LadderPos = LadderPos; }
 	bool GetTurn() { return _isTurn; }
 	void SetTurn(bool turn) { _isTurn = turn; }
+	Inventory* GetInventory() { return _inventory; }
 };
 

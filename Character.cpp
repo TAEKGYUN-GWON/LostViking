@@ -3,7 +3,7 @@
 #include "TransformComponent.h"
 #include "GraphicComponent.h"
 #include "ErikScript.h"
-
+#include "Inventory.h"
 Character::Character()
 {
 
@@ -26,6 +26,7 @@ void Character::Init(float spawnX, float spawnY)
 	_state =  AddComponent<StateComponent>();
 	_physics = AddComponent<PhysicsBodyComponent>();
 	AddComponent<ErikScript>();
+	_inventory = AddComponent<Inventory>();
 	_graphic->Init(true, true);
 
 	_trans->SetScale(80, 100);
@@ -40,7 +41,6 @@ void Character::Init(float spawnX, float spawnY)
 	/*GRAPHICMANAGER->AddFrameImage("");
 	_graphic->Init(true, true);
 	_graphic->SetImgName();*/
-
 	_physics->GetBody()->SetFixedRotation(true);
 	_isLadder = _isLaddering = false;				//사다리 안타고있어요
 	_isDead = false;								//아뇨, 안죽었어용
