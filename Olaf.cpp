@@ -38,9 +38,6 @@ void Olaf::Update()
 {
 	super::Update();
 
-	ShieldMove();
-
-	KeyControl();
 	
 	if (!_isLaddering && !_isGround)
 	{
@@ -63,11 +60,15 @@ void Olaf::Update()
 		}
 	}
 
+	ShieldMove();
+
+	ShieldState();
+
+	KeyControl();
+
 	CAMERA->SetPosition(_trans->GetPos());
 
 	ImageControl();
-
-	ShieldState();
 
 	for (int i = 0; i < _shields.size(); i++)
 		_shields[i]->Update();
@@ -285,8 +286,6 @@ void Olaf::KeyControl()
 		{
 			NormalMove(Vector2::b2Left, _moveSpeedX);
 
-			/*if (_state->GetState() != LEFT_SPECIAL2)
-				_state->SetState(LEFT_IDLE); */
 
 			if (_state->GetState() == O_LEFT_SHIELD_CONTROL || _state->GetState() == O_RIGHT_SHIELD_CONTROL)
 				_state->SetState(O_LEFT_SHIELD_CONTROL);
