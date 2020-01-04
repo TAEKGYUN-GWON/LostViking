@@ -45,12 +45,12 @@ void EnemyCollision::CollisionBegin(void * obj)
 	}
 
 	//Ä³¸¯ÅÍ¶û ´êÀ¸¸é
-	if (collisionObj->GetTag() == "Player" && enemy->GetState() == MOVE_LEFT)
+	if (collisionObj->GetTag() == "Player1" && enemy->GetState() == MOVE_LEFT)
 	{
 		enemy->SetState(ATTACK_LEFT);
 		enemy->SetAttack(true);
 	}
-	else if (collisionObj->GetTag() == "Player" && enemy->GetState() == MOVE_RIGHT)
+	else if (collisionObj->GetTag() == "Player1" && enemy->GetState() == MOVE_RIGHT)
 	{
 		enemy->SetState(ATTACK_RIGHT);
 		enemy->SetAttack(true);

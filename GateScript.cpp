@@ -18,7 +18,7 @@ void GateScript::CollisionBegin(void * obj)
 	Object* to = (Object*)obj;
 	Gate* me = (Gate*)_object;
 
-	if (to->GetTag() == "Player")
+	if (to->GetTag() == "Player1")
 	{
 		me->SetIsOn(true);
 		//me->GetComponent< PhysicsBodyComponent>()->GetBody()->GetFixtureList()->SetSensor(true);
@@ -36,7 +36,7 @@ void GateScript::CollisionEnd(void * obj)
 	Object* to = (Object*)obj;
 	Gate* me = (Gate*)_object;
 
-	if (to->GetTag() == "Player")
+	if (to->GetTag() == "Player1")
 	{
 		me->SetIsOn(false);
 		//me->GetComponent< PhysicsBodyComponent>()->GetBody()->GetFixtureList()->SetSensor(false);

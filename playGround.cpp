@@ -49,13 +49,17 @@ HRESULT playGround::init()
 	_objMgr->Init();
 	_uiMgr = new UIManager;
 	_uiMgr->Init();
-	_playerMgr = new PlayerManager;
-	_playerMgr->Init();
+	//_playerMgr = new PlayerManager;
+	//_playerMgr->Init();
 	_enemyMgr = new EnemyManager;
 	_enemyMgr->Init();
 	_uiMgr->SetPlayerManagerLink(_playerMgr);
-
-
+	string a ="a";
+	string b = a + " b";
+	cout << b << endl;
+	//_player = new Player;
+	p = new PMgr;
+	p->Init();
 	return S_OK;
 }
 
@@ -67,19 +71,20 @@ void playGround::release()
 	SAFE_DELETE(_objMgr);
 	SAFE_OBJECT_RELEASE(_uiMgr);
 	SAFE_DELETE(_uiMgr);
-	SAFE_OBJECT_RELEASE(_playerMgr);
-	SAFE_DELETE(_playerMgr);
+	//SAFE_OBJECT_RELEASE(_playerMgr);
+	//SAFE_DELETE(_playerMgr);
 }
 
 void playGround::update()
 {
 	gameNode::update();
 	BOXWORLDMANAGER->GetWorld()->Step(timeStep, velocityIterations, positionIterations);
-
-	_playerMgr->Update();
+	p->Update();
+//	_playerMgr->Update();
 	_objMgr->Update();
 	_uiMgr->Update();
 	_enemyMgr->Update();
+	//_player->Update();
 }
 
 void playGround::render()
@@ -91,7 +96,9 @@ void playGround::draw()
 {
 	_uiMgr->Render();
 	_objMgr->Render();
-	_playerMgr->Render();
+//	_playerMgr->Render();
+	//_player->Render();
+	p->Render();
 	_enemyMgr->Render();
 	_uiMgr->BehindRender();
 	if (KEYMANAGER->isToggleKey(VK_F2))

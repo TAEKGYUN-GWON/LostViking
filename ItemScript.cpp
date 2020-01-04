@@ -8,7 +8,7 @@ void ItemScript::CollisionBegin(void * obj)
 	Object* to = (Object*)obj;
 	Item* me = (Item*)_object;
 
-	if (to->GetTag() == "Player")
+	if (to->GetTag() == "Player1")
 	{
 		me->SetColliosion(true);
 		

@@ -7,7 +7,7 @@ void ButtonScript::CollisionBegin(void * obj)
 	Object* to = (Object*)obj;
 	Button* me = (Button*)_object;
 
-	if (to->GetTag() == "Player")
+	if (to->GetTag() == "Player1")
 	{
 		me->SetCollision(true);
 	}
@@ -28,7 +28,7 @@ void ButtonScript::CollisionEnd(void * obj)
 	Object* to = (Object*)obj;
 	Button* me = (Button*)_object;
 
-	if (to->GetTag() == "Player")
+	if (to->GetTag() == "Player1")
 	{
 		me->SetCollision(false);
 	}

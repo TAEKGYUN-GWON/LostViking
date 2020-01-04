@@ -18,6 +18,7 @@ void bulletScript::CollisionBegin(void * obj)
 	{
 		me->SetIsActive(false);
 	}
+
 	if (to->GetName() == "Computer")
 	{
 		Computer* b = (Computer*)to;

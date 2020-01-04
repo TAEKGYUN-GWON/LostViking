@@ -392,7 +392,7 @@ void UIManager::Init()
 
 	{
 		Ladder* ladder1 = new Ladder;
-		ladder1->SetPos(937, 439.5f);
+		ladder1->SetPos(937, 444.5f);
 		ladder1->SetScale(90, 423);
 		ladder1->SetName("Ladder1");
 		ladder1->SetTag("Ladder");
@@ -401,7 +401,7 @@ void UIManager::Init()
 		_vWalls.push_back(ladder1);
 
 		Ladder* ladder2 = new Ladder;
-		ladder2->SetPos(1729, 439.5f);
+		ladder2->SetPos(1729, 444.5f);
 		ladder2->SetScale(90, 423);
 		ladder2->SetName("Ladder2");
 		ladder2->SetTag("Ladder");
@@ -410,7 +410,7 @@ void UIManager::Init()
 		_vWalls.push_back(ladder2);
 
 		Ladder* ladder3 = new Ladder;
-		ladder3->SetPos(237, 1258);
+		ladder3->SetPos(237, 1262);
 		ladder3->SetScale(95, 658);
 		ladder3->SetName("Ladder3");
 		ladder3->SetTag("Ladder");
@@ -419,7 +419,7 @@ void UIManager::Init()
 		_vWalls.push_back(ladder3);
 
 		Ladder* ladder4 = new Ladder;
-		ladder4->SetPos(2244.5f, 1326.5f);
+		ladder4->SetPos(2244.5f, 1330.5f);
 		ladder4->SetScale(95, 330);
 		ladder4->SetName("Ladder4");
 		ladder4->SetTag("Ladder");
@@ -428,7 +428,7 @@ void UIManager::Init()
 		_vWalls.push_back(ladder4);
 
 		Ladder* ladder5 = new Ladder;
-		ladder5->SetPos(751.5f, 1818.5f);
+		ladder5->SetPos(751.5f, 1822.5f);
 		ladder5->SetScale(95, 467);
 		ladder5->SetName("Ladder5");
 		ladder5->SetTag("Ladder");
@@ -437,7 +437,7 @@ void UIManager::Init()
 		_vWalls.push_back(ladder5);
 
 		Ladder* ladder6 = new Ladder;
-		ladder6->SetPos(189.5f, 2168.5f);
+		ladder6->SetPos(189.5f, 2172.5f);
 		ladder6->SetScale(95, 235);
 		ladder6->SetName("Ladder6");
 		ladder6->SetTag("Ladder");

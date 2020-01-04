@@ -4,6 +4,8 @@
 #include "UIManager.h"
 #include "PlayerManager.h"
 #include "enemyManager.h"
+#include "Player.h"
+#include"PMgr.h"
 
 class playGround : public gameNode
 {
@@ -12,7 +14,8 @@ private:
 	UIManager* _uiMgr;
 	PlayerManager* _playerMgr;
 	EnemyManager* _enemyMgr;
-
+	PMgr* p;
+	Player* _player;
 public:
 	playGround();
 	~playGround();

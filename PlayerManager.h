@@ -3,7 +3,6 @@
 #include "Erik.h"
 #include "Olaf.h"
 #include "Baleog.h"
-#include "Bullet.h"
 
 
 class PlayerManager
