@@ -19,7 +19,7 @@ public:
 	virtual void Release() override;
 	virtual void Update() override;
 	virtual void Ability();
-	void IsExplosion();
+	void IsExplosion(Vector2 pos);
 	inline void SetBomb(bool isBomb) { _isBomb = isBomb; }
 	inline bool GetBomb() { return _isBomb; }
 	inline void SetCollision(bool isCol) { _isCol = isCol; }

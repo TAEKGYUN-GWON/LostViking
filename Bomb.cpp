@@ -35,8 +35,26 @@ void Bomb::Ability()
 
 }
 
-void Bomb::IsExplosion()
+void Bomb::IsExplosion(Vector2 pos)
 {
+	_trans->SetPos(pos);
+	_physic->SetBodyPosition();
+	_physic->SetBodyActive(true);
+	_physic->GetBody()->GetFixtureList()->SetSensor(true);
+
+	//b2PolygonShape shape;
+	//Vector2 pSize =_trans->scale + Vector2(30, 30);
+	//pSize = PhysicsBodyComponent::Convert(pSize);
+	//shape.SetAsBox(pSize.x, pSize.y);
+
+	//b2FixtureDef fixture;
+	//fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
+	//fixture.shape = &shape;
+	//fixture.density = 0;
+	//fixture.friction = 0;
+	//fixture.restitution = 0;
+	//a->GetBody()->CreateFixture(&fixture);
+
 	_timer += TIMEMANAGER->getElapsedTime();
 
 	if (_timer >= 3)
@@ -44,6 +62,7 @@ void Bomb::IsExplosion()
 		_isBomb = true;
 
 		_isActive = false;
+		_physic->SetBodyActive(false);
 
 	}
 
