@@ -60,15 +60,19 @@ void Olaf::Update()
 		}
 	}
 
+
+	KeyControl();
+
 	ShieldMove();
 
 	ShieldState();
 
-	KeyControl();
-
 	CAMERA->SetPosition(_trans->GetPos());
 
 	ImageControl();
+
+
+
 
 	for (int i = 0; i < _shields.size(); i++)
 		_shields[i]->Update();
@@ -466,12 +470,14 @@ void Olaf::ShieldState()
 		_upShield->SetIsActive(false);
 		_leftShield->SetIsActive(false);
 		_rightShield->SetIsActive(true);
+		_isShiledUp = false;
 	}
 	if (_state->GetState() == LEFT_IDLE || _state->GetState() == LEFT_MOVE || _state->GetState() == LEFT_FLOATING)
 	{
 		_upShield->SetIsActive(false);
 		_leftShield->SetIsActive(true);
 		_rightShield->SetIsActive(false);
+		_isShiledUp = false;
 	}
 	if (_state->GetState() == RIGHT_SPECIAL2 || _state->GetState() == LEFT_SPECIAL2
 		|| _state->GetState() == EXTRA1 || _state->GetState() == EXTRA2
@@ -480,5 +486,16 @@ void Olaf::ShieldState()
 		_upShield->SetIsActive(true);
 		_leftShield->SetIsActive(false);
 		_rightShield->SetIsActive(false);
+		_isShiledUp = true;
+	}
+
+	if (_state->GetState() == LADDER)
+	{
+		_upShield->GetComponent<PhysicsBodyComponent>()->GetBody()->GetFixtureList()->SetSensor(false);
+	}
+	else
+	{
+		if(_isShiledUp)
+			_upShield->GetComponent<PhysicsBodyComponent>()->GetBody()->GetFixtureList()->SetSensor(true);
 	}
 }
