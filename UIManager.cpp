@@ -644,18 +644,18 @@ void UIManager::Init()
 	auto a = p->AddComponent<PhysicsBodyComponent>();
 	a->Init(DYNAMIC,0.5f);
 
-	b2PolygonShape shape;
-	Vector2 pSize = p->GetTrans()->scale + Vector2(30, 30);
-	pSize = PhysicsBodyComponent::Convert(pSize);
-	shape.SetAsBox(pSize.x, pSize.y);
+	//b2PolygonShape shape;
+	//Vector2 pSize = p->GetTrans()->scale + Vector2(30, 30);
+	//pSize = PhysicsBodyComponent::Convert(pSize);
+	//shape.SetAsBox(pSize.x, pSize.y);
 
-	b2FixtureDef fixture;
-	fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
-	fixture.shape = &shape;
-	fixture.density = 0;
-	fixture.friction = 0;
-	fixture.restitution = 0;
-	a->GetBody()->CreateFixture(&fixture);
+	//b2FixtureDef fixture;
+	//fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
+	//fixture.shape = &shape;
+	//fixture.density = 0;
+	//fixture.friction = 0;
+	//fixture.restitution = 0;
+	//a->GetBody()->CreateFixture(&fixture);
 
 	
 	//a->GetBody()->SetGravityScale(0);
