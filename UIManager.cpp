@@ -637,29 +637,6 @@ void UIManager::Init()
 	_button->AddComponent<ButtonScript>();
 	camera = Vector2::zero;
 
-	p = new Object;
-	p->GetTrans()->SetPos(170, 600);
-	p->GetTrans()->SetScale(80,100);
-	p->SetTag("Player");
-	auto a = p->AddComponent<PhysicsBodyComponent>();
-	a->Init(DYNAMIC,0.5f);
-
-	//b2PolygonShape shape;
-	//Vector2 pSize = p->GetTrans()->scale + Vector2(30, 30);
-	//pSize = PhysicsBodyComponent::Convert(pSize);
-	//shape.SetAsBox(pSize.x, pSize.y);
-
-	//b2FixtureDef fixture;
-	//fixture.isSensor = false;//충돌함수는 실행하지만 박스를 밀어낼것인가 안밀어내것인가?
-	//fixture.shape = &shape;
-	//fixture.density = 0;
-	//fixture.friction = 0;
-	//fixture.restitution = 0;
-	//a->GetBody()->CreateFixture(&fixture);
-
-	
-	//a->GetBody()->SetGravityScale(0);
-	//a->GetBody()->GetFixtureList()->SetSensor(true);
 	_exit = new EXIT;
 	_exit->Init();
 }
@@ -671,7 +648,6 @@ void UIManager::Release()
 void UIManager::Update()
 {
 	Frame();
-	//CameraMove();
 
 	for (Wall* wall : _vWalls)
 		wall->Update();
@@ -716,7 +692,6 @@ void UIManager::Update()
 	}
 
 	_exit->Update();
-	PMove();
 	ElevatorMove();
 	GateMove();
 	_button->Update();
@@ -736,7 +711,6 @@ void UIManager::Render()
 
 	_exit->Render();
 	_button->Render();
-	p->Render();
 }
 
 void UIManager::UiRender()
@@ -885,50 +859,6 @@ void UIManager::DrawTwinkle()
 	}
 }
 
-void UIManager::CameraMove()
-{
-	if (KEYMANAGER->isStayKeyDown('W'))
-	{
-		camera += Vector2::up* 5;
-	}
-	if (KEYMANAGER->isStayKeyDown('S'))
-	{
-		camera += Vector2::down * 5;
-	}
-	if (KEYMANAGER->isStayKeyDown('A'))
-	{
-		camera += Vector2::left * 5;
-	}
-	if (KEYMANAGER->isStayKeyDown('D'))
-	{
-		camera += Vector2::right * 5;
-	}
-
-	CAMERA->SetPosition(camera);
-}
-
-void UIManager::PMove()
-{
-	auto a = p->GetComponent<PhysicsBodyComponent>();
-	a->GetBody()->SetFixedRotation(true);
-		//fixrotation
-	p->GetTrans()->SetPos(a->GetBodyPosition());
-	//a->GetBody()->SetAngularVelocity(0);
-	if (KEYMANAGER->isStayKeyDown(VK_NUMPAD4))
-		a->ApplyForce(Vector2::b2Left * 8);
-	if(KEYMANAGER->isStayKeyDown(VK_NUMPAD6))
-		a->ApplyForce(Vector2::b2Right * 8);
-	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD8))
-		a->ApplyForce(Vector2::b2Up * 300);
-	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD0))
-		a->GetBody()->GetFixtureList()->SetFriction(10);
-	p->Update();
-	CAMERA->SetPosition(Vector2(p->GetTrans()->pos.x, p->GetTrans()->pos.y ));
-
-	
-
-	//a->GetBody()->SetGravityScale(0);
-}
 //엘리베이터
 void UIManager::ElevatorMove()
 {

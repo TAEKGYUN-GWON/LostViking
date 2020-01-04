@@ -29,6 +29,7 @@ protected:
 	bool _isDead;						//야,야야,죽었냐?
 	bool _isActive;						//오브젝트와의 상호작용
 
+	bool _isTurn;
 public:
 	Character();
 	~Character();
@@ -65,6 +66,7 @@ public:
 	virtual void Special2() {};
 
 	void Correction(Vector2 LadderPos) { _LadderPos = LadderPos; }
-
+	bool GetTurn() { return _isTurn; }
+	void SetTurn(bool turn) { _isTurn = turn; }
 };
 

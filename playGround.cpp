@@ -54,8 +54,6 @@ HRESULT playGround::init()
 	_enemyMgr = new EnemyManager;
 	_enemyMgr->Init();
 	_uiMgr->SetPlayerManagerLink(_playerMgr);
-	//CAMERA->SetPosition(_pos);
-	//CAMERA->MoveTo(_pos, 3.0f);
 
 
 	return S_OK;

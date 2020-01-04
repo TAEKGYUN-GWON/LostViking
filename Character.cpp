@@ -52,7 +52,7 @@ void Character::Update()
 {
 	super::Update();
 
-	KeyControl();
+	if(_isTurn)	KeyControl();
 
 	if (!_isLaddering && !_isGround)
 	{
@@ -75,7 +75,7 @@ void Character::Update()
 		}
 	}
 
-	CAMERA->SetPosition(_trans->GetPos());
+	if (_isTurn) CAMERA->SetPosition(_trans->GetPos());
 }
 
 void Character::Release()
