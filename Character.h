@@ -48,7 +48,7 @@ public:
 
 	void SetState(Object_STATE state) { _state->SetState(state); }
 
-	void SetHP(int amount) { _hp = amount; };
+	void SetHP(int amount) { _hp += amount; };
 	int GetHP() { return _hp; }
 
 
