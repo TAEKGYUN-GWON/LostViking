@@ -321,6 +321,15 @@
     <ClInclude Include="BombScript.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Baleog.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Erik.h">
+      <Filter>playGround\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -541,6 +550,15 @@
     </ClCompile>
     <ClCompile Include="BombScript.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Baleog.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Erik.cpp">
+      <Filter>playGround\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
