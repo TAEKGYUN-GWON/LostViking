@@ -39,14 +39,16 @@ public:
 
 	virtual void KeyControl();
 	void PosCorrection(Object* obj);
-	void Moving(b2Vec2 b2v, float power);
-	void Movement(b2Vec2 b2c, float power);
+
+	void NormalMove(b2Vec2 b2v, float power);
+	void SlowMove(b2Vec2 b2c, float power);
+
 	void CheckLR();
 	void ChangeImage(string key);
 
 	void SetState(Object_STATE state) { _state->SetState(state); }
 
-	void SetHP(int amount) { _hp = amount; };
+	void SetHP(int amount) { _hp += amount; };
 	int GetHP() { return _hp; }
 
 

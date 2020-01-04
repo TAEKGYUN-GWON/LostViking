@@ -22,7 +22,9 @@ enum Object_STATE
 	EXTRA1,
 	EXTRA2,
 	EXTRA3,
-	EXTRA4
+	EXTRA4,
+	O_LEFT_SHIELD_CONTROL,
+	O_RIGHT_SHIELD_CONTROL
 }; 
 
 //extra 1, 2, 3, 4문지예가 추가

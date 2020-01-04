@@ -4,7 +4,7 @@
 
 class Olaf :public Character
 {
-public:
+private:
 
 	typedef Character super;
 
@@ -13,6 +13,9 @@ public:
 	Object* _rightShield;
 
 	vector<Object*> _shields;
+
+	bool _isShiledUp;
+public:
 
 	Olaf();
 	~Olaf();
