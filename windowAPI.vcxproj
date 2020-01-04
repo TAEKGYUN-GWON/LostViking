@@ -198,6 +198,7 @@
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="ObjectPool.hpp" />
     <ClInclude Include="Olaf.h" />
+    <ClInclude Include="OlafScript.h" />
     <ClInclude Include="PhysicsBodyComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Plasma.h" />
@@ -277,6 +278,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="Olaf.cpp" />
+    <ClCompile Include="OlafScript.cpp" />
     <ClCompile Include="PhysicsBodyComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Plasma.cpp" />

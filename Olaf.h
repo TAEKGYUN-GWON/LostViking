@@ -5,7 +5,7 @@
 class Olaf :public Character
 {
 private:
-
+	 
 	typedef Character super;
 
 	Object* _upShield;

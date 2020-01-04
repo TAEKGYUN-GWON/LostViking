@@ -36,9 +36,23 @@ void Olaf::Init(float spawnX, float spawnY)
 
 void Olaf::Update()
 {
+
+	if (_hp <= 0)
+		cout << "Á×À½" << endl;
+
 	super::Update();
 
-	
+	if (KEYMANAGER->isOnceKeyDown('P'))
+		SetHP(-1);
+
+	KeyControl();
+
+
+	ShieldState();
+
+
+	ShieldMove();
+
 	if (!_isLaddering && !_isGround)
 	{
 		_isFloating = true;
@@ -60,12 +74,14 @@ void Olaf::Update()
 		}
 	}
 
+	if (!_isLaddering)
+	{
+		if (_state->GetState() == O_RIGHT_SHIELD_CONTROL || _state->GetState() == O_LEFT_SHIELD_CONTROL)
+			SetGravity(0.4f);
+		else
+			SetGravity(1);
+	}
 
-	KeyControl();
-
-	ShieldMove();
-
-	ShieldState();
 
 	CAMERA->SetPosition(_trans->GetPos());
 
@@ -196,24 +212,26 @@ void Olaf::ImageControl()
 void Olaf::SetShield()
 {
 	_upShield = new Object();
-	_upShield->SetTag("UpShield");
-	_upShield->AddComponent<PhysicsBodyComponent>()->Init(STATIC,1.f);
+	_upShield->SetTag("Shield");
+	_upShield->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC,1.f);
+	_upShield->GetComponent<PhysicsBodyComponent>()->GetBody()->SetFixedRotation(true);
 	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 60);
 	_upShield->GetTrans()->SetScale(80 , 10);
-	_upShield->SetIsActive(false);
 
 	_leftShield = new Object();
-	_leftShield->SetTag("LeftShield");
-	_leftShield->AddComponent<PhysicsBodyComponent>()->Init(STATIC, 1.f);
+	_leftShield->SetTag("Shield");
+	_leftShield->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC, 1.f);
+	_leftShield->GetComponent<PhysicsBodyComponent>()->GetBody()->SetFixedRotation(true);
 	_leftShield->GetTrans()->SetPos(_trans->GetPos().x - 60, _trans->GetPos().y);
 	_leftShield->GetTrans()->SetScale(10, 80);
-	_upShield->SetIsActive(false);
 
 	_rightShield = new Object();
-	_rightShield->SetTag("RightShield");
-	_rightShield->AddComponent<PhysicsBodyComponent>()->Init(STATIC, 1.f);
+	_rightShield->SetTag("Shield");
+	_rightShield->AddComponent<PhysicsBodyComponent>()->Init(DYNAMIC, 1.f);
+	_rightShield->GetComponent<PhysicsBodyComponent>()->GetBody()->SetFixedRotation(true);
 	_rightShield->GetTrans()->SetPos(_trans->GetPos().x + 60, _trans->GetPos().y);
 	_rightShield->GetTrans()->SetScale(10, 80);
+
 
 	_shields.push_back(_upShield);
 	_shields.push_back(_leftShield);
@@ -226,6 +244,10 @@ void Olaf::ShieldMove()
 	_upShield->GetTrans()->SetPos(_trans->GetPos().x, _trans->GetPos().y - 60);
 	_leftShield->GetTrans()->SetPos(_trans->GetPos().x - 60, _trans->GetPos().y);
 	_rightShield->GetTrans()->SetPos(_trans->GetPos().x + 60, _trans->GetPos().y);
+
+	_upShield->GetComponent<PhysicsBodyComponent>()->SetBodyPosition();
+	_leftShield->GetComponent<PhysicsBodyComponent>()->SetBodyPosition();
+	_rightShield->GetComponent<PhysicsBodyComponent>()->SetBodyPosition();
 	
 }
 
@@ -233,11 +255,7 @@ void Olaf::KeyControl()
 {
 	if (_isLaddering)
 	{
-		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
-		{
-			_state->SetState(LADDER);
-		}
-		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 		{
 			_state->SetState(LADDER);
 		}
@@ -245,7 +263,8 @@ void Olaf::KeyControl()
 		//¿ÞÂÊ
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
-			_trans->SetPos(Vector2(_trans->GetPos().x - _moveSpeedX, _trans->GetPos().y));
+			//_trans->SetPos(Vector2(_trans->GetPos().x - _moveSpeedX, _trans->GetPos().y));
+			NormalMove(Vector2::b2Left, _moveSpeedX);
 			_isLaddering = false;
 			SetGravity(1);
 
@@ -256,7 +275,8 @@ void Olaf::KeyControl()
 		//¿À¸¥ÂÊ
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
-			_trans->SetPos(Vector2(_trans->GetPos().x + _moveSpeedX, _trans->GetPos().y));
+			//_trans->SetPos(Vector2(_trans->GetPos().x + _moveSpeedX, _trans->GetPos().y));
+			NormalMove(Vector2::b2Right, _moveSpeedX);
 			_isLaddering = false;
 			SetGravity(1);
 			_state->SetState(RIGHT_FLOATING);
@@ -290,7 +310,6 @@ void Olaf::KeyControl()
 		{
 			NormalMove(Vector2::b2Left, _moveSpeedX);
 
-
 			if (_state->GetState() == O_LEFT_SHIELD_CONTROL || _state->GetState() == O_RIGHT_SHIELD_CONTROL)
 				_state->SetState(O_LEFT_SHIELD_CONTROL);
 			else if (_state->GetState() != EXTRA2 && _state->GetState() != LEFT_SPECIAL2)
@@ -306,9 +325,7 @@ void Olaf::KeyControl()
 			}
 			else
 			{
-				/*if (!_isFloating)
-					_state->SetState(LEFT_MOVE); */
-				if(_state->GetState() == O_RIGHT_SHIELD_CONTROL)
+				if(_state->GetState() == O_RIGHT_SHIELD_CONTROL || _state->GetState() == O_LEFT_SHIELD_CONTROL)
 					_state->SetState(O_LEFT_SHIELD_CONTROL);
 				else if (_state->GetState() == LEFT_SPECIAL2 || _state->GetState() == EXTRA2)
 					_state->SetState(EXTRA2);
@@ -345,7 +362,7 @@ void Olaf::KeyControl()
 			NormalMove(Vector2::b2Right, _moveSpeedX);
 			cout << _state->GetState() << endl;
 
-			if (_state->GetState() == O_RIGHT_SHIELD_CONTROL)
+			if (_state->GetState() == O_RIGHT_SHIELD_CONTROL || _state->GetState() == O_LEFT_SHIELD_CONTROL)
 				_state->SetState(O_RIGHT_SHIELD_CONTROL);
 			else if (_state->GetState() != EXTRA1 && _state->GetState() != RIGHT_SPECIAL2)
 				_state->SetState(RIGHT_IDLE);
@@ -358,7 +375,7 @@ void Olaf::KeyControl()
 			}
 			else
 			{
-				if (_state->GetState() == O_LEFT_SHIELD_CONTROL)
+				if (_state->GetState() == O_LEFT_SHIELD_CONTROL || _state->GetState() == O_RIGHT_SHIELD_CONTROL)
 					_state->SetState(O_RIGHT_SHIELD_CONTROL);
 				else if (_state->GetState() == RIGHT_SPECIAL2 || _state->GetState() == EXTRA1)
 					_state->SetState(EXTRA1);
@@ -370,6 +387,7 @@ void Olaf::KeyControl()
 				NormalMove(Vector2::b2Right, _moveSpeedX);
 			else
 				SlowMove(Vector2::b2Right, _moveSpeedX);
+
 			cout << _state->GetState() << endl;
 		}
 		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))

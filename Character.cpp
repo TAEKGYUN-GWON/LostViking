@@ -29,6 +29,7 @@ void Character::Init(float spawnX, float spawnY)
 	_inventory = AddComponent<Inventory>();
 	_graphic->Init(true, true);
 
+
 	_trans->SetScale(80, 100);
 	//_trans->SetPos(WINSIZEX / 2 - 200, 200);
 	_trans->SetPos(spawnX, spawnY);
@@ -249,4 +250,9 @@ void Character::CheckLR()
 void Character::ChangeImage(string key)
 {
 	 _graphic->SetImgName(key);
+}
+
+void Character::SetDie()
+{
+
 }

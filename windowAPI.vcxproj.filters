@@ -330,6 +330,9 @@
     <ClInclude Include="Erik.h">
       <Filter>playGround\Character</Filter>
     </ClInclude>
+    <ClInclude Include="OlafScript.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -559,6 +562,9 @@
     </ClCompile>
     <ClCompile Include="Erik.cpp">
       <Filter>playGround\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="OlafScript.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

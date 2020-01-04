@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "StateComponent.h"
 #include "PhysicsBodyComponent.h"
+#include "Inventory.h"
 
 class Character : public Object
 {
@@ -69,5 +70,7 @@ public:
 	bool GetTurn() { return _isTurn; }
 	void SetTurn(bool turn) { _isTurn = turn; }
 	Inventory* GetInventory() { return _inventory; }
+
+	void SetDie();
 };
 

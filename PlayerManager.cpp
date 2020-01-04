@@ -19,7 +19,7 @@ void PlayerManager::Init()
 	_erik = new Erik;
 	_erik->Init(WINSIZEX/2-200, WINSIZEY/2);
 	_olaf = new Olaf;
-	_olaf->Init(WINSIZEX / 2 - 350, WINSIZEY / 2);
+	_olaf->Init(WINSIZEX / 2 - 450, WINSIZEY / 2);
 	_olaf->SetTurn(true);
 	_vPlayer.push_back(_erik);
 	_vPlayer.push_back(_olaf);

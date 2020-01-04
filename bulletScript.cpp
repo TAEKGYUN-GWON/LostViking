@@ -8,14 +8,16 @@ void bulletScript::CollisionBegin(void * obj)
 	Object* to = (Object*) obj;
 	Bullet* me = (Bullet*)_object;
 
+	if (to->GetTag() == "Item" || to->GetName() == "Barrier" || to->GetTag() == "Shield")
+	{
+		me->SetIsActive(false);
+	}
 	if (to->GetTag() == "Player")
 	{
 		Character* b = (Character*)obj;
-		b->SetHP(-1);
-	}
-	if (to->GetTag() == "Item" || to->GetName() == "Barrier")
-	{
+
 		me->SetIsActive(false);
+		b->SetHP(-1);
 	}
 }
 
