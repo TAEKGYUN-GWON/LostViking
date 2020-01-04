@@ -21,23 +21,23 @@ void EnemyCollision::CollisionBegin(void * obj)
 	Enemy* enemy = (Enemy*)_object;
 
 	//º®¿¡ ´êÀ¸¸é
-	if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && enemy->GetState() == MOVE_LEFT)
+	if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier") && (enemy->GetState() == MOVE_LEFT ||  enemy->GetState() == ATTACK_LEFT))
 	{
 
 		enemy->SetState(MOVE_RIGHT);
 	}
-	else if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier" ) && enemy->GetState() == MOVE_RIGHT)
+	else if ((collisionObj->GetName() == "Barrier" || collisionObj->GetName() == "eBarrier" ) && (enemy->GetState() == MOVE_RIGHT || enemy->GetState() == ATTACK_RIGHT))
 	{
 		enemy->SetState(MOVE_LEFT);
 	}
 
-	else if (collisionObj->GetTag() == "Gate"&& enemy->GetState() == MOVE_LEFT || enemy->GetState() == ATTACK_LEFT)
+	else if (collisionObj->GetTag() == "Gate"&& (enemy->GetState() == MOVE_LEFT || enemy->GetState() == ATTACK_LEFT|| enemy->GetState() == ATTACK_RIGHT))
 	{
 		Gate* gate = (Gate*)collisionObj;
 		if (!gate->GetIsOn())
 			enemy->SetState(MOVE_RIGHT);
 	}
-	else if (collisionObj->GetTag() == "Gate"&& enemy->GetState() == MOVE_RIGHT || enemy->GetState() == ATTACK_RIGHT)
+	else if (collisionObj->GetTag() == "Gate"&& (enemy->GetState() == MOVE_RIGHT || enemy->GetState() == ATTACK_RIGHT|| enemy->GetState() == ATTACK_LEFT))
 	{
 		Gate* gate = (Gate*)collisionObj;
 		if (!gate->GetIsOn())
@@ -56,6 +56,8 @@ void EnemyCollision::CollisionBegin(void * obj)
 		enemy->SetAttack(true);
 	}
 
+	if (collisionObj->GetName() == "Arrow")
+		enemy->SetIsActive(false);
 	
 
 }

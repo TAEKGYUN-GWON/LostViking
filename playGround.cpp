@@ -93,6 +93,7 @@ void playGround::draw()
 	_objMgr->Render();
 	_playerMgr->Render();
 	_enemyMgr->Render();
+	_uiMgr->BehindRender();
 	if (KEYMANAGER->isToggleKey(VK_F2))
 		_uiMgr->UiRender();
 }

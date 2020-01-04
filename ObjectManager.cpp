@@ -135,7 +135,7 @@ void ObjectManager::Init()
 	_vObject.push_back(button);
 
 	button = new Button;
-	button->Init(Vector2(2384, 2014));
+	button->Init(Vector2(2384, 2040));
 	button->GetGraphic()->Init(true);
 	button->SetName("Button3");
 	button->GetGraphic()->SetPivot(CENTER);
@@ -210,6 +210,8 @@ void ObjectManager::Update()
 		_vEffect[i]->Update();
 		if (_vEffect[i]->GetGraphic()->IsFrameEnd()) _vEffect.erase(_vEffect.begin() + i);
 	}
+
+
 
 	PlasmaOff("Button1", "Plasma1");
 	PlasmaOff("Button1", "Plasma2");

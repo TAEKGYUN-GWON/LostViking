@@ -30,6 +30,7 @@ void Computer::Release()
 
 void Computer::Update()
 {
+	if (hp <= 0) _isActive = false;
 	_trans->SetPos(_physic->GetBodyPosition());
 	super::Update();
 }

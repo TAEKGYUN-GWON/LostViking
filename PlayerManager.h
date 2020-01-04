@@ -3,7 +3,7 @@
 #include "Erik.h"
 #include "Olaf.h"
 #include "Baleog.h"
-
+#include "Bullet.h"
 
 
 class PlayerManager
@@ -15,6 +15,7 @@ private:
 	Olaf *_olaf;
 	Baleog * _baleog;
 	Object_STATE _state; 
+	Bullet* _bullet;
 
 public:
 	PlayerManager();

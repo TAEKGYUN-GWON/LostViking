@@ -247,7 +247,7 @@ void Olaf::KeyControl()
 		{
 			_trans->SetPos(Vector2(_trans->GetPos().x - _moveSpeedX, _trans->GetPos().y));
 			_isLaddering = false;
-			SetGravity(1);
+			//SetGravity(1);
 
 			//if (_state->GetState() != LEFT_SPECIAL2)
 				_state->SetState(LEFT_FLOATING);
@@ -258,7 +258,7 @@ void Olaf::KeyControl()
 		{
 			_trans->SetPos(Vector2(_trans->GetPos().x + _moveSpeedX, _trans->GetPos().y));
 			_isLaddering = false;
-			SetGravity(1);
+			//SetGravity(1);
 			_state->SetState(RIGHT_FLOATING);
 		}
 

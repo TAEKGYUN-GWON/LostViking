@@ -3,7 +3,6 @@
 #include "TransformComponent.h"
 #include "GraphicComponent.h"
 #include "ErikScript.h"
-#include "Inventory.h"
 Character::Character()
 {
 
@@ -92,7 +91,7 @@ void Character::KeyControl()
 		{
 			_trans->SetPos(Vector2(_trans->GetPos().x - _moveSpeedX, _trans->GetPos().y));
 			_isLaddering = false;
-			SetGravity(1);
+			//SetGravity(1);
 			_state->SetState(LEFT_IDLE);
 		}
 
@@ -101,7 +100,7 @@ void Character::KeyControl()
 		{
 			_trans->SetPos(Vector2(_trans->GetPos().x + _moveSpeedX, _trans->GetPos().y));
 			_isLaddering = false;
-			SetGravity(1);
+			//SetGravity(1);
 			_state->SetState(RIGHT_IDLE);
 		}
 		
@@ -205,7 +204,7 @@ void Character::KeyControl()
 			if (_isLadder)
 			{
 				_isLaddering = true;
-				SetGravity(0);
+				//SetGravity(0);
 				_trans->pos.x = _LadderPos.x;
 				_state->SetState(LADDER);
 				_physics->SetBodyPosition();

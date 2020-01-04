@@ -7,6 +7,7 @@ class Computer : public Object
 {
 private:
 	PhysicsBodyComponent* _physic;
+	int hp = 14;
 protected:
 	typedef Object super;
 public:
@@ -18,5 +19,6 @@ public:
 	virtual void Release() override;
 	virtual void Update() override;
 	virtual void Ability();
+	virtual void Atacked() { --hp; };
 };
 

@@ -9,7 +9,8 @@ void Enemy::Init(Vector2 pos, string image, float speed, ENEMY_STATE state, bool
 	//Ãæµ¹
 
 	_physics = AddComponent<PhysicsBodyComponent>();
-
+	_tag = "Enemy";
+	_name = "Enemy";
 	_speed = speed; 
 	_state = state;
 	_isAttack = isattack;

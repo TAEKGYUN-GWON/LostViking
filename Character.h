@@ -2,7 +2,7 @@
 #include "Object.h"
 #include "StateComponent.h"
 #include "PhysicsBodyComponent.h"
-
+#include"Inventory.h"
 class Character : public Object
 {
 protected:

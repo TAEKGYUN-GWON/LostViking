@@ -65,8 +65,10 @@ void EnemyManager::Release()
 void EnemyManager::Update()
 {
 	for (Enemy *enemy : _vEnemy)
-		enemy->Update();
-
+	{
+		if(enemy->GetIsActive())
+			enemy->Update();
+	}
 	//활성화된 총알을 업데이트 해주는 과정
 	for (Object *B : _objectPool->GetActivePool())
 		B->Update();
@@ -78,7 +80,10 @@ void EnemyManager::Update()
 void EnemyManager::Render()
 {
 	for (Enemy *enemy : _vEnemy)
-		enemy->Render();
+	{
+		if (enemy->GetIsActive())
+			enemy->Render();
+	}
 
 	//활성화된 총알을 그리는 과정
 	for (Object *B : _objectPool->GetActivePool())
@@ -93,7 +98,7 @@ void EnemyManager::EnemyFire()
 		{
 			if (enemy->IsFire())
 			{
-
+				if(enemy->GetIsActive())
 				((Bullet*)_objectPool->GetPoolObject())->Fire(
 					(Vector2(enemy->GetTrans()->pos.x + 10, enemy->GetTrans()->pos.y)),
 					PI, 100);
@@ -107,7 +112,7 @@ void EnemyManager::EnemyFire()
 		{
 			if (enemy->IsFire())
 			{
-
+				if (enemy->GetIsActive())
 				((Bullet*)_objectPool->GetPoolObject())->Fire(
 					(Vector2(enemy->GetTrans()->pos.x + 10, enemy->GetTrans()->pos.y)),
 					0, 100);

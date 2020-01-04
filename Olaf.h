@@ -1,7 +1,7 @@
 #pragma once
 #include "Character.h"
 #include <vector>
-
+#include "Bullet.h"
 class Olaf :public Character
 {
 private:

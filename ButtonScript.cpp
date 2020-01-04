@@ -11,6 +11,12 @@ void ButtonScript::CollisionBegin(void * obj)
 	{
 		me->SetCollision(true);
 	}
+	if (to->GetName() == "Arrow")
+	{
+		me->SetCollision(true);
+		me->SetIsActive(false);
+		to->SetIsActive(false);
+	}
 }
 
 void ButtonScript::CollisionPreSolve(void * obj)

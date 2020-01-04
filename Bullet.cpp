@@ -29,7 +29,8 @@ void Bullet::Init(string imgKey, string tag, string name)
 void Bullet::Update()
 {
 	Move();
-	_trans->pos = _physics->GetBodyPosition();
+	if(_name!="Arrow")
+		_trans->pos = _physics->GetBodyPosition();
 
 	super::Update();
 }
@@ -46,8 +47,14 @@ void Bullet::Fire(Vector2 pos, float angle, float speed)
 
 void Bullet::Move()
 {
-	_physics->GetBody()->SetLinearVelocity(b2Vec2(cosf(_trans->GetRotateRadian()) * _speed,
-		-sinf(_trans->GetRotateRadian()) * _speed) * TIMEMANAGER->getElapsedTime());
+	if(_name!="Arrow")
+		_physics->GetBody()->SetLinearVelocity(b2Vec2(cosf(_trans->GetRotateRadian()) * _speed,
+			-sinf(_trans->GetRotateRadian()) * _speed) * TIMEMANAGER->getElapsedTime());
+	else
+	{
+		_trans->SetPos(_trans->GetPos() + Vector2(cosf(_trans->GetRotateRadian()) * _speed,0));
+		_physics->SetBodyPosition();
+	}
 
 	if (_trans->pos.x > CAMERA->GetPosition().x + WINSIZEX || _trans->pos.x < CAMERA->GetPosition().x ||
 		_trans->pos.y > CAMERA->GetPosition().y + WINSIZEY || _trans->pos.y < CAMERA->GetPosition().y)
