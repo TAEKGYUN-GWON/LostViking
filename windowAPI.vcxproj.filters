@@ -339,13 +339,13 @@
     <ClInclude Include="UnGravityScript.h">
       <Filter>playGround\Map&amp;UI</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="PMgr.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerScript.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
   </ItemGroup>
@@ -578,9 +578,6 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>playGround\Object</Filter>
     </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="PMgr.cpp">
       <Filter>playGround\player</Filter>
     </ClCompile>
@@ -588,6 +585,9 @@
       <Filter>playGround</Filter>
     </ClCompile>
     <ClCompile Include="PlayerScript.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
       <Filter>playGround\player</Filter>
     </ClCompile>
   </ItemGroup>

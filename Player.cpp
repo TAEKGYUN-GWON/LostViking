@@ -57,7 +57,7 @@ void Player::KeyCon()
 		b2Vec2 velocity = _physics->GetBody()->GetLinearVelocity();
 		float force = (velocity.x < _speed) ? (_speed) : (0.f);
 		_physics->ApplyForce(Vector2::b2Left * force);
-		_state->direction = 0;
+		_state->direction = 1;
 		if (_state->state != JUMP) _state->state = MOVE;
 		
 	}
@@ -71,7 +71,7 @@ void Player::KeyCon()
 		b2Vec2 velocity = _physics->GetBody()->GetLinearVelocity();
 		float force = (velocity.x < _speed) ? (_speed) : (0.f);
 		_physics->ApplyForce(Vector2::b2Right * force);
-		_state->direction = 1;
+		_state->direction = 0;
 		if(_state->state !=JUMP) _state->state = MOVE;
 	}
 	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
@@ -152,8 +152,7 @@ void Player::ImgCon()
 		else
 			_graphic->SetImgName(_playerName + " Epic3");
 	}
-	if (_state->direction == 0)_graphic->SetFrameY(1);
-	else _graphic->SetFrameY(0);
+	_graphic->SetFrameY(_state->direction);
 }
 
 bool Player::PlayerDead()
